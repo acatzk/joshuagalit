@@ -7,7 +7,7 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p>Helloo</p>
+      <p className="font-semibold text-2xl text-indigo-600">Setting up Tailwind CSS</p>
     </> 
   )
 }
