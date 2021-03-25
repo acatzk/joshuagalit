@@ -26,8 +26,11 @@ export default function Layout ({ children }) {
   ]
 
   return (
-    <div className="flex flex-row justify-between w-full min-h-screen h-screen bg-white text-gray-700 p-4 md:p-10">
-      <div className="flex flex-col justify-between h-full">
+    // Main Layout
+    <div className="flex flex-col md:flex-row justify-between w-full min-h-screen h-screen bg-white text-gray-700 p-4 md:p-10">
+
+      {/* First Flex Column */}
+      <div className="flex flex-row md:flex-col justify-between h-14 md:h-full">
         <ActiveLink href="/" current="">
           <a>
             <div className="flex-shrink-0">
@@ -35,18 +38,25 @@ export default function Layout ({ children }) {
             </div>
           </a>
         </ActiveLink>
-        <div>
+        <div className="hidden md:block">
           social icons
         </div>
+        <div className="block md:hidden">
+          dark mode
+        </div>
       </div>
+
+      {/* Dynamic Content */}
       <div className="flex items-center justify-center flex-1">
         { children }
       </div>
-      <div className="flex flex-col items-center justify-between h-full w-14">
-        <div>
+
+      {/* Navigation links */}
+      <div className="flex flex-row md:flex-col items-end md:items-center justify-center md:justify-between h-14 md:h-full w-full md:w-14">
+        <div className="hidden md:block">
           dark mode
         </div>
-        <div className="transform rotate-90">
+        <div className="transform rota-0 md:rotate-90">
           <nav>
             <ul className="flex space-x-4">
               {links.map(({ text, href}, i) => (
@@ -59,10 +69,11 @@ export default function Layout ({ children }) {
             </ul>
           </nav>
         </div>
-        <div>
-          dark mode
+        <div className="hidden md:block">
+          Say Hi
         </div>
       </div>
+
     </div>
   )
 }
