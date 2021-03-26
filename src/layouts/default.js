@@ -101,7 +101,7 @@ export default function Layout ({ children }) {
         <div className="transform rota-0 md:rotate-90 w-full md:w-auto">
           <nav>
             <ul className="flex items-center justify-between space-x-0 md:space-x-8">
-              {navigations.map(({ text, href}, i) => (
+              {navigations.map(({ text, href }, i) => (
                 <motion.li 
                   key={i} 
                   whileHover={{ y: -3 }}
@@ -116,7 +116,9 @@ export default function Layout ({ children }) {
           </nav>
         </div>
         <div className="hidden md:block">
-          Say Hi
+          <div className="flex-shrink-0">
+            <WavingHand />
+          </div>
         </div>
       </div>
 
@@ -162,5 +164,25 @@ function SoundIcon ({ className, isAudio }) {
         </rect>
       </g>
     </motion.svg>
+  )
+}
+
+function WavingHand () {
+  return (
+    <button className="flex flex-col items-center focus:outline-none">
+      <motion.div
+        animate={{ rotate: 20 }}
+        transition={{
+          yoyo: Infinity,
+          from: 0,
+          duration: 0.5,
+          ease: "easeInOut",
+          type: "tween",
+        }}
+      >
+        <img className="w-10 h-10" src="/svgs/hand-wave.svg" />
+      </motion.div>
+      <span className="text-sm">say hi.</span>
+    </button>
   )
 }
