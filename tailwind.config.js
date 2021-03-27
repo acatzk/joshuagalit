@@ -7,9 +7,13 @@ module.exports = {
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
+    body: ['Nunito', 'system-ui', 'sans-serif'],
     extend: {
       colors: {
-        cyan: colors.cyan
+        cyan: colors.cyan,
+        fuchsia: colors.fuchsia,
+        'twitter-blue': '#1DA1F2',
+        'dark-dim': '#15202B'
       }
     },
   },
