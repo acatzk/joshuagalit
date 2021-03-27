@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useState, useCallback } from 'react'
 import ActiveLink from '~/components/ActiveLink'
 import ThemeChanger from '~/components/ThemeChanger'
+import PerfectScrollbar from 'react-perfect-scrollbar'
 
 export default function Layout ({ children }) {
 
@@ -43,17 +44,25 @@ export default function Layout ({ children }) {
       href: 'https://github.com/acatzk'
     },
     {
+      icon: <svg className="w-6 h-6 fill-current text-[#0077B5] dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>,
+      href: 'https://www.linkedin.com/in/joshua-galit-7b6b84200/'
+    },
+    {
+      icon: <svg className="w-6 h-6 fill-current text-[#ea4c89] dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Dribbble</title><path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.814zm-11.62-2.58c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.17zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702-1.81-1.61-4.19-2.586-6.795-2.586-.825 0-1.63.1-2.4.285zm10.335 3.483c-.218.29-1.935 2.493-5.724 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.31-6.38z"></path></svg>,
+      href: 'https://dribbble.com/angryboy'
+    },
+    {
       icon: <svg className="w-6 h-6 fill-current text-[#f48024] dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Stack Overflow</title><path d="M18.986 21.865v-6.404h2.134V24H1.844v-8.539h2.13v6.404h15.012zM6.111 19.731H16.85v-2.137H6.111v2.137zm.259-4.852l10.48 2.189.451-2.07-10.478-2.187-.453 2.068zm1.359-5.056l9.705 4.53.903-1.95-9.706-4.53-.902 1.936v.014zm2.715-4.785l8.217 6.855 1.359-1.62-8.216-6.853-1.35 1.617-.01.001zM15.751 0l-1.746 1.294 6.405 8.604 1.746-1.294L15.749 0h.002z"></path></svg>,
       href: 'https://stackoverflow.com/users/14108225/joshua-galit'
-    },
+    }
   ]
 
   return (
     // Main Layout
-    <div className="flex flex-col md:flex-row justify-between w-full min-h-screen h-screen bg-white text-gray-700 p-4 md:p-12 dark:bg-gray-800 dark:text-white">
+    <div className="flex flex-col md:flex-row justify-between w-full min-h-screen h-screen bg-white text-black px-4 py-4 md:py-12 md:px-12 dark:bg-dark-dim dark:text-white">
 
       {/* First Flex Column */}
-      <div className="flex items-center flex-row md:flex-col justify-between h-auto md:h-full">
+      <div className="flex items-center flex-row md:flex-col justify-between h-auto md:h-full pb-3 border-b border-gray-200 dark:border-gray-600 md:border-0">
         <div className="flex items-center space-x-2">
           <ActiveLink href="/" current="">
             <a>
@@ -68,16 +77,11 @@ export default function Layout ({ children }) {
         </div>
         <div className="hidden md:block">
           <div className="flex flex-col space-y-3">
+            {/* My Social Links */}
             {socialLinks.map(({ icon, href }, i) => (
-              <motion.button 
-                key={i}
-                whileHover={{ y: -3 }}
-                className="focus:outline-none rounded-full p-1 hover:shadow-lg"
-              >
+              <motion.button key={i} whileHover={{ y: -3 }} className="focus:outline-none rounded-full p-1 hover:shadow-lg">
                 <Link href={ href }>
-                  <a target="_blank">
-                    { icon }
-                  </a>
+                  <a target="_blank">{ icon }</a>
                 </Link>
               </motion.button>
             ))}
@@ -89,16 +93,18 @@ export default function Layout ({ children }) {
       </div>
 
       {/* Dynamic Content */}
-      <div className="flex items-center justify-center flex-1">
-        { children }
-      </div>
+      <PerfectScrollbar style={{ touchAction: "none" }}>
+        <div className="overflow-y-auto flex h-auto md:h-full">
+          { children }
+        </div>
+      </PerfectScrollbar>
 
       {/* Navigation links */}
-      <div className="flex flex-row md:flex-col items-end md:items-center justify-center md:justify-between h-14 md:h-full w-full md:w-14">
+      <div className="flex flex-row md:flex-col items-end md:items-center justify-center md:justify-between h-14 md:h-full w-full md:w-14 border-t border-gray-200 dark:border-gray-600 md:border-0">
         <div className="hidden md:block">
           <ThemeChanger />
         </div>
-        <div className="transform rota-0 md:rotate-90 w-full md:w-auto">
+        <div className="transform rotate-0 md:rotate-90 w-full md:w-auto">
           <nav>
             <ul className="flex items-center justify-between space-x-0 md:space-x-8">
               {navigations.map(({ text, href }, i) => (
@@ -107,8 +113,8 @@ export default function Layout ({ children }) {
                   whileHover={{ y: -3 }}
                   className="w-1/4 text-center"
                 >
-                  <ActiveLink href={href} current="text-indigo-500 pb-2 border-b border-indigo-300 hover:text-indigo-500 dark:text-pink-500 dark:border-pink-300 dark:hover:text-pink-500">
-                    <a className="text-sm tracking-wider font-normal text-gray-400 hover:text-gray-500 transition ease-in-out duration-200 dark:text-gray-400 dark:hover:text-gray-200">{ text }</a>
+                  <ActiveLink href={href} current="text-fuchsia-500 font-semibold">
+                    <a className="text-xs tracking-widest hover:text-fuchsia-500 transition ease-in-out duration-200">{ text }</a>
                   </ActiveLink>
                 </motion.li>
               ))}
@@ -138,12 +144,7 @@ function LogoIcon ({ className }) {
 
 function SoundIcon ({ className, isAudio }) {
   return (
-    <motion.svg 
-      whileHover={{ y: -3 }}
-      className={className} 
-      viewBox="0 0 55 80" 
-      fill="currentColor"
-    >
+    <svg className={className} viewBox="0 0 55 80" fill="currentColor">
       <g transform="matrix(1 0 0 -1 0 80)">
         <rect width="10" height="20" rx="3">
           <animate attributeName="height" begin="0s" dur="4.3s"
@@ -163,7 +164,7 @@ function SoundIcon ({ className, isAudio }) {
             repeatCount={ !isAudio ? 'indefinite' : ''}></animate>
         </rect>
       </g>
-    </motion.svg>
+    </svg>
   )
 }
 
@@ -171,18 +172,18 @@ function WavingHand () {
   return (
     <button className="flex flex-col items-center focus:outline-none">
       <motion.div
-        animate={{ rotate: 20 }}
+        animate={{ rotate: 30 }}
         transition={{
           yoyo: Infinity,
           from: 0,
-          duration: 0.5,
+          duration: 0.4,
           ease: "easeInOut",
           type: "tween",
         }}
       >
         <img className="w-10 h-10" src="/svgs/hand-wave.svg" />
       </motion.div>
-      <span className="text-sm">say hi.</span>
+      <span className="text-xs font-semibold">say hi.</span>
     </button>
   )
 }
