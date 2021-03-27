@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
+import useProgressiveImg from '~/components/useProgressiveImage'
 
-export default function HomePage() {
+export default function IndexPage() {
+  const [src, { blur }] = useProgressiveImg("/images/my-picture-tiny.jpg", "/images/my-picture-large.png")
+
   return (
     <>
       <Head>
@@ -13,7 +16,15 @@ export default function HomePage() {
         <section className="flex flex-col md:flex-row-reverse items-center justify-center mx-auto w-full max-w-7xl py-4">
           <div className="pl-0 md:pl-10">
             <div className="p-1 bg-gradient-to-tr from-yellow-400 to-fuchsia-600 rounded-xl">
-              <img src="/images/my-picture.png" className="max-w-full md:max-w-xs rounded-xl bg-white p-1" />
+              <img 
+                src={src}
+                className="max-w-full md:max-w-xs rounded-xl bg-white p-1" 
+                style={{
+                  width: 500,
+                  filter: blur ? "blur(20px)" : "none",
+                  transition: blur ? "none" : "filter 0.3s ease-out"
+                }}
+              />
             </div>
           </div>
           <div className="flex flex-col space-y-6 pt-4">
