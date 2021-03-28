@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { Menu } from '@headlessui/react'
 import { useState, useCallback } from 'react'
 import ActiveLink from '~/components/ActiveLink'
 import ThemeChanger from '~/components/ThemeChanger'
@@ -18,8 +19,8 @@ export default function Layout ({ children }) {
       href: '/'
     },
     {
-      text: 'Portfolio',
-      href: '/portfolio'
+      text: 'Projects',
+      href: '/projects'
     },
     {
       text: 'Blog',
@@ -59,10 +60,10 @@ export default function Layout ({ children }) {
 
   return (
     // Main Layout
-    <div className="flex flex-col md:flex-row justify-between w-full min-h-screen h-screen bg-white text-black px-4 py-4 md:py-12 md:px-12 dark:bg-dark-dim dark:text-white">
+    <div className="flex flex-col md:flex-row justify-between w-full min-h-screen h-screen bg-white text-black dark:bg-dark-dim dark:text-white">
 
       {/* First Flex Column */}
-      <div className="flex items-center flex-row md:flex-col justify-between h-auto md:h-full pb-3 border-b border-gray-200 dark:border-gray-600 md:border-0">
+      <div className="flex items-center flex-row md:flex-col justify-between h-auto md:h-full pb-3 border-b border-gray-200 dark:border-gray-600 md:border-0 px-4 py-4 md:py-12 md:px-12">
         <div className="flex items-center space-x-2">
           <ActiveLink href="/" current="">
             <a>
@@ -88,19 +89,22 @@ export default function Layout ({ children }) {
           </div>
         </div>
         <div className="block md:hidden">
-          <ThemeChanger />
+          <div className="flex space-x-2">
+            <ThemeChanger />
+            <SocialMenu socialLinks={socialLinks}/>
+          </div>
         </div>
       </div>
 
       {/* Dynamic Content */}
-      <PerfectScrollbar style={{ touchAction: "none" }}>
-        <div className="overflow-y-auto flex h-auto md:h-full">
+      <PerfectScrollbar style={{ touchAction: "none" }} className="flex-1">
+        <div className="flex h-auto md:h-full">
           { children }
         </div>
       </PerfectScrollbar>
 
       {/* Navigation links */}
-      <div className="flex flex-row md:flex-col items-end md:items-center justify-center md:justify-between h-14 md:h-full w-full md:w-14 border-t border-gray-200 dark:border-gray-600 md:border-0">
+      <div className="flex flex-row md:flex-col items-end md:items-center justify-center md:justify-between md:h-full w-full md:w-14 border-t border-gray-200 dark:border-gray-600 md:border-0 px-4 py-4 md:py-12 md:px-16">
         <div className="hidden md:block">
           <ThemeChanger />
         </div>
@@ -108,23 +112,17 @@ export default function Layout ({ children }) {
           <nav>
             <ul className="flex items-center justify-between space-x-0 md:space-x-8">
               {navigations.map(({ text, href }, i) => (
-                <motion.li 
-                  key={i} 
-                  whileHover={{ y: -3 }}
-                  className="w-1/4 text-center"
-                >
+                <li key={i} className="w-1/4 text-center">
                   <ActiveLink href={href} current="text-fuchsia-500 font-semibold">
                     <a className="text-xs tracking-widest hover:text-fuchsia-500 transition ease-in-out duration-200">{ text }</a>
                   </ActiveLink>
-                </motion.li>
+                </li>
               ))}
             </ul>
           </nav>
         </div>
         <div className="hidden md:block">
-          <div className="flex-shrink-0">
-            <WavingHand />
-          </div>
+          <WavingHand />
         </div>
       </div>
 
@@ -185,5 +183,28 @@ function WavingHand () {
       </motion.div>
       <span className="text-xs font-semibold">say hi.</span>
     </button>
+  )
+}
+
+function SocialMenu ({ socialLinks }) {
+  return (
+    <Menu>
+      <Menu.Button className="relative focus:outline-none appearance-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+        </svg>
+      </Menu.Button>
+      <Menu.Items className="absolute right-2 top-12 flex flex-col space-y-1 py-1 px-1 z-50 bg-white dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg shadow-lg">
+        {socialLinks.map(({ icon, href }, i) => (
+          <Menu.Item>
+            <motion.button key={i} whileHover={{ y: -3 }} className="focus:outline-none rounded-full p-1 hover:shadow-lg">
+              <Link href={ href }>
+                <a target="_blank">{ icon }</a>
+              </Link>
+            </motion.button>
+          </Menu.Item>
+        ))}
+      </Menu.Items>
+    </Menu>
   )
 }
