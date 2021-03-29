@@ -12,7 +12,7 @@ export default function IndexPage() {
   return (
     <>
       <Head>
-        <title>Joshua Galit</title>
+        <title>About | Joshua Galit</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
@@ -37,20 +37,20 @@ export default function IndexPage() {
               </h1>
               <p className="tracking-wide leading-7">My name is <span className="font-semibold">Joshua Galit</span> and I'm a self taught web developer using modern technologies. Addicted in GitHub contribution and commits.</p>
             </div>
-            <div className="space-x-3 sm:space-x-4">
+            <div className="flex flex-wrap  space-x-3 md:space-x-4">
               <motion.button 
                 className="bg-gradient-to-tr from-yellow-400 to-fuchsia-600 text-white px-4 xl:px-9 py-3 rounded-lg text-lg font-medium focus:outline-none transition ease-in-out duration-200 hover:shadow-xl"
                 whileHover={{ y: -4 }}
                 onClick={() => router.push('/projects') }
               >
-                Portfolio
+                <span className="line-clamp-1">Portfolio</span>
               </motion.button>
               <motion.button 
                 className="text-secondary-blue hover:text-fuchsia-600 hover:indigo-600 px-7 xl:px-12 py-3 border hover:border-fuchsia-600 rounded-lg text-lg font-medium focus:outline-none transition ease-in-out duration-200 hover:shadow-xl dark:text-gray-200 dark:border-gray-400 dark:hover:text-white"
                 whileHover={{ y: -4 }}
                 onClick={() => router.push('/contact') }
               >
-                Contact
+                <span className="line-clamp-1">Contact</span>
               </motion.button>
             </div>
           </div>
