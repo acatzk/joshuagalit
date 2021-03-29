@@ -122,7 +122,7 @@ export default function Layout ({ children }) {
           </nav>
         </div>
         <div className="hidden md:block">
-          <WavingHand />
+          <WavingHand duration={0.5}/>
         </div>
       </div>
 
@@ -166,37 +166,17 @@ function SoundIcon ({ className, isAudio }) {
   )
 }
 
-function WavingHand () {
-  return (
-    <button className="flex flex-col items-center focus:outline-none">
-      <motion.div
-        animate={{ rotate: 30 }}
-        transition={{
-          yoyo: Infinity,
-          from: 0,
-          duration: 0.4,
-          ease: "easeInOut",
-          type: "tween",
-        }}
-      >
-        <img className="w-10 h-10" src="/svgs/hand-wave.svg" />
-      </motion.div>
-      <span className="text-xs font-semibold">say hi.</span>
-    </button>
-  )
-}
-
 function SocialMenu ({ socialLinks }) {
   return (
     <Menu>
-      <Menu.Button className="relative focus:outline-none appearance-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <Menu.Button className="rounded-full focus:outline-none p-1 hover:shadow  transition ease-out duration-200 border border-transparent hover:border-gray-300">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
         </svg>
       </Menu.Button>
-      <Menu.Items className="absolute right-2 top-12 flex flex-col space-y-1 py-1 px-1 z-50 bg-white dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg shadow-lg">
+      <Menu.Items className="absolute right-3 top-14 flex flex-col space-y-1 py-1 px-1 z-50 bg-white dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg shadow-lg">
         {socialLinks.map(({ icon, href }, i) => (
-          <Menu.Item>
+          <Menu.Item key={i}>
             <motion.button key={i} whileHover={{ y: -3 }} className="focus:outline-none rounded-full p-1 hover:shadow-lg">
               <Link href={ href }>
                 <a target="_blank">{ icon }</a>
@@ -206,5 +186,26 @@ function SocialMenu ({ socialLinks }) {
         ))}
       </Menu.Items>
     </Menu>
+  )
+}
+
+function WavingHand ({ duration }) {
+  return (
+    <button className="flex flex-col space-y-1 items-center focus:outline-none">
+      <motion.div
+        animate={{ rotate: 30 }}
+        transition={{
+          yoyo: Infinity,
+          from: 0,
+          duration: duration,
+          ease: "easeInOut",
+          type: "tween",
+        }}
+        className="text-3xl"
+      >
+        👋
+      </motion.div>
+      <span className="text-sm font-semibold">hi</span>
+    </button>
   )
 }
