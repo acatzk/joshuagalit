@@ -17,7 +17,10 @@ export const getStaticProps = async () => {
 }
 
 export default function ProjectsPage ({ initialData }) {
-  const { data } = useSWR(GET_PROJECT_QUERY, (query) => hasuraAdminClient.request(query), { initialData })
+  const { data } = useSWR(GET_PROJECT_QUERY, (query) => hasuraAdminClient.request(query), { 
+    initialData,
+    revalidateOnMount: true
+  })
 
   return (
     <>
