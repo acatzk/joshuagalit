@@ -28,7 +28,8 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-toggle-dark-mode": "^1.0.3",
     "swr": "^0.5.4",
-    "tailwindcss": "^2.0.4"
+    "tailwindcss": "^2.0.4",
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
     "@tailwindcss/jit": "^0.1.3"
