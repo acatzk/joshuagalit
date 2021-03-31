@@ -12,14 +12,18 @@ module.exports = {
       colors: {
         cyan: colors.cyan,
         fuchsia: colors.fuchsia,
-        'dark-dim': '#15202B'
+        'dark-dim': '#15202B',
+        'blue-twitter': '#1DA1F2'
       }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      ringOffsetWidth: ['hover', 'active']
+    },
   },
   plugins: [
+    require('@tailwindcss/forms'),
     require('@tailwindcss/line-clamp')
   ],
 }

@@ -17,8 +17,8 @@ export default function ProjectItem ({ title, description, demo_url, source_code
         <div className="space-y-2 md:space-y-4 w-full">
           <div className="flex items-center justify-between">
             <div className="flex flex-row items-center space-x-2">
-              <h1 className="text-xl font-semibold line-clamp-1 text-gray-800 dark:text-white">{ title }</h1>
-              <span className="text-gray-400 dark:text-gray-300">
+              <h1 className="text-xl font-semibold line-clamp-1 text-gray-900 dark:text-white">{ title }</h1>
+              <span className="text-blue-twitter">
                 <VerifiedIcon className="w-4 h-4 fill-current" />
               </span>
               <span className="text-xs text-gray-500 line-clamp-1">
@@ -34,7 +34,7 @@ export default function ProjectItem ({ title, description, demo_url, source_code
               </ActiveLink>
             </div>
           </div>
-          <p className="text-gray-600 dark:text-gray-400 font-normal line-clamp-4">
+          <p className="text-gray-700 dark:text-gray-400 font-normal line-clamp-4">
             { description }
           </p>
         </div>

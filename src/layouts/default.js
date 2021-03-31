@@ -113,8 +113,10 @@ export default function Layout ({ children }) {
             <ul className="flex items-center justify-between space-x-0 md:space-x-8">
               {navigations.map(({ text, href }, i) => (
                 <li key={i} className="w-1/4 text-center">
-                  <ActiveLink href={href} current="text-fuchsia-500 font-semibold">
-                    <a className="text-xs tracking-widest hover:text-fuchsia-500 transition ease-in-out duration-200">{ text }</a>
+                  <ActiveLink href={href} current="font-semibold text-blue-twitter border-b border-blue-twitter pb-2">
+                    <a className="border-b border-transparent hover:border-[#a7deff] pb-2 text-xs tracking-widest hover:text-blue-twitter transition ease-in-out duration-200">
+                      { text }
+                    </a>
                   </ActiveLink>
                 </li>
               ))}
