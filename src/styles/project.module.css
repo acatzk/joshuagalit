@@ -1,13 +1,13 @@
 .picture {
   position: relative;
   display: inline-block;
-  background-color: #9147ff;
+  background-color: #1da1f2;
 }
 .picture:before,
 .picture:after {
   content: "";
   display: block;
-  background-color: #9147ff;
+  background-color: #1da1f2;
   width: 8px;
   height: 8px;
   position: absolute;
