@@ -12,7 +12,6 @@ module.exports = {
       colors: {
         cyan: colors.cyan,
         fuchsia: colors.fuchsia,
-        'twitter-blue': '#1DA1F2',
         'dark-dim': '#15202B'
       }
     },
