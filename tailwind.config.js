@@ -19,6 +19,8 @@ module.exports = {
   },
   variants: {
     extend: {
+      opacity: ['disabled'],
+      backgroundColor: ['group-focus'],
       ringOffsetWidth: ['hover', 'active']
     },
   },
