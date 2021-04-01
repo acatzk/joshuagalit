@@ -2,8 +2,13 @@ import Head from 'next/head'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
 import { useForm } from 'react-hook-form'
+import { useToasts } from 'react-toast-notifications'
+import { INSERT_MAIL_MUTATION } from '~/graphql/mutations'
+import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 
 export default function ContactPage() {
+
+  const { addToast } = useToasts()
 
   const {
     errors,
@@ -11,6 +16,23 @@ export default function ContactPage() {
     handleSubmit,
     formState: { isSubmitting }
   } = useForm()
+
+  const onSubmit = async ({ name, email, message }, e) => {
+    try {
+
+      await hasuraAdminClient.request(INSERT_MAIL_MUTATION, {
+        name,
+        email,
+        message
+      })
+
+      e.target.reset()
+      addToast('Your message successfully sent!', { appearance: 'success', autoDismiss: true })
+      
+    } catch (err) {
+      addToast(err, { appearance: 'error', autoDismiss: true })
+    }
+  }
 
   const contacts = [
     {
@@ -46,7 +68,7 @@ export default function ContactPage() {
       </Head>
       <Layout>
         <div className="w-full max-w-5xl m-auto px-4 py-4">
-          <div className="w-full h-full opacity-50">
+          <div className="w-full h-full opacity-30">
             <img src="/svgs/buble.svg" disabled className="absolute inset-0 w-full h-full" />
           </div>
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between space-y-8">
@@ -68,22 +90,30 @@ export default function ContactPage() {
             </div>
             <div className="rounded-lg w-full max-w-full md:max-w-lg px-8 py-10 bg-white shadow-md dark:bg-gray-900 z-50">
               <div className="relative w-full">
-                <form className="space-y-6">
+                <form onSubmit={ handleSubmit(onSubmit) } className="space-y-6">
                   <div className="flex flex-col space-y-1">
-                    <label className="text-base pl-2">Name</label>
-                    <div className="flex items-center inset-y-0 right-3">
+                    <label className="text-sm pl-2">Name</label>
+                    <div className="flex items-center inset-y-0 inset-x-3">
                       <span className="absolute pl-3">
                         <svg className="fill-current w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                           <path fillRule="evenodd" d="M12 2.5a5.5 5.5 0 00-3.096 10.047 9.005 9.005 0 00-5.9 8.18.75.75 0 001.5.045 7.5 7.5 0 0114.993 0 .75.75 0 101.499-.044 9.005 9.005 0 00-5.9-8.181A5.5 5.5 0 0012 2.5zM8 8a4 4 0 118 0 4 4 0 01-8 0z">
                           </path>
                         </svg>
                       </span>
-                      <input type="text" className="pl-11 w-full bg-gray-100 focus:bg-white rounded-full border-0 py-2.5 focus:ring-2 focus:ring-inset ring-transparent focus:ring-blue-twitter transition ease-in-out duration-150 dark:text-black" />
+                      <input 
+                        type="text" 
+                        name="name"
+                        disabled={ isSubmitting }
+                        className={ `pl-11 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-full border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed ${errors.name ? 'ring-red-200 focus:ring-red-500' : 'ring-gray-200 focus:ring-blue-twitter'}` } 
+                        ref={register({
+                          required: 'Your name is required'
+                        })} />
                     </div>
+                    { errors.name && <span className="pl-3 text-xs text-red-500 font-medium pt-0.5">{ errors.name.message }</span> }
                   </div>
                   <div className="flex flex-col space-y-1">
-                    <label className="text-base pl-2">Email</label>
-                    <div className="flex items-center inset-y-0 right-3">
+                    <label className="text-sm pl-2">Email</label>
+                    <div className="flex items-center inset-y-0 inset-x-3">
                       <span className="absolute pl-4">
                         <svg className="fill-current w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                           <path fillRule="evenodd"
@@ -91,22 +121,44 @@ export default function ContactPage() {
                           </path>
                         </svg>
                       </span>
-                      <input type="text" className="pl-12 w-full bg-gray-100 focus:bg-white rounded-full border-0 py-2.5 focus:ring-2 focus:ring-inset ring-transparent focus:ring-blue-twitter transition ease-in-out duration-150 dark:text-black" />
+                      <input 
+                        type="text" 
+                        name="email"
+                        disabled={ isSubmitting }
+                        className={ `pl-12 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-full border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed ${errors.email ? 'ring-red-200 focus:ring-red-500' : 'ring-gray-200 focus:ring-blue-twitter'}` } 
+                        ref={register({
+                          required: 'Your email is required',
+                          pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                            message: "E-mail must be valid"
+                          }
+                        })} />
                     </div>
+                    { errors.email && <span className="pl-3 text-xs text-red-500 font-medium pt-0.5">{ errors.email.message }</span> }
                   </div>
                   <div className="flex flex-col space-y-1">
-                    <label className="text-base pl-2">Message</label>
+                    <label className="text-sm pl-2">Message</label>
                     <div className="flex items-center inset-t-0 right-3">
-                      <textarea rows="5" type="text" className="w-full max-h-md bg-gray-100 focus:bg-white rounded-xl border-0 py-2.5 focus:ring-2 focus:ring-inset ring-transparent focus:ring-blue-twitter transition ease-in-out duration-150 dark:text-black"></textarea>
+                      <textarea 
+                        rows="5" 
+                        type="text" 
+                        disabled={ isSubmitting }
+                        name="message"
+                        className={ `w-full max-h-md bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-xl border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed ${errors.message ? 'ring-red-200 focus:ring-red-500' : 'ring-gray-200 focus:ring-blue-twitter'}` } 
+                        ref={register({
+                          required: 'Your message is required'
+                        })}>
+                      </textarea>
                     </div>
+                    { errors.message && <span className="pl-3 text-xs text-red-500 font-medium pt-0.5">{ errors.message.message }</span> }
                   </div>
                   <div className="flex items-center justify-end">
                     <motion.button 
-                      className="bg-blue-twitter text-white px-4 py-2 rounded-full text-base font-medium focus:outline-none transition ease-in-out duration-200 hover:shadow-xl"
+                      className="bg-blue-twitter text-white px-4 py-2 rounded-full focus:outline-none transition ease-in-out duration-200 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                       whileHover={{ y: -4 }}
-                      onClick={(e) => e.preventDefault() }
+                      disabled={ isSubmitting }
                     >
-                      <span className="line-clamp-1">Send message</span>
+                      { isSubmitting ? <LoadingButton />: <ButtonText />}
                     </motion.button>
                   </div>
                 </form>
@@ -116,5 +168,32 @@ export default function ContactPage() {
         </div>
       </Layout>
     </> 
+  )
+}
+
+function LoadingButton () {
+  return (
+    <div className="flex items-center space-x-2">
+      <svg className="w-5 h-5 text-white" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" color="#000000">
+        <g transform="translate(1 1)" strokeWidth="2" fill="none" fillRule="evenodd"><circle strokeOpacity=".5" cx="18" cy="18" r="18"></circle>
+          <path d="M36 18c0-9.94-8.06-18-18-18">
+            <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"></animateTransform>
+          </path>
+        </g>
+      </svg>
+      <p className="text-xs font-medium">Loading...</p>
+    </div>
+  )
+}
+
+function ButtonText () {
+  return (
+    <div className="flex items-center space-x-1 text-sm font-medium">
+      <span className="line-clamp-1">Send</span>
+      <svg className="fill-current w-4 h-4 transform rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/>
+      </svg>
+    </div>
   )
 }

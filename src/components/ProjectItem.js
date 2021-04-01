@@ -26,12 +26,14 @@ export default function ProjectItem ({ title, description, demo_url, source_code
               </span>
             </div>
             <div>
-              <ActiveLink href={ demo_url }>
-                <a href={demo_url} target="_blank" className="py-1 px-4 text-gray-500 text-sm border rounded 
-                border-gray-300 hover:border-black hover:text-black focus:outline-none 
-                transition ease-in-out duration-150
-                dark:text-gray-400 dark:border-gray-600 dark:hover:text-gray-200 dark:hover:border-gray-400">Visit</a>
-              </ActiveLink>
+              {demo_url && (
+                <ActiveLink href={ demo_url }>
+                  <a href={demo_url} target="_blank" className="py-1 px-4 text-gray-500 text-sm border rounded 
+                  border-gray-300 hover:border-black hover:text-black focus:outline-none 
+                  transition ease-in-out duration-150
+                  dark:text-gray-400 dark:border-gray-600 dark:hover:text-gray-200 dark:hover:border-gray-400">Visit</a>
+                </ActiveLink>
+              )}
             </div>
           </div>
           <p className="text-gray-700 dark:text-gray-400 font-normal line-clamp-4">
