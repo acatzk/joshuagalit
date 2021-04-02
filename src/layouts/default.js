@@ -68,7 +68,7 @@ export default function Layout ({ children }) {
           <ActiveLink href="/" current="">
             <a>
               <div className="flex-shrink-0">
-                <LogoIcon className="w-8 h-8 fill-current" />
+                <LogoIcon className="w-8 h-8 fill-current transform rotate-90" />
               </div>
             </a>
           </ActiveLink>
@@ -89,7 +89,7 @@ export default function Layout ({ children }) {
           </div>
         </div>
         <div className="block md:hidden">
-          <div className="flex space-x-2">
+          <div className="flex items-center space-x-2">
             <ThemeChanger />
             <SocialMenu socialLinks={socialLinks}/>
           </div>
