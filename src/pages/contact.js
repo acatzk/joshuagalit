@@ -105,7 +105,7 @@ export default function ContactPage() {
                         type="text" 
                         name="name"
                         disabled={ isSubmitting }
-                        className={ `pl-11 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-full border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed ${errors.name ? 'ring-red-200 focus:ring-red-500' : 'ring-gray-200 focus:ring-blue-twitter'}` } 
+                        className={ `pl-11 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-full border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 ${errors.name ? 'ring-red-200 focus:ring-red-500' : 'ring-gray-200 focus:ring-blue-twitter'}` } 
                         ref={register({
                           required: 'Your name is required'
                         })} />
@@ -126,7 +126,7 @@ export default function ContactPage() {
                         type="text" 
                         name="email"
                         disabled={ isSubmitting }
-                        className={ `pl-12 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-full border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed ${errors.email ? 'ring-red-200 focus:ring-red-500' : 'ring-gray-200 focus:ring-blue-twitter'}` } 
+                        className={ `pl-12 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-full border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 ${errors.email ? 'ring-red-200 focus:ring-red-500' : 'ring-gray-200 focus:ring-blue-twitter'}` } 
                         ref={register({
                           required: 'Your email is required',
                           pattern: {
@@ -145,7 +145,7 @@ export default function ContactPage() {
                         type="text" 
                         disabled={ isSubmitting }
                         name="message"
-                        className={ `w-full max-h-md bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-xl border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed ${errors.message ? 'ring-red-200 focus:ring-red-500' : 'ring-gray-200 focus:ring-blue-twitter'}` } 
+                        className={ `w-full max-h-md bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-xl border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 ${errors.message ? 'ring-red-200 focus:ring-red-500' : 'ring-gray-200 focus:ring-blue-twitter'}` } 
                         ref={register({
                           required: 'Your message is required'
                         })}>
