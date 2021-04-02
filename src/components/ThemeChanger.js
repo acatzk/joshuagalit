@@ -10,13 +10,17 @@ const ThemeChanger = () => {
   // When mounted on client, now we can show the UI
   useEffect(() => setMounted(true), [])
 
-  const toggleMode = () => theme === 'light' ? setTheme('dark') : setTheme('light')
+  const toggleMode = () => 
+          setTimeout(() => 
+            theme === 'light' ? 
+              setTheme('dark') : 
+              setTheme('light'), 120)
 
   if (!mounted) return null
 
   return (
     <DarkModeToggle
-      className="focus:outline-none"
+      className="focus:outline-none dark:ring-inset dark:ring-1 rounded-full"
       onChange={toggleMode}
       checked={theme === 'light' ? false : true}
       size={55}
