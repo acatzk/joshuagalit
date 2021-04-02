@@ -30,6 +30,7 @@ export default function ContactPage() {
       addToast('Your message successfully sent!', { appearance: 'success', autoDismiss: true })
       
     } catch (err) {
+      const { addToast } = useToasts()
       addToast(err, { appearance: 'error', autoDismiss: true })
     }
   }
@@ -181,7 +182,7 @@ function LoadingButton () {
           </path>
         </g>
       </svg>
-      <p className="text-xs font-medium">Loading...</p>
+      <p className="text-xs font-medium">Sending...</p>
     </div>
   )
 }
