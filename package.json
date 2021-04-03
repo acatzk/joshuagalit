@@ -28,6 +28,7 @@
     "react-hook-form": "^6.15.5",
     "react-perfect-scrollbar": "^1.5.8",
     "react-toast-notifications": "^2.4.3",
+    "react-tooltip": "^4.2.17",
     "swr": "^0.5.4",
     "tailwindcss": "^2.0.4",
     "timeago.js": "^4.0.2"
