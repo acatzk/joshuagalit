@@ -10,7 +10,7 @@ export default function BlogCard () {
       <a>
         <motion.div 
           whileHover={{ y: -4 }}
-          className="flex flex-col w-full border dark:border-gray-800 overflow-hidden rounded-lg hover:shadow-2xl transition ease-in-out duration-200"
+          className="flex flex-col w-full border bg-white dark:bg-gray-800 dark:border-gray-800 overflow-hidden rounded-lg hover:shadow-2xl transition ease-in-out duration-200"
         >
           <div className="w-full max-w-3xl h-72 flex-shrink-0">
             <img className="w-full h-full" src="https://hasura.io/blog/content/images/2020/10/25m_fund_raiser-1.png" />

@@ -1,6 +1,6 @@
 import ActiveLink from './ActiveLink'
-import styles from '~/styles/project.module.css'
 import { format, register } from 'timeago.js'
+import styles from '~/styles/project.module.css'
 
 export default function ProjectItem ({ title, description, demo_url, source_code_url, project_image_url, created_at }) {
   return (

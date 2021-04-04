@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
 import BlogCard from '~/components/BlogCard'
 import ActiveLink from '~/components/ActiveLink'
@@ -26,7 +27,13 @@ export default function BlogPage () {
         <title>Blog | Joshua Galit</title>
       </Head>
       <Layout>
-        <div className="pt-0 md:pt-6 w-full px-4">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+          className="pt-0 md:pt-6 w-full px-4"
+        >
           <div className="flex flex-wrap items-center justify-center md:justify-between py-4 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-10 px-4 bg-white dark:bg-dark-dim">
             <div>
               <ul className="flex flex-wrap items-center text-gray-400 space-x-6">
@@ -57,7 +64,7 @@ export default function BlogPage () {
               {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => <BlogCard key={i} />)}
             </div>
           </div>
-        </div>
+        </motion.div>
      </Layout>
     </>
   )
