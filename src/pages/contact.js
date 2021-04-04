@@ -72,7 +72,13 @@ export default function ContactPage() {
           <div className="w-full h-full opacity-30">
             <img src="/svgs/buble.svg" disabled className="absolute inset-0 w-full h-full" />
           </div>
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between space-y-8">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="flex flex-col md:flex-row items-start md:items-center justify-between space-y-8"
+          >
             <div className="flex flex-col space-y-10 md:space-y-20">
               <div className="flex flex-col space-y-5 md:space-y-8 w-full max-w-md z-50">
                 <h1 className="font-extrabold text-3xl md:text-5xl text-blue-twitter">Contact me</h1>
@@ -165,7 +171,7 @@ export default function ContactPage() {
                 </form>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </Layout>
     </> 

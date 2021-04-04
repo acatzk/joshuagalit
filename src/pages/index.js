@@ -19,7 +19,13 @@ export default function IndexPage() {
         <div className="w-full h-full opacity-30 absolute">
           <img src="/svgs/buble.svg" disabled className="absolute inset-0 w-full h-full" />
         </div>
-        <section className="relative flex flex-col md:flex-row-reverse items-center justify-center mx-auto w-full max-w-7xl px-4 py-4 md:py-12 md:px-12">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+          className="relative flex flex-col md:flex-row-reverse items-center justify-center mx-auto w-full max-w-7xl px-4 py-4 md:py-12 md:px-12"
+        >
           <div className="pl-0 md:pl-10">
             <div className="p-1 bg-gradient-to-tr from-yellow-400 to-fuchsia-600 rounded-full">
               <img 
@@ -57,7 +63,7 @@ export default function IndexPage() {
               </motion.button>
             </div>
           </div>
-        </section>
+        </motion.div>
       </Layout>
     </> 
   )
