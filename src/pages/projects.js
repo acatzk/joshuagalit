@@ -7,7 +7,7 @@ import ProjectList from '~/components/ProjectList'
 import { GET_PROJECT_QUERY } from '~/graphql/queries'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 
-export const getStaticProps = async () => {
+export async function getStaticProps () {
   const initialData = await hasuraAdminClient.request(GET_PROJECT_QUERY)
 
   return {
