@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Moment from 'react-moment'
 import { motion } from 'framer-motion'
-import { blogPosts } from '~/lib/data'
+import { blogPosts } from '~/static/blogs'
 import Layout from '~/layouts/default'
 import BlogHeader from '~/components/BlogHeader'
 
@@ -18,20 +18,20 @@ export async function getStaticPaths () {
 
 export async function getStaticProps ({ params }) {
   const { slug } = params
-  const initialData = blogPosts.find(v => v.slug === slug)
+  const data = blogPosts.find(v => v.slug === slug)
   
   return {
     props: {
-      initialData
+      data
     }
   }
 }
 
-export default function BlogPost ({ initialData }) {
+export default function BlogPost ({ data }) {
   return (
     <>
       <Head>
-        <title>{ initialData.title }</title>
+        <title>{ data.title }</title>
       </Head>
       <Layout>
         <div className="pt-0 md:pt-6 w-full px-0 md:px-4 text-gray-800 dark:text-white">
@@ -46,13 +46,16 @@ export default function BlogPost ({ initialData }) {
             <div className="space-y-6">
               <div className="space-y-4">
                 <h1 className="text-2xl md:text-3xl font-semibold tracking-wide leading-normal md:leading-snug text-center">
-                  { initialData.title }
+                  { data.title }
                 </h1>
-                <p className="font-medium"><Moment date={initialData.created_at} format="DD MMMM, YYYY" /></p>
+                <p className="font-medium">
+                  <Moment date={ data.created_at } format="DD MMMM, YYYY" />
+                </p>
               </div>
               <div className="flex-shrink-0 overflow-hidden rounded-lg">
-                <img className="w-full h-full" src={ initialData.image } />
+                <img className="w-full h-full" src={ data.image } />
               </div>
+              <p className="text-base text-medium">{ data.description }</p>
             </div>
           </motion.div>
         </div>
