@@ -1,11 +1,24 @@
 import Head from 'next/head'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
-import { blogPosts } from '~/static/blogs'
+import { getAllPosts } from '~/lib/data'
 import BlogList from '~/components/BlogList'
 import BlogHeader from '~/components/BlogHeader'
 
-export default function BlogPage () {
+export async function getStaticProps() {
+  const allPosts = getAllPosts();
+  return {
+    props: {
+      posts: allPosts.map(({ data, content, slug }) => ({
+        ...data,
+        content,
+        slug
+      }))
+    }
+  }
+}
+
+export default function BlogPage ({ posts }) {
   return (
     <>
       <Head>
@@ -21,7 +34,7 @@ export default function BlogPage () {
             transition={{ duration: 1 }}
             className="w-full mx-auto max-w-7xl h-screen px-4 py-6"
           >
-            <BlogList blogs={blogPosts} />
+            <BlogList blogs={posts} />
           </motion.div>
         </div>
      </Layout>
