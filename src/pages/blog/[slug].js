@@ -1,37 +1,46 @@
 import Head from 'next/head'
 import Moment from 'react-moment'
 import { motion } from 'framer-motion'
-import { blogPosts } from '~/static/blogs'
 import Layout from '~/layouts/default'
+import { getAllPosts } from '~/lib/data'
+import hydrate from 'next-mdx-remote/hydrate'
 import BlogHeader from '~/components/BlogHeader'
+import renderToString from 'next-mdx-remote/render-to-string'
 
-export async function getStaticPaths () {
+export async function getStaticPaths() {
+  const allPosts = getAllPosts()
   return {
-    paths: blogPosts.map(({ slug }) => ({
+    paths: allPosts.map(post => ({
       params: {
-        slug
+        slug: post.slug
       }
     })),
     fallback: false
   }
 }
 
-export async function getStaticProps ({ params }) {
+export async function getStaticProps({ params }) {
   const { slug } = params
-  const data = blogPosts.find(v => v.slug === slug)
+  const allPosts = getAllPosts()
   
+  const { data, content } = allPosts.find(post => post.slug === slug)
+  const mdxSource = await renderToString(content)
+
   return {
     props: {
-      data
+      ...data,
+      content: mdxSource,
     }
   }
 }
 
-export default function BlogPost ({ data }) {
+export default function BlogPost ({ title, image, created_at, content }) {
+  const hydratedContent = hydrate(content)
+
   return (
     <>
       <Head>
-        <title>{ data.title }</title>
+        <title>{ title }</title>
       </Head>
       <Layout>
         <div className="pt-0 md:pt-6 w-full px-0 md:px-4 text-gray-800 dark:text-white">
@@ -46,16 +55,16 @@ export default function BlogPost ({ data }) {
             <div className="space-y-6">
               <div className="space-y-4">
                 <h1 className="text-2xl md:text-3xl font-semibold tracking-wide leading-normal md:leading-snug text-center">
-                  { data.title }
+                  { title }
                 </h1>
                 <p className="font-medium">
-                  <Moment date={ data.created_at } format="DD MMMM, YYYY" />
+                  <Moment date={ created_at } format="DD MMMM, YYYY" />
                 </p>
               </div>
               <div className="flex-shrink-0 overflow-hidden rounded-lg">
-                <img className="w-full h-full" src={ data.image } />
+                <img className="w-full h-full" src={ image } />
               </div>
-              <p className="text-base text-medium">{ data.description }</p>
+              <div className="prose text-black dark:text-white">{ hydratedContent }</div>
             </div>
           </motion.div>
         </div>

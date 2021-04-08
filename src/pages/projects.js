@@ -23,7 +23,7 @@ export default function ProjectsPage ({ initialData }) {
   })
 
   return (
-    <p>
+    <>
       <Head>
         <title>Projects | Joshua Galit</title>
       </Head>
@@ -39,7 +39,7 @@ export default function ProjectsPage ({ initialData }) {
           <ProjectList projects={data.projects} />
         </motion.div>
       </Layout>
-    </p>
+    </>
   )
 }
 

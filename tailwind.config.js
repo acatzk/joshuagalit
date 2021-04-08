@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   purge: [
@@ -7,15 +8,17 @@ module.exports = {
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    body: ['Nunito', 'system-ui', 'sans-serif'],
     extend: {
       colors: {
         cyan: colors.cyan,
         fuchsia: colors.fuchsia,
         'dark-dim': '#15202B',
         'blue-twitter': '#1DA1F2'
+      },
+      fontFamily: {
+        sans: ['Nunito', ...defaultTheme.fontFamily.sans],
       }
-    },
+    }
   },
   variants: {
     extend: {
@@ -24,8 +27,9 @@ module.exports = {
       ringOffsetWidth: ['hover', 'active']
     },
   },
-  plugins: [
+  plugins: [    
     require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp')
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/typography')
   ],
 }
