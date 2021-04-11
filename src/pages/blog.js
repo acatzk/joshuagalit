@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
 import BlogList from '~/components/BlogList'
-import { getAllPosts } from '~/lib/blogFiles'
+import { getAllPosts } from '~/utils/blogFiles'
 import BlogHeader from '~/components/BlogHeader'
 
 export async function getStaticProps() {
