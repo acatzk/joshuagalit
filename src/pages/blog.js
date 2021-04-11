@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
-import { getAllPosts } from '~/lib/data'
 import BlogList from '~/components/BlogList'
+import { getAllPosts } from '~/lib/blogFiles'
 import BlogHeader from '~/components/BlogHeader'
 
 export async function getStaticProps() {
