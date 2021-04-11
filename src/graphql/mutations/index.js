@@ -10,3 +10,14 @@ export const INSERT_MAIL_MUTATION = gql`
     }
   }
 `
+
+export const DELETE_MAIL_MUTATION = gql`
+  mutation DeleteEmailById($id: uuid!) {
+    delete_email_employer(where: {id: {_eq: $id}}) {
+      affected_rows
+      returning {
+        id
+      }
+    }
+  }
+`

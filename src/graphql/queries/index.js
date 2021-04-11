@@ -13,3 +13,15 @@ export const GET_PROJECT_QUERY = gql`
     }
   }
 `
+
+export const GET_CLIENT_EMAIL_QUERY = gql`
+  query clientEmailMutation {
+    email_employer(order_by: {created_at: desc}) {
+      id
+      email
+      message
+      name
+      created_at
+    }
+  }
+`
