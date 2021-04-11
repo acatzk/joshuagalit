@@ -80,7 +80,11 @@ export default function Layout ({ children }) {
           <div className="flex flex-col space-y-3">
             {/* My Social Links */}
             {socialLinks.map(({ icon, href }, i) => (
-              <motion.button key={i} whileHover={{ y: -3 }} className="focus:outline-none rounded-full p-1 hover:shadow-lg">
+              <motion.button 
+                key={i} 
+                whileHover={{ y: -3 }} 
+                className="focus:outline-none rounded-full p-1 hover:shadow-lg"
+              >
                 <Link href={ href }>
                   <a target="_blank">{ icon }</a>
                 </Link>
@@ -171,22 +175,35 @@ function SoundIcon ({ className, isAudio }) {
 function SocialMenu ({ socialLinks }) {
   return (
     <Menu>
-      <Menu.Button className="rounded-full focus:outline-none p-1 hover:shadow  transition ease-out duration-200 border border-transparent hover:border-gray-300">
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
-        </svg>
-      </Menu.Button>
-      <Menu.Items className="absolute right-3 top-14 flex flex-col space-y-1 py-1 px-1 z-50 bg-white dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg shadow-lg">
-        {socialLinks.map(({ icon, href }, i) => (
-          <Menu.Item key={i}>
-            <motion.button key={i} whileHover={{ y: -3 }} className="focus:outline-none rounded-full p-1 hover:shadow-lg">
-              <Link href={ href }>
-                <a target="_blank">{ icon }</a>
-              </Link>
-            </motion.button>
-          </Menu.Item>
-        ))}
-      </Menu.Items>
+      {({ open }) => (
+        <>
+          <Menu.Button className="rounded-full focus:outline-none p-1 hover:shadow  transition ease-out duration-200 border border-transparent hover:border-gray-300">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+            </svg>
+          </Menu.Button>
+          { open && (
+            <Menu.Items 
+              as={motion.div}
+              static
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              transition={{ duration: 0.20 }}
+              className="absolute right-3 top-14 flex flex-col space-y-1 py-1 px-1 z-50 bg-white dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg shadow-lg"
+            >
+              {socialLinks.map(({ icon, href }, i) => (
+                <Menu.Item key={i}>
+                  <motion.button key={i} whileHover={{ y: -3 }} className="focus:outline-none rounded-full p-1 hover:shadow-lg">
+                    <Link href={ href }>
+                      <a target="_blank">{ icon }</a>
+                    </Link>
+                  </motion.button>
+                </Menu.Item>
+              ))}
+            </Menu.Items>
+          )}
+        </>
+      )}
     </Menu>
   )
 }
