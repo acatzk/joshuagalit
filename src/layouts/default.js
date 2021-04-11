@@ -6,6 +6,7 @@ import { useState, useCallback } from 'react'
 import ThemeChanger from '~/utils/ThemeChanger'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { navigations, socialLinks } from '~/static/default'
+import MessengerCustomerChat from 'react-messenger-customer-chat'
 
 export default function Layout ({ children }) {
 
@@ -84,7 +85,10 @@ export default function Layout ({ children }) {
           </nav>
         </div>
         <div className="hidden md:block">
-          <WavingHand duration={0.5}/>
+          <MessengerCustomerChat 
+            pageId="101495871753115"
+            appId="869801583598775"
+          />
         </div>
       </div>
 
