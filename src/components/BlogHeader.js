@@ -1,4 +1,4 @@
-import ActiveLink from '~/components/ActiveLink'
+import ActiveLink from '~/utils/ActiveLink'
 
 export default function BlogHeader () {
 

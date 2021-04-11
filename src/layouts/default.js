@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Menu } from '@headlessui/react'
+import ActiveLink from '~/utils/ActiveLink'
 import { useState, useCallback } from 'react'
-import ActiveLink from '~/components/ActiveLink'
-import ThemeChanger from '~/components/ThemeChanger'
+import ThemeChanger from '~/utils/ThemeChanger'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { navigations, socialLinks } from '~/static/default'
 

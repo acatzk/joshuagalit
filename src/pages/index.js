@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
 import { useRouter } from 'next/router'
-import useProgressiveImg from '~/components/useProgressiveImage'
+import useProgressiveImg from '~/utils/useProgressiveImage'
 
 export default function IndexPage() {
 
