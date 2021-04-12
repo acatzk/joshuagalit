@@ -32,7 +32,7 @@ export default function IndexPage() {
                 src={src}
                 className="max-w-full md:max-w-xs rounded-full bg-white p-1" 
                 style={{
-                  width: 300,
+                  width: 400,
                   filter: blur ? "blur(20px)" : "none",
                   transition: blur ? "none" : "filter 0.3s ease-out"
                 }}
