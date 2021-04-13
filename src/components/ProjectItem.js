@@ -60,18 +60,18 @@ function FormattedTimeAgo (date) {
     return [
       ['just now', 'right now'],
       ['%s seconds', '%s seconds'],
-      ['1min', '1min'],
-      ['%smins', '%smins'],
-      ['1hr', '1hr'],
-      ['%shrs', '%shrs'],
-      ['1D', '1D'],
-      ['%sD', '%sD'],
-      ['1W', '1W'],
-      ['%sW', '%sW'],
-      ['1M', '1M'],
-      ['%sM', '%sM'],
-      ['1Y', 'YY'],
-      ['%sY', '%sY']
+      ['1m', '1m'],
+      ['%sm', '%sm'],
+      ['1h', '1h'],
+      ['%sh', '%sh'],
+      ['1d', '1d'],
+      ['%sd', '%sd'],
+      ['1w', '1w'],
+      ['%sw', '%sw'],
+      ['1 month', '1 month'],
+      ['%s months', '%s months'],
+      ['1y', '%y'],
+      ['%sy', '%sy']
     ][index]
   }
 
