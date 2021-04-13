@@ -27,13 +27,13 @@ export default function IndexPage() {
           className="relative flex flex-col md:flex-row-reverse items-center justify-center mx-auto w-full max-w-7xl px-4 py-4 md:py-12 md:px-12"
         >
           <div className="pl-0 md:pl-10">
-            <div className="p-1 bg-gradient-to-tr from-yellow-400 to-fuchsia-600 rounded-full">
+            <div className="p-1.5 bg-gradient-to-tr from-yellow-400 to-fuchsia-600 rounded-full">
               <img 
                 src={src}
-                className="max-w-full md:max-w-xs rounded-full bg-white p-1" 
+                className="max-w-full md:max-w-xs rounded-full bg-white p-1.5" 
                 style={{
                   width: 400,
-                  filter: blur ? "blur(20px)" : "none",
+                  filter: blur ? "blur(10px)" : "none",
                   transition: blur ? "none" : "filter 0.3s ease-out"
                 }}
               />
