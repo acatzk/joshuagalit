@@ -5,7 +5,7 @@
 }
 .picture:before,
 .picture:after {
-  content: "";
+  content: '';
   display: block;
   background-color: #1da1f2;
   width: 8px;
