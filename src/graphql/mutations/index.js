@@ -40,12 +40,13 @@ export const INSERT_VIEWS_MUTATION = gql`
         id
         project {
           id
-          description
-          created_at
-          slug
-          source_code_url
           title
-          updated_at
+          description
+          demo_url
+          created_at
+          project_image_url
+          source_code_url
+          slug
           views_aggregate {
             aggregate {
               count
