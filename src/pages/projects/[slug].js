@@ -49,20 +49,20 @@ export default function ProjectPage ({ initialData }) {
     revalidateOnMount: true 
   })
 
-  // useEffect(() => {
-  //   async function InsertViewer () {
-  //     const { id } = initialData.projects[0]
-  //     const { insert_views: { returning: { ...project } } } = await hasuraAdminClient.request(INSERT_VIEWS_MUTATION, {  project_id: id })
-  //     mutate({ 
-  //       projects: [{
-  //         ...project[0].project
-  //       }]
-  //     })
-  //     addToast('Insert view 1', { appearance: 'success', autoDismiss: true })
-  //   }
+  useEffect(() => {
+    async function InsertViewer () {
+      const { id } = initialData.projects[0]
+      const { insert_views: { returning: { ...project } } } = await hasuraAdminClient.request(INSERT_VIEWS_MUTATION, {  project_id: id })
+      mutate({ 
+        projects: [{
+          ...project[0].project
+        }]
+      })
+      addToast('Insert view 1', { appearance: 'success', autoDismiss: true })
+    }
 
-  //   InsertViewer()
-  // }, [])
+    InsertViewer()
+  }, [])
 
   return (
     <>
