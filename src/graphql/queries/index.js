@@ -41,7 +41,7 @@ export const GET_PROJECT_SLUGs = gql`
 `
 
 export const GET_PROJECT_BY_SLUG_QUERY = gql`
-  query GetProjectBySlugQuery($slug: String!) {
+  query GetProjectBySlugQuery($slug: String) {
     projects(order_by: {created_at: desc}, where: {slug: {_eq: $slug}}) {
       id
       title
