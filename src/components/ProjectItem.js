@@ -59,7 +59,7 @@ export default function ProjectItem ({ title, description, demo_url, source_code
             </a>
           )}
           <div className="flex flex-wrap items-center space-x-1 text-gray-500">
-            <span className="text-xs font-medium">{ count }</span>
+            <span className="text-xs font-medium mt-0.5">{ count }</span>
             <ViewsIcon />
           </div>
         </div>
