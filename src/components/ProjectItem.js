@@ -1,8 +1,11 @@
 import Link from 'next/link'
+import { useTheme } from 'next-themes'
+import ReactTooltip from 'react-tooltip'
 import { format, register } from 'timeago.js'
 import styles from '~/styles/project.module.css'
 
 export default function ProjectItem ({ title, description, demo_url, source_code_url, project_image_url, slug, views_aggregate, created_at }) {
+  const { theme } = useTheme()
   const { aggregate: { count } } = views_aggregate
 
   return (
@@ -58,10 +61,11 @@ export default function ProjectItem ({ title, description, demo_url, source_code
               </span>
             </a>
           )}
-          <div className="flex flex-wrap items-center space-x-1 text-gray-500">
+          <div className="flex flex-wrap items-center space-x-1 text-gray-500" data-tip="Views">
             <span className="text-xs font-medium mt-0.5">{ count }</span>
             <ViewsIcon />
           </div>
+          <ReactTooltip place="bottom" type={ theme === 'light' ? 'dark' : 'light' } effect="solid" />
         </div>
       </div>
     </div>
