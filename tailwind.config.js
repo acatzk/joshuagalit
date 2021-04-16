@@ -24,6 +24,7 @@ module.exports = {
     extend: {
       opacity: ['disabled'],
       backgroundColor: ['group-focus'],
+      scale: ['active', 'group-hover'],
       ringOffsetWidth: ['hover', 'active']
     },
   },

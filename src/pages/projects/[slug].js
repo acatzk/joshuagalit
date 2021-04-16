@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
 import { useRouter } from 'next/router'
 import ReactTooltip from 'react-tooltip'
+import SponsorCard from '~/components/SponsorCard'
 import { useToasts } from 'react-toast-notifications'
 import { INSERT_VIEWS_MUTATION } from '~/graphql/mutations'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
@@ -49,20 +50,20 @@ export default function ProjectPage ({ initialData }) {
     revalidateOnMount: true 
   })
 
-  useEffect(() => {
-    async function InsertViewer () {
-      const { id } = initialData.projects[0]
-      const { insert_views: { returning: { ...project } } } = await hasuraAdminClient.request(INSERT_VIEWS_MUTATION, {  project_id: id })
-      mutate({ 
-        projects: [{
-          ...project[0].project
-        }]
-      })
-      addToast('Insert view 1', { appearance: 'success', autoDismiss: true })
-    }
+  // useEffect(() => {
+  //   async function InsertViewer () {
+  //     const { id } = initialData.projects[0]
+  //     const { insert_views: { returning: { ...project } } } = await hasuraAdminClient.request(INSERT_VIEWS_MUTATION, {  project_id: id })
+  //     mutate({ 
+  //       projects: [{
+  //         ...project[0].project
+  //       }]
+  //     })
+  //     addToast('Insert view 1', { appearance: 'success', autoDismiss: true })
+  //   }
 
-    InsertViewer()
-  }, [])
+  //   InsertViewer()
+  // }, [])
 
   return (
     <>
@@ -79,7 +80,7 @@ export default function ProjectPage ({ initialData }) {
         >
           <ProjectHeader />
           <ProjectPreview projects={data.projects}/>
-          <ReactTooltip place="right" type={ theme === 'light' ? 'dark' : 'light' } effect="float" />
+          <ReactTooltip place="right" type={ theme === 'light' ? 'dark' : 'light' } effect="solid" />
         </motion.div>
       </Layout>
     </>
@@ -116,8 +117,8 @@ function ProjectPreview ({ projects }) {
       const { aggregate: { count } } = views_aggregate
 
       return (
-        <div key={id} className="px-4 space-y-6">
-          <div className="flex items-center justify-center mt-10">
+        <div key={id} className="px-4 space-y-6 pb-10">
+          <div className="flex items-center justify-center">
             <h1 className="font-semibold text-2xl md:text-3xl tracking-wide">{ title }</h1>
           </div>
           <div className="flex items-center justify-between">
@@ -149,19 +150,22 @@ function ProjectPreview ({ projects }) {
               </button>
             </div>
           </div>
-          <div className="space-y-3">
-            <div className="flex-shrink-0">
+          <div className="space-y-5">
+            <div className="flex-shrink-0 overflow-hidden rounded-xl border">
               <img src={project_image_url} />
             </div>
-            <div>
-              <h1 className="text-lg text-gray-600 dark:text-gray-400 font-medium">{ description }</h1>
+            <div className="border-b border-gray-200 dark:border-gray-700 pb-5">
+              <h1 className="text-base text-gray-800 dark:text-gray-400">{ description }</h1>
             </div>
           </div>
+          <SponsorCard />
         </div>
       )
     })
   )
 }
+
+
 
 function ViewsIcon () {
   return (
