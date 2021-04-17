@@ -1,8 +1,20 @@
 import { useState } from 'react'
+import ReactMde from 'react-mde'
+import Markdown from 'react-markdown'
+import SponsorCard from '~/components/SponsorCard'
+import { useForm, Controller } from 'react-hook-form'
 
 export default function Tabs () {
-  const [openTab, setOpenTab] = useState(1)
-  
+
+  const [selectedTab, setSelectedTab] = useState('write')
+  const {
+    errors,
+    control,
+    register,
+    handleSubmit,
+    formState: { isSubmitting }
+  } = useForm()
+
   return (
     <>
       <div className="flex">
@@ -11,13 +23,7 @@ export default function Tabs () {
             <div>
               <ul className="flex items-center text-sm">
                 <li className="border-b-2 border-transparent border-blue-twitter px-3">
-                  <button
-                    className="flex items-center  space-x-2 focus:outline-none pb-2 font-semibold text-blue-twitter"
-                    onClick={e => {
-                      e.preventDefault();
-                      setOpenTab(1);
-                    }}
-                  >
+                  <button className="flex items-center  space-x-2 focus:outline-none pb-2 font-semibold text-blue-twitter">
                     <MessageIcon />
                     <span>Comments</span>
                   </button>
@@ -41,20 +47,49 @@ export default function Tabs () {
               </ul>
             </div>
           </div>
-          <div className="relative flex flex-col min-w-0 break-words bg-white dark:bg-gray-800 w-full border border-gray-100 dark:border-gray-700 shadow transition ease-in-out duration-200">
-            <div className="px-4 py-5 flex-auto">
-              <div className="tab-content tab-space">
-                <div>
-                  <p>
-                    Collaboratively administrate empowered markets via
-                    plug-and-play networks. Dynamically procrastinate B2C users
-                    after installed base benefits.
-                    <br />
-                    <br /> Dramatically visualize customer directed convergence
-                    without revolutionary ROI.
-                  </p>
-                </div>
+          <div className="flex flex-col bg-white dark:bg-dark-dim w-full transition ease-in-out duration-200">
+            <div className="py-5 space-y-2">
+              <div>
+                <h1 className="text-lg">Let me know what you think about it?</h1>
               </div>
+              <form>
+                <div className="text-sm space-y-3">
+                  <div className="flex flex-col space-y-1 max-w-lg">
+                    <label>Name*</label>
+                    <input type="text" className="w-full rounded-sm border py-2.5 text-gray-900 transition ease-in-out focus:ring-0 duration-150 disabled:cursor-not-allowed disabled:opacity-50" />
+                  </div>
+                  <div className="flex flex-col max-w-3xl">
+                    <div className="space-y-1">
+                    <label>Message*</label>
+                      <Controller 
+                        disabled={isSubmitting}
+                        control={control}
+                        name="message"
+                        defaultValue=""
+                        rules={{
+                          required: 'You must provide a thread message.'
+                        }}
+                        as={
+                          <ReactMde
+                            selectedTab={selectedTab}
+                            onTabChange={setSelectedTab}
+                            generateMarkdownPreview={markdown =>
+                              Promise.resolve(<Markdown children={markdown} />)
+                            }
+                          />
+                        }
+                      />
+                    </div>
+                    { errors.message && <span className="text-xs text-red-500 font-medium pt-0.5">{ errors.message.message }</span> }
+                  </div>
+                  <button 
+                    onClick={e => e.preventDefault()}
+                    className="px-4 py-2 bg-blue-twitter rounded-lg text-white"
+                  >
+                    Send
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
