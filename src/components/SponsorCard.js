@@ -2,21 +2,21 @@ import { motion } from 'framer-motion'
 
 export default function SponsorCard () {
   return (
-    <div className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 p-6 rounded-lg max-w-2xl">
+    <div className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 p-6 rounded-lg max-w-2xl transition ease-in-out duration-700">
       <div className="flex flex-start">
         <div className="flex flex-row space-x-4">
           <div className="flex-shrink-0  overflow-hidden">
             <img className="w-14 h-14 rounded-lg border border-gray-200 dark:border-gray-700" src="/images/my-picture-large.png" />
           </div>
-          <div className="flex flex-row justify-between flex-wrap md:flex-nowrap space-x-0 md:space-x-2 space-y-0 md:space-y-2">
+          <div className="flex flex-row justify-between flex-wrap md:flex-nowrap space-x-0 md:space-x-2 space-y-2 md:space-y-0">
             <div className="space-y-2">
               <h1 className="text-xl font-semibold max-w-sm">Sponsor Joshua Galit on GitHub Sponsors</h1>
-              <p className="tracking-wide text-gray-600 dark:text-gray-400 text-sm">Hi 👋 I'm <span className="font-semibold text-blue-twitter">Joshua Galit</span> and I'm a self taught web developer using modern technologies. Addicted in GitHub contributions and commits. Follow me on <a href="https://github.com/acatzk" target="_blank" className="font-semibold text-blue-twitter hover:underline">GitHub</a> 💕</p>
+              <p className="tracking-wide text-gray-600 dark:text-gray-400 text-sm">Hi 👋 I'm <span className="font-semibold text-blue-twitter">Joshua Galit</span> and I'm a self taught web developer using modern technologies. Ability to follow established procedures and work under little or no supervision. Follow and Star me on <a href="https://github.com/acatzk" target="_blank" className="font-semibold text-blue-twitter hover:underline">GitHub</a> 💕</p>
             </div>
             <div>
               <motion.button 
                 whileHover={{ y: -2 }}
-                className="flex items-center space-x-2 bg-gray-100 border rounded-lg text-gray-900 px-4 py-1.5 hover:shadow-xl focus:outline-none hover:bg-gray-50 focus:bg-gray-200"
+                className="flex items-center space-x-2 bg-white border rounded-lg text-gray-900 px-4 py-1.5 hover:shadow-xl focus:outline-none"
               >
                 <HeartIcon className="w-4 h-4 text-[#ea4aaa] fill-current transition ease-in-out duration-150" />
                 <span className="text-sm">Sponsor</span>
