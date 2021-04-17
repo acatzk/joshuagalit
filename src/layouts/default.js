@@ -86,7 +86,7 @@ export default function Layout ({ children }) {
         </div>
         <div className="hidden md:block">
           <MessengerCustomerChat 
-            pageId="101495871753115"
+            pageId="104056078487972"
             appId="869801583598775"
           />
         </div>
@@ -165,26 +165,5 @@ function SocialMenu ({ socialLinks }) {
         </>
       )}
     </Menu>
-  )
-}
-
-function WavingHand ({ duration }) {
-  return (
-    <button className="flex flex-col space-y-1 items-center focus:outline-none">
-      <motion.div
-        animate={{ rotate: 30 }}
-        transition={{
-          yoyo: Infinity,
-          from: 0,
-          duration: duration,
-          ease: "easeInOut",
-          type: "tween",
-        }}
-        className="text-3xl"
-      >
-        👋
-      </motion.div>
-      <span className="text-sm font-semibold">hi</span>
-    </button>
   )
 }
