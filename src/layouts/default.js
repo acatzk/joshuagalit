@@ -5,15 +5,13 @@ import ActiveLink from '~/utils/ActiveLink'
 import { useState, useCallback } from 'react'
 import ThemeChanger from '~/utils/ThemeChanger'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { navigations, socialLinks } from '~/static/default'
+import { navigations, socialLinks } from '~/constants/default'
 import MessengerCustomerChat from 'react-messenger-customer-chat'
 
 export default function Layout ({ children }) {
 
   const [isAudio, setIsAudio] = useState() 
-  const toggleAudio = useCallback(() => {
-    setIsAudio(v => !v)
-  }, [])
+  const toggleAudio = useCallback(() => setIsAudio(v => !v), [])
 
   return (
     // Main Layout
