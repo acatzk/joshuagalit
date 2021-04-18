@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
-import { contacts } from '~/static/contacts'
+import { contacts } from '~/constants/contacts'
 import ContactForm from '~/components/ContactForm'
 import { useToasts } from 'react-toast-notifications'
 import { INSERT_MAIL_MUTATION } from '~/graphql/mutations'

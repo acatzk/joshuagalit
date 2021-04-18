@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Loading from '~/utils/Loading'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
-import { emojis } from '~/static/projects'
+import { emojis } from '~/constants/projects'
 
 export default function FeedbackForm ({ onSubmit }) {
 
