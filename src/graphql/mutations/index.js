@@ -52,6 +52,47 @@ export const INSERT_VIEWS_MUTATION = gql`
               count
             }
           }
+          comments(order_by: {created_at: desc}) {
+            id
+            name
+            comment
+            created_at
+          }
+        }
+      }
+    }
+  }
+`
+
+export const INSERT_PROJECT_COMMENT_MUTATION = gql`
+  mutation InsertProjectCommentMutation($project_id: uuid!, $name: String!, $comment: String!) {
+    insert_project_comments(objects: {project_id: $project_id, name: $name, comment: $comment}) {
+      returning {
+        id
+        name
+        comment
+        project_id
+        created_at
+        project {
+          id
+          title
+          description
+          demo_url
+          created_at
+          project_image_url
+          source_code_url
+          slug
+          views_aggregate {
+            aggregate {
+              count
+            }
+          }
+          comments(order_by: {created_at: desc}) {
+            id
+            name
+            comment
+            created_at
+          }
         }
       }
     }

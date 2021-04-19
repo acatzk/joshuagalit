@@ -3,7 +3,7 @@ import ProjectComment from './ProjectComment'
 import SponsorCard from '~/components/SponsorCard'
 import { ViewsIcon, LikeIcon } from '~/utils/Icons'
 
-export default function ProjectPost ({ projects }) {
+export default function ProjectPost ({ projects, mutate }) {
   const { 
     id, title, description, 
     created_at, project_image_url, 
@@ -50,7 +50,10 @@ export default function ProjectPost ({ projects }) {
           <img src={project_image_url} />
         </div>
       </div>
-      <ProjectComment {...projects} />
+      <ProjectComment 
+        {...projects} 
+        mutate={mutate} 
+      />
       <SponsorCard />
     </div>
   )

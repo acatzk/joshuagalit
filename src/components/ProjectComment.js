@@ -1,11 +1,28 @@
 import { useForm } from 'react-hook-form'
+import { useToasts } from 'react-toast-notifications'
 import ProjectCommentList from './ProjectCommentList'
+import { hasuraAdminClient } from '~/lib/hasura-admin-client'
+import { INSERT_PROJECT_COMMENT_MUTATION } from '~/graphql/mutations'
 import { GitHubIcon, ExternalLinkIcon, MessageIcon } from '~/utils/Icons' 
 
-export default function ProjectComment ({ ...projects }) {
+export default function ProjectComment ({ mutate, ...projects }) {
+  const { addToast } = useToasts()
   
-  const handleComment = ({ name, comment }) => {
-    alert(JSON.stringify({ name, comment }))
+  const handleComment = async ({ name, comment }, e) => {
+    const { id } = projects[0]
+    const { insert_project_comments: { returning: { ...project } } } = await hasuraAdminClient.request(INSERT_PROJECT_COMMENT_MUTATION, {
+      project_id: id,
+      name, comment
+    })
+    
+    mutate({
+      projects: [{
+        ...project[0].project
+      }]
+    })
+
+    e.target.reset()
+    addToast('Successfully Commented!', { appearance: 'success', autoDismiss: true })
   }
 
   return (
@@ -24,7 +41,7 @@ export default function ProjectComment ({ ...projects }) {
             </div>
           </div>
         </div>
-        <ProjectCommentList />
+        <ProjectCommentList projects={projects} />
       </div>
     </div>
   )
@@ -65,9 +82,12 @@ function ProjectCommentForm ({ onSubmit }) {
         <button
           type="submit"
           disabled={!isDirty || !isValid}
-          className="px-4 py-2 font-medium text-sm bg-blue-twitter text-white focus:outline-none rounded-full disabled:cursor-not-allowed disabled:bg-gray-300 dark:disabled:bg-gray-400 disabled:text-gray-800"
+          className={
+            `px-4 py-2 font-medium text-sm focus:outline-none rounded-full 
+            ${isSubmitting ? 'dark:bg-gray-400 text-gray-800 cursor-not-allowed bg-gray-300' : 'bg-blue-twitter text-white'}`
+          }
         >
-          Comment
+          { isSubmitting ? 'Commenting...' : 'Comment' }
         </button>
       </div>
     </form>
