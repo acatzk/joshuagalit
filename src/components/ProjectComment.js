@@ -41,7 +41,10 @@ export default function ProjectComment ({ mutate, ...projects }) {
             </div>
           </div>
         </div>
-        <ProjectCommentList projects={projects} />
+        <ProjectCommentList 
+          mutate={mutate} 
+          projects={projects} 
+        />
       </div>
     </div>
   )

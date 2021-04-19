@@ -98,3 +98,34 @@ export const INSERT_PROJECT_COMMENT_MUTATION = gql`
     }
   }
 `
+
+export const DELETE_PROJECT_COMMENT_BY_ID_MUTATION = gql`
+  mutation DeleteProjectCommentByIdMutation($id: uuid) {
+    delete_project_comments(where: {id: {_eq: $id}}) {
+      returning {
+        id
+        project {
+          id
+          title
+          description
+          demo_url
+          created_at
+          project_image_url
+          source_code_url
+          slug
+          views_aggregate {
+            aggregate {
+              count
+            }
+          }
+          comments(order_by: {created_at: desc}) {
+            id
+            name
+            comment
+            created_at
+          }
+        }
+      }
+    }
+  }
+`
