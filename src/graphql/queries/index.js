@@ -13,7 +13,12 @@ export const GET_PROJECT_QUERY = gql`
       slug
       views_aggregate {
         aggregate {
-          count
+          viewsCount: count
+        }
+      }
+      comments_aggregate {
+        aggregate {
+          commentsCount: count
         }
       }
     }

@@ -44,7 +44,7 @@ export default function EmailItem ({ id, email, message, name, created_at, actio
           onClick={handleDeleteEmail}
           className="focus:outline-none w-5 h-5"
         >
-          <TrashIcon />
+          <TrashIcon className="h-full w-full text-gray-600 dark:text-gray-400" />
         </motion.button>
       </td>
     </tr>

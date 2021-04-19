@@ -3,11 +3,13 @@ import { useTheme } from 'next-themes'
 import ReactTooltip from 'react-tooltip'
 import { format, register } from 'timeago.js'
 import styles from '~/styles/project.module.css'
-import { VerifiedIcon, GitHubIcon, ViewsIcon } from '~/utils/Icons'
+import { VerifiedIcon, GitHubIcon, ViewsIcon, ChatIcon } from '~/utils/Icons'
 
-export default function ProjectItem ({ title, description, demo_url, source_code_url, project_image_url, slug, views_aggregate, created_at }) {
+export default function ProjectItem ({ title, description, demo_url, source_code_url, project_image_url, slug, created_at, views_aggregate, comments_aggregate }) {
+  
   const { theme } = useTheme()
-  const { aggregate: { count } } = views_aggregate
+  const { aggregate: { viewsCount } } = views_aggregate
+  const { aggregate: { commentsCount } } = comments_aggregate
 
   return (
     <div className="flex flex-col md:flex-row py-6 w-full space-y-4 md:space-y-0 space-x-0 md:space-x-6">
@@ -62,9 +64,16 @@ export default function ProjectItem ({ title, description, demo_url, source_code
               </span>
             </a>
           )}
-          <div className="flex flex-wrap items-center space-x-1 text-gray-500" data-tip="Views">
-            <span className="text-xs font-medium mt-0.5">{ count }</span>
-            <ViewsIcon />
+          <div className="flex items-center space-x-1 text-gray-500">
+            <div className="flex items-center space-x-1 " data-tip="Comments">
+              <span className="text-xs font-medium mt-0.5 line-clamp-1">{ commentsCount }</span>
+              <ChatIcon className="w-4 h-4" />
+            </div>
+            <span>&middot;</span>
+            <div className="flex items-center space-x-1" data-tip="Views">
+              <span className="text-xs font-medium mt-0.5 line-clamp-1">{ viewsCount }</span>
+              <ViewsIcon className="w-4 h-4" />
+            </div>
           </div>
           <ReactTooltip place="bottom" type={ theme === 'light' ? 'dark' : 'light' } effect="solid" />
         </div>
