@@ -1,5 +1,6 @@
 import Moment from 'react-moment'
 import { motion } from 'framer-motion'
+import { TrashIcon } from '~/utils/Icons'
 import { format, register } from 'timeago.js'
 
 export default function EmailItem ({ id, email, message, name, created_at, actions }) {
@@ -19,7 +20,7 @@ export default function EmailItem ({ id, email, message, name, created_at, actio
           <div className="flex-shrink-0 h-10 w-10">
             <img 
               className="h-10 w-10 rounded-full" 
-              src="https://st3.depositphotos.com/1767687/16607/v/380/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg" 
+              src="/images/default-avatar.jpg" 
               alt="" 
             />
           </div>
@@ -43,9 +44,7 @@ export default function EmailItem ({ id, email, message, name, created_at, actio
           onClick={handleDeleteEmail}
           className="focus:outline-none w-5 h-5"
         >
-          <svg className="h-full w-full text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-          </svg>
+          <TrashIcon />
         </motion.button>
       </td>
     </tr>
