@@ -51,6 +51,12 @@ export const GET_PROJECT_BY_SLUG_QUERY = gql`
       project_image_url
       source_code_url
       slug
+      comments(order_by: {created_at: desc}) {
+        id
+        name
+        comment
+        created_at
+      }
       views_aggregate {
         aggregate {
           count
