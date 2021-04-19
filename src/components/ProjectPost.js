@@ -1,7 +1,7 @@
 import Moment from 'react-moment'
+import ProjectComment from './ProjectComment'
 import SponsorCard from '~/components/SponsorCard'
 import { ViewsIcon, LikeIcon } from '~/utils/Icons'
-import ProjectCommentForm from './ProjectCommentForm'
 
 export default function ProjectPost ({ projects }) {
   const { 
@@ -50,7 +50,7 @@ export default function ProjectPost ({ projects }) {
           <img src={project_image_url} />
         </div>
       </div>
-      <ProjectCommentForm {...projects} />
+      <ProjectComment {...projects} />
       <SponsorCard />
     </div>
   )
