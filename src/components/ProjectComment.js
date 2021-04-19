@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form'
+import ProjectCommentList from './ProjectCommentList'
 import { GitHubIcon, ExternalLinkIcon, MessageIcon } from '~/utils/Icons' 
 
-export default function ProjectCommentForm ({ ...projects }) {
+export default function ProjectComment ({ ...projects }) {
   
   const handleComment = ({ name, comment }) => {
     alert(JSON.stringify({ name, comment }))
@@ -11,24 +12,25 @@ export default function ProjectCommentForm ({ ...projects }) {
     <div className="flex">
       <div className="w-full">
         <div className="flex items-center justify-between">
-          <Tabs {...projects[0]} />
+          <ProjectCommentTabs {...projects[0]} />
         </div>
         <div className="border-t border-gray-200 dark:border-gray-700 space-y-4">
           <div className="flex space-x-3 py-4 px-2">
-            <Avatar />
+            <Avatar className="w-10 h-10 rounded-full" />
             <div className="rounded-b-xl rounded-r-xl px-4 py-4 bg-gray-100 dark:bg-gray-800 w-full transition ease-in-out duration-700">
-              <CommentForm 
+              <ProjectCommentForm 
                 onSubmit={handleComment}
               />
             </div>
           </div>
         </div>
+        <ProjectCommentList />
       </div>
     </div>
   )
 }
 
-function CommentForm ({ onSubmit }) {
+function ProjectCommentForm ({ onSubmit }) {
 
   const { 
     register, 
@@ -63,7 +65,7 @@ function CommentForm ({ onSubmit }) {
         <button
           type="submit"
           disabled={!isDirty || !isValid}
-          className="px-4 py-2 font-medium text-sm bg-blue-twitter text-white focus:outline-none rounded disabled:cursor-not-allowed disabled:bg-gray-300 dark:disabled:bg-gray-400 disabled:text-gray-800"
+          className="px-4 py-2 font-medium text-sm bg-blue-twitter text-white focus:outline-none rounded-full disabled:cursor-not-allowed disabled:bg-gray-300 dark:disabled:bg-gray-400 disabled:text-gray-800"
         >
           Comment
         </button>
@@ -72,7 +74,7 @@ function CommentForm ({ onSubmit }) {
   )
 }
 
-function Tabs ({ source_code_url, demo_url }) {
+function ProjectCommentTabs ({ source_code_url, demo_url }) {
   return (
     <div>
       <ul className="flex items-center text-sm">
@@ -103,11 +105,10 @@ function Tabs ({ source_code_url, demo_url }) {
   )
 }
 
-function Avatar () {
+function Avatar ({ className }) {
   return (
     <div className="flex-shrink-0">
-      <img className="w-10 h-10 rounded-full" src="/images/default-avatar.jpg" />
+      <img className={className} src="/images/default-avatar.jpg" />
     </div>
   )
 }
-

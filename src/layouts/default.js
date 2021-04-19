@@ -7,6 +7,7 @@ import ThemeChanger from '~/utils/ThemeChanger'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { navigations, socialLinks } from '~/constants/default'
 import MessengerCustomerChat from 'react-messenger-customer-chat'
+import { ThreeDotIcon, LogoIcon, SoundIcon } from '~/utils/Icons'
 
 export default function Layout ({ children }) {
 
@@ -82,51 +83,13 @@ export default function Layout ({ children }) {
             </ul>
           </nav>
         </div>
-        <div className="hidden md:block">
-          <MessengerCustomerChat 
-            pageId="104056078487972"
-            appId="869801583598775"
-          />
-        </div>
+        <MessengerCustomerChat 
+          pageId="104056078487972"
+          appId="869801583598775"
+        />
       </div>
 
     </div>
-  )
-}
-
-function LogoIcon ({ className }) {
-  return (
-    <svg className={className} viewBox="0 0 24 30">
-      <path fillRule="evenodd" clipRule="evenodd"
-        d="M5.65177 9.77559V0H0.00041008V15H5.65177L18.3067 9.27318H23.9997V0H18.3067V4.0481L5.65177 9.77559ZM24 30V15H18.3486L5.69368 20.7268H0V30H5.69368V25.9519L18.3486 20.2244V30H24Z">
-      </path>
-    </svg>
-  )
-}
-
-function SoundIcon ({ className, isAudio }) {
-  return (
-    <svg className={className} viewBox="0 0 55 80" fill="currentColor">
-      <g transform="matrix(1 0 0 -1 0 80)">
-        <rect width="10" height="20" rx="3">
-          <animate attributeName="height" begin="0s" dur="4.3s"
-            values="20;45;57;80;64;32;66;45;64;23;66;13;64;56;34;34;2;23;76;79;20" calcMode="linear"
-            repeatCount={ !isAudio ? 'indefinite' : ''}></animate>
-        </rect>
-        <rect x="15" width="10" height="80" rx="3">
-          <animate attributeName="height" begin="0s" dur="2s" values="80;55;33;5;75;23;73;33;12;14;60;80" calcMode="linear"
-            repeatCount={ !isAudio ? 'indefinite' : ''}></animate>
-        </rect>
-        <rect x="30" width="10" height="50" rx="3">
-          <animate attributeName="height" begin="0s" dur="1.4s" values="50;34;78;23;56;23;34;76;80;54;21;50"
-            calcMode="linear" repeatCount={ !isAudio ? 'indefinite' : ''}></animate>
-        </rect>
-        <rect x="45" width="10" height="30" rx="3">
-          <animate attributeName="height" begin="0s" dur="2s" values="30;45;13;80;56;72;45;76;34;23;67;30" calcMode="linear"
-            repeatCount={ !isAudio ? 'indefinite' : ''}></animate>
-        </rect>
-      </g>
-    </svg>
   )
 }
 
@@ -136,9 +99,7 @@ function SocialMenu ({ socialLinks }) {
       {({ open }) => (
         <>
           <Menu.Button className="rounded-full focus:outline-none p-1 hover:shadow  transition ease-out duration-200 border border-transparent hover:border-gray-300">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
-            </svg>
+            <ThreeDotIcon className="w-6 h-6" />
           </Menu.Button>
           { open && (
             <Menu.Items 
