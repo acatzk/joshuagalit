@@ -25,7 +25,7 @@ export default function BlogCard ({ author, avatar, slug, title, description, im
             <div className="flex items-center justify-between">
               <div className="flex-shrink-0" data-tip={ author }>
                 <img src={ avatar } className="w-7 h-7 rounded-full border dark:border-gray-600" />
-                <ReactTooltip place="right" type={ theme === 'light' ? 'dark' : 'light' } effect="solid" />
+                <ReactTooltip place="right" type={ theme === 'light' ? 'dark' : 'light' } effect="float" />
               </div>
               <p className="text-sm font-normal text-gray-600 dark:text-gray-400 line-clamp-1">
                 <Moment date={created_at} format="DD MMMM, YYYY" />

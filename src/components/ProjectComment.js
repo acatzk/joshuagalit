@@ -82,10 +82,7 @@ function ProjectCommentForm ({ onSubmit }) {
         <button
           type="submit"
           disabled={!isDirty || !isValid}
-          className={
-            `px-4 py-2 font-medium text-sm focus:outline-none rounded-full 
-            ${isSubmitting ? 'dark:bg-gray-400 text-gray-800 cursor-not-allowed bg-gray-300' : 'bg-blue-twitter text-white'}`
-          }
+          className="px-4 py-2 font-medium text-sm bg-blue-twitter text-white focus:outline-none rounded-full disabled:cursor-not-allowed disabled:bg-gray-300 dark:disabled:bg-gray-400 disabled:text-gray-800"
         >
           { isSubmitting ? 'Commenting...' : 'Comment' }
         </button>
