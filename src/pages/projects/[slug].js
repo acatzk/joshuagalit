@@ -7,7 +7,6 @@ import Layout from '~/layouts/default'
 import { useRouter } from 'next/router'
 import ReactTooltip from 'react-tooltip'
 import ProjectPost from '~/components/ProjectPost'
-import { useToasts } from 'react-toast-notifications'
 import { INSERT_VIEWS_MUTATION } from '~/graphql/mutations'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { GET_PROJECT_BY_SLUG_QUERY, GET_PROJECT_SLUGs } from '~/graphql/queries'
@@ -41,13 +40,13 @@ export default function ProjectPage ({ initialData }) {
 
   const router = useRouter()
   const { slug } = router.query
-  const { addToast } = useToasts()
   const { theme } = useTheme()
 
-  const { data, mutate } = useSWR([GET_PROJECT_BY_SLUG_QUERY, slug], (query, slug) => hasura.request(query, { slug }), {
-    initialData, 
-    revalidateOnMount: true 
-  })
+  const { data, mutate } = useSWR(
+    [GET_PROJECT_BY_SLUG_QUERY, slug], 
+    (query, slug) => hasuraAdminClient.request(query, { slug }), 
+    { initialData, revalidateOnMount: true }
+  )
 
   useEffect(() => {
     async function InsertViewer () {
@@ -58,7 +57,6 @@ export default function ProjectPage ({ initialData }) {
           ...project[0].project
         }]
       })
-      // addToast('Insert view 1', { appearance: 'success', autoDismiss: true })
     }
 
     InsertViewer()
