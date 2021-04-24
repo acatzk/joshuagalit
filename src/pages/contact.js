@@ -1,11 +1,10 @@
 import Head from 'next/head'
+import emailjs from 'emailjs-com'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
 import { contacts } from '~/constants/contacts'
 import ContactForm from '~/components/ContactForm'
 import { useToasts } from 'react-toast-notifications'
-import { INSERT_MAIL_MUTATION } from '~/graphql/mutations'
-import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 
 export default function ContactPage() {
 
@@ -14,15 +13,20 @@ export default function ContactPage() {
   const handleContact = async ({ name, email, message }, e) => {
     try {
 
-      await hasuraAdminClient.request(INSERT_MAIL_MUTATION, {
-        name,
-        email,
-        message
-      })
+      const mail = await emailjs.send(
+        process.env.GMAIL_SERVICE_ID, 
+        process.env.GMAIL_TEMPLATE_ID, 
+        { name, email, message }, 
+        process.env.GMAIL_USER_ID
+      )
 
+      if (mail) {
+        addToast('Your message successfully sent!', { appearance: 'success', autoDismiss: true })
+      } else {
+        addToast('Something went wrong try again!', { appearance: 'error', autoDismiss: true })
+      }
       e.target.reset()
-      addToast('Your message successfully sent!', { appearance: 'success', autoDismiss: true })
-      
+
     } catch (err) {
       console.error(err)
     }
