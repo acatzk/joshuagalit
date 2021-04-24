@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Loading from '~/utils/Loading'
-import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { emojis } from '~/constants/projects'
 
@@ -47,12 +46,11 @@ export default function FeedbackForm ({ onSubmit }) {
       <div className="flex items-center justify-between px-3 border-t border-gray-200 dark:border-gray-700 py-1.5 bg-gray-50 dark:bg-gray-800">
         <div className="flex items-center space-x-2">
           {emojis.map(({ icon, text }, i) => (
-            <motion.div 
+            <div 
               key={i}
               disabled={ isSubmitting }
               onClick={() => setEmoji(text)}
-              whileHover={ emoji !== text ? { scale: 1.1 } : { scale: 1 }}
-              className={ `${emoji === text ? 'border-yellow-300' : 'dark:border-gray-700'} rounded-full border p-1 bg-white dark:bg-gray-700 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed` }
+              className={ `${emoji === text ? 'border-yellow-300' : 'dark:border-gray-700'} cursor-pointer rounded-full border p-1 bg-white dark:bg-gray-700 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150 transform hover:scale-110` }
             >
               <input 
                 type="text" 
@@ -63,7 +61,7 @@ export default function FeedbackForm ({ onSubmit }) {
                 ref={register()}
               />
               <img className="w-5 h-5" src={icon} />
-            </motion.div>
+            </div>
           ))}
         </div>
         <button  
