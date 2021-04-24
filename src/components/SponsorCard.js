@@ -6,7 +6,7 @@ export default function SponsorCard () {
       <div className="flex flex-start">
         <div className="flex flex-row space-x-4">
           <div className="flex-shrink-0  overflow-hidden">
-            <img className="w-14 h-14 rounded-lg border border-gray-200 dark:border-gray-700" src="/images/my-picture-large.png" />
+            <img className="w-14 h-14 rounded-lg border border-gray-200 dark:border-gray-700" src="/images/my-avatar.jpg" />
           </div>
           <div className="flex flex-row justify-between flex-wrap md:flex-nowrap space-x-0 md:space-x-2 space-y-2 md:space-y-0">
             <div className="space-y-2">
