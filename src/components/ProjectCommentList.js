@@ -103,7 +103,7 @@ function Avatar ({ className, name }) {
         className={className} 
         src={ 
           name === 'Joshua Galit' 
-          ? '/images/my-picture-tiny.jpg' 
+          ? '/images/my-avatar.jpg' 
           : '/images/default-avatar.jpg' } 
       />
     </div>

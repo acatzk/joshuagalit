@@ -1,13 +1,13 @@
 ---
-author: "Joshua Galit"
-avatar: "/images/my-picture-tiny.jpg"
-slug: "how-hasura-works"
-title: "Hasura Design Philosophy"
-description: "In this post, I’m going to talk about the product vision of Hasura, our technical design philosophy, how Hasura compares to other technologies in the landscape and finally some FAQs about Hasura."
-image: "https://hasura.io/blog/content/images/2020/11/hasura_design_philosophy-1.png"
-tags: "Programming"
-created_at: "2021-04-05T11:25:21.774695+00:00"
-updated_at: "2021-04-05T11:25:21.774695+00:00"
+author: 'Joshua Galit'
+avatar: '/images/my-avatar.jpg'
+slug: 'how-hasura-works'
+title: 'Hasura Design Philosophy'
+description: 'In this post, I’m going to talk about the product vision of Hasura, our technical design philosophy, how Hasura compares to other technologies in the landscape and finally some FAQs about Hasura.'
+image: 'https://hasura.io/blog/content/images/2020/11/hasura_design_philosophy-1.png'
+tags: 'Programming'
+created_at: '2021-04-05T11:25:21.774695+00:00'
+updated_at: '2021-04-05T11:25:21.774695+00:00'
 ---
 
 # h1 Heading 8-)

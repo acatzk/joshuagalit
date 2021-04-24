@@ -7,7 +7,7 @@ import useProgressiveImg from '~/utils/useProgressiveImage'
 export default function IndexPage() {
 
   const router = useRouter()
-  const [src, { blur }] = useProgressiveImg("/images/my-picture-tiny.jpg", "/images/my-picture-large.png")
+  const [src, { blur }] = useProgressiveImg('/images/my-avatar.jpg', '/images/my-avatar.jpg')
 
   return (
     <>
@@ -17,7 +17,11 @@ export default function IndexPage() {
       </Head>
       <Layout>
         <div className="w-full h-full opacity-30 absolute">
-          <img src="/svgs/buble.svg" disabled className="absolute inset-0 w-full h-full" />
+          <img 
+            src="/svgs/buble.svg" 
+            disabled 
+            className="absolute inset-0 w-full h-full" 
+          />
         </div>
         <motion.div 
           initial={{ opacity: 0 }}
@@ -31,11 +35,6 @@ export default function IndexPage() {
               <img 
                 src={src}
                 className="max-w-full md:max-w-xs rounded-full bg-white p-1.5" 
-                style={{
-                  width: 400,
-                  filter: blur ? "blur(10px)" : "none",
-                  transition: blur ? "none" : "filter 0.3s ease-out"
-                }}
               />
             </div>
           </div>
