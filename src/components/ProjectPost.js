@@ -1,7 +1,7 @@
 import Moment from 'react-moment'
+import { ViewsIcon } from '~/utils/Icons'
 import ProjectComment from './ProjectComment'
 import SponsorCard from '~/components/SponsorCard'
-import { ViewsIcon, LikeIcon } from '~/utils/Icons'
 
 export default function ProjectPost ({ projects, mutate }) {
   const { 
@@ -30,18 +30,6 @@ export default function ProjectPost ({ projects, mutate }) {
             <span className="text-xs font-medium mt-0.5">{ count }</span>
             <ViewsIcon className="w-4 h-4" />
           </div>
-          <span>&bull;</span>
-          <button 
-            data-tip="Like"
-            className="flex items-center space-x-0.5 rounded-lg border border-transparent 
-            border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 
-            hover:text-black dark:hover:text-white px-1 py-0.5 focus:outline-none 
-            transition ease-in-out duration-200">
-            <span>
-              <LikeIcon className="w-3.5 h-3.5" />
-            </span>
-            <span className="text-xs">45</span>
-          </button>
         </div>
       </div>
       <div className="space-y-1">

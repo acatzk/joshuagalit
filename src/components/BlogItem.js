@@ -19,7 +19,7 @@ export default function BlogCard ({ author, avatar, slug, title, description, im
           </div>
           <div className="flex flex-col justify-between px-6 py-4 h-[250px] space-y-6">
             <div className="space-y-2">
-              <h1 className="font-semibold text-lg tracking-wide leading-relaxed line-clamp-2">{ title }</h1>
+              <h1 className="text-lg tracking-wide leading-relaxed line-clamp-2 font-primary font-extrabold">{ title }</h1>
               <p className="text-gray-500 dark:text-gray-400 line-clamp-4">{ description }</p>
             </div>
             <div className="flex items-center justify-between">
