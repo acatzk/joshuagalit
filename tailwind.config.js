@@ -16,7 +16,8 @@ module.exports = {
         'blue-twitter': '#1DA1F2'
       },
       fontFamily: {
-        sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+        primary: ['Nunito', ...defaultTheme.fontFamily.sans],
+        secondary: ['Poppins', ...defaultTheme.fontFamily.serif]
       }
     }
   },

@@ -52,7 +52,7 @@ export default function ContactPage() {
           >
             <div className="flex flex-col space-y-10 md:space-y-20">
               <div className="flex flex-col space-y-5 md:space-y-8 w-full max-w-md z-50">
-                <h1 className="font-extrabold text-3xl md:text-5xl text-blue-twitter">Contact me</h1>
+                <h1 className="font-primary font-extrabold text-3xl md:text-5xl text-blue-twitter">Contact me</h1>
                 <p className="text-base text-gray-900 dark:text-white">Send me a message and I will get back to you within 24 hours.</p>
               </div>
               <div className="flex flex-col space-y-3 md:space-y-5 z-50">
