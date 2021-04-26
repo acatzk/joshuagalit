@@ -84,8 +84,8 @@ export default function Layout ({ children }) {
           </nav>
         </div>
         <MessengerCustomerChat 
-          pageId="104056078487972"
-          appId="869801583598775"
+          pageId={process.env.MESSENGER_PAGE_ID}
+          appId={process.env.MESSENGER_APP_ID}
         />
       </div>
 
