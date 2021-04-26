@@ -41,6 +41,7 @@ export default function BlogPost ({ title, image, created_at, content }) {
     <>
       <Head>
         <title>{ title }</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <div className="pt-0 md:pt-6 w-full px-0 md:px-4 text-gray-800 dark:text-white">

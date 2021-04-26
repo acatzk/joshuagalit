@@ -30,6 +30,7 @@ export default function ProjectsPage ({ initialData }) {
     <>
       <Head>
         <title>Projects | Joshua Galit</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <motion.div 

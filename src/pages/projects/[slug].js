@@ -65,7 +65,8 @@ export default function ProjectPage ({ initialData }) {
   return (
     <>
       <Head>
-        <title>{ initialData.projects[0].title }</title>)
+        <title>{ initialData.projects[0].title }</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <motion.div
