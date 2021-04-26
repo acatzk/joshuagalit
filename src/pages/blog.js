@@ -23,6 +23,7 @@ export default function BlogPage ({ posts }) {
     <>
       <Head>
         <title>Blog | Joshua Galit</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <div className="pt-0 md:pt-6 w-full px-0 md:px-4">
