@@ -7,6 +7,8 @@ module.exports = {
     ADMINISTRATOR_PASS: process.env.ADMINISTRATOR_PASS,
     GMAIL_SERVICE_ID: process.env.GMAIL_SERVICE_ID,
     GMAIL_TEMPLATE_ID: process.env.GMAIL_TEMPLATE_ID,
-    GMAIL_USER_ID: process.env.GMAIL_USER_ID
+    GMAIL_USER_ID: process.env.GMAIL_USER_ID,
+    MESSENGER_PAGE_ID: process.env.MESSENGER_PAGE_ID,
+    MESSENGER_APP_ID: process.env.MESSENGER_APP_ID
   }
 }
