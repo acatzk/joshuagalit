@@ -5,7 +5,7 @@ import ActiveLink from '~/utils/ActiveLink'
 import { useState, useCallback } from 'react'
 import ThemeChanger from '~/utils/ThemeChanger'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { navigations, socialLinks } from '~/constants/default'
+import { navigations, socialLinks } from '~/static/default'
 import MessengerCustomerChat from 'react-messenger-customer-chat'
 import { ThreeDotIcon, LogoIcon, SoundIcon } from '~/utils/Icons'
 

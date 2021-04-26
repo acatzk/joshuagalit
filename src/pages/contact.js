@@ -2,7 +2,7 @@ import Head from 'next/head'
 import emailjs from 'emailjs-com'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
-import { contacts } from '~/constants/contacts'
+import { contacts } from '~/static/contacts'
 import ContactForm from '~/components/ContactForm'
 import { useToasts } from 'react-toast-notifications'
 
