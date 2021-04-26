@@ -7,7 +7,7 @@ import useProgressiveImg from '~/utils/useProgressiveImage'
 export default function IndexPage() {
 
   const router = useRouter()
-  const [src, { blur }] = useProgressiveImg('/images/my-avatar.jpg', '/images/my-avatar.jpg')
+  const [src, { blur }] = useProgressiveImg('/images/my-avatar-tiny.jpg', '/images/my-avatar.jpg')
 
   return (
     <>
