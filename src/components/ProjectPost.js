@@ -1,13 +1,14 @@
 import Moment from 'react-moment'
-import { ViewsIcon } from '~/utils/Icons'
 import ProjectComment from './ProjectComment'
 import SponsorCard from '~/components/SponsorCard'
+import { ChatIcon, ViewsIcon} from '~/utils/Icons'
 
 export default function ProjectPost ({ projects, mutate }) {
   const { 
     id, title, description, 
     created_at, project_image_url, 
-    views_aggregate: { aggregate: { count } } 
+    views_aggregate: { aggregate: { viewsCount } },
+    comments_aggregate: { aggregate: { commentsCount } }
   } = projects[0]
 
   return (
@@ -25,9 +26,14 @@ export default function ProjectPost ({ projects, mutate }) {
           </div>
           <h1 className="text-sm tracking-tight text-gray-700 dark:text-gray-400 line-clamp-1">Joshua Galit / <Moment date={created_at} format="MMM DD, YYYY" /></h1>
         </div>
-        <div className="flex flex-wrap items-center space-x-1.5 text-gray-500">
-          <div className="flex flex-wrap items-center space-x-1">
-            <span className="text-xs font-medium mt-0.5">{ count }</span>
+        <div className="flex items-center space-x-1 text-gray-500">
+          <div className="flex items-center space-x-1 " data-tip="Comments">
+            <span className="text-xs font-medium mt-0.5 line-clamp-1">{ commentsCount }</span>
+            <ChatIcon className="w-4 h-4" />
+          </div>
+          <span>&middot;</span>
+          <div className="flex items-center space-x-1" data-tip="Views">
+            <span className="text-xs font-medium mt-0.5 line-clamp-1">{ viewsCount }</span>
             <ViewsIcon className="w-4 h-4" />
           </div>
         </div>

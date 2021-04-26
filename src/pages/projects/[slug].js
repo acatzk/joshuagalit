@@ -65,7 +65,7 @@ export default function ProjectPage ({ initialData }) {
   return (
     <>
       <Head>
-        {data.projects.map(({ title }, i) => <title key={i}>{ title }</title>)}
+        <title>{ initialData.projects[0].title }</title>)
       </Head>
       <Layout>
         <motion.div

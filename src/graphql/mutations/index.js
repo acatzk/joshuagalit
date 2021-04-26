@@ -41,6 +41,11 @@ export const INSERT_VIEWS_MUTATION = gql`
               count
             }
           }
+          comments_aggregate {
+            aggregate {
+              commentsCount: count
+            }
+          }
           comments(order_by: {created_at: desc}) {
             id
             name
@@ -76,6 +81,11 @@ export const INSERT_PROJECT_COMMENT_MUTATION = gql`
               count
             }
           }
+          comments_aggregate {
+            aggregate {
+              commentsCount: count
+            }
+          }
           comments(order_by: {created_at: desc}) {
             id
             name
@@ -105,6 +115,11 @@ export const DELETE_PROJECT_COMMENT_BY_ID_MUTATION = gql`
           views_aggregate {
             aggregate {
               count
+            }
+          }
+          comments_aggregate {
+            aggregate {
+              commentsCount: count
             }
           }
           comments(order_by: {created_at: desc}) {
