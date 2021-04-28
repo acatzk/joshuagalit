@@ -83,10 +83,14 @@ export default function Layout ({ children }) {
             </ul>
           </nav>
         </div>
-        <MessengerCustomerChat 
-          pageId={process.env.MESSENGER_PAGE_ID}
-          appId={process.env.MESSENGER_APP_ID}
-        />
+        <div>
+          {process.env.NODE_ENV === 'production' && (
+            <MessengerCustomerChat 
+              pageId={process.env.MESSENGER_PAGE_ID}
+              appId={process.env.MESSENGER_APP_ID}
+            />
+          )}
+        </div>
       </div>
 
     </div>
