@@ -35,6 +35,11 @@ export default function IndexPage() {
               <img 
                 src={src}
                 className="max-w-full md:max-w-xs rounded-full bg-white p-1.5" 
+                style={{
+                  width: 400,
+                  filter: blur ? "blur(10px)" : "none",
+                  transition: blur ? "none" : "filter 0.3s ease-out"
+                }}
               />
             </div>
           </div>
