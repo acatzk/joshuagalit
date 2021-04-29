@@ -27,12 +27,12 @@ export default function ProjectPost ({ projects, mutate }) {
           <h1 className="text-sm tracking-tight text-gray-700 dark:text-gray-400 line-clamp-1">Joshua Galit / <Moment date={created_at} format="MMM DD, YYYY" /></h1>
         </div>
         <div className="flex items-center space-x-1 text-gray-500">
-          <div className="flex items-center space-x-1 " data-tip="Comments">
+          <div className="flex items-center space-x-1 cursor-default" data-tip="Comments">
             <span className="text-xs font-medium mt-0.5 line-clamp-1">{ commentsCount }</span>
             <ChatIcon className="w-4 h-4" />
           </div>
           <span>&middot;</span>
-          <div className="flex items-center space-x-1" data-tip="Views">
+          <div className="flex items-center space-x-1 cursor-default" data-tip="Views">
             <span className="text-xs font-medium mt-0.5 line-clamp-1">{ viewsCount }</span>
             <ViewsIcon className="w-4 h-4" />
           </div>
