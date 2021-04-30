@@ -26,19 +26,19 @@ export default function BlogPage ({ posts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <div className="pt-0 md:pt-6 w-full px-0 md:px-4">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+          className="w-full max-w-5xl mx-auto px-4"
+        >
           <BlogHeader />
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            className="w-full mx-auto max-w-7xl h-screen px-4 py-6"
-          >
+          <div className="py-2 divide-y divide-gray-200 dark:divide-gray-700">
             <BlogList blogs={posts} />
-          </motion.div>
-        </div>
-     </Layout>
+          </div>
+        </motion.div>
+      </Layout>
     </>
   )
 }

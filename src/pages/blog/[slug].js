@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Moment from 'react-moment'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
 import hydrate from 'next-mdx-remote/hydrate'
@@ -45,7 +44,6 @@ export default function BlogPost ({ title, image, created_at, content }) {
       </Head>
       <Layout>
         <div className="pt-0 md:pt-6 w-full px-0 md:px-4 text-gray-800 dark:text-white">
-          <BlogHeader />
           <motion.div 
              initial={{ opacity: 0 }}
              animate={{ opacity: 1 }}
@@ -59,12 +57,14 @@ export default function BlogPost ({ title, image, created_at, content }) {
                   { title }
                 </h1>
                 <p className="font-medium">
-                  <Moment date={ created_at } format="DD MMMM, YYYY" />
+                  { created_at }
                 </p>
               </div>
-              <div className="flex-shrink-0 overflow-hidden rounded-lg">
-                <img className="w-full h-full" src={ image } />
-              </div>
+              {image && (
+                <div className="flex-shrink-0 overflow-hidden rounded-lg">
+                  <img className="w-full h-full" src={ image } />
+                </div>
+              )}
               <div className="prose text-black dark:text-white">{ hydratedContent }</div>
             </div>
           </motion.div>

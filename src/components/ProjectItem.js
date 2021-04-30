@@ -26,7 +26,7 @@ export default function ProjectItem ({ title, description, demo_url, source_code
           <div className="flex items-center justify-between">
             <div className="flex flex-row items-center space-x-2">
               <Link href={ `/projects/${slug}` }>
-                <a className="font-primary text-xl font-extrabold line-clamp-1 text-gray-900 dark:text-white hover:text-blue-twitter dark:hover:text-blue-twitter border-b border-gray-50 dark:border-gray-800 dark:hover:border-blue-twitter hover:border-blue-twitter transition ease-in duration-150">
+                <a className="font-primary text-xl font-black line-clamp-1 text-gray-900 dark:text-white hover:text-blue-twitter dark:hover:text-blue-twitter border-b border-gray-50 dark:border-gray-800 dark:hover:border-blue-twitter hover:border-blue-twitter transition ease-in duration-150">
                   { title }
                 </a>
               </Link>
