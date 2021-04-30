@@ -46,7 +46,7 @@ export default function IndexPage() {
           <div className="flex flex-col space-y-6 pt-4">
             <div className="flex flex-col space-y-4 w-full max-w-md">
               <h1 className="flex items-center space-x-3 text-2xl lg:text-4xl xl:text-5xl font-extrabold leading-snug tracking-wide text-primary-blue max-w-xl">
-                <span className="font-primary">Hi</span> <WavingHand />
+                <span className="font-primary font-black">Hi</span> <WavingHand />
               </h1>
               <p className="tracking-wide leading-7">My name is <span className="font-semibold text-blue-twitter">Joshua Galit</span> and I'm a self taught web developer using modern technologies. Ability to follow established procedures and work under little or no supervision. Follow and Star me on <a href="https://github.com/acatzk" target="_blank" className="font-semibold text-blue-twitter hover:underline">GitHub</a> 💕</p>
             </div>

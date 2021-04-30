@@ -72,7 +72,7 @@ function ProjectHeader () {
   return (
     <div className="flex flex-wrap items-center justify-between px-4 pt-4 md:pt-10">
       <div className="flex flex-col">
-        <h3 className="text-gray-900 text-lg font-semibold dark:text-white">My Projects</h3>
+        <h3 className="font-primary text-gray-900 text-lg font-extrabold dark:text-white">My Projects</h3>
         <p className="text-gray-600 text-sm dark:text-gray-500">Open source in GitHub</p>
       </div>
       <div className="relative">
