@@ -2,8 +2,8 @@ import { SearchIcon } from '~/utils/Icons'
 
 export default function BlogHeader () {
   return (
-    <div className="mt-4 md:mt-10 space-y-4 pb-6 border-b border-gray-200 dark:border-gray-700">
-      <h1 className="font-primary text-3xl md:text-5xl font-black">Blog List</h1>
+    <div className="mt-4 md:mt-10 space-y-5 pb-4 border-b border-gray-200 dark:border-gray-700">
+      <h1 className="text-3xl md:text-5xl font-black">Blog List</h1>
       <div className="relative flex items-center max-w-lg">
         <div className="absolute pl-4 pt-2.5">
           <SearchIcon className="h-7 w-7 fill-current text-gray-400" />
