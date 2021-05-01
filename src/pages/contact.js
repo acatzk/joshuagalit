@@ -39,7 +39,7 @@ export default function ContactPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <div className="w-full max-w-5xl m-auto px-4 py-4">
+        <div className="w-full max-w-5xl m-auto px-4 py-4 md:py-0">
           <div className="w-full h-full opacity-30">
             <img src="/svgs/buble.svg" disabled className="absolute inset-0 w-full h-full" />
           </div>
@@ -48,11 +48,11 @@ export default function ContactPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1 }}
-            className="flex flex-col md:flex-row items-start md:items-center justify-between space-y-8"
+            className="h-screen min-h-screen flex flex-col md:flex-row items-start md:items-center justify-between space-y-8"
           >
             <div className="flex flex-col space-y-10 md:space-y-20">
               <div className="flex flex-col space-y-5 md:space-y-8 w-full max-w-md z-50">
-                <h1 className="font-primary font-black text-3xl md:text-5xl text-blue-twitter">Contact me</h1>
+                <h1 className="font-black text-3xl md:text-5xl text-blue-twitter">Contact me</h1>
                 <p className="text-base text-gray-900 dark:text-white">Send me a message and I will get back to you within 24 hours.</p>
               </div>
               <div className="flex flex-col space-y-3 md:space-y-5 z-50">

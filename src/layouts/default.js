@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 import { Menu } from '@headlessui/react'
 import ActiveLink from '~/utils/ActiveLink'
 import { useState, useCallback } from 'react'
+import Scrollbar from 'react-smooth-scrollbar'
 import ThemeChanger from '~/utils/ThemeChanger'
-import PerfectScrollbar from 'react-perfect-scrollbar'
 import { navigations, socialLinks } from '~/static/default'
 import MessengerCustomerChat from 'react-messenger-customer-chat'
 import { ThreeDotIcon, LogoIcon, SoundIcon } from '~/utils/Icons'
@@ -16,7 +16,7 @@ export default function Layout ({ children }) {
 
   return (
     // Main Layout
-    <div className="font-secondary antialiased flex flex-col md:flex-row justify-between w-full min-h-screen h-screen bg-white text-black dark:bg-dark-dim dark:text-white transition ease-in-out duration-700">
+    <div className="font-sans antialiased flex flex-col md:flex-row justify-between w-full min-h-screen h-screen bg-white text-black dark:bg-dark-dim dark:text-white transition ease-in-out duration-700">
 
       {/* First Flex Column */}
       <div className="flex items-center flex-row md:flex-col justify-between h-auto md:h-full pb-3 border-b border-gray-200 dark:border-gray-600 md:border-0 px-4 py-4 md:py-12 md:px-10">
@@ -57,11 +57,15 @@ export default function Layout ({ children }) {
       </div>
 
       {/* Dynamic Content */}
-      <PerfectScrollbar style={{ touchAction: "none" }} className="flex-1">
-        <div className="flex h-auto md:h-full">
+      <Scrollbar
+        damping={0.1}
+        thumbMinSize={20}
+        className="flex-1"
+      >
+        <div className="min-h-screen h-screen">
           { children }
         </div>
-      </PerfectScrollbar>
+      </Scrollbar>
 
       {/* Navigation links */}
       <div className="flex flex-row md:flex-col items-end md:items-center justify-center md:justify-between md:h-full w-full md:w-14 border-t border-gray-200 dark:border-gray-600 md:border-0 px-4 py-4 md:py-12 md:px-16">
