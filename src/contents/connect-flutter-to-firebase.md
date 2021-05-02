@@ -4,7 +4,6 @@ avatar: '/images/my-avatar.jpg'
 slug: 'connect-flutter-to-firebase'
 title: 'Add A Firebase Backend To Your Flutter App Fast!'
 description: 'Learn how to integrate Googles Firebase into your Flutter App'
-image: ''
 created_at: 'June 27, 2020'
 ---
 
