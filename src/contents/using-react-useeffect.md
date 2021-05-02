@@ -4,7 +4,6 @@ avatar: '/images/my-avatar.jpg'
 slug: 'using-react-useeffect'
 title: 'UseEffect In Next.JS - React Hooks'
 description: 'React hooks allow you to perform side effects in function components. In this post, we will take a look at useEffect and give examples of how to use in in next.js.'
-image: ''
 created_at: 'March 14, 2021'
 ---
 

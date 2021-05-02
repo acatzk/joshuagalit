@@ -1,9 +1,10 @@
 import Head from 'next/head'
-import { motion } from 'framer-motion'
+import { useTheme } from 'next-themes'
 import Layout from '~/layouts/default'
+import ReactTooltip from 'react-tooltip'
+import { ViewsIcon } from '~/utils/Icons'
 import hydrate from 'next-mdx-remote/hydrate'
 import { getAllPosts } from '~/utils/blogFiles'
-import BlogHeader from '~/components/BlogHeader'
 import renderToString from 'next-mdx-remote/render-to-string'
 
 export async function getStaticPaths() {
@@ -33,7 +34,8 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export default function BlogPost ({ title, image, created_at, content }) {
+export default function BlogPost ({ title, created_at, content }) {
+  const { theme } = useTheme()
   const hydratedContent = hydrate(content)
 
   return (
@@ -43,31 +45,33 @@ export default function BlogPost ({ title, image, created_at, content }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <div className="pt-0 md:pt-6 w-full px-0 md:px-4 text-gray-800 dark:text-white">
-          <motion.div 
-             initial={{ opacity: 0 }}
-             animate={{ opacity: 1 }}
-             exit={{ opacity: 0 }}
-             transition={{ duration: 1 }}
-             className="w-full mx-auto max-w-4xl h-screen px-4 py-6"
-          >
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <h1 className="text-2xl md:text-3xl font-semibold tracking-wide leading-normal md:leading-snug text-center">
-                  { title }
-                </h1>
-                <p className="font-medium">
-                  { created_at }
-                </p>
+        <div className="w-full max-w-5xl mx-auto px-4 space-y-8">
+          <div className="mt-4 md:mt-16">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-center max-w-2xl mx-auto">{ title }</h1>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <div className="flex-shrink-0">
+                <img 
+                  className="w-7 h-7 rounded-full"
+                  src="/images/my-avatar.jpg" 
+                />
               </div>
-              {image && (
-                <div className="flex-shrink-0 overflow-hidden rounded-lg">
-                  <img className="w-full h-full" src={ image } />
-                </div>
-              )}
-              <div className="prose text-black dark:text-white">{ hydratedContent }</div>
+              <h3 className="text-sm text-gray-700 dark:text-gray-400 tracking-tight">Joshua Galit / { created_at }</h3>
             </div>
-          </motion.div>
+            <div>
+              <div className="flex items-center space-x-1 cursor-default text-gray-500 dark:text-gray-400" data-tip="Views">
+                <span className="text-xs font-medium mt-0.5 line-clamp-1">245</span>
+                <ViewsIcon className="w-4 h-4" />
+              </div>
+              <ReactTooltip 
+                place="bottom" 
+                type={ theme === 'light' ? 'dark' : 'light' } 
+                effect="solid" 
+              />
+            </div>
+          </div>
+          <div className="prose dark:prose-dark">{ hydratedContent }</div>
         </div>
       </Layout> 
     </>
