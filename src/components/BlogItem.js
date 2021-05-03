@@ -3,11 +3,11 @@ import { useTheme } from 'next-themes'
 import ReactTooltip from 'react-tooltip'
 import { ViewsIcon } from '~/utils/Icons'
 
-export default function BlogCard ({ slug, title, description }) {
+export default function BlogCard ({ slug, title, summary }) {
   const { theme } = useTheme()
   
   return (
-    <Link href={ `/blog/${slug}` }>
+    <Link href={ `/${slug}` }>
       <a className="py-6 group">
         <div className="flex flex-col">
           <div className="flex items-center justify-between">
@@ -22,7 +22,7 @@ export default function BlogCard ({ slug, title, description }) {
               effect="solid" 
             />
           </div>
-          <p className="text-gray-700 dark:text-gray-400 line-clamp-2 max-w-2xl">{ description }</p>
+          <p className="text-gray-700 dark:text-gray-400 line-clamp-2 max-w-2xl">{ summary }</p>
         </div>
       </a>
     </Link>
