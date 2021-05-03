@@ -13,7 +13,11 @@ module.exports = {
         cyan: colors.cyan,
         fuchsia: colors.fuchsia,
         'dark-dim': '#15202B',
-        'blue-twitter': '#1DA1F2'
+        'blue-twitter': '#1DA1F2',
+        grey: {
+          100: "#F5F7FA",
+          1000: "#1F2933"
+        }
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans]
@@ -23,24 +27,74 @@ module.exports = {
       },
       typography(theme) {
         return {
+          default: {
+            css: {
+              pre: {
+                color: theme("colors.grey.1000"),
+                backgroundColor: theme("colors.grey.100")
+              },
+              "pre code::before": {
+                "padding-left": "unset"
+              },
+              "pre code::after": {
+                "padding-right": "unset"
+              },
+              code: {
+                backgroundColor: theme("colors.grey.100"),
+                color: "#DD1144",
+                fontWeight: "400",
+                "border-radius": "0.25rem"
+              },
+              "code::before": {
+                content: '""',
+                "padding-left": "0.25rem"
+              },
+              "code::after": {
+                content: '""',
+                "padding-right": "0.25rem"
+              }
+            }
+          },
           dark: {
             css: {
               color: theme("colors.gray.300"),
-              '[class~="lead"]': { color: theme("colors.gray.400") },
-              a: { color: theme("colors.gray.100") },
-              strong: { color: theme("colors.gray.100") },
-              "ul > li::before": { backgroundColor: theme("colors.gray.700") },
-              hr: { borderColor: theme("colors.gray.800") },
+              '[class~="lead"]': { 
+                color: theme("colors.gray.400") 
+              },
+              a: { 
+                color: theme("colors.green.700")
+              },
+              strong: { 
+                color: theme("colors.gray.100") 
+              },
+              "ul > li::before": { 
+                backgroundColor: theme("colors.gray.700") 
+              },
+              hr: { 
+                borderColor: theme("colors.gray.800") 
+              },
               blockquote: {
                 color: theme("colors.gray.100"),
                 borderLeftColor: theme("colors.gray.800"),
               },
-              h1: { color: theme("colors.gray.100") },
-              h2: { color: theme("colors.gray.100") },
-              h3: { color: theme("colors.gray.100") },
-              h4: { color: theme("colors.gray.100") },
-              code: { color: theme("colors.gray.100") },
-              "a code": { color: theme("colors.gray.100") },
+              h1: { 
+                color: theme("colors.gray.100") 
+              },
+              h2: { 
+                color: theme("colors.gray.100")
+              },
+              h3: { 
+                color: theme("colors.gray.100") 
+              },
+              h4: { 
+                color: theme("colors.gray.100") 
+              },
+              code: { 
+                color: theme("colors.gray.100") 
+              },
+              "a code": { 
+                color: theme("colors.gray.100") 
+              },
               pre: {
                 color: theme("colors.gray.200"),
                 backgroundColor: theme("colors.gray.800"),
