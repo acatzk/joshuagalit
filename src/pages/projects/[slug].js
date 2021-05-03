@@ -11,31 +11,6 @@ import { INSERT_VIEWS_MUTATION } from '~/graphql/mutations'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { GET_PROJECT_BY_SLUG_QUERY, GET_PROJECT_SLUGs } from '~/graphql/queries'
 
-export async function getStaticPaths() {
-  const { projects } = await hasuraAdminClient.request(GET_PROJECT_SLUGs)
-
-  return {
-    paths: projects.map(({ slug }) => ({
-      params: {
-        slug
-      }
-    })),
-    fallback: false
-  }
-}
-
-export async function getStaticProps({ params }) {
-  const { slug } = params
-  const initialData = await hasuraAdminClient.request(GET_PROJECT_BY_SLUG_QUERY, { slug })
-
-  return {
-    props: {
-      initialData
-    },
-    revalidate: 1
-  }
-}
-
 export default function ProjectPage ({ initialData }) {
 
   const router = useRouter()
@@ -111,4 +86,29 @@ function ProjectHeader () {
       </button>
     </div>
   )
+}
+
+export async function getStaticPaths() {
+  const { projects } = await hasuraAdminClient.request(GET_PROJECT_SLUGs)
+
+  return {
+    paths: projects.map(({ slug }) => ({
+      params: {
+        slug
+      }
+    })),
+    fallback: false
+  }
+}
+
+export async function getStaticProps({ params }) {
+  const { slug } = params
+  const initialData = await hasuraAdminClient.request(GET_PROJECT_BY_SLUG_QUERY, { slug })
+
+  return {
+    props: {
+      initialData
+    },
+    revalidate: 1
+  }
 }

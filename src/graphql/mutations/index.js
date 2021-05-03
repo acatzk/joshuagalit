@@ -133,3 +133,14 @@ export const DELETE_PROJECT_COMMENT_BY_ID_MUTATION = gql`
     }
   }
 `
+
+export const INSERT_BLOG_VIEWS_MUTATION = gql`
+  mutation InsertBlogViewsMutation($slug: String!) {
+    insert_blog_views(objects: {slug: $slug}) {
+      returning {
+        id
+        slug
+      }
+    }
+  }
+`
