@@ -63,3 +63,23 @@ export const GET_PROJECT_BY_SLUG_QUERY = gql`
     }
   }
 `
+
+export const GET_BLOG_VIEWS_QUERY = gql`
+  query GetBlogViewsQuery($slug: String!) {
+    blog_views_aggregate(where: {slug: {_eq: $slug}}) {
+      aggregate {
+        count
+      }
+    }
+  }
+`
+
+export const GET_BLOG_VIEWS_COUNT_QUERY = gql`
+  query GetViewsCountQuery {
+    blog_views_aggregate {
+      aggregate {
+        count
+      }
+    }
+  }
+`
