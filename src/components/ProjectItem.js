@@ -57,7 +57,7 @@ export default function ProjectItem ({ title, description, demo_url, source_code
           {source_code_url && (
             <a href={ source_code_url } target="_blank" className="flex items-center font-medium space-x-2 group group-hover:underline text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200">
               <span className="block">
-                <GitHubIcon className="fill-current w-5 h-5" />
+                <GitHubIcon className="w-4 h-4" />
               </span>
               <span className="text-sm group-hover:underline line-clamp-1">
                 { source_code_url.split('https://github.com/') }
