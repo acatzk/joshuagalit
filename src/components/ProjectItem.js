@@ -12,7 +12,7 @@ export default function ProjectItem ({ title, description, demo_url, source_code
   const { aggregate: { commentsCount } } = comments_aggregate
 
   return (
-    <div className="flex flex-col lg:flex-row py-6 w-full space-y-4 md:space-y-0 space-x-0 md:space-x-6">
+    <div className="flex flex-col lg:flex-row py-6 w-full space-y-4 lg:space-y-0 space-x-0 lg:space-x-6">
       <Link href={ `/projects/${slug}` }>
         <a className={ `flex-shrink-0 w-auto h-72 h lg:w-72 md:h-48 relative ${styles.picture}` }>
           <img 
@@ -21,8 +21,8 @@ export default function ProjectItem ({ title, description, demo_url, source_code
           />
         </a>
       </Link>
-      <div className="flex flex-col items-start w-full justify-between py-2 space-y-4 md:space-y-0">
-        <div className="space-y-2 md:space-y-4 w-full">
+      <div className="flex flex-col items-start w-full justify-between py-2 space-y-4 lg:space-y-0">
+        <div className="space-y-2 lg:space-y-4 w-full">
           <div className="flex items-center justify-between">
             <div className="flex flex-row items-center space-x-2">
               <Link href={ `/projects/${slug}` }>
