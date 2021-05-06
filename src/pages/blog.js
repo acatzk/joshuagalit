@@ -28,7 +28,7 @@ export default function BlogPage ({ posts, initialCount }) {
           transition={{ duration: 1 }}
           className="w-full max-w-5xl mx-auto px-4"
         >
-          <BlogHeader />
+          <BlogHeader count={posts?.length}/>
           <div className="py-2 divide-y divide-gray-200 dark:divide-gray-700">
             <BlogList blogs={posts} views={data?.blog_views_aggregate?.aggregate?.count} />
           </div>

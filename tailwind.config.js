@@ -27,7 +27,7 @@ module.exports = {
       },
       typography(theme) {
         return {
-          default: {
+          DEFAULT: {
             css: {
               pre: {
                 color: theme("colors.grey.1000"),
@@ -40,7 +40,6 @@ module.exports = {
                 "padding-right": "unset"
               },
               code: {
-                backgroundColor: theme("colors.grey.100"),
                 color: "#DD1144",
                 fontWeight: "400",
                 "border-radius": "0.25rem"
@@ -60,9 +59,6 @@ module.exports = {
               color: theme("colors.gray.300"),
               '[class~="lead"]': { 
                 color: theme("colors.gray.400") 
-              },
-              a: { 
-                color: theme("colors.green.700")
               },
               strong: { 
                 color: theme("colors.gray.100") 
@@ -103,7 +99,9 @@ module.exports = {
                 color: theme("colors.gray.100"),
                 borderBottomColor: theme("colors.gray.700"),
               },
-              "tbody tr": { borderBottomColor: theme("colors.gray.800") },
+              "tbody tr": { 
+                borderBottomColor: theme("colors.gray.800") 
+              }
             }
           }
         }
