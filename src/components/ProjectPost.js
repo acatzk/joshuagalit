@@ -22,6 +22,7 @@ export default function ProjectPost ({ projects, mutate }) {
             <img 
               className="w-7 h-7 border-gray-200 dark:border-gray-700 rounded-full" 
               src="/images/my-avatar.jpg"
+              alt="My Profile Image"
             />
           </div>
           <h1 className="text-sm tracking-tight text-gray-700 dark:text-gray-400 line-clamp-1">Joshua Galit / <Moment date={created_at} format="MMM DD, YYYY" /></h1>

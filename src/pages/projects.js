@@ -10,16 +10,6 @@ import { useToasts } from 'react-toast-notifications'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { INSERT_FEEDBACK_MUTATION } from '~/graphql/mutations'
 
-export async function getStaticProps () {
-  const initialData = await hasuraAdminClient.request(GET_PROJECT_QUERY)
-
-  return {
-    props: {
-      initialData
-    }
-  }
-}
-
 export default function ProjectsPage ({ initialData }) {
   const { data } = useSWR(GET_PROJECT_QUERY, (query) => hasuraAdminClient.request(query), { 
     initialData,
@@ -30,7 +20,7 @@ export default function ProjectsPage ({ initialData }) {
     <>
       <Head>
         <title>Projects | Joshua Galit</title>
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="My List of Projects" />
       </Head>
       <Layout>
         <motion.div 
@@ -46,6 +36,16 @@ export default function ProjectsPage ({ initialData }) {
       </Layout>
     </>
   )
+}
+
+export async function getStaticProps () {
+  const initialData = await hasuraAdminClient.request(GET_PROJECT_QUERY)
+
+  return {
+    props: {
+      initialData
+    }
+  }
 }
 
 function ProjectHeader () {

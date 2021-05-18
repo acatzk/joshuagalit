@@ -18,7 +18,7 @@ export default function BlogPage ({ posts, initialCount }) {
     <>
       <Head>
         <title>Blog | Joshua Galit</title>
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="A list of My Blog Post" />
       </Head>
       <Layout>
         <motion.div 

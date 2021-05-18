@@ -8,12 +8,11 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
-          <link 
-            rel="stylesheet" 
-            href="https://rsms.me/inter/inter.css" 
-          />
+          <link rel="icon" href="/favicon.ico" />
+          <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+          <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         </Head>
         <body>
           <Main />

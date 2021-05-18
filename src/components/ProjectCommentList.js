@@ -70,6 +70,7 @@ function Avatar ({ className, name }) {
           name === 'Joshua Galit' 
           ? '/images/my-avatar.jpg' 
           : '/images/default-avatar.jpg' } 
+        alt="Comment User Avatar"
       />
     </div>
   )

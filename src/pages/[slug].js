@@ -14,7 +14,7 @@ import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { INSERT_BLOG_VIEWS_MUTATION } from '~/graphql/mutations'
 import { GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY } from '~/graphql/queries'
 
-export default function BlogPost ({ title, publishedAt, content, slug, initialCount, readTime }) {
+export default function BlogPost ({ title, publishedAt, content, slug, summary, initialCount, readTime }) {
   const hydratedContent = hydrate(content)
   const formattedData = moment(publishedAt).format('MMMM DD, YYYY')
 
@@ -38,7 +38,7 @@ export default function BlogPost ({ title, publishedAt, content, slug, initialCo
     <>
       <Head>
         <title>{ title }</title>
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content={summary} />
       </Head>
       <Layout>
         <div className="w-full max-w-3xl mx-auto px-4 space-y-8">
@@ -50,6 +50,7 @@ export default function BlogPost ({ title, publishedAt, content, slug, initialCo
               <img 
                 className="w-7 h-7 rounded-full"
                 src="/images/my-avatar.jpg" 
+                alt="My Profile Picture"
               />
             </div>
             <div className="flex flex-wrap items-center justify-between w-full">

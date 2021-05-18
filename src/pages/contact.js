@@ -36,12 +36,17 @@ export default function ContactPage() {
     <>
       <Head>
         <title>Contact | Joshua Galit</title>
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Contact through email or phone" />
       </Head>
       <Layout>
         <div className="w-full max-w-5xl m-auto px-4 py-4 md:py-0">
           <div className="w-full h-full opacity-30">
-            <img src="/svgs/buble.svg" disabled className="absolute inset-0 w-full h-full" />
+            <img 
+              src="/svgs/buble.svg" 
+              disabled 
+              className="absolute inset-0 w-full h-full" 
+              alt="Bubble Image Icon"
+            />
           </div>
           <motion.div 
             initial={{ opacity: 0 }}

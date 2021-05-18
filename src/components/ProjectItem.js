@@ -18,6 +18,7 @@ export default function ProjectItem ({ title, description, demo_url, source_code
           <img 
             src={ project_image_url } 
             className={ `absolute inset-0 w-full h-full object-cover ${styles.picture__thumbnail}` }
+            alt="Project Image"
           />
         </a>
       </Link>
