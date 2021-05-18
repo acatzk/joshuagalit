@@ -128,7 +128,7 @@ function ProjectCommentTabs ({ source_code_url, demo_url }) {
 function Avatar ({ className }) {
   return (
     <div className="flex-shrink-0">
-      <img className={className} src="/images/default-avatar.jpg" />
+      <img className={className} src="/images/default-avatar.jpg" alt="Default User Avatar" />
     </div>
   )
 }

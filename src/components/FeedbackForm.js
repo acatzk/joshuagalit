@@ -60,7 +60,7 @@ export default function FeedbackForm ({ onSubmit }) {
                 className="hidden w-5 h-5"
                 ref={register()}
               />
-              <img className="w-5 h-5" src={icon} />
+              <img className="w-5 h-5" src={icon} alt="Icon" />
             </div>
           ))}
         </div>

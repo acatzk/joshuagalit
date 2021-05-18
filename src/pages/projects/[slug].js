@@ -41,7 +41,7 @@ export default function ProjectPage ({ initialData }) {
     <>
       <Head>
         <title>{ initialData.projects[0].title }</title>
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content={initialData.projects[0].description} />
       </Head>
       <Layout>
         <motion.div

@@ -11,8 +11,8 @@ export default function IndexPage() {
   return (
     <>
       <Head>
-        <title>About | Joshua Galit</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Joshua Galit</title>
+        <meta name="description" content="About Joshua Galit" />
       </Head>
       <Layout>
         <div className="w-full h-full opacity-30 absolute">
@@ -20,6 +20,7 @@ export default function IndexPage() {
             src="/svgs/buble.svg" 
             disabled 
             className="absolute inset-0 w-full h-full" 
+            alt="Bubble Background"
           />
         </div>
         <motion.div 
@@ -39,6 +40,7 @@ export default function IndexPage() {
                   filter: blur ? "blur(10px)" : "none",
                   transition: blur ? "none" : "filter 0.3s ease-out"
                 }}
+                alt="Joshua Galit Profile"
               />
             </div>
           </div>
