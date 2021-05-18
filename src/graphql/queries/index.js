@@ -64,7 +64,7 @@ export const GET_PROJECT_BY_SLUG_QUERY = gql`
   }
 `
 
-export const GET_BLOG_VIEWS_QUERY = gql`
+export const GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY = gql`
   query GetBlogViewsQuery($slug: String!) {
     blog_views_aggregate(where: {slug: {_eq: $slug}}) {
       aggregate {
