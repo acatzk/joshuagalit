@@ -3,8 +3,6 @@ import moment from 'moment'
 import Head from 'next/head'
 import { useEffect } from 'react'
 import Layout from '~/layouts/default'
-import ReactTooltip from 'react-tooltip'
-import { ViewsIcon } from '~/utils/Icons'
 import getReadTime from '~/utils/read-time'
 import hydrate from 'next-mdx-remote/hydrate'
 import { getAllPosts } from '~/utils/blogFiles'
@@ -14,14 +12,14 @@ import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { INSERT_BLOG_VIEWS_MUTATION } from '~/graphql/mutations'
 import { GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY } from '~/graphql/queries'
 
-export default function BlogPost ({ title, publishedAt, content, slug, summary, initialCount, readTime }) {
+export default function BlogPost ({ title, publishedAt, content, slug, summary, initialView, readTime }) {
   const hydratedContent = hydrate(content)
   const formattedData = moment(publishedAt).format('MMMM DD, YYYY')
 
   const { data, mutate } = useSWR(
     [GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY, slug], 
     (query, slug) => hasuraAdminClient.request(query, { slug }), 
-    { initialCount, revalidateOnMount: true }
+    { initialView, revalidateOnMount: true }
   )
   const views = data?.blog_views_aggregate?.aggregate?.count
 
@@ -59,14 +57,8 @@ export default function BlogPost ({ title, publishedAt, content, slug, summary, 
                 <div className="flex items-center space-x-1.5 cursor-default text-gray-500 dark:text-gray-400  text-xs">
                   <span className="font-medium line-clamp-1">{ readTime } min read</span>
                   <span className="font-extralight">|</span>
-                  <span className="font-medium line-clamp-1" data-tip="Views">{ views }</span>
-                  <ViewsIcon className="w-4 h-4" />
+                  <span className="font-medium line-clamp-1" data-tip="Views">{ views } views</span>
                 </div>
-                <ReactTooltip 
-                  place="bottom" 
-                  type="dark"
-                  effect="solid" 
-                />
               </div>
             </div>
           </div>
@@ -100,13 +92,13 @@ export async function getStaticProps({ params }) {
   const mdxSource = await renderToString(content)
   const readTime = getReadTime(content)
 
-  const initialCount = await hasuraAdminClient.request(GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY, { slug })
+  const initialView = await hasuraAdminClient.request(GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY, { slug })
 
   return {
     props: {
       ...data,
       content: mdxSource,
-      initialCount,
+      initialView,
       readTime
     }
   }
