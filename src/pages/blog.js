@@ -5,15 +5,8 @@ import Layout from '~/layouts/default'
 import BlogList from '~/components/BlogList'
 import { getAllPosts } from '~/utils/blogFiles'
 import BlogHeader from '~/components/BlogHeader'
-import { hasuraAdminClient } from '~/lib/hasura-admin-client'
-import { GET_BLOG_VIEWS_COUNT_QUERY } from '~/graphql/queries'
 
-export default function BlogPage ({ posts, initialCount }) {
-  const { data } = useSWR(GET_BLOG_VIEWS_COUNT_QUERY, (query) => hasuraAdminClient.request(query), { 
-    initialCount,
-    revalidateOnMount: true
-  })
-
+export default function BlogPage ({ posts }) {
   return (
     <>
       <Head>
@@ -30,7 +23,7 @@ export default function BlogPage ({ posts, initialCount }) {
         >
           <BlogHeader count={posts?.length} />
           <div className="py-2 divide-y divide-gray-200 dark:divide-gray-700">
-            <BlogList blogs={posts} views={data?.blog_views_aggregate?.aggregate?.count} />
+            <BlogList blogs={posts} />
           </div>
         </motion.div>
       </Layout>
@@ -40,7 +33,6 @@ export default function BlogPage ({ posts, initialCount }) {
 
 export async function getStaticProps() {
   const allPosts = getAllPosts()
-  const initialCount = await hasuraAdminClient.request(GET_BLOG_VIEWS_COUNT_QUERY)
 
   return {
     props: {
@@ -48,8 +40,7 @@ export async function getStaticProps() {
         ...data,
         content,
         slug
-      })),
-      initialCount
+      }))
     }
   }
 }
