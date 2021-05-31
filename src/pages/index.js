@@ -28,7 +28,7 @@ export default function IndexPage() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
-          className="h-screen min-h-screen relative flex flex-col md:flex-row-reverse items-center justify-center mx-auto w-full max-w-7xl px-4 py-4 md:py-12 md:px-12"
+          className="h-screen min-h-screen relative flex flex-col lg:flex-row-reverse items-center justify-center mx-auto w-full max-w-7xl px-4 py-4 md:py-12 md:px-12"
         >
           <div className="pl-0 md:pl-10">
             <div className="p-1.5 bg-gradient-to-tr from-yellow-400 to-fuchsia-600 rounded-full">

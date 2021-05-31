@@ -10,7 +10,6 @@ import MessengerCustomerChat from 'react-messenger-customer-chat'
 import { ThreeDotIcon, LogoIcon, SoundIcon } from '~/utils/Icons'
 
 export default function Layout ({ children }) {
-
   const [isAudio, setIsAudio] = useState() 
   const toggleAudio = useCallback(() => setIsAudio(v => !v), [])
 
@@ -111,11 +110,6 @@ function SocialMenu ({ socialLinks }) {
           </Menu.Button>
           { open && (
             <Menu.Items 
-              as={motion.div}
-              static
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              transition={{ duration: 0.20 }}
               className="absolute right-3 top-14 flex flex-col space-y-1 py-1 px-1 z-50 bg-white dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg shadow-lg"
             >
               {socialLinks.map(({ icon, href }, i) => (
