@@ -87,11 +87,6 @@ function DropdownMenu ({ handleDeleteComment }) {
             </Menu.Button>
             { open && (
               <Menu.Items 
-                as={motion.div}
-                static
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                transition={{ duration: 0.25 }}
                 className="absolute right-0 top-0 flex flex-col z-50 overflow-hidden divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-800 outline-none border dark:border-gray-700 rounded-lg shadow-lg"
               >
                 <Menu.Item>
