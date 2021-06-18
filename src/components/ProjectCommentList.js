@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Menu } from '@headlessui/react'
 import { ThreeDotIcon } from '~/utils/Icons'
 import { useToasts } from 'react-toast-notifications'
@@ -64,13 +64,16 @@ function ProjectCommentItem ({ id, name, comment, created_at, mutate }) {
 function Avatar ({ className, name }) {
   return (
     <div className="flex-shrink-0">
-      <img 
+      <Image 
         className={className} 
         src={ 
           name === 'Joshua Galit' 
           ? '/images/my-avatar.jpg' 
           : '/images/default-avatar.jpg' } 
         alt="Comment User Avatar"
+        width={36}
+        height={36}
+        layout="intrinsic"
       />
     </div>
   )

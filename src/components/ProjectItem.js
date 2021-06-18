@@ -1,27 +1,29 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { useTheme } from 'next-themes'
+import { useRouter } from 'next/router'
 import ReactTooltip from 'react-tooltip'
 import { format, register } from 'timeago.js'
-import styles from '~/styles/project.module.css'
 import { VerifiedIcon, GitHubIcon, ViewsIcon, ChatIcon } from '~/utils/Icons'
 
 export default function ProjectItem ({ title, description, demo_url, source_code_url, project_image_url, slug, created_at, views_aggregate, comments_aggregate }) {
-  
+  const router = useRouter()
   const { theme } = useTheme()
+  
   const { aggregate: { viewsCount } } = views_aggregate
   const { aggregate: { commentsCount } } = comments_aggregate
 
   return (
     <div className="flex flex-col lg:flex-row py-6 w-full space-y-4 lg:space-y-0 space-x-0 lg:space-x-6">
-      <Link href={ `/projects/${slug}` }>
-        <a className={ `flex-shrink-0 w-auto h-72 h lg:w-72 md:h-48 relative ${styles.picture}` }>
-          <img 
-            src={ project_image_url } 
-            className={ `absolute inset-0 w-full h-full object-cover ${styles.picture__thumbnail}` }
-            alt="Project Image"
-          />
-        </a>
-      </Link>
+      <Image 
+        src={project_image_url} 
+        width={370}
+        height={230}
+        alt="Project Image"
+        layout="intrinsic"
+        onClick={() => router.push(`/projects/${slug}`)}
+        className="cursor-pointer"
+      />
       <div className="flex flex-col items-start w-full justify-between py-2 space-y-4 lg:space-y-0">
         <div className="space-y-2 lg:space-y-4 w-full">
           <div className="flex items-center justify-between">

@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import emailjs from 'emailjs-com'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
@@ -40,12 +41,12 @@ export default function ContactPage() {
       </Head>
       <Layout>
         <div className="w-full max-w-5xl m-auto px-4 py-4 md:py-0">
-          <div className="w-full h-full opacity-30">
-            <img 
+          <div className="w-full h-full opacity-30 absolute">
+            <Image 
               src="/svgs/buble.svg" 
               disabled 
-              className="absolute inset-0 w-full h-full" 
-              alt="Bubble Image Icon"
+              layout="fill"
+              alt="Bubble Background"
             />
           </div>
           <motion.div 

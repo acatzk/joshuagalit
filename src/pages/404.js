@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 
@@ -16,10 +17,12 @@ export default function NotFound () {
           <div className="flex items-center">
             <h1 className="font-bold text-9xl -mr-6 dark:text-gray-100">4</h1>
             <div className="flex-shrink-0 z-50">
-              <img 
-                className="w-48 h-48" 
+              <Image 
                 src="/images/emoji.png"
                 alt="Cry Emoji Image"
+                width={192}
+                height={192}
+                layout="intrinsic"
               />
             </div>
             <h1 className="font-bold text-9xl -ml-8 dark:text-gray-100">4</h1>
