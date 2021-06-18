@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 export default function SponsorCard () {
@@ -6,10 +7,14 @@ export default function SponsorCard () {
       <div className="flex flex-start">
         <div className="flex flex-row space-x-4">
           <div className="flex-shrink-0  overflow-hidden">
-            <img 
-              className="w-14 h-14 rounded-lg border border-gray-200 dark:border-gray-700" 
+            <Image 
+              className="rounded-lg border border-gray-200 dark:border-gray-700" 
               src="/images/my-avatar.jpg" 
               alt="My Avatar Picture"
+              width={56}
+              height={56}
+              layout="intrinsic"
+              quality={100}
             />
           </div>
           <div className="flex flex-row justify-between flex-wrap md:flex-nowrap space-x-0 md:space-x-2 space-y-2 md:space-y-0">

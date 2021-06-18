@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { useToasts } from 'react-toast-notifications'
 import ProjectCommentList from './ProjectCommentList'
@@ -128,7 +129,14 @@ function ProjectCommentTabs ({ source_code_url, demo_url }) {
 function Avatar ({ className }) {
   return (
     <div className="flex-shrink-0">
-      <img className={className} src="/images/default-avatar.jpg" alt="Default User Avatar" />
+      <Image 
+        className={className} 
+        src="/images/default-avatar.jpg" 
+        alt="Default User Avatar" 
+        width={40}
+        height={40}
+        layout="responsive"
+      />
     </div>
   )
 }

@@ -1,4 +1,3 @@
-import useSWR from 'swr'
 import Head from 'next/head'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'

@@ -10,5 +10,11 @@ module.exports = {
     GMAIL_USER_ID: process.env.GMAIL_USER_ID,
     MESSENGER_PAGE_ID: process.env.MESSENGER_PAGE_ID,
     MESSENGER_APP_ID: process.env.MESSENGER_APP_ID
+  },
+  images: {
+    domains: [
+      'firebasestorage.googleapis.com',
+      'jeromevillaruel.netlify.app'
+    ]
   }
 }

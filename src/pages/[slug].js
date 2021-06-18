@@ -1,6 +1,7 @@
 import useSWR from 'swr'
 import moment from 'moment'
 import Head from 'next/head'
+import Image from 'next/image'
 import { useEffect } from 'react'
 import Layout from '~/layouts/default'
 import getReadTime from '~/utils/read-time'
@@ -45,10 +46,13 @@ export default function BlogPost ({ title, publishedAt, content, slug, summary, 
           </div>
           <div className="flex items-center space-x-2 pb-8 w-full">
             <div className="flex-shrink-0">
-              <img 
-                className="w-7 h-7 rounded-full"
+              <Image 
+                className="rounded-full"
                 src="/images/my-avatar.jpg" 
                 alt="My Profile Picture"
+                width={28}
+                height={28}
+                layout="intrinsic"
               />
             </div>
             <div className="flex flex-wrap items-center justify-between w-full">

@@ -1,12 +1,11 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
 import { useRouter } from 'next/router'
-import useProgressiveImg from '~/utils/useProgressiveImage'
 
 export default function IndexPage() {
   const router = useRouter()
-  const [src, { blur }] = useProgressiveImg('/images/my-avatar-tiny.jpg', '/images/my-avatar.jpg')
 
   return (
     <>
@@ -16,10 +15,10 @@ export default function IndexPage() {
       </Head>
       <Layout>
         <div className="w-full h-full opacity-30 absolute">
-          <img 
+          <Image 
             src="/svgs/buble.svg" 
             disabled 
-            className="absolute inset-0 w-full h-full" 
+            layout="fill"
             alt="Bubble Background"
           />
         </div>
@@ -30,18 +29,18 @@ export default function IndexPage() {
           transition={{ duration: 1 }}
           className="h-screen min-h-screen relative flex flex-col lg:flex-row-reverse items-center justify-center mx-auto w-full max-w-7xl px-4 py-4 md:py-12 md:px-12"
         >
-          <div className="pl-0 md:pl-10">
-            <div className="p-1.5 bg-gradient-to-tr from-yellow-400 to-fuchsia-600 rounded-full">
-              <img 
-                src={src}
-                className="max-w-full md:max-w-xs rounded-full bg-white p-1.5" 
-                style={{
-                  width: 400,
-                  filter: blur ? "blur(10px)" : "none",
-                  transition: blur ? "none" : "filter 0.3s ease-out"
-                }}
-                alt="Joshua Galit Profile"
-              />
+          <div className="relative pl-0 md:pl-10">
+            <div className="p-1.5 bg-gradient-to-tr from-yellow-400 to-fuchsia-600 rounded-xl">
+              <div className="bg-white p-1.5 rounded-xl">
+                <Image 
+                  src="/images/picture.jpg"
+                  width={300}
+                  height={370}
+                  layout="intrinsic"
+                  className="rounded-xl"
+                  alt="Joshua Galit Profile"
+                />
+              </div>
             </div>
           </div>
           <div className="flex flex-col space-y-6 pt-4">
@@ -53,14 +52,14 @@ export default function IndexPage() {
             </div>
             <div className="flex flex-wrap  space-x-3 md:space-x-4">
               <motion.button 
-                className="bg-blue-twitter text-white px-4 xl:px-9 py-3 rounded-full text-lg font-medium focus:outline-none transition ease-in-out duration-200 hover:shadow-xl"
+                className="bg-blue-twitter text-white px-4 xl:px-9 py-3 rounded-lg text-xl font-medium focus:outline-none transition ease-in-out duration-200 hover:shadow-xl"
                 whileHover={{ y: -4 }}
                 onClick={() => router.push('/projects') }
               >
                 <span className="line-clamp-1">Projects</span>
               </motion.button>
               <motion.button 
-                className="text-secondary-blue text-blue-twitter px-7 xl:px-10 py-3 border border-blue-twitter rounded-full text-lg font-medium focus:outline-none transition ease-in-out duration-200 hover:shadow-xl dark:text-white dark:border-white"
+                className="text-secondary-blue text-blue-twitter px-7 xl:px-10 py-3 border border-blue-twitter rounded-xl text-lg font-medium focus:outline-none transition ease-in-out duration-200 hover:shadow-xl dark:text-white dark:border-white"
                 whileHover={{ y: -4 }}
                 onClick={() => router.push('/contact') }
               >

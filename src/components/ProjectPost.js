@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Moment from 'react-moment'
 import ProjectComment from './ProjectComment'
 import SponsorCard from '~/components/SponsorCard'
@@ -19,10 +20,13 @@ export default function ProjectPost ({ projects, mutate }) {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <div className="flex-shrink-0">
-            <img 
-              className="w-7 h-7 border-gray-200 dark:border-gray-700 rounded-full" 
+            <Image 
+              width={28}
+              height={28}
+              className="border-gray-200 dark:border-gray-700 rounded-full" 
               src="/images/my-avatar.jpg"
               alt="My Profile Image"
+              layout="intrinsic"
             />
           </div>
           <h1 className="text-sm tracking-tight text-gray-700 dark:text-gray-400 line-clamp-1">Joshua Galit / <Moment date={created_at} format="MMM DD, YYYY" /></h1>
@@ -41,8 +45,14 @@ export default function ProjectPost ({ projects, mutate }) {
       </div>
       <div className="space-y-1">
         <h1 className="text-base text-gray-700 dark:text-gray-400">{ description }</h1>
-        <div className="flex-shrink-0 overflow-hidden rounded-lg ring-2 ring-gray-400 dark:ring-gray-600">
-          <img src={project_image_url} />
+        <div className="flex-shrink-0 overflow-hidden rounded-lg ring-2 ring-gray-400 dark:ring-gray-600 relative">
+          <Image 
+            src={project_image_url} 
+            width={1000}
+            height={550}
+            alt={title}
+            layout="responsive"
+          />
         </div>
       </div>
       <ProjectComment 
