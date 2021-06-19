@@ -1,10 +1,11 @@
 import Image from 'next/image'
+import { GrGithub } from 'react-icons/gr'
 import { useForm } from 'react-hook-form'
 import { useToasts } from 'react-toast-notifications'
 import ProjectCommentList from './ProjectCommentList'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
+import { BiMessageRoundedDots, BiLinkExternal } from 'react-icons/bi'
 import { INSERT_PROJECT_COMMENT_MUTATION } from '~/graphql/mutations'
-import { GitHubIcon, ExternalLinkIcon, ChatIcon } from '~/utils/Icons' 
 
 export default function ProjectComment ({ mutate, ...projects }) {
   const { addToast } = useToasts()
@@ -101,14 +102,14 @@ function ProjectCommentTabs ({ source_code_url, demo_url }) {
       <ul className="flex items-center text-sm">
         <li className="border-b-2 border-transparent border-blue-twitter px-3">
           <button className="flex items-center  space-x-2 focus:outline-none pb-2 font-semibold text-blue-twitter">
-            <ChatIcon className="w-4 h-4" />
+            <BiMessageRoundedDots className="w-5 h-5" />
             <span>Comments</span>
           </button>
         </li>
         {source_code_url && (
           <li className="border-b-2 border-transparent hover:border-gray-300 dark:hover:border-white transition ease-in duration-150 px-3">
             <a href={source_code_url} target="_blank" className="flex items-center space-x-2 pb-2 text-gray-600 dark:text-gray-400 dark:hover:text-white">
-              <GitHubIcon className="w-4 h-4" />
+              <GrGithub className="w-4 h-4" />
               <span className="text-sm line-clamp-1">Source Code</span>
             </a>
           </li>
@@ -116,7 +117,7 @@ function ProjectCommentTabs ({ source_code_url, demo_url }) {
         {demo_url && (
           <li className="border-b-2 border-transparent hover:border-gray-300 dark:hover:border-white transition ease-in duration-100 px-3">
             <a href={demo_url} target="_blank" className="flex items-center space-x-2 pb-2 text-gray-600 dark:text-gray-400 dark:hover:text-white">
-              <ExternalLinkIcon className="w-4 h-4" />
+              <BiLinkExternal className="w-4 h-4" />
               <span className="text-sm line-clamp-1">Demo</span>
             </a>
           </li>

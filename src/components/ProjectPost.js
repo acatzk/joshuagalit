@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import Moment from 'react-moment'
+import { FiEye } from 'react-icons/fi'
 import ProjectComment from './ProjectComment'
+import { BiMessageRounded } from 'react-icons/bi'
 import SponsorCard from '~/components/SponsorCard'
-import { ChatIcon, ViewsIcon} from '~/utils/Icons'
 
 export default function ProjectPost ({ projects, mutate }) {
   const { 
@@ -34,18 +35,18 @@ export default function ProjectPost ({ projects, mutate }) {
         <div className="flex items-center space-x-1 text-gray-500">
           <div className="flex items-center space-x-1 cursor-default" data-tip="Comments">
             <span className="text-xs font-medium mt-0.5 line-clamp-1">{ commentsCount }</span>
-            <ChatIcon className="w-4 h-4" />
+            <BiMessageRounded className="w-4 h-4" />
           </div>
           <span>&middot;</span>
           <div className="flex items-center space-x-1 cursor-default" data-tip="Views">
             <span className="text-xs font-medium mt-0.5 line-clamp-1">{ viewsCount }</span>
-            <ViewsIcon className="w-4 h-4" />
+            <FiEye className="w-4 h-4" />
           </div>
         </div>
       </div>
       <div className="space-y-1">
         <h1 className="text-base text-gray-700 dark:text-gray-400">{ description }</h1>
-        <div className="flex-shrink-0 overflow-hidden rounded-lg ring-2 ring-gray-400 dark:ring-gray-600 relative">
+        <div className="flex-shrink-0 overflow-hidden rounded-lg ring-1 ring-gray-300 dark:ring-gray-600 relative shadow-md">
           <Image 
             src={project_image_url} 
             width={1000}

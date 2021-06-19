@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
+import { FiSend } from 'react-icons/fi'
 import { useForm } from 'react-hook-form'
-import { UserIcon, EmailIcon, 
-  AnimatedLoadingIcon, SendIcon } from '~/utils/Icons'
+import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai'
 
 export default function ContactForm ({ onSubmit }) {
 
@@ -18,7 +18,7 @@ export default function ContactForm ({ onSubmit }) {
         <label className="text-sm pl-2">Name</label>
         <div className="flex items-center inset-y-0 inset-x-3">
           <span className="absolute pl-3">
-            <UserIcon className="fill-current w-6 h-6 text-gray-500" />
+            <AiOutlineUser className="fill-current w-6 h-6 text-gray-500" />
           </span>
           <input 
             type="text" 
@@ -35,7 +35,7 @@ export default function ContactForm ({ onSubmit }) {
         <label className="text-sm pl-2">Email</label>
         <div className="flex items-center inset-y-0 inset-x-3">
           <span className="absolute pl-4">
-            <EmailIcon className="fill-current w-5 h-5 text-gray-500" />
+            <AiOutlineMail className="fill-current w-6 h-6 text-gray-500" />
           </span>
           <input 
             type="text" 
@@ -94,7 +94,7 @@ function ButtonText () {
   return (
     <div className="flex items-center space-x-1 text-sm font-medium">
       <span className="line-clamp-1">Send</span>
-      <SendIcon className="fill-current w-4 h-4 transform rotate-45" />
+      <FiSend className="w-4 h-4 transform rotate-45" />
     </div>
   )
 }
