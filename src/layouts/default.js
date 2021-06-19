@@ -2,12 +2,13 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Menu } from '@headlessui/react'
 import ActiveLink from '~/utils/ActiveLink'
+import { BsThreeDots } from 'react-icons/bs'
 import { useState, useCallback } from 'react'
 import Scrollbar from 'react-smooth-scrollbar'
 import ThemeChanger from '~/utils/ThemeChanger'
+import { LogoIcon, SoundIcon } from '~/utils/Icons'
 import { navigations, socialLinks } from '~/static/default'
 import MessengerCustomerChat from 'react-messenger-customer-chat'
-import { ThreeDotIcon, LogoIcon, SoundIcon } from '~/utils/Icons'
 
 export default function Layout ({ children }) {
   const [isAudio, setIsAudio] = useState() 
@@ -106,7 +107,7 @@ function SocialMenu ({ socialLinks }) {
       {({ open }) => (
         <>
           <Menu.Button className="rounded-full focus:outline-none p-1 hover:shadow  transition ease-out duration-200 border border-transparent hover:border-gray-300">
-            <ThreeDotIcon className="w-6 h-6" />
+            <BsThreeDots className="w-6 h-6" />
           </Menu.Button>
           { open && (
             <Menu.Items 

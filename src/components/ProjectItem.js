@@ -1,10 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
+import { FiEye } from 'react-icons/fi'
 import { useRouter } from 'next/router'
 import ReactTooltip from 'react-tooltip'
+import { GrGithub } from 'react-icons/gr'
+import { VerifiedIcon } from '~/utils/Icons'
 import { format, register } from 'timeago.js'
-import { VerifiedIcon, GitHubIcon, ViewsIcon, ChatIcon } from '~/utils/Icons'
+import { BiMessageRounded } from 'react-icons/bi'
 
 export default function ProjectItem ({ title, description, demo_url, source_code_url, project_image_url, slug, created_at, views_aggregate, comments_aggregate }) {
   const router = useRouter()
@@ -60,7 +63,7 @@ export default function ProjectItem ({ title, description, demo_url, source_code
           {source_code_url && (
             <a href={ source_code_url } target="_blank" className="flex items-center font-medium space-x-2 group group-hover:underline text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200">
               <span className="block">
-                <GitHubIcon className="w-4 h-4" />
+                <GrGithub className="w-4 h-4" />
               </span>
               <span className="text-sm group-hover:underline line-clamp-1">
                 { source_code_url.split('https://github.com/') }
@@ -70,12 +73,12 @@ export default function ProjectItem ({ title, description, demo_url, source_code
           <div className="flex items-center space-x-1 text-gray-500">
             <div className="flex items-center space-x-1 cursor-default" data-tip="Comments">
               <span className="text-xs font-medium mt-0.5 line-clamp-1">{ commentsCount }</span>
-              <ChatIcon className="w-4 h-4" />
+              <BiMessageRounded className="w-4 h-4" />
             </div>
             <span>&middot;</span>
             <div className="flex items-center space-x-1 cursor-default" data-tip="Views">
               <span className="text-xs font-medium mt-0.5 line-clamp-1">{ viewsCount }</span>
-              <ViewsIcon className="w-4 h-4" />
+              <FiEye className="w-4 h-4" />
             </div>
           </div>
           <ReactTooltip place="bottom" type={ theme === 'light' ? 'dark' : 'light' } effect="solid" />
