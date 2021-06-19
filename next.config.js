@@ -14,7 +14,8 @@ module.exports = {
   images: {
     domains: [
       'firebasestorage.googleapis.com',
-      'jeromevillaruel.netlify.app'
+      'jeromevillaruel.netlify.app',
+      'benjamincarlson.io'
     ]
   }
 }

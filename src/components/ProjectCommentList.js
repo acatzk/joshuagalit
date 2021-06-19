@@ -1,7 +1,7 @@
 import moment from 'moment'
 import Image from 'next/image'
 import { Menu } from '@headlessui/react'
-import { ThreeDotIcon } from '~/utils/Icons'
+import { BsThreeDots } from 'react-icons/bs'
 import { useToasts } from 'react-toast-notifications'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { DELETE_PROJECT_COMMENT_BY_ID_MUTATION } from '~/graphql/mutations'
@@ -86,7 +86,7 @@ function DropdownMenu ({ handleDeleteComment }) {
         {({ open }) => (
           <>
             <Menu.Button className="text-gray-500 focus:outline-none">
-              <ThreeDotIcon className="w-5 h-5" />
+              <BsThreeDots className="w-5 h-5" />
             </Menu.Button>
             { open && (
               <Menu.Items 
