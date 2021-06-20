@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import ReactTooltip from 'react-tooltip'
 import { GrGithub } from 'react-icons/gr'
 import { VerifiedIcon } from '~/utils/Icons'
-import { format, register } from 'timeago.js'
+import TimeAgoFormat from '~/lib/react-timeago'
 import { BiMessageRounded } from 'react-icons/bi'
 
 export default function ProjectItem ({ title, description, demo_url, source_code_url, project_image_url, slug, created_at, views_aggregate, comments_aggregate }) {
@@ -40,7 +40,7 @@ export default function ProjectItem ({ title, description, demo_url, source_code
                 <VerifiedIcon className="w-4 h-4 fill-current" />
               </span>
               <span className="text-xs text-gray-500 line-clamp-1">
-                { FormattedTimeAgo(created_at) }
+                <TimeAgoFormat date={created_at} />
               </span>
             </div>
             <div>
@@ -86,28 +86,4 @@ export default function ProjectItem ({ title, description, demo_url, source_code
       </div>
     </div>
   )
-}
-
-function FormattedTimeAgo (date) {
-  const localeFunc = (number, index, totalSec) => {
-    return [
-      ['just now', 'right now'],
-      ['%s seconds', '%s seconds'],
-      ['1m', '1m'],
-      ['%sm', '%sm'],
-      ['1h', '1h'],
-      ['%sh', '%sh'],
-      ['1d', '1d'],
-      ['%sd', '%sd'],
-      ['1w', '1w'],
-      ['%sw', '%sw'],
-      ['1 month', '1 month'],
-      ['%s months', '%s months'],
-      ['1y', '%y'],
-      ['%sy', '%sy']
-    ][index]
-  }
-  register('my-locale', localeFunc)
-  
-  return format(`${date.split('T')[0]}`, 'my-locale')
 }

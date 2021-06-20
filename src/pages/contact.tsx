@@ -43,8 +43,7 @@ export default function ContactPage() {
         <div className="w-full max-w-5xl m-auto px-4 py-4 md:py-0">
           <div className="w-full h-full opacity-30 absolute">
             <Image 
-              src="/svgs/buble.svg" 
-              disabled 
+              src="/svgs/buble.svg"
               layout="fill"
               alt="Bubble Background"
             />

@@ -32,7 +32,7 @@ export default function ActiveLink({
   parentActive = active;
 
   return (
-    <Link {...props}>
+    <Link href="/" {...props}>
       {processChildren(active, children, defaultClassNames, currentClassNames)}
     </Link>
   )

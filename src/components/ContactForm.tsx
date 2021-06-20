@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { FiSend } from 'react-icons/fi'
 import { useForm } from 'react-hook-form'
+import { AnimatedLoadingIcon } from '~/utils/Icons'
 import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai'
 
 export default function ContactForm ({ onSubmit }) {
@@ -56,8 +57,7 @@ export default function ContactForm ({ onSubmit }) {
         <label className="text-sm pl-2">Message</label>
         <div className="flex items-center inset-t-0 right-3">
           <textarea 
-            rows="5" 
-            type="text" 
+            rows={5} 
             disabled={ isSubmitting }
             name="message"
             className={ `w-full max-h-md bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-xl border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 ${errors.message ? 'ring-red-200 focus:ring-red-500' : 'ring-gray-200 focus:ring-blue-twitter'}` } 
