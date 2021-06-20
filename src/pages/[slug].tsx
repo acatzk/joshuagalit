@@ -13,14 +13,14 @@ import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { INSERT_BLOG_VIEWS_MUTATION } from '~/graphql/mutations'
 import { GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY } from '~/graphql/queries'
 
-export default function BlogPost ({ title, publishedAt, content, slug, summary, initialView, readTime }) {
+export default function BlogPost ({ title, publishedAt, content, slug, summary, readTime }) {
   const hydratedContent = hydrate(content)
   const formattedData = moment(publishedAt).format('MMMM DD, YYYY')
 
   const { data, mutate } = useSWR(
     [GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY, slug], 
     (query, slug) => hasuraAdminClient.request(query, { slug }), 
-    { initialView, revalidateOnMount: true }
+    { revalidateOnMount: true }
   )
   const views = data?.blog_views_aggregate?.aggregate?.count
 
@@ -76,7 +76,7 @@ export default function BlogPost ({ title, publishedAt, content, slug, summary, 
   )
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths () {
   const allPosts = getAllPosts()
   return {
     paths: allPosts.map(post => ({
@@ -88,7 +88,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps ({ params }) {
   const { slug } = params
   const allPosts = getAllPosts()
   
@@ -96,13 +96,10 @@ export async function getStaticProps({ params }) {
   const mdxSource = await renderToString(content)
   const readTime = getReadTime(content)
 
-  const initialView = await hasuraAdminClient.request(GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY, { slug })
-
   return {
     props: {
       ...data,
       content: mdxSource,
-      initialView,
       readTime
     }
   }

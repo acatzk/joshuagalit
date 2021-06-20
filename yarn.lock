@@ -970,6 +970,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.14.6":
+  version "7.14.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.6.tgz#535203bc0892efc7dec60bdc27b2ecf6e409062d"
+  integrity sha512-/PCB2uJ7oM44tz8YhC4Z/6PeOKXp4K588f+5M3clr1M4zbqztlo0XEfJ2LEzj/FgwfgGcIdl8n7YYjTCI0BYwg==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.12.13", "@babel/template@^7.12.7":
   version "7.12.13"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.12.13.tgz#530265be8a2589dbb37523844c5bcb55947fb327"
@@ -1252,6 +1259,16 @@
     lodash.isplainobject "^4.0.6"
     lodash.merge "^4.6.2"
     lodash.uniq "^4.5.0"
+
+"@tanem/react-nprogress@^3.0.70":
+  version "3.0.70"
+  resolved "https://registry.yarnpkg.com/@tanem/react-nprogress/-/react-nprogress-3.0.70.tgz#e6a76862d0b08f5adb28ddab714b4ac1c1b4f13c"
+  integrity sha512-z20/eNHuHpbQP7XH5qz9qGITQYONxn9gTBdwwTsWeZGuK211VWFwt7xYn7I0U0MtjpppcnTvCnNICMec76QhNA==
+  dependencies:
+    "@babel/runtime" "^7.14.6"
+    hoist-non-react-statics "^3.3.2"
+    prop-types "^15.7.2"
+    react-use "^17.2.4"
 
 "@types/hast@^2.0.0":
   version "2.3.1"
@@ -2703,6 +2720,13 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
+hoist-non-react-statics@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
+  integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
+  dependencies:
+    react-is "^16.7.0"
+
 html-tags@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-3.1.0.tgz#7b5e6f7e665e9fb41f30007ed9e0d41e97fb2140"
@@ -3982,7 +4006,7 @@ react-icons@^4.2.0:
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.2.0.tgz#6dda80c8a8f338ff96a1851424d63083282630d0"
   integrity sha512-rmzEDFt+AVXRzD7zDE21gcxyBizD/3NqjbX6cmViAgdqfJ2UiLer8927/QhhrXQV7dEj/1EGuOTPp7JnLYVJKQ==
 
-react-is@16.13.1, react-is@^16.8.1:
+react-is@16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
@@ -4054,6 +4078,11 @@ react-smooth-scrollbar@^8.0.6:
   resolved "https://registry.yarnpkg.com/react-smooth-scrollbar/-/react-smooth-scrollbar-8.0.6.tgz#179072e6a547b3af589ea303c50fd86366275edc"
   integrity sha512-yWiIC4L8DwfIRkLL+PdXq5rysEm6trxHzRk1Rx82bzuu2aWDcHhT+l1vXH/73Re/zHmGjBgrxts/wIrwC6yYJA==
 
+react-timeago@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-6.2.1.tgz#f19716811156617ceb9c9f9a44315d85197c7fba"
+  integrity sha512-b9EObWO8wy4qwfOzj+g/RQZRrPvtMv1Pz12FCdAWKWCXbDGt0rZLyiyTGEr0Lh1O8w5xa48CtRpl3LI+CtGCyw==
+
 react-toast-notifications@^2.4.3:
   version "2.4.4"
   resolved "https://registry.yarnpkg.com/react-toast-notifications/-/react-toast-notifications-2.4.4.tgz#a4b46195b437f312d72f552073957e3a1916f1ab"
@@ -4085,7 +4114,7 @@ react-universal-interface@^0.6.2:
   resolved "https://registry.yarnpkg.com/react-universal-interface/-/react-universal-interface-0.6.2.tgz#5e8d438a01729a4dbbcbeeceb0b86be146fe2b3b"
   integrity sha512-dg8yXdcQmvgR13RIlZbTRQOoUrDciFVoSBZILwjE2LFISxZZ8loVJKAkuzswl5js8BHda79bIb2b84ehU8IjXw==
 
-react-use@^17.2.3:
+react-use@^17.2.3, react-use@^17.2.4:
   version "17.2.4"
   resolved "https://registry.yarnpkg.com/react-use/-/react-use-17.2.4.tgz#1f89be3db0a8237c79253db0a15e12bbe3cfeff1"
   integrity sha512-vQGpsAM0F5UIlshw5UI8ULGPS4yn5rm7/qvn3T1Gnkrz7YRMEEMh+ynKcmRloOyiIeLvKWiQjMiwRGtdbgs5qQ==

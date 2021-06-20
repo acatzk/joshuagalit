@@ -32,8 +32,7 @@ export default function FeedbackForm ({ onSubmit }) {
       <div className="px-4 flex flex-col space-y-1">
         <textarea 
           name="message"
-          type="textarea" 
-          rows="4" cols="50"
+          rows={4} cols={50}
           disabled={ isSubmitting }
           placeholder="Your feedback..."
           ref={register({
@@ -48,7 +47,6 @@ export default function FeedbackForm ({ onSubmit }) {
           {emojis.map(({ icon, text }, i) => (
             <div 
               key={i}
-              disabled={ isSubmitting }
               onClick={() => setEmoji(text)}
               className={ `${emoji === text ? 'border-yellow-300' : 'dark:border-gray-700'} cursor-pointer rounded-full border p-1 bg-white dark:bg-gray-700 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150 transform hover:scale-110` }
             >

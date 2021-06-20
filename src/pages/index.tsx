@@ -86,7 +86,6 @@ function WavingHand () {
     <motion.div
       animate={{ rotate: 15 }}
       transition={{
-        yoyo: Infinity,
         from: 0,
         duration: 0.5,
         ease: "easeInOut",

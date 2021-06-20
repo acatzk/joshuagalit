@@ -88,8 +88,6 @@ function ProjectHeader () {
           <>
             <button onClick={() => toggleModal(false)} type="button" className="z-20 block fixed inset-0 w-full h-full cursor-default focus:outline-none"></button>
             <motion.div 
-              as={motion.div}
-              static
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               transition={{ duration: 0.20 }}
