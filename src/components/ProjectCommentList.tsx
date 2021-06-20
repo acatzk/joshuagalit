@@ -1,7 +1,7 @@
-import moment from 'moment'
 import Image from 'next/image'
 import { Menu } from '@headlessui/react'
 import { BsThreeDots } from 'react-icons/bs'
+import TimeAgoFormat from '~/lib/react-timeago'
 import { useToasts } from 'react-toast-notifications'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { DELETE_PROJECT_COMMENT_BY_ID_MUTATION } from '~/graphql/mutations'
@@ -43,7 +43,7 @@ function ProjectCommentItem ({ id, name, comment, created_at, mutate }) {
             <h1 className="font-semibold text-gray-700 dark:text-gray-200 transition ease-in-out duration-700 line-clamp-1 capitalize">{ name }</h1>
             <span>&bull;</span>
             <span className="text-xs line-clamp-1">
-              { moment(created_at).fromNow() }
+              <TimeAgoFormat date={created_at} />
             </span>
           </div>
           <DropdownMenu 
