@@ -5,8 +5,8 @@ import ActiveLink from '~/utils/ActiveLink'
 import { BsThreeDots } from 'react-icons/bs'
 import Scrollbar from 'react-smooth-scrollbar'
 import ThemeChanger from '~/utils/ThemeChanger'
+import { navigations, socialLinks } from '~/data'
 import { LogoIcon, SoundIcon } from '~/utils/Icons'
-import { navigations, socialLinks } from '~/static/default'
 import MessengerCustomerChat from 'react-messenger-customer-chat'
 
 export default function Layout ({ children }) {
@@ -35,17 +35,20 @@ export default function Layout ({ children }) {
         <div className="hidden md:block">
           <div className="flex flex-col space-y-3">
             {/* My Social Links */}
-            {socialLinks.map(({ icon, href }, i) => (
-              <motion.button 
-                key={i} 
-                whileHover={{ y: -3 }} 
-                className="focus:outline-none rounded-full p-1 hover:shadow-lg"
-              >
-                <Link href={ href }>
-                  <a target="_blank">{ icon }</a>
-                </Link>
-              </motion.button>
-            ))}
+            {socialLinks.map(({ Icon, href }, i) => {
+              const colors = ['#4267B2', '#1DA1F2', '#333', '#0077B5', '#ea4c89', '#f48024']
+              return (
+                <motion.button 
+                  key={i} 
+                  whileHover={{ y: -3 }} 
+                  className="focus:outline-none rounded-full p-1 hover:shadow-lg"
+                >
+                  <a href={href} target="_blank">
+                    <Icon className={`w-6 h-6 text-[${colors[i]}] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200`} />
+                  </a>
+                </motion.button>
+              )
+            })}
           </div>
         </div>
         <div className="block md:hidden">
@@ -79,12 +82,10 @@ export default function Layout ({ children }) {
                 <li key={i} className="w-1/4 text-center">
                   <ActiveLink 
                     href={href} 
-                    default=""
-                    current="font-semibold text-blue-twitter"
+                    default="text-xs tracking-widest hover:text-blue-twitter transition ease-in-out duration-200"
+                    current="font-semibold text-blue-twitter text-xs"
                   >
-                    <a className="text-xs tracking-widest hover:text-blue-twitter transition ease-in-out duration-200">
-                      { text }
-                    </a>
+                    <a>{ text }</a>
                   </ActiveLink>
                 </li>
               ))}
@@ -117,15 +118,20 @@ function SocialMenu ({ socialLinks }) {
             <Menu.Items 
               className="absolute right-3 top-14 flex flex-col space-y-1 py-1 px-1 z-50 bg-white dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg shadow-lg"
             >
-              {socialLinks.map(({ icon, href }, i) => (
-                <Menu.Item key={i}>
-                  <motion.button key={i} whileHover={{ y: -3 }} className="focus:outline-none rounded-full p-1 hover:shadow-lg">
-                    <Link href={ href }>
-                      <a target="_blank">{ icon }</a>
-                    </Link>
-                  </motion.button>
-                </Menu.Item>
-              ))}
+              {socialLinks.map(({ Icon, href }, i) => {
+                const colors = ['#4267B2', '#1DA1F2', '#333', '#0077B5', '#ea4c89', '#f48024']
+                return (
+                  <Menu.Item key={i}>
+                    <motion.button key={i} whileHover={{ y: -3 }} className="focus:outline-none rounded-full p-1 hover:shadow-lg">
+                      <Link href={ href }>
+                        <a target="_blank">
+                          <Icon className={`w-6 h-6 text-[${colors[i]}] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200`} />
+                        </a>
+                      </Link>
+                    </motion.button>
+                  </Menu.Item>
+                )
+              })}
             </Menu.Items>
           )}
         </>

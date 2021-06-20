@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
-const contentDirectory = path.join(process.cwd(), './src/data')
+const contentDirectory = path.join(process.cwd(), './src/markdown')
 
 export function getAllPosts() {
   const allPosts = fs.readdirSync(contentDirectory)

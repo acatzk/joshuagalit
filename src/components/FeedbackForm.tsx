@@ -1,7 +1,7 @@
+import { emojis } from '~/data'
 import { useState } from 'react'
 import Loading from '~/utils/Loading'
 import { useForm } from 'react-hook-form'
-import { emojis } from '~/static/projects'
 
 export default function FeedbackForm ({ onSubmit }) {
 

@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { contacts } from '~/data'
 import emailjs from 'emailjs-com'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/default'
-import { contacts } from '~/static/contacts'
 import ContactForm from '~/components/ContactForm'
 import { useToasts } from 'react-toast-notifications'
 
@@ -61,11 +61,9 @@ export default function ContactPage() {
                 <p className="text-base text-gray-900 dark:text-white">Send me a message and I will get back to you within 24 hours.</p>
               </div>
               <div className="flex flex-col space-y-3 md:space-y-5 z-50">
-                {contacts.map(({ icon, text }, i) => (
+                {contacts.map(({ Icon, text }, i) => (
                   <div key={i} className="flex items-center space-x-6 text-gray-900 dark:text-white">
-                    <span className="text-blue-twitter">
-                      { icon }
-                    </span>
+                    <Icon className="w-6 h-6 text-blue-twitter" />
                     <p className="text-base">{ text }</p>
                   </div>
                 ))}
