@@ -35,20 +35,15 @@ export default function Layout ({ children }) {
         <div className="hidden md:block">
           <div className="flex flex-col space-y-3">
             {/* My Social Links */}
-            {socialLinks.map(({ Icon, href }, i) => {
-              const colors = ['#4267B2', '#1DA1F2', '#333', '#0077B5', '#ea4c89', '#f48024']
-              return (
+            {socialLinks.map(({ icon, href }, i) => (
                 <motion.button 
                   key={i} 
                   whileHover={{ y: -3 }} 
                   className="focus:outline-none rounded-full p-1 hover:shadow-lg"
                 >
-                  <a href={href} target="_blank">
-                    <Icon className={`w-6 h-6 text-[${colors[i]}] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200`} />
-                  </a>
+                  <a href={href} target="_blank">{ icon }</a>
                 </motion.button>
-              )
-            })}
+              ))}
           </div>
         </div>
         <div className="block md:hidden">

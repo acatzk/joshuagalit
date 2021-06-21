@@ -10,11 +10,6 @@ export interface INavigation {
   href: string
 }
 
-export interface ISocialLink {
-  Icon: IconType
-  href: string
-}
-
 export interface IEmoji {
   icon: string
   text: string

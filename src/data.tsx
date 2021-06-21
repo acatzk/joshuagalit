@@ -1,7 +1,7 @@
 import { MdEmail } from 'react-icons/md'
 import { FaPhoneAlt } from 'react-icons/fa'
 import { ImLocation2 } from 'react-icons/im'
-import { IContact, INavigation, ISocialLink, IEmoji } from './type'
+import { IContact, INavigation, IEmoji } from './type'
 import { FaFacebook, FaTwitter, FaGithub, FaLinkedin, FaDribbble, FaStackOverflow } from 'react-icons/fa'
 
 export const contacts:IContact[] = [
@@ -38,29 +38,29 @@ export const navigations:INavigation[] = [
   }
 ]
 
-export const socialLinks:ISocialLink[] = [
+export const socialLinks = [
   {
-    Icon: FaFacebook,
+    icon: <FaFacebook className="w-6 h-6 text-[#4267B2] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />,
     href: 'https://www.facebook.com/acatzk'
   },
   {
-    Icon: FaTwitter,
+    icon: <FaTwitter className="w-6 h-6 text-[#1DA1F2] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />,
     href: 'https://twitter.com/angryboy_19'
   },
   {
-    Icon: FaGithub,
+    icon: <FaGithub className="w-6 h-6 text-[#333] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />,
     href: 'https://github.com/acatzk'
   },
   {
-    Icon: FaLinkedin,
+    icon: <FaLinkedin className="w-6 h-6 text-[#0077B5] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />,
     href: 'https://www.linkedin.com/in/joshua-galit-7b6b84200/'
   },
   {
-    Icon: FaDribbble,
+    icon: <FaDribbble className="w-6 h-6 text-[#ea4c89] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />,
     href: 'https://dribbble.com/angryboy'
   },
   {
-    Icon: FaStackOverflow,
+    icon: <FaStackOverflow className="w-6 h-6 text-[#f48024] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />,
     href: 'https://stackoverflow.com/users/14108225/joshua-galit'
   }
 ]
