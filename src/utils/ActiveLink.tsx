@@ -1,6 +1,6 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { Children } from 'react'
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { Children } from 'react';
 
 let parentActive = false;
 
@@ -11,15 +11,15 @@ const processChildren = (
   currentClassName
 ) => {
   const child = Children.only(children);
-  const childClassName = child.props.className || ''
+  const childClassName = child.props.className || '';
   const className = active
     ? `${currentClassName} ${childClassName}`.trim()
-    : `${defaultClassName} ${childClassName}`.trim()
+    : `${defaultClassName} ${childClassName}`.trim();
 
   return React.cloneElement(child, {
-    className: className || null
-  })
-}
+    className: className || null,
+  });
+};
 
 export default function ActiveLink({
   children,
@@ -28,14 +28,14 @@ export default function ActiveLink({
   ...props
 }) {
   const { asPath } = useRouter();
-  const active = Boolean(asPath === props.href || asPath === props.as)
+  const active = Boolean(asPath === props.href || asPath === props.as);
   parentActive = active;
 
   return (
     <Link href="/" {...props}>
       {processChildren(active, children, defaultClassNames, currentClassNames)}
     </Link>
-  )
+  );
 }
 
 const Child = function ActiveLinkChild({
@@ -53,7 +53,7 @@ const Child = function ActiveLinkChild({
         currentClassNames
       )}
     </>
-  )
-}
+  );
+};
 
-ActiveLink.Child = Child
+ActiveLink.Child = Child;

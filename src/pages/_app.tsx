@@ -1,10 +1,11 @@
-import '~/styles/global.css'
-import '~/styles/tailwind.css'
-import { ThemeProvider } from 'next-themes'
-import NProgress from '~/lib/react-nprogress'
-import { ToastProvider } from 'react-toast-notifications'
+import '~/styles/global.css';
+import '~/styles/tailwind.css';
+import type { AppProps } from 'next/app';
+import { ThemeProvider } from 'next-themes';
+import NProgress from '~/lib/react-nprogress';
+import { ToastProvider } from 'react-toast-notifications';
 
-export default function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider attribute="class">
       <NProgress />
@@ -12,5 +13,7 @@ export default function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </ToastProvider>
     </ThemeProvider>
-  )
-}
+  );
+};
+
+export default MyApp;

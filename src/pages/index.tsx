@@ -1,11 +1,14 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import Layout from '~/layouts/default'
-import { useRouter } from 'next/router'
+import Head from 'next/head';
+import Image from 'next/image';
+import { NextPage } from 'next';
+import { motion } from 'framer-motion';
+import Layout from '~/layouts/default';
+import { useRouter } from 'next/router';
 
-export default function IndexPage() {
-  const router = useRouter()
+interface IndexPageProps {}
+
+const Index: NextPage<IndexPageProps> = () => {
+  const router = useRouter();
 
   return (
     <>
@@ -17,13 +20,13 @@ export default function IndexPage() {
         <main style={{ height: '1000vh' }}>
           <section className="relative">
             <div className="w-full h-full opacity-30 absolute">
-              <Image 
+              <Image
                 src="/svgs/buble.svg"
                 layout="fill"
                 alt="Bubble Background"
               />
             </div>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -37,7 +40,7 @@ export default function IndexPage() {
                 <div className="relative pl-0">
                   <div className="p-1.5 bg-gradient-to-tr from-yellow-400 to-fuchsia-600 rounded-full">
                     <div className="bg-white p-1.5 rounded-full">
-                      <Image 
+                      <Image
                         src="/images/picture.jpg"
                         width={300}
                         height={300}
@@ -54,20 +57,36 @@ export default function IndexPage() {
                   <h1 className="flex items-center space-x-3 text-2xl lg:text-4xl xl:text-5xl font-extrabold leading-snug tracking-wide text-primary-blue max-w-xl">
                     <span className="font-extrabold">Hi</span> <WavingHand />
                   </h1>
-                  <p className="tracking-wide leading-7">My name is <span className="font-semibold text-blue-twitter">Joshua Galit</span> and I'm a self taught web developer using modern technologies. Ability to follow established procedures and work under little or no supervision. Follow and Star me on <a href="https://github.com/acatzk" target="_blank" className="font-semibold text-blue-twitter hover:underline">GitHub</a> 💕</p>
+                  <p className="tracking-wide leading-7">
+                    My name is{' '}
+                    <span className="font-semibold text-blue-twitter">
+                      Joshua Galit
+                    </span>{' '}
+                    and I'm a self taught web developer using modern
+                    technologies. Ability to follow established procedures and
+                    work under little or no supervision. Follow and Star me on{' '}
+                    <a
+                      href="https://github.com/acatzk"
+                      target="_blank"
+                      className="font-semibold text-blue-twitter hover:underline"
+                    >
+                      GitHub
+                    </a>{' '}
+                    💕
+                  </p>
                 </div>
                 <div className="flex flex-wrap  space-x-3 md:space-x-4">
-                  <motion.button 
+                  <motion.button
                     className="bg-blue-twitter text-white px-4 xl:px-9 py-3 rounded-full text-xl font-medium focus:outline-none transition ease-in-out duration-200 hover:shadow-xl"
                     whileHover={{ y: -4 }}
-                    onClick={() => router.push('/projects') }
+                    onClick={() => router.push('/projects')}
                   >
                     <span className="line-clamp-1">Projects</span>
                   </motion.button>
-                  <motion.button 
+                  <motion.button
                     className="text-secondary-blue text-blue-twitter px-7 xl:px-10 py-3 border border-blue-twitter rounded-full text-lg font-medium focus:outline-none transition ease-in-out duration-200 hover:shadow-xl dark:text-white dark:border-white"
                     whileHover={{ y: -4 }}
-                    onClick={() => router.push('/contact') }
+                    onClick={() => router.push('/contact')}
                   >
                     <span className="line-clamp-1">Contact</span>
                   </motion.button>
@@ -77,22 +96,24 @@ export default function IndexPage() {
           </section>
         </main>
       </Layout>
-    </> 
-  )
-}
+    </>
+  );
+};
 
-function WavingHand () {
+export default Index;
+
+const WavingHand = () => {
   return (
     <motion.div
       animate={{ rotate: 15 }}
       transition={{
         from: 0,
         duration: 0.5,
-        ease: "easeInOut",
-        type: "tween",
+        ease: 'easeInOut',
+        type: 'tween',
       }}
     >
       👋
     </motion.div>
-  )
-}
+  );
+};
