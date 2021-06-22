@@ -1,11 +1,30 @@
-import Head from 'next/head'
-import { motion } from 'framer-motion'
-import Layout from '~/layouts/default'
-import BlogList from '~/components/BlogList'
-import { getAllPosts } from '~/utils/blogFiles'
-import BlogHeader from '~/components/BlogHeader'
+import Head from 'next/head';
+import { GetStaticProps, NextPage } from 'next';
+import { motion } from 'framer-motion';
+import Layout from '~/layouts/default';
+import BlogList from '~/components/BlogList';
+import { getAllPosts } from '~/utils/blogFiles';
+import BlogHeader from '~/components/BlogHeader';
 
-export default function BlogPage ({ posts }) {
+interface BlogPageProps {
+  posts: [];
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const allPosts = await getAllPosts();
+
+  return {
+    props: {
+      posts: allPosts.map(({ data, content, slug }) => ({
+        ...data,
+        content,
+        slug,
+      })),
+    },
+  };
+};
+
+const Blog: NextPage<BlogPageProps> = ({ posts }) => {
   return (
     <>
       <Head>
@@ -13,7 +32,7 @@ export default function BlogPage ({ posts }) {
         <meta name="description" content="A list of My Blog Post" />
       </Head>
       <Layout>
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -27,19 +46,7 @@ export default function BlogPage ({ posts }) {
         </motion.div>
       </Layout>
     </>
-  )
-}
+  );
+};
 
-export async function getStaticProps() {
-  const allPosts = getAllPosts()
-
-  return {
-    props: {
-      posts: allPosts.map(({ data, content, slug }) => ({
-        ...data,
-        content,
-        slug
-      }))
-    }
-  }
-}
+export default Blog;

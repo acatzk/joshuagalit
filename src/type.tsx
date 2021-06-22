@@ -1,16 +1,16 @@
-import { IconType } from 'react-icons'
+import { IconType } from 'react-icons';
 
 export interface IContact {
-  Icon: IconType
-  text: string
+  Icon: IconType;
+  text: string;
 }
 
 export interface INavigation {
-  text: string
-  href: string
+  text: string;
+  href: string;
 }
 
 export interface IEmoji {
-  icon: string
-  text: string
+  icon: string;
+  text: string;
 }

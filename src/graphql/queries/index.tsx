@@ -1,8 +1,8 @@
-import { gql } from 'graphql-request'
+import { gql } from 'graphql-request';
 
 export const GET_PROJECT_QUERY = gql`
   query GetProjectQuery {
-    projects(order_by: {created_at: desc}) {
+    projects(order_by: { created_at: desc }) {
       id
       title
       description
@@ -23,7 +23,7 @@ export const GET_PROJECT_QUERY = gql`
       }
     }
   }
-`
+`;
 
 export const GET_PROJECT_SLUGs = gql`
   query GetProjectBySlugs {
@@ -31,11 +31,11 @@ export const GET_PROJECT_SLUGs = gql`
       slug
     }
   }
-`
+`;
 
 export const GET_PROJECT_BY_SLUG_QUERY = gql`
   query GetProjectBySlugQuery($slug: String) {
-    projects(order_by: {created_at: desc}, where: {slug: {_eq: $slug}}) {
+    projects(order_by: { created_at: desc }, where: { slug: { _eq: $slug } }) {
       id
       title
       description
@@ -44,7 +44,7 @@ export const GET_PROJECT_BY_SLUG_QUERY = gql`
       project_image_url
       source_code_url
       slug
-      comments(order_by: {created_at: desc}) {
+      comments(order_by: { created_at: desc }) {
         id
         name
         comment
@@ -62,17 +62,17 @@ export const GET_PROJECT_BY_SLUG_QUERY = gql`
       }
     }
   }
-`
+`;
 
 export const GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY = gql`
   query GetBlogViewsQuery($slug: String!) {
-    blog_views_aggregate(where: {slug: {_eq: $slug}}) {
+    blog_views_aggregate(where: { slug: { _eq: $slug } }) {
       aggregate {
         count
       }
     }
   }
-`
+`;
 
 export const GET_BLOG_VIEWS_COUNT_QUERY = gql`
   query GetViewsCountQuery {
@@ -82,4 +82,4 @@ export const GET_BLOG_VIEWS_COUNT_QUERY = gql`
       }
     }
   }
-`
+`;

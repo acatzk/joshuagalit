@@ -1,37 +1,81 @@
-import Image from 'next/image'
-import { Menu } from '@headlessui/react'
-import { BsThreeDots } from 'react-icons/bs'
-import TimeAgoFormat from '~/lib/react-timeago'
-import { useToasts } from 'react-toast-notifications'
-import { hasuraAdminClient } from '~/lib/hasura-admin-client'
-import { DELETE_PROJECT_COMMENT_BY_ID_MUTATION } from '~/graphql/mutations'
+import React from 'react';
+import Image from 'next/image';
+import { Menu } from '@headlessui/react';
+import { BsThreeDots } from 'react-icons/bs';
+import TimeAgoFormat from '~/lib/react-timeago';
+import { useToasts } from 'react-toast-notifications';
+import { hasuraAdminClient } from '~/lib/hasura-admin-client';
+import { DELETE_PROJECT_COMMENT_BY_ID_MUTATION } from '~/graphql/mutations';
 
-export default function ProjectCommentList ({ mutate, projects }) {
-  const { comments } = projects[0]
-  return comments.map((comment, i) => <ProjectCommentItem key={i} {...comment } mutate={mutate} />)
+interface ProjectCommentListProps {
+  mutate: any;
+  projects: any;
 }
 
-function ProjectCommentItem ({ id, name, comment, created_at, mutate }) {
-  const { addToast } = useToasts()
+const ProjectCommentList: React.FC<ProjectCommentListProps> = ({
+  mutate,
+  projects,
+}) => {
+  const { comments } = projects[0];
+  return comments.map((comment: any, i: number) => (
+    <ProjectCommentItem key={i} {...comment} mutate={mutate} />
+  ));
+};
+
+export default ProjectCommentList;
+
+interface ProjectCommentItemProps {
+  id: string;
+  name: string;
+  comment: string;
+  created_at: string;
+  mutate: any;
+}
+
+const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
+  id,
+  name,
+  comment,
+  created_at,
+  mutate,
+}) => {
+  const { addToast } = useToasts();
 
   const handleDeleteComment = async () => {
-
-    let isDelete = prompt('Confirm password to delete post!', '')
+    let isDelete = prompt('Confirm password to delete post!', '');
     if (isDelete === process.env.ADMINISTRATOR_PASS) {
-      const { delete_project_comments: { returning: { ...project } } } = await hasuraAdminClient.request(DELETE_PROJECT_COMMENT_BY_ID_MUTATION, { id })
+      const {
+        delete_project_comments: {
+          returning: { ...project },
+        },
+      } = await hasuraAdminClient.request(
+        DELETE_PROJECT_COMMENT_BY_ID_MUTATION,
+        { id }
+      );
 
       mutate({
-        projects: [{
-          ...project[0].project
-        }]
-      })
-      addToast('Comment Successfully Deleted!', { appearance: 'success', autoDismiss: true })
+        projects: [
+          {
+            ...project[0].project,
+          },
+        ],
+      });
+      addToast('Comment Successfully Deleted!', {
+        appearance: 'success',
+        autoDismiss: true,
+      });
     } else if (isDelete === '' || isDelete === null) {
-      addToast('Please input admin password to delete this post!', { appearance: 'warning', autoDismiss: true })
+      addToast('Please input admin password to delete this post!', {
+        appearance: 'warning',
+        autoDismiss: true,
+      });
     } else {
-      addToast('You are unauthorized to delete the comment posted!', { appearance: 'error', autoDismiss: true })
+      addToast('You are unauthorized to delete the comment posted!', {
+        appearance: 'error',
+        autoDismiss: true,
+      });
     }
-  }
+  };
 
   return (
     <div key={id} className="flex space-x-3 py-3 px-2">
@@ -40,46 +84,52 @@ function ProjectCommentItem ({ id, name, comment, created_at, mutate }) {
         {/* Comment Header section */}
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
-            <h1 className="font-semibold text-gray-700 dark:text-gray-200 transition ease-in-out duration-700 line-clamp-1 capitalize">{ name }</h1>
+            <h1 className="font-semibold text-gray-700 dark:text-gray-200 transition ease-in-out duration-700 line-clamp-1 capitalize">
+              {name}
+            </h1>
             <span>&bull;</span>
             <span className="text-xs line-clamp-1">
               <TimeAgoFormat date={created_at} />
             </span>
           </div>
-          <DropdownMenu 
-            handleDeleteComment={handleDeleteComment}
-          />
+          <DropdownMenu handleDeleteComment={handleDeleteComment} />
         </div>
         {/* Actual comments */}
         <div>
           <p className="text-sm tracking-wide text-gray-600 dark:text-white">
-            { comment }
+            {comment}
           </p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-function Avatar ({ className, name }) {
+const Avatar: React.FC<{ className: any; name: string }> = ({
+  className,
+  name,
+}) => {
   return (
     <div className="flex-shrink-0">
-      <Image 
-        className={className} 
-        src={ 
-          name === 'Joshua Galit' 
-          ? '/images/my-avatar.jpg' 
-          : '/images/default-avatar.jpg' } 
+      <Image
+        className={className}
+        src={
+          name === 'Joshua Galit'
+            ? '/images/my-avatar.jpg'
+            : '/images/default-avatar.jpg'
+        }
         alt="Comment User Avatar"
         width={36}
         height={36}
         layout="intrinsic"
       />
     </div>
-  )
-}
+  );
+};
 
-function DropdownMenu ({ handleDeleteComment }) {
+const DropdownMenu: React.FC<{ handleDeleteComment: any }> = ({
+  handleDeleteComment,
+}) => {
   return (
     <div className="relative">
       <Menu>
@@ -88,10 +138,8 @@ function DropdownMenu ({ handleDeleteComment }) {
             <Menu.Button className="text-gray-500 focus:outline-none">
               <BsThreeDots className="w-5 h-5" />
             </Menu.Button>
-            { open && (
-              <Menu.Items 
-                className="absolute right-0 top-0 flex flex-col z-50 overflow-hidden divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-800 outline-none border dark:border-gray-700 rounded-lg shadow-lg"
-              >
+            {open && (
+              <Menu.Items className="absolute right-0 top-0 flex flex-col z-50 overflow-hidden divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-800 outline-none border dark:border-gray-700 rounded-lg shadow-lg">
                 <Menu.Item>
                   <button
                     onClick={handleDeleteComment}
@@ -101,8 +149,8 @@ function DropdownMenu ({ handleDeleteComment }) {
                   </button>
                 </Menu.Item>
                 <Menu.Item>
-                  <button 
-                    onClick={e => e.preventDefault()}
+                  <button
+                    onClick={(e) => e.preventDefault()}
                     className="text-sm px-4 py-1 text-gray-600 dark:text-gray-400 focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-900 transition ease-in-out duration-200"
                   >
                     Cancel
@@ -114,5 +162,5 @@ function DropdownMenu ({ handleDeleteComment }) {
         )}
       </Menu>
     </div>
-  )
-}
+  );
+};
