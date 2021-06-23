@@ -3,6 +3,7 @@ import '~/styles/tailwind.css';
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
 import NProgress from '~/lib/react-nprogress';
+import { AnimatePresence } from 'framer-motion';
 import { ToastProvider } from 'react-toast-notifications';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -10,7 +11,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <ThemeProvider attribute="class">
       <NProgress />
       <ToastProvider>
-        <Component {...pageProps} />
+        <AnimatePresence exitBeforeEnter>
+          <Component {...pageProps} />
+        </AnimatePresence>
       </ToastProvider>
     </ThemeProvider>
   );

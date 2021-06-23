@@ -20,7 +20,7 @@
     "@tailwindcss/typography": "^0.4.0",
     "@tanem/react-nprogress": "^3.0.70",
     "emailjs-com": "^2.6.4",
-    "framer-motion": "^4.0.3",
+    "framer-motion": "3.10.3",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "gray-matter": "^4.0.2",

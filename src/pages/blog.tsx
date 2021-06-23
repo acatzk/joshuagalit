@@ -1,9 +1,10 @@
 import Head from 'next/head';
-import { GetStaticProps, NextPage } from 'next';
 import { motion } from 'framer-motion';
 import Layout from '~/layouts/default';
+import { routeAnimation } from '~/animation';
 import BlogList from '~/components/BlogList';
 import { getAllPosts } from '~/utils/blogFiles';
+import { GetStaticProps, NextPage } from 'next';
 import BlogHeader from '~/components/BlogHeader';
 
 interface BlogPageProps {
@@ -33,10 +34,7 @@ const Blog: NextPage<BlogPageProps> = ({ posts }) => {
       </Head>
       <Layout>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
+          variants={routeAnimation}
           className="w-full max-w-5xl mx-auto px-4"
         >
           <BlogHeader count={posts?.length} />
