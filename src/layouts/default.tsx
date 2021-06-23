@@ -112,34 +112,26 @@ const SocialMenu: React.FC<{ socialLinks: any }> = ({ socialLinks }) => {
             <BsThreeDots className="w-6 h-6" />
           </Menu.Button>
           {open && (
-            <Menu.Items className="absolute right-3 top-14 flex flex-col space-y-1 py-1 px-1 z-50 bg-white dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg shadow-lg">
-              {socialLinks.map(({ Icon, href }: any, i) => {
-                const colors = [
-                  '#4267B2',
-                  '#1DA1F2',
-                  '#333',
-                  '#0077B5',
-                  '#ea4c89',
-                  '#f48024',
-                ];
-                return (
-                  <Menu.Item key={i}>
-                    <motion.button
-                      key={i}
-                      whileHover={{ y: -3 }}
-                      className="focus:outline-none rounded-full p-1 hover:shadow-lg"
-                    >
-                      <Link href={href}>
-                        <a target="_blank">
-                          <Icon
-                            className={`w-6 h-6 text-[${colors[i]}] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200`}
-                          />
-                        </a>
-                      </Link>
-                    </motion.button>
-                  </Menu.Item>
-                );
-              })}
+            <Menu.Items
+              as={motion.div}
+              static
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              transition={{ duration: 0.2 }}
+              className="absolute right-3 top-14 flex flex-col space-y-1 py-1 px-1 z-50 bg-white dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg shadow-lg"
+            >
+              {socialLinks.map(({ icon, href }: any, i) => (
+                <Menu.Item key={i}>
+                  <motion.button
+                    whileHover={{ y: -3 }}
+                    className="focus:outline-none rounded-full p-1 hover:shadow-lg"
+                  >
+                    <Link href={href}>
+                      <a target="_blank">{icon}</a>
+                    </Link>
+                  </motion.button>
+                </Menu.Item>
+              ))}
             </Menu.Items>
           )}
         </>

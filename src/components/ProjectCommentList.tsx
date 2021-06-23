@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Menu } from '@headlessui/react';
 import { BsThreeDots } from 'react-icons/bs';
 import TimeAgoFormat from '~/lib/react-timeago';
@@ -139,7 +140,14 @@ const DropdownMenu: React.FC<{ handleDeleteComment: any }> = ({
               <BsThreeDots className="w-5 h-5" />
             </Menu.Button>
             {open && (
-              <Menu.Items className="absolute right-0 top-0 flex flex-col z-50 overflow-hidden divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-800 outline-none border dark:border-gray-700 rounded-lg shadow-lg">
+              <Menu.Items
+                as={motion.div}
+                static
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                transition={{ duration: 0.2 }}
+                className="absolute right-0 top-0 flex flex-col z-50 overflow-hidden divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-800 outline-none border dark:border-gray-700 rounded-lg shadow-lg"
+              >
                 <Menu.Item>
                   <button
                     onClick={handleDeleteComment}
