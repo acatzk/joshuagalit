@@ -1,4 +1,7 @@
+import React from 'react';
+import { motion } from 'framer-motion';
 import ProjectItem from './ProjectItem';
+import { fadeInUp, stagger } from '~/animation';
 
 interface ProjecdtListProps {
   projects: [];
@@ -6,11 +9,16 @@ interface ProjecdtListProps {
 
 const ProjectList: React.FC<ProjecdtListProps> = ({ projects }) => {
   return (
-    <div className="divide-y divide-gray-200 dark:divide-gray-700 px-4">
+    <motion.div
+      variants={stagger}
+      className="divide-y divide-gray-200 dark:divide-gray-700 px-4"
+    >
       {projects.map((project, i) => (
-        <ProjectItem key={i} {...project} />
+        <motion.div variants={fadeInUp}>
+          <ProjectItem key={i} {...project} />
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

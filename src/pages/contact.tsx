@@ -1,12 +1,13 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import { NextPage } from 'next';
 import { contacts } from '~/data';
 import emailjs from 'emailjs-com';
 import { motion } from 'framer-motion';
 import Layout from '~/layouts/default';
 import ContactForm from '~/components/ContactForm';
 import { useToasts } from 'react-toast-notifications';
-import { NextPage } from 'next';
+import { stagger, fadeInUp } from '~/animation';
 
 interface ContactPageProps {}
 
@@ -54,40 +55,47 @@ const Contact: NextPage<ContactPageProps> = () => {
               alt="Bubble Background"
             />
           </div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            className="h-screen min-h-screen flex flex-col md:flex-row items-start md:items-center justify-between space-y-8"
-          >
-            <div className="flex flex-col space-y-10 md:space-y-20">
-              <div className="flex flex-col space-y-5 md:space-y-8 w-full max-w-md z-50">
+          <div className="h-screen min-h-screen flex flex-col md:flex-row items-start md:items-center justify-between space-y-8">
+            <motion.div
+              variants={stagger}
+              className="flex flex-col space-y-10 md:space-y-20"
+            >
+              <motion.div
+                variants={fadeInUp}
+                className="flex flex-col space-y-5 md:space-y-8 w-full max-w-md z-50"
+              >
                 <h1 className="font-black text-3xl md:text-5xl text-blue-twitter">
                   Contact me
                 </h1>
                 <p className="text-base text-gray-900 dark:text-white">
                   Send me a message and I will get back to you within 24 hours.
                 </p>
-              </div>
-              <div className="flex flex-col space-y-3 md:space-y-5 z-50">
+              </motion.div>
+              <motion.div
+                variants={stagger}
+                className="flex flex-col space-y-3 md:space-y-5 z-50"
+              >
                 {contacts.map(({ Icon, text }, i) => (
-                  <div
+                  <motion.div
                     key={i}
+                    variants={fadeInUp}
                     className="flex items-center space-x-6 text-gray-900 dark:text-white"
                   >
                     <Icon className="w-6 h-6 text-blue-twitter" />
                     <p className="text-base">{text}</p>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
-            <div className="rounded-lg w-full max-w-full md:max-w-lg px-8 py-10 bg-white shadow-md dark:bg-gray-900 z-50">
+              </motion.div>
+            </motion.div>
+            <motion.div
+              variants={fadeInUp}
+              className="rounded-lg w-full max-w-full md:max-w-lg px-8 py-10 bg-white shadow-md dark:bg-gray-900 z-50"
+            >
               <div className="relative w-full">
                 <ContactForm onSubmit={handleContact} />
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </Layout>
     </>

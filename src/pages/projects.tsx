@@ -12,7 +12,7 @@ import { hasuraAdminClient } from '~/lib/hasura-admin-client';
 import { INSERT_FEEDBACK_MUTATION } from '~/graphql/mutations';
 
 interface ProjectsPageProps {
-  initialData: [];
+  initialData: any;
 }
 
 const Projects: NextPage<ProjectsPageProps> = ({ initialData }) => {
