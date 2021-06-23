@@ -2,7 +2,6 @@ import useSWR from 'swr';
 import Head from 'next/head';
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { motion } from 'framer-motion';
 import Layout from '~/layouts/default';
 import { useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
@@ -62,13 +61,7 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
         />
       </Head>
       <Layout>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
-          className="w-full max-w-5xl mx-auto"
-        >
+        <div className="w-full max-w-5xl mx-auto">
           <ProjectHeader />
           <ProjectPost mutate={mutate} projects={data.projects} />
           <ReactTooltip
@@ -76,7 +69,7 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
             type={theme === 'light' ? 'dark' : 'light'}
             effect="solid"
           />
-        </motion.div>
+        </div>
       </Layout>
     </>
   );
