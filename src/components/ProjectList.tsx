@@ -14,8 +14,8 @@ const ProjectList: React.FC<ProjecdtListProps> = ({ projects }) => {
       className="divide-y divide-gray-200 dark:divide-gray-700 px-4"
     >
       {projects.map((project, i) => (
-        <motion.div variants={fadeInUp}>
-          <ProjectItem key={i} {...project} />
+        <motion.div variants={fadeInUp} key={i}>
+          <ProjectItem {...project} />
         </motion.div>
       ))}
     </motion.div>
