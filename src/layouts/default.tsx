@@ -67,7 +67,7 @@ const Layout: React.FC<{ children: any }> = ({ children }) => {
       </Scrollbar>
 
       {/* Navigation links */}
-      <div className="flex flex-row md:flex-col items-end md:items-center justify-center md:justify-between md:h-full w-full md:w-14 border-t border-gray-200 dark:border-gray-600 md:border-0 px-4 py-4 md:py-12 md:px-16">
+      <div className="flex flex-row md:flex-col items-end md:items-center justify-center md:justify-between md:h-full w-full md:w-14 border-t border-gray-200 dark:border-gray-600 md:border-0 px-4 py-4 md:py-12 md:px-12">
         <div className="hidden md:block">
           <ThemeChanger />
         </div>
