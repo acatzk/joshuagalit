@@ -1,5 +1,4 @@
 import useSWR from 'swr';
-import Head from 'next/head';
 import { useToggle } from 'react-use';
 import { motion } from 'framer-motion';
 import Layout from '~/layouts/defaultLayout';

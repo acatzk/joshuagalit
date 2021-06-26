@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Image from 'next/image';
 import { NextPage } from 'next';
 import { contacts } from '~/data';

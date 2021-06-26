@@ -1,6 +1,5 @@
 import useSWR from 'swr';
 import moment from 'moment';
-import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import getReadTime from '~/utils/read-time';

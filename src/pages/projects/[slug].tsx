@@ -1,5 +1,4 @@
 import useSWR from 'swr';
-import Head from 'next/head';
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';

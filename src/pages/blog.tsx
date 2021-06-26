@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Layout from '~/layouts/defaultLayout';
 import BlogList from '~/components/BlogList';
 import { getAllPosts } from '~/utils/blogFiles';
