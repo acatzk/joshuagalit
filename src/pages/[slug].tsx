@@ -50,7 +50,7 @@ const BlogPost: NextPage<BlogPostProps> = ({
   }, []);
 
   return (
-    <Layout headTitle={title} metaContent={summary}>
+    <Layout headTitle={title} metaDescription={summary}>
       <div className="w-full max-w-3xl mx-auto px-4 space-y-8">
         <div className="mt-4 md:mt-16">
           <h1 className="text-3xl md:text-4xl font-extrabold text-center max-w-xl mx-auto">

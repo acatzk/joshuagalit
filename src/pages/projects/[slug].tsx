@@ -53,7 +53,7 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
   return (
     <Layout
       headTitle={initialData.projects[0].title}
-      metaContent={initialData.projects[0].description}
+      metaDescription={initialData.projects[0].description}
     >
       <div className="w-full max-w-5xl mx-auto">
         <ProjectHeader />

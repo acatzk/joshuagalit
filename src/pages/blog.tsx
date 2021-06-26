@@ -26,7 +26,7 @@ const Blog: NextPage<BlogPageProps> = ({ posts }) => {
   return (
     <Layout
       headTitle="Blog | Joshua Galit"
-      metaContent="A list of My Blog Post"
+      metaDescription="A list of My Blog Post"
     >
       <div className="w-full max-w-5xl mx-auto px-4">
         <BlogHeader count={posts?.length} />

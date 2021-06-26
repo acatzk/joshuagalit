@@ -27,7 +27,7 @@ const Projects: NextPage<ProjectsPageProps> = ({ initialData }) => {
   return (
     <Layout
       headTitle="Projects | Joshua Galit"
-      metaContent="My List of Projects"
+      metaDescription="My List of Projects"
     >
       <div className="w-full max-w-5xl mx-auto">
         <ProjectHeader />

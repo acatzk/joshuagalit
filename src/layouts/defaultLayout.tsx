@@ -13,21 +13,20 @@ import { LogoIcon, SoundIcon } from '~/utils/Icons';
 import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 interface LayoutProps {
-  children: any;
   headTitle: string;
-  metaContent?: string;
+  metaDescription?: string;
 }
 
 const Layout: React.FC<LayoutProps> = ({
   children,
   headTitle,
-  metaContent,
+  metaDescription,
 }) => {
   return (
     <>
       <Head>
         <title>{headTitle}</title>
-        <meta name="description" content={metaContent} />
+        <meta name="description" content={metaDescription} />
       </Head>
       <div className="font-sans antialiased flex flex-col md:flex-row justify-between w-full min-h-screen h-screen bg-white text-black dark:bg-dark-dim dark:text-white transition ease-in-out duration-700">
         {/* First Flex Column */}
