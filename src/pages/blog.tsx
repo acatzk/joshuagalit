@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Layout from '~/layouts/default';
+import Layout from '~/layouts/defaultLayout';
 import BlogList from '~/components/BlogList';
 import { getAllPosts } from '~/utils/blogFiles';
 import { GetStaticProps, NextPage } from 'next';
@@ -25,20 +25,17 @@ export const getStaticProps: GetStaticProps = async () => {
 
 const Blog: NextPage<BlogPageProps> = ({ posts }) => {
   return (
-    <>
-      <Head>
-        <title>Blog | Joshua Galit</title>
-        <meta name="description" content="A list of My Blog Post" />
-      </Head>
-      <Layout>
-        <div className="w-full max-w-5xl mx-auto px-4">
-          <BlogHeader count={posts?.length} />
-          <div className="py-2 divide-y divide-gray-200 dark:divide-gray-700">
-            <BlogList blogs={posts} />
-          </div>
+    <Layout
+      headTitle="Blog | Joshua Galit"
+      metaContent="A list of My Blog Post"
+    >
+      <div className="w-full max-w-5xl mx-auto px-4">
+        <BlogHeader count={posts?.length} />
+        <div className="py-2 divide-y divide-gray-200 dark:divide-gray-700">
+          <BlogList blogs={posts} />
         </div>
-      </Layout>
-    </>
+      </div>
+    </Layout>
   );
 };
 

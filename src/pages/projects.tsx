@@ -2,7 +2,7 @@ import useSWR from 'swr';
 import Head from 'next/head';
 import { useToggle } from 'react-use';
 import { motion } from 'framer-motion';
-import Layout from '~/layouts/default';
+import Layout from '~/layouts/defaultLayout';
 import { GetStaticProps, NextPage } from 'next';
 import ProjectList from '~/components/ProjectList';
 import FeedbackForm from '~/components/FeedbackForm';
@@ -26,18 +26,15 @@ const Projects: NextPage<ProjectsPageProps> = ({ initialData }) => {
   );
 
   return (
-    <>
-      <Head>
-        <title>Projects | Joshua Galit</title>
-        <meta name="description" content="My List of Projects" />
-      </Head>
-      <Layout>
-        <div className="w-full max-w-5xl mx-auto">
-          <ProjectHeader />
-          <ProjectList projects={data.projects} />
-        </div>
-      </Layout>
-    </>
+    <Layout
+      headTitle="Projects | Joshua Galit"
+      metaContent="My List of Projects"
+    >
+      <div className="w-full max-w-5xl mx-auto">
+        <ProjectHeader />
+        <ProjectList projects={data.projects} />
+      </div>
+    </Layout>
   );
 };
 

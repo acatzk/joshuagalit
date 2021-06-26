@@ -2,17 +2,17 @@ import useSWR from 'swr';
 import Head from 'next/head';
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import Layout from '~/layouts/default';
 import { useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
+import Layout from '~/layouts/defaultLayout';
 import ProjectPost from '~/components/ProjectPost';
 import { INSERT_VIEWS_MUTATION } from '~/graphql/mutations';
 import { hasuraAdminClient } from '~/lib/hasura-admin-client';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import {
   GET_PROJECT_BY_SLUG_QUERY,
   GET_PROJECT_SLUGs,
 } from '~/graphql/queries';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 
 interface ProjectPageProps {
   initialData: any;
@@ -52,26 +52,20 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
   }, []);
 
   return (
-    <>
-      <Head>
-        <title>{initialData.projects[0].title}</title>
-        <meta
-          name="description"
-          content={initialData.projects[0].description}
+    <Layout
+      headTitle={initialData.projects[0].title}
+      metaContent={initialData.projects[0].description}
+    >
+      <div className="w-full max-w-5xl mx-auto">
+        <ProjectHeader />
+        <ProjectPost mutate={mutate} projects={data.projects} />
+        <ReactTooltip
+          place="right"
+          type={theme === 'light' ? 'dark' : 'light'}
+          effect="solid"
         />
-      </Head>
-      <Layout>
-        <div className="w-full max-w-5xl mx-auto">
-          <ProjectHeader />
-          <ProjectPost mutate={mutate} projects={data.projects} />
-          <ReactTooltip
-            place="right"
-            type={theme === 'light' ? 'dark' : 'light'}
-            effect="solid"
-          />
-        </div>
-      </Layout>
-    </>
+      </div>
+    </Layout>
   );
 };
 
