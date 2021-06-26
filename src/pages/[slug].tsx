@@ -3,8 +3,8 @@ import moment from 'moment';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect } from 'react';
-import Layout from '~/layouts/default';
 import getReadTime from '~/utils/read-time';
+import Layout from '~/layouts/defaultLayout';
 import hydrate from 'next-mdx-remote/hydrate';
 import { getAllPosts } from '~/utils/blogFiles';
 import SponsorCard from '~/components/SponsorCard';
@@ -51,55 +51,49 @@ const BlogPost: NextPage<BlogPostProps> = ({
   }, []);
 
   return (
-    <>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={summary} />
-      </Head>
-      <Layout>
-        <div className="w-full max-w-3xl mx-auto px-4 space-y-8">
-          <div className="mt-4 md:mt-16">
-            <h1 className="text-3xl md:text-4xl font-extrabold text-center max-w-xl mx-auto">
-              {title}
-            </h1>
+    <Layout headTitle={title} metaContent={summary}>
+      <div className="w-full max-w-3xl mx-auto px-4 space-y-8">
+        <div className="mt-4 md:mt-16">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-center max-w-xl mx-auto">
+            {title}
+          </h1>
+        </div>
+        <div className="flex items-center space-x-2 pb-8 w-full">
+          <div className="flex-shrink-0">
+            <Image
+              className="rounded-full"
+              src="/images/my-avatar.jpg"
+              alt="My Profile Picture"
+              width={28}
+              height={28}
+              layout="intrinsic"
+            />
           </div>
-          <div className="flex items-center space-x-2 pb-8 w-full">
-            <div className="flex-shrink-0">
-              <Image
-                className="rounded-full"
-                src="/images/my-avatar.jpg"
-                alt="My Profile Picture"
-                width={28}
-                height={28}
-                layout="intrinsic"
-              />
-            </div>
-            <div className="flex flex-wrap items-center justify-between w-full">
-              <h3 className="text-sm text-gray-700 dark:text-gray-400 tracking-tight">
-                Joshua Galit / {formattedData}
-              </h3>
-              <div className="flex items-center">
-                <div className="flex items-center space-x-1.5 cursor-default text-gray-500 dark:text-gray-400  text-xs">
-                  <span className="font-medium line-clamp-1">
-                    {readTime} min read
-                  </span>
-                  <span className="font-extralight">|</span>
-                  <span className="font-medium line-clamp-1" data-tip="Views">
-                    {views} views
-                  </span>
-                </div>
+          <div className="flex flex-wrap items-center justify-between w-full">
+            <h3 className="text-sm text-gray-700 dark:text-gray-400 tracking-tight">
+              Joshua Galit / {formattedData}
+            </h3>
+            <div className="flex items-center">
+              <div className="flex items-center space-x-1.5 cursor-default text-gray-500 dark:text-gray-400  text-xs">
+                <span className="font-medium line-clamp-1">
+                  {readTime} min read
+                </span>
+                <span className="font-extralight">|</span>
+                <span className="font-medium line-clamp-1" data-tip="Views">
+                  {views} views
+                </span>
               </div>
             </div>
           </div>
-          <div className="prose dark:prose-dark prose-pink">
-            {hydratedContent}
-          </div>
-          <div className="pb-28">
-            <SponsorCard />
-          </div>
         </div>
-      </Layout>
-    </>
+        <div className="prose dark:prose-dark prose-pink">
+          {hydratedContent}
+        </div>
+        <div className="pb-28">
+          <SponsorCard />
+        </div>
+      </div>
+    </Layout>
   );
 };
 
