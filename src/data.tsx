@@ -1,7 +1,8 @@
 import { MdEmail } from 'react-icons/md';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { ImLocation2 } from 'react-icons/im';
-import { IContact, INavigation, IEmoji } from './type';
+import { FiUsers, FiStar } from 'react-icons/fi';
+import { IContact, INavigation, IEmoji, IGitHubLink } from './type';
 import {
   FaFacebook,
   FaTwitter,
@@ -46,18 +47,18 @@ export const navigations: INavigation[] = [
 ];
 
 export const socialLinks = [
-  {
-    icon: (
-      <FaFacebook className="w-6 h-6 text-[#4267B2] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
-    ),
-    href: 'https://www.facebook.com/acatzk',
-  },
-  {
-    icon: (
-      <FaTwitter className="w-6 h-6 text-[#1DA1F2] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
-    ),
-    href: 'https://twitter.com/angryboy_19',
-  },
+  // {
+  //   icon: (
+  //     <FaFacebook className="w-6 h-6 text-[#4267B2] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
+  //   ),
+  //   href: 'https://www.facebook.com/acatzk',
+  // },
+  // {
+  //   icon: (
+  //     <FaTwitter className="w-6 h-6 text-[#1DA1F2] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
+  //   ),
+  //   href: 'https://twitter.com/angryboy_19',
+  // },
   {
     icon: (
       <FaGithub className="w-6 h-6 text-[#333] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
@@ -100,5 +101,24 @@ export const emojis: IEmoji[] = [
   {
     icon: '/svgs/emoji/cry.svg',
     text: 'cry',
+  },
+];
+
+export const githubStats: IGitHubLink[] = [
+  {
+    id: 1,
+    Icon: FiUsers,
+    count: '159',
+    label: 'followers',
+  },
+  {
+    id: 2,
+    count: '1k',
+    label: 'followers',
+  },
+  {
+    id: 3,
+    Icon: FiStar,
+    count: '593',
   },
 ];

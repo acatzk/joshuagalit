@@ -14,3 +14,10 @@ export interface IEmoji {
   icon: string;
   text: string;
 }
+
+export interface IGitHubLink {
+  id?: number;
+  Icon?: IconType;
+  count: string;
+  label?: string;
+}

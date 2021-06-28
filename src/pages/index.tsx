@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import Layout from '~/layouts/defaultLayout';
 import { fadeInUp, stagger } from '~/animation';
+import AboutPageLayout from '~/layouts/aboutPageLayout';
 
 interface IndexPageProps {}
 
@@ -11,8 +12,49 @@ const Index: NextPage<IndexPageProps> = () => {
   const router = useRouter();
 
   return (
-    <Layout headTitle="About | Joshua Galit" metaContent="About Joshua Galit">
-      <main style={{ height: '1000vh' }}>
+    <Layout
+      headTitle="About | Joshua Galit"
+      metaDescription="About Joshua Galit"
+    >
+      <AboutPageLayout>
+        <div>
+          Anim exercitation eu nisi non. Ad dolore voluptate aliqua ipsum. Sit
+          dolore laboris veniam reprehenderit ipsum ut cillum pariatur laborum
+          do culpa ex. Irure elit fugiat in officia in ipsum eiusmod. Nulla duis
+          eiusmod aliqua minim. Est laboris est cupidatat excepteur exercitation
+          minim do excepteur incididunt nulla aute esse non occaecat. Lorem
+          consequat enim nostrud est consequat aute nostrud id deserunt ipsum et
+          occaecat esse. Tempor id culpa sint excepteur sint deserunt cupidatat
+          aute aliqua esse magna. Tempor cupidatat adipisicing ex consequat
+          dolor consequat anim fugiat ad ipsum proident aute proident dolor.
+          Dolor voluptate pariatur amet sint consequat adipisicing. Labore amet
+          elit sit sit.
+        </div>
+      </AboutPageLayout>
+    </Layout>
+  );
+};
+
+export default Index;
+
+const WavingHand = () => {
+  return (
+    <motion.div
+      animate={{ rotate: 15 }}
+      transition={{
+        from: 0,
+        duration: 0.5,
+        ease: 'easeInOut',
+        type: 'tween',
+      }}
+    >
+      👋
+    </motion.div>
+  );
+};
+
+{
+  /* <main style={{ height: '1000vh' }}>
         <section className="relative">
           <div className="w-full h-full opacity-30 absolute">
             <Image
@@ -33,7 +75,7 @@ const Index: NextPage<IndexPageProps> = () => {
                 <div className="p-1.5 bg-gradient-to-tr from-yellow-400 to-fuchsia-600 rounded-full">
                   <div className="bg-white p-1.5 rounded-full">
                     <Image
-                      src="/images/picture.jpg"
+                      src="/images/my-animated-avatar.jpg"
                       width={300}
                       height={300}
                       layout="responsive"
@@ -98,25 +140,5 @@ const Index: NextPage<IndexPageProps> = () => {
             </div>
           </div>
         </section>
-      </main>
-    </Layout>
-  );
-};
-
-export default Index;
-
-const WavingHand = () => {
-  return (
-    <motion.div
-      animate={{ rotate: 15 }}
-      transition={{
-        from: 0,
-        duration: 0.5,
-        ease: 'easeInOut',
-        type: 'tween',
-      }}
-    >
-      👋
-    </motion.div>
-  );
-};
+      </main> */
+}

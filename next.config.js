@@ -15,7 +15,8 @@ module.exports = {
     domains: [
       "firebasestorage.googleapis.com",
       "jeromevillaruel.netlify.app",
-      "benjamincarlson.io"
+      "benjamincarlson.io",
+      "avatars.githubusercontent.com"
     ],
   },
    typescript: {
