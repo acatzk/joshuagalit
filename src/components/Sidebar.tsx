@@ -18,8 +18,8 @@ const Sidebar: React.FC<{}> = () => {
         </div>
         <div>
           <a
-            href="/files/my-resume.docx"
-            download="Joshua Galit Resume.docx"
+            href="/files/my-resume.pdf"
+            download="Joshua Galit Resume.pdf"
             className="flex items-center justify-center space-x-2 w-full py-1 px-1 bg-gray-100 dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg focus:outline-none focus:shadow-sm"
           >
             <BsDownload className="w-4 h-4" />
