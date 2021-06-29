@@ -2,21 +2,23 @@ import React from 'react';
 import Image from 'next/image';
 import { IGitHubLink } from '~/type';
 import { githubStats } from '~/data';
+import { motion } from 'framer-motion';
 import { FiMail } from 'react-icons/fi';
 import { BsDownload } from 'react-icons/bs';
 import { GoLocation } from 'react-icons/go';
+import { stagger, fadeInUp } from '~/animation';
 
 const Sidebar: React.FC<{}> = () => {
   return (
-    <div className="flex flex-col space-y-6">
+    <motion.div variants={stagger} className="flex flex-col space-y-5">
       <div className="space-y-3">
-        <div className="space-y-5">
+        <motion.div variants={fadeInUp} className="space-y-5">
           <Avatar src="/images/my-animated-avatar.jpg" alt="User Avatar" />
           <h1 className="text-2xl font-bold tracking-wide">
             Joshua<span className="text-blue-twitter"> Galit</span>
           </h1>
-        </div>
-        <div>
+        </motion.div>
+        <motion.div variants={fadeInUp}>
           <a
             href="/files/my-resume.pdf"
             download="Joshua Galit Resume.pdf"
@@ -25,8 +27,8 @@ const Sidebar: React.FC<{}> = () => {
             <BsDownload className="w-4 h-4" />
             <span className="font-medium">Download Resume</span>
           </a>
-        </div>
-        <div className="flex items-center space-x-1">
+        </motion.div>
+        <motion.div variants={fadeInUp} className="flex items-center space-x-1">
           {githubStats.map(({ id, Icon, count, label }, i) => (
             <GitHubLink
               key={i}
@@ -36,9 +38,9 @@ const Sidebar: React.FC<{}> = () => {
               label={label}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
-      <div className="flex flex-col space-y-2">
+      <motion.div variants={fadeInUp} className="flex flex-col space-y-2">
         <div className="flex items-center space-x-2">
           <GoLocation className="w-4 h-4 text-gray-600 dark:text-gray-400" />
           <span className="text-sm">Bato, Leyte</span>
@@ -52,9 +54,15 @@ const Sidebar: React.FC<{}> = () => {
             joshuaimalay@yahoo.com
           </span>
         </div>
-      </div>
-      <div className="border-t border-gray-200 dark:border-gray-700"></div>
-      <div className="flex items-start flex-col space-y-2">
+      </motion.div>
+      <motion.div
+        variants={fadeInUp}
+        className="border-t border-gray-200 dark:border-gray-700"
+      ></motion.div>
+      <motion.div
+        variants={fadeInUp}
+        className="flex items-start flex-col space-y-2"
+      >
         <h1 className="font-semibold text-sm text-gray-600 dark:text-gray-300">
           Organizations
         </h1>
@@ -67,8 +75,8 @@ const Sidebar: React.FC<{}> = () => {
             className="rounded-lg"
           />
         </a>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

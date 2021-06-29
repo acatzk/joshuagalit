@@ -42,7 +42,7 @@ const Contact: NextPage<ContactPageProps> = () => {
   return (
     <Layout
       headTitle="Contact | Joshua Galit"
-      metaContent="Contact through email or phone"
+      metaDescription="Contact through email or phone"
     >
       <div className="w-full max-w-5xl m-auto px-4 py-4 md:py-0">
         <div className="w-full h-full opacity-30 absolute">
