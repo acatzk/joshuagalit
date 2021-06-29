@@ -2,9 +2,7 @@ import React from 'react';
 import Navbar from '~/components/Navbar';
 import Sidebar from '~/components/Sidebar';
 
-interface AboutPageLayoutProps {}
-
-const AboutPageLayout: React.FC<AboutPageLayoutProps> = ({ children }) => {
+const AboutPageLayout: React.FC<{}> = ({ children }) => {
   return (
     <div className="flex items-center justify-center h-screen min-h-screen px-4 py-4 md:py-0">
       <div className="grid grid-cols-12 gap-6 w-full max-w-6xl">

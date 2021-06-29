@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+import { routeAnimation } from '~/animation';
 import Layout from '~/layouts/defaultLayout';
 import BlogList from '~/components/BlogList';
 import { getAllPosts } from '~/utils/blogFiles';
@@ -28,12 +30,17 @@ const Blog: NextPage<BlogPageProps> = ({ posts }) => {
       headTitle="Blog | Joshua Galit"
       metaDescription="A list of My Blog Post"
     >
-      <div className="w-full max-w-5xl mx-auto px-4">
+      <motion.div
+        variants={routeAnimation}
+        initial="initial"
+        animate="animate"
+        className="w-full max-w-5xl mx-auto px-4"
+      >
         <BlogHeader count={posts?.length} />
         <div className="py-2 divide-y divide-gray-200 dark:divide-gray-700">
           <BlogList blogs={posts} />
         </div>
-      </div>
+      </motion.div>
     </Layout>
   );
 };

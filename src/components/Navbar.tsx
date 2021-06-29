@@ -1,7 +1,8 @@
+import React from 'react';
 import Link from 'next/link';
 import { navbarTabs } from '~/data';
 import { useRouter } from 'next/router';
-import { useState, useEffect, FunctionComponent } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Navbar() {
   const { pathname } = useRouter();
@@ -33,7 +34,7 @@ export default function Navbar() {
   );
 }
 
-const NavItem: FunctionComponent<{
+const NavItem: React.FC<{
   activeItem: string;
   setActiveItem: Function;
   title: string;

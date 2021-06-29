@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { Menu } from '@headlessui/react';
 import ActiveLink from '~/utils/ActiveLink';
 import { BsThreeDots } from 'react-icons/bs';
-import { routeAnimation } from '~/animation';
 import Scrollbar from 'react-smooth-scrollbar';
 import ThemeChanger from '~/utils/ThemeChanger';
 import { navigations, socialLinks } from '~/data';
@@ -69,15 +68,7 @@ const Layout: React.FC<LayoutProps> = ({
 
         {/* Dynamic Content */}
         <Scrollbar damping={0.1} thumbMinSize={20} className="flex-1">
-          <motion.div
-            variants={routeAnimation}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="min-h-screen h-screen"
-          >
-            {children}
-          </motion.div>
+          <div className="min-h-screen h-screen">{children}</div>
         </Scrollbar>
 
         {/* Navigation links */}
