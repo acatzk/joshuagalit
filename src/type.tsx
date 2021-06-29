@@ -21,3 +21,14 @@ export interface IGitHubLink {
   count: string;
   label?: string;
 }
+
+export interface IHeaderTab {
+  title: string;
+  route: string;
+}
+
+export interface IService {
+  title: string;
+  about: string;
+  Icon: IconType;
+}

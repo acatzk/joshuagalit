@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '~/components/Navbar';
 import Sidebar from '~/components/Sidebar';
 
 interface AboutPageLayoutProps {}
@@ -10,7 +11,8 @@ const AboutPageLayout: React.FC<AboutPageLayoutProps> = ({ children }) => {
         <div className="p-4 text-center col-span-12 lg:col-span-4 xl:col-span-3 rounded-2xl">
           <Sidebar />
         </div>
-        <div className="flex flex-col col-span-12 lg:col-span-8 xl:col-span-9 rounded-2xl overflow-hidden">
+        <div className="flex flex-col col-span-12 lg:col-span-8 xl:col-span-9 rounded-2xl">
+          <Navbar />
           {children}
         </div>
       </div>
