@@ -9,14 +9,16 @@ import {
   IGitHubLink,
   IHeaderTab,
   IService,
+  ISkill,
 } from './type';
 import {
+  FaServer,
   FaGithub,
   FaLinkedin,
   FaDribbble,
   FaStackOverflow,
 } from 'react-icons/fa';
-import { FaServer } from 'react-icons/fa';
+import { BsCircleFill } from 'react-icons/bs';
 import { RiComputerLine } from 'react-icons/ri';
 import { MdDeveloperMode } from 'react-icons/md';
 import { AiOutlineAntDesign, AiOutlineApi } from 'react-icons/ai';
@@ -126,8 +128,8 @@ export const navbarTabs: IHeaderTab[] = [
     route: '/',
   },
   {
-    title: 'Skills',
-    route: '/skills',
+    title: 'Resume',
+    route: '/resume',
   },
 ];
 
@@ -164,5 +166,51 @@ export const services: IService[] = [
     about:
       'Laboris sit ipsum amet culpa qui excepteur commodo dolor dolore sunt',
     Icon: RiComputerLine,
+  },
+];
+
+export const languages: ISkill[] = [
+  {
+    name: 'JavaScript',
+    level: '40%',
+    Icon: BsCircleFill,
+  },
+  {
+    name: 'React.js',
+    level: '60%',
+    Icon: BsCircleFill,
+  },
+  {
+    name: 'Next.js',
+    level: '95%',
+    Icon: BsCircleFill,
+  },
+  {
+    name: 'Vue.js',
+    level: '85%',
+    Icon: BsCircleFill,
+  },
+  {
+    name: 'Nuxt.js',
+    level: '65%',
+    Icon: BsCircleFill,
+  },
+];
+
+export const tools: ISkill[] = [
+  {
+    name: 'Premere Pro',
+    level: '90%',
+    Icon: BsCircleFill,
+  },
+  {
+    name: 'Photoshop',
+    level: '70%',
+    Icon: BsCircleFill,
+  },
+  {
+    name: 'Figma',
+    level: '25%',
+    Icon: BsCircleFill,
   },
 ];

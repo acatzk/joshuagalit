@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import Layout from '~/layouts/defaultLayout';
 import ContactForm from '~/components/ContactForm';
 import { useToasts } from 'react-toast-notifications';
-import { stagger, fadeInUp } from '~/animation';
+import { stagger, fadeInUp, routeAnimation } from '~/animation';
 
 interface ContactPageProps {}
 
@@ -44,7 +44,12 @@ const Contact: NextPage<ContactPageProps> = () => {
       headTitle="Contact | Joshua Galit"
       metaDescription="Contact through email or phone"
     >
-      <div className="w-full max-w-5xl m-auto px-4 py-4 md:py-0">
+      <motion.div
+        variants={routeAnimation}
+        initial="initial"
+        animate="animate"
+        className="w-full max-w-5xl m-auto px-4 py-4 md:py-0"
+      >
         <div className="w-full h-full opacity-30 absolute">
           <Image src="/svgs/buble.svg" layout="fill" alt="Bubble Background" />
         </div>
@@ -89,7 +94,7 @@ const Contact: NextPage<ContactPageProps> = () => {
             </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </Layout>
   );
 };

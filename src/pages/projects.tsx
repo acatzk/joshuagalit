@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import { useToggle } from 'react-use';
 import { motion } from 'framer-motion';
+import { routeAnimation } from '~/animation';
 import Layout from '~/layouts/defaultLayout';
 import { GetStaticProps, NextPage } from 'next';
 import ProjectList from '~/components/ProjectList';
@@ -29,10 +30,16 @@ const Projects: NextPage<ProjectsPageProps> = ({ initialData }) => {
       headTitle="Projects | Joshua Galit"
       metaDescription="My List of Projects"
     >
-      <div className="w-full max-w-5xl mx-auto">
+      <motion.div
+        variants={routeAnimation}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        className="w-full max-w-5xl mx-auto"
+      >
         <ProjectHeader />
         <ProjectList projects={data.projects} />
-      </div>
+      </motion.div>
     </Layout>
   );
 };
