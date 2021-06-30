@@ -162,8 +162,7 @@ export const services: IService[] = [
   },
   {
     title: 'Search Engine Optimization',
-    about:
-      "Research and analysis to improve a website's ranking on search engines like Google",
+    about: "Improve a website's ranking on search engines like Google",
     Icon: SiGooglesearchconsole,
   },
 ];
