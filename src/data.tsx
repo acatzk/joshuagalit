@@ -49,6 +49,10 @@ export const navigations: INavigation[] = [
     href: '/',
   },
   {
+    text: 'Diary',
+    href: '/diary',
+  },
+  {
     text: 'Blog',
     href: '/blog',
   },
