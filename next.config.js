@@ -16,7 +16,8 @@ module.exports = {
       "firebasestorage.googleapis.com",
       "jeromevillaruel.netlify.app",
       "benjamincarlson.io",
-      "avatars.githubusercontent.com"
+      "avatars.githubusercontent.com",
+      "instagram.fdvo1-1.fna.fbcdn.net"
     ],
   },
    typescript: {

@@ -14,12 +14,14 @@ import MessengerCustomerChat from 'react-messenger-customer-chat';
 interface LayoutProps {
   headTitle: string;
   metaDescription?: string;
+  className?: string;
 }
 
 const Layout: React.FC<LayoutProps> = ({
   children,
   headTitle,
   metaDescription,
+  className,
 }) => {
   return (
     <>
@@ -38,9 +40,9 @@ const Layout: React.FC<LayoutProps> = ({
                 </div>
               </a>
             </ActiveLink>
-            <button className="focus:outline-none">
+            {/* <button className="focus:outline-none">
               <SoundIcon className="w-6 h-6 text-gray-200 dark:text-gray-500" />
-            </button>
+            </button> */}
           </div>
           <div className="hidden md:block">
             <div className="flex flex-col space-y-3">
@@ -68,7 +70,7 @@ const Layout: React.FC<LayoutProps> = ({
 
         {/* Dynamic Content */}
         <Scrollbar damping={0.1} thumbMinSize={20} className="flex-1">
-          <div className="min-h-screen h-screen">{children}</div>
+          <main className={`${className}`}>{children}</main>
         </Scrollbar>
 
         {/* Navigation links */}
