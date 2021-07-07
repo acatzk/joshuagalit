@@ -49,8 +49,8 @@ export const navigations: INavigation[] = [
     href: '/',
   },
   {
-    text: 'Diary',
-    href: '/diary',
+    text: 'MyDay',
+    href: '/myday',
   },
   {
     text: 'Blog',
@@ -69,19 +69,19 @@ export const navigations: INavigation[] = [
 export const socialLinks = [
   {
     icon: (
-      <FaGithub className="w-6 h-6 text-[#333] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
+      <FaGithub className="w-6 h-6 text-[#333] dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
     ),
     href: 'https://github.com/acatzk',
   },
   {
     icon: (
-      <FaLinkedin className="w-6 h-6 text-[#0077B5] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
+      <FaLinkedin className="w-6 h-6 text-[#0077B5] dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
     ),
     href: 'https://www.linkedin.com/in/joshua-galit-7b6b84200/',
   },
   {
     icon: (
-      <FaStackOverflow className="w-6 h-6 text-[#f48024] text-opacity-75 hover:text-opacity-100 dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
+      <FaStackOverflow className="w-6 h-6 text-[#f48024] dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
     ),
     href: 'https://stackoverflow.com/users/14108225/joshua-galit',
   },
@@ -214,5 +214,20 @@ export const tools: ISkill[] = [
     name: 'Figma',
     level: '25%',
     Icon: FiFigma,
+  },
+];
+
+export const mydaylist = [
+  {
+    avatar_url:
+      'http://localhost:3000/_next/image?url=%2Fimages%2Fmy-animated-avatar.jpg&w=48&q=75',
+    name: 'Joshua Galit',
+    created_at: '',
+  },
+  {
+    avatar_url:
+      'http://localhost:3000/_next/image?url=%2Fimages%2Fmy-animated-avatar.jpg&w=48&q=75',
+    name: 'Joshua Galit',
+    created_at: '',
   },
 ];

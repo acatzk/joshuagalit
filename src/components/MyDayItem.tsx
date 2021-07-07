@@ -1,44 +1,18 @@
 import React from 'react';
-import Image from 'next/image';
-import { NextPage } from 'next';
-import { motion } from 'framer-motion';
-import { IoMdGlobe } from 'react-icons/io';
-import { BsThreeDots } from 'react-icons/bs';
-import Layout from '~/layouts/defaultLayout';
-import TimeAgoFormat from '~/lib/react-timeago';
-import { routeAnimation } from '~/animation';
 import { AiOutlineLike } from 'react-icons/ai';
 import { BiComment } from 'react-icons/bi';
 import { RiShareForwardLine } from 'react-icons/ri';
+import TimeAgoFormat from '~/lib/react-timeago';
+import { IoMdGlobe } from 'react-icons/io';
+import { BsThreeDots } from 'react-icons/bs';
+import Image from 'next/image';
 
-const Diary: NextPage<{}> = () => {
-  return (
-    <Layout
-      headTitle="Diary | Joshua Galit"
-      metaDescription="My Personal Diary Post every moment I feel the moment"
-    >
-      <motion.div
-        variants={routeAnimation}
-        initial="initial"
-        animate="animate"
-        className="relative max-w-5xl mx-auto pt-3 md:pt-10 px-4 space-y-4"
-      >
-        {[0, 1, 2, 3, 4, 5].map((i) => (
-          <PostCard key={i} />
-        ))}
-      </motion.div>
-    </Layout>
-  );
-};
-
-export default Diary;
-
-const PostCard: React.FC<{}> = () => {
+const DiaryItem: React.FC<{}> = () => {
   let image =
     'https://instagram.fdvo1-1.fna.fbcdn.net/v/t51.2885-15/fr/e15/s1080x1080/209268471_252863646643015_7559986448139802889_n.jpg?tp=1&_nc_ht=instagram.fdvo1-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=Su3APeTPvZUAX-OjUok&edm=AIQHJ4wBAAAA&ccb=7-4&oh=74cd112ab0a2ac17933cf138420d4c96&oe=60E38ABD&_nc_sid=7b02f1';
 
   return (
-    <div className="mx-auto max-w-xl border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden shadow-md bg-white dark:bg-dark-dim transition ease-in-out duration-700">
+    <div className="mx-auto max-w-xl border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-md bg-white dark:bg-dark-dim transition ease-in-out duration-700">
       <div className="flex items-center justify-between p-2 px-3">
         <div className="flex items-center space-x-3">
           <Image
@@ -102,3 +76,5 @@ const PostCard: React.FC<{}> = () => {
     </div>
   );
 };
+
+export default DiaryItem;
