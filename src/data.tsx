@@ -230,4 +230,28 @@ export const mydaylist = [
     name: 'Joshua Galit',
     created_at: '',
   },
+  {
+    avatar_url:
+      'http://localhost:3000/_next/image?url=%2Fimages%2Fmy-animated-avatar.jpg&w=48&q=75',
+    name: 'Joshua Galit',
+    created_at: '',
+  },
+  {
+    avatar_url:
+      'http://localhost:3000/_next/image?url=%2Fimages%2Fmy-animated-avatar.jpg&w=48&q=75',
+    name: 'Joshua Galit',
+    created_at: '',
+  },
+  {
+    avatar_url:
+      'http://localhost:3000/_next/image?url=%2Fimages%2Fmy-animated-avatar.jpg&w=48&q=75',
+    name: 'Joshua Galit',
+    created_at: '',
+  },
+  {
+    avatar_url:
+      'http://localhost:3000/_next/image?url=%2Fimages%2Fmy-animated-avatar.jpg&w=48&q=75',
+    name: 'Joshua Galit',
+    created_at: '',
+  },
 ];

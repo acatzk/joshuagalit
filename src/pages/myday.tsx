@@ -17,6 +17,7 @@ const MyDay: NextPage<{}> = () => {
         variants={routeAnimation}
         initial="initial"
         animate="animate"
+        exit="exit"
         className="inline-flex flex-col w-full mx-auto"
       >
         <MyDayHeader />
