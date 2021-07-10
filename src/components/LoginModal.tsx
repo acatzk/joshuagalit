@@ -1,8 +1,9 @@
 import React from 'react';
+import { IconType } from 'react-icons';
 import { motion } from 'framer-motion';
 import { Transition } from '@headlessui/react';
 import { fadeInUp, stagger } from '~/animation';
-import { FaGithub, FaGoogle, FaFacebook, FaGit } from 'react-icons/fa';
+import { FaGithub, FaGoogle, FaFacebook } from 'react-icons/fa';
 
 interface LoginWIthModalProps {
   isOpen: boolean;
@@ -21,8 +22,8 @@ const LoginWithModal: React.FC<LoginWIthModalProps> = ({
           className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"
         />
 
-        {/* This element is to trick the browser into centering the modal contents. */}
         <motion.div variants={fadeInUp}>
+          {/* This element is to trick the browser into centering the modal contents. */}
           <span
             className=" sm:inline-block sm:align-middle sm:h-screen"
             aria-hidden="true"
@@ -39,42 +40,13 @@ const LoginWithModal: React.FC<LoginWIthModalProps> = ({
                   variants={stagger}
                   className="flex flex-col space-y-2 w-full"
                 >
-                  <motion.button
-                    variants={fadeInUp}
-                    className={`group flex items-center justify-center space-x-2 py-3 px-4 rounded 
-                        bg-[#4267B2] hover:bg-opacity-80 transition ease-in-out duration-200
-                        focus:outline-none border border-transparent
-                        active:bg-transparent active:border-black dark:active:border-white`}
-                  >
-                    <FaFacebook className="w-5 h-5 text-white group-active:text-black dark:group-active:text-white" />
-                    <span className="font-semibold text-white group-active:text-black dark:group-active:text-white">
-                      Continue with Facebook
-                    </span>
-                  </motion.button>
-                  <motion.button
-                    variants={fadeInUp}
-                    className={`group flex items-center justify-center space-x-2 py-3 px-4 rounded 
-                        bg-[#db3236] hover:bg-opacity-80 transition ease-in-out duration-200
-                        focus:outline-none border border-transparent
-                        active:bg-transparent active:border-black dark:active:border-white`}
-                  >
-                    <FaGoogle className="w-5 h-5 text-white group-active:text-black dark:group-active:text-white" />
-                    <span className="font-semibold text-white group-active:text-black dark:group-active:text-white">
-                      Continue with Google
-                    </span>
-                  </motion.button>
-                  <motion.button
-                    variants={fadeInUp}
-                    className={`group flex items-center justify-center space-x-2 py-3 px-4 rounded 
-                        bg-[#24292e] hover:bg-opacity-80 transition ease-in-out duration-200
-                        focus:outline-none border border-transparent
-                        active:bg-transparent active:border-black dark:active:border-white`}
-                  >
-                    <FaGithub className="w-5 h-5 text-white group-active:text-black dark:group-active:text-white" />
-                    <span className="font-semibold text-white group-active:text-black dark:group-active:text-white">
-                      Continue with GitHub
-                    </span>
-                  </motion.button>
+                  <LoginButton
+                    color="#4267B2"
+                    Icon={FaFacebook}
+                    title="Facebook"
+                  />
+                  <LoginButton color="#db3236" Icon={FaGoogle} title="Google" />
+                  <LoginButton color="#24292e" Icon={FaGithub} title="GitHub" />
                 </motion.div>
               </div>
             </div>
@@ -83,6 +55,28 @@ const LoginWithModal: React.FC<LoginWIthModalProps> = ({
       </div>
     </Transition>
   ) : null;
+};
+
+const LoginButton: React.FC<{
+  color: string;
+  Icon: IconType;
+  title: string;
+}> = ({ color, Icon, title }) => {
+  return (
+    <motion.button
+      variants={fadeInUp}
+      className={` 
+        group flex items-center justify-center space-x-2 py-3 px-4 rounded 
+        bg-[${color}] hover:bg-opacity-80 transition ease-in-out duration-200
+        focus:outline-none border border-transparent
+        active:bg-transparent active:border-black dark:active:border-white`}
+    >
+      <Icon className="w-5 h-5 text-white group-active:text-black dark:group-active:text-white" />
+      <span className="font-semibold text-white group-active:text-black dark:group-active:text-white">
+        Continue with {title}
+      </span>
+    </motion.button>
+  );
 };
 
 export default LoginWithModal;
