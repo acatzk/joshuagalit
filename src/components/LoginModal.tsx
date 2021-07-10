@@ -17,11 +17,7 @@ const LoginWithModal: React.FC<LoginWIthModalProps> = ({
   return isOpen ? (
     <Transition show={isOpen} as="div" static className="fixed z-10 inset-0">
       <div className="flex items-center justify-center min-h-screen text-center sm:block sm:p-0">
-        <div
-          onClick={() => setIsOpen(false)}
-          className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"
-        />
-
+        <ModalBackground setIsOpen={setIsOpen} />
         <motion.div variants={fadeInUp}>
           {/* This element is to trick the browser into centering the modal contents. */}
           <span
@@ -30,6 +26,7 @@ const LoginWithModal: React.FC<LoginWIthModalProps> = ({
           >
             &#8203;
           </span>
+          {/* Actual Modal Content */}
           <div className="inline-block align-top rounded-lg overflow-hidden shadow-2xl transform sm:align-middle sm:max-w-lg sm:w-full">
             <div className="bg-white dark:bg-dark-dim px-4 py-6 transition ease-in-out duration-700">
               <div className="flex flex-col items-center space-y-3">
@@ -41,12 +38,20 @@ const LoginWithModal: React.FC<LoginWIthModalProps> = ({
                   className="flex flex-col space-y-2 w-full"
                 >
                   <LoginButton
-                    color="#4267B2"
                     Icon={FaFacebook}
                     title="Facebook"
+                    className="bg-[#4267B2]"
                   />
-                  <LoginButton color="#db3236" Icon={FaGoogle} title="Google" />
-                  <LoginButton color="#24292e" Icon={FaGithub} title="GitHub" />
+                  <LoginButton
+                    Icon={FaGoogle}
+                    title="Google"
+                    className="bg-[#db3236]"
+                  />
+                  <LoginButton
+                    Icon={FaGithub}
+                    title="GitHub"
+                    className="bg-[#24292e]"
+                  />
                 </motion.div>
               </div>
             </div>
@@ -58,24 +63,34 @@ const LoginWithModal: React.FC<LoginWIthModalProps> = ({
 };
 
 const LoginButton: React.FC<{
-  color: string;
   Icon: IconType;
   title: string;
-}> = ({ color, Icon, title }) => {
+  className?: string;
+}> = ({ Icon, title, className }) => {
   return (
     <motion.button
       variants={fadeInUp}
       className={` 
         group flex items-center justify-center space-x-2 py-3 px-4 rounded 
-        bg-[${color}] hover:bg-opacity-80 transition ease-in-out duration-200
+        hover:bg-opacity-80 transition ease-in-out duration-200
         focus:outline-none border border-transparent
-        active:bg-transparent active:border-black dark:active:border-white`}
+        active:bg-transparent active:border-black dark:active:border-white
+        ${className}`}
     >
       <Icon className="w-5 h-5 text-white group-active:text-black dark:group-active:text-white" />
       <span className="font-semibold text-white group-active:text-black dark:group-active:text-white">
         Continue with {title}
       </span>
     </motion.button>
+  );
+};
+
+const ModalBackground: React.FC<{ setIsOpen: Function }> = ({ setIsOpen }) => {
+  return (
+    <div
+      onClick={() => setIsOpen(false)}
+      className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"
+    />
   );
 };
 
