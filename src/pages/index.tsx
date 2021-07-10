@@ -19,8 +19,8 @@ const Index: NextPage<{}> = () => {
           animate="animate"
           exit="exit"
         >
-          <div className="flex flex-col px-6 pt-1 flex-grow">
-            <h5 className="my-3 font-medium text-gray-800 dark:text-gray-300">
+          <div className="flex flex-col px-6 flex-grow">
+            <h5 className="my-3  font-medium text-gray-800 dark:text-gray-300">
               My name is Joshua Galit and I'm a self taught web developer using
               modern technologies. Ability to follow established procedures and
               work under little or no supervision. Follow and Star me on GitHub
@@ -28,10 +28,10 @@ const Index: NextPage<{}> = () => {
             </h5>
             <motion.div
               variants={stagger}
-              className="relative p-4 mt-5 bg-gray-100 dark:bg-gray-800 dark:bg-black-100 flex-grow rounded-lg transition ease-in-out duration-700"
+              className="relative px-4 py-5 bg-gray-100 dark:bg-gray-800 dark:bg-black-100 flex-grow rounded-lg transition ease-in-out duration-700"
               style={{ marginLeft: '-1.5rem', marginRight: '-1.5rem' }}
             >
-              <h6 className="my-3 pl-1 text-xl font-bold tracking-wide text-gray-900 dark:text-gray-100">
+              <h6 className="mb-3 pl-1 text-xl font-bold tracking-wide text-gray-900 dark:text-gray-100">
                 My Services
               </h6>
               <div className="relative grid gap-6 lg:grid-cols-2">

@@ -32,7 +32,7 @@ export default function ResumePage() {
                       Bachelor of Science in Information Technology
                     </h5>
                     <p className="font-semibold text-gray-700 dark:text-gray-300">
-                      Southern Leyte State University (2018-2019)
+                      Southern Leyte State University (2015-2019)
                     </p>
                     <p className="my-3 text-gray-600 dark:text-gray-400">
                       I am good at Windows Form Application those times when C#
