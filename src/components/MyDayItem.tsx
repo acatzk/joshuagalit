@@ -8,19 +8,18 @@ import { BsThreeDots } from 'react-icons/bs';
 import Image from 'next/image';
 
 const DiaryItem: React.FC<{}> = () => {
-  let image =
-    'https://instagram.fdvo1-1.fna.fbcdn.net/v/t51.2885-15/fr/e15/s1080x1080/209268471_252863646643015_7559986448139802889_n.jpg?tp=1&_nc_ht=instagram.fdvo1-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=Su3APeTPvZUAX-OjUok&edm=AIQHJ4wBAAAA&ccb=7-4&oh=74cd112ab0a2ac17933cf138420d4c96&oe=60E38ABD&_nc_sid=7b02f1';
+  const image = '/images/jems.jpeg';
 
   return (
     <div className="mx-auto max-w-xl border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-md bg-white dark:bg-dark-dim transition ease-in-out duration-700">
-      <div className="flex items-center justify-between p-2 px-3">
+      <div className="flex items-center justify-between py-2 px-3">
         <div className="flex items-center space-x-3">
           <Image
             src="/images/my-animated-avatar.jpg"
             height={36}
             width={36}
             alt="Avatar"
-            className="rounded-full"
+            className="rounded-full bg-gray-300"
           />
           <div className="flex flex-col">
             <div className="flex items-center space-x-2">
@@ -35,7 +34,7 @@ const DiaryItem: React.FC<{}> = () => {
               </span>
             </div>
             <div className="flex items-center text-gray-600 dark:text-gray-400 space-x-1">
-              <h2 className="leading-none font-normal text-xs ">Posted</h2>
+              <h2 className="leading-none font-normal text-xs">Posted</h2>
               <span className="leading-tight">&middot;</span>
               <span className="text-xs font-medium line-clamp-1">
                 Jun 01, 2021
@@ -47,15 +46,20 @@ const DiaryItem: React.FC<{}> = () => {
           <BsThreeDots className="w-4 h-4" />
         </button>
       </div>
-      <div>
-        <Image
-          src={image}
-          width={508}
-          height={500}
-          layout="responsive"
-          objectFit="cover"
-          quality={100}
-        />
+      <div className="flex flex-col">
+        <p className="pb-2 px-4 text-sm text-gray-900 dark:text-gray-200 line-clamp-2">
+          Wasted my 7 months building this site.
+        </p>
+        {image && (
+          <Image
+            src={image}
+            width={508}
+            height={500}
+            layout="responsive"
+            objectFit="cover"
+            quality={100}
+          />
+        )}
       </div>
       <div>
         <div className="flex items-center justify-center px-1 my-1">

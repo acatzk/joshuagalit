@@ -10,12 +10,8 @@ interface MyDayListProps {
 const MyDayList: React.FC<MyDayListProps> = ({ mydaylist }) => {
   return (
     <motion.div variants={stagger}>
-      {mydaylist.map((myday, i) => (
-        <motion.div
-          variants={fadeInUp}
-          key={i}
-          className="pt-3 md:pt-10 px-4 space-y-4"
-        >
+      {mydaylist.map((myday: object, i: number) => (
+        <motion.div variants={fadeInUp} key={i} className="my-3 md:my-7 px-4">
           <MyDayItem {...myday} key={i} />
         </motion.div>
       ))}
