@@ -6,8 +6,13 @@ const MyDayHeader: React.FC<{}> = () => {
 
   return (
     <header className="w-full py-3 px-4 mt-2 md:mt-8 border-b border-gray-200 dark:border-gray-700">
-      <div className="flex items-center justify-between">
-        <h1 className="font-extrabold text-2xl">MyDay</h1>
+      <div className="flex flex-wrap items-center justify-between">
+        <div className="flex items-end space-x-2">
+          <h1 className="font-extrabold text-2xl">MyDay</h1>
+          <span className="text-xl font-semibold text-red-600 border-b border-red-100">
+            On Development
+          </span>
+        </div>
         <div>
           <button
             type="button"
