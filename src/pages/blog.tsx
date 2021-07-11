@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { routeAnimation } from '~/animation';
 import Layout from '~/layouts/defaultLayout';
-import BlogList from '~/components/BlogList';
 import { getAllPosts } from '~/utils/blogFiles';
 import { GetStaticProps, NextPage } from 'next';
-import BlogHeader from '~/components/BlogHeader';
+import BlogList from '~/components/Blog/BlogList';
+import BlogHeader from '~/components/Blog/BlogHeader';
 
 interface BlogPageProps {
   posts: [];

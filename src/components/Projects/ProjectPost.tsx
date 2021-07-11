@@ -1,10 +1,10 @@
+import React from 'react';
 import Image from 'next/image';
 import Moment from 'react-moment';
 import { FiEye } from 'react-icons/fi';
 import ProjectComment from './ProjectComment';
 import { BiMessageRounded } from 'react-icons/bi';
 import SponsorCard from '~/components/SponsorCard';
-import React from 'react';
 
 interface ProjectPostProps {
   projects: any;
@@ -39,7 +39,7 @@ const ProjectPost: React.FC<ProjectPostProps> = ({ projects, mutate }) => {
             <Image
               width={28}
               height={28}
-              className="border-gray-200 dark:border-gray-700 rounded-full"
+              className="border-gray-200 dark:border-gray-700 rounded-full bg-gray-200 dark:bg-gray-800"
               src="/images/my-avatar.jpg"
               alt="My Profile Image"
               layout="intrinsic"
@@ -75,13 +75,14 @@ const ProjectPost: React.FC<ProjectPostProps> = ({ projects, mutate }) => {
         <h1 className="text-base text-gray-700 dark:text-gray-400">
           {description}
         </h1>
-        <div className="flex-shrink-0 overflow-hidden rounded-lg ring-1 ring-gray-300 dark:ring-gray-600 relative shadow-md">
+        <div className="flex-shrink-0 overflow-hidden rounded-lg ring-1 ring-gray-300 dark:ring-gray-600 relative">
           <Image
             src={project_image_url}
             width={1000}
             height={550}
             alt={title}
             layout="responsive"
+            className="bg-gray-200 dark:bg-gray-800 transition ease-in-out duration-700"
           />
         </div>
       </div>

@@ -5,6 +5,7 @@ import { githubStats } from '~/data';
 import { FiMail } from 'react-icons/fi';
 import { BsDownload } from 'react-icons/bs';
 import { GoLocation } from 'react-icons/go';
+
 const Sidebar: React.FC<{}> = () => {
   return (
     <div className="flex flex-col space-y-5">
@@ -71,8 +72,6 @@ const Sidebar: React.FC<{}> = () => {
   );
 };
 
-export default Sidebar;
-
 const Avatar: React.FC<{ src: string; alt?: string }> = ({ src, alt }) => {
   return (
     <div className="border-2 border-gray-400 dark:border-gray-600 rounded-full">
@@ -83,7 +82,7 @@ const Avatar: React.FC<{ src: string; alt?: string }> = ({ src, alt }) => {
         height={220}
         layout="responsive"
         quality={100}
-        className="rounded-full"
+        className="rounded-full bg-gray-200 dark:gray-800"
       />
     </div>
   );
@@ -113,3 +112,5 @@ const GitHubLink: React.FC<IGitHubLink> = ({ id, Icon, count, label }) => {
     </div>
   );
 };
+
+export default Sidebar;

@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import Bar from '~/components/Bar';
 import { motion } from 'framer-motion';
+import Bar from '~/components/Index/Bar';
 import { tools, languages } from '~/data';
 import Layout from '~/layouts/defaultLayout';
 import AboutPageLayout from '~/layouts/aboutPageLayout';

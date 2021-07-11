@@ -96,8 +96,6 @@ const BlogPost: NextPage<BlogPostProps> = ({
   );
 };
 
-export default BlogPost;
-
 export const getStaticPaths: GetStaticPaths = async () => {
   const allPosts = await getAllPosts();
   return {
@@ -126,3 +124,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   };
 };
+
+export default BlogPost;

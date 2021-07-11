@@ -224,10 +224,10 @@ export const mydaylist: IDiary[] = [
     name: 'Joshua Galit',
     created_at: 'June 28, 2021',
     post_caption: 'Wasted my 7 months building my personal site',
-    post_image: '/images/jems.jpeg',
+    post_image: '/images/picture.jpg',
   },
   {
-    avatar_url: '/images/my-animated-avatar.jpg',
+    avatar_url: '/images/picture.jpg',
     name: 'Joshua Galit',
     created_at: 'July 01, 2021',
     post_caption:
@@ -255,6 +255,6 @@ export const mydaylist: IDiary[] = [
     created_at: 'July 08, 2021',
     post_caption:
       'Et in sit irure nisi minim dolore laboris adipisicing sunt cupidatat proident labore labore ipsum. Incididunt excepteur ea occaecat ut quis mollit sit voluptate voluptate eiusmod commodo labore ad elit. Ad excepteur sit sunt nulla eu ex incididunt et mollit.',
-    post_image: '/images/jems.jpeg',
+    post_image: '/images/picture.jpg',
   },
 ];

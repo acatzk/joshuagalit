@@ -4,8 +4,8 @@ import { contacts } from '~/data';
 import emailjs from 'emailjs-com';
 import { motion } from 'framer-motion';
 import Layout from '~/layouts/defaultLayout';
-import ContactForm from '~/components/ContactForm';
 import { useToasts } from 'react-toast-notifications';
+import ContactForm from '~/components/Contact/ContactForm';
 import { stagger, fadeInUp, routeAnimation } from '~/animation';
 
 interface ContactPageProps {}

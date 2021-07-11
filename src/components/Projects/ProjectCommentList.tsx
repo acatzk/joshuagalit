@@ -80,7 +80,10 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
 
   return (
     <div key={id} className="flex space-x-3 py-3 px-2">
-      <Avatar name={name} className="w-9 h-9 rounded-full" />
+      <Avatar
+        name={name}
+        className="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-800"
+      />
       <div className="flex flex-col -my-1.5 rounded-xl px-4 py-3 bg-gray-100 dark:bg-gray-800 w-full transition ease-in-out duration-700">
         {/* Comment Header section */}
         <div className="flex items-start justify-between">

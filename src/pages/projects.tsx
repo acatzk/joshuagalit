@@ -4,12 +4,12 @@ import { motion } from 'framer-motion';
 import { routeAnimation } from '~/animation';
 import Layout from '~/layouts/defaultLayout';
 import { GetStaticProps, NextPage } from 'next';
-import ProjectList from '~/components/ProjectList';
-import FeedbackForm from '~/components/FeedbackForm';
 import { GET_PROJECT_QUERY } from '~/graphql/queries';
 import { useToasts } from 'react-toast-notifications';
+import ProjectList from '~/components/Projects/ProjectList';
 import { hasuraAdminClient } from '~/lib/hasura-admin-client';
 import { INSERT_FEEDBACK_MUTATION } from '~/graphql/mutations';
+import ProjectFeedbackForm from '~/components/Projects/ProjectFeedbackForm';
 
 interface ProjectsPageProps {
   initialData: any;
@@ -43,8 +43,6 @@ const Projects: NextPage<ProjectsPageProps> = ({ initialData }) => {
     </Layout>
   );
 };
-
-export default Projects;
 
 export const getStaticProps: GetStaticProps = async () => {
   const initialData = await hasuraAdminClient.request(GET_PROJECT_QUERY);
@@ -114,7 +112,7 @@ const ProjectHeader = () => {
               <div className="py-3 px-3 text-sm text-gray-600 dark:text-gray-300">
                 Feedback
               </div>
-              <FeedbackForm onSubmit={handleFeedback} />
+              <ProjectFeedbackForm onSubmit={handleFeedback} />
             </motion.div>
           </>
         )}
@@ -122,3 +120,5 @@ const ProjectHeader = () => {
     </div>
   );
 };
+
+export default Projects;

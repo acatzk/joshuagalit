@@ -1,5 +1,5 @@
-import LoginWithModal from './LoginModal';
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
+import MyDayLoginWithModal from './MyDayLoginModal';
 
 const MyDayHeader: React.FC<{}> = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +26,7 @@ const MyDayHeader: React.FC<{}> = () => {
           >
             Sign In
           </button>
-          <LoginWithModal isOpen={isOpen} setIsOpen={setIsOpen} />
+          <MyDayLoginWithModal isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
       </div>
     </header>
