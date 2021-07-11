@@ -2,8 +2,8 @@ import { NextPage } from 'next';
 import { services } from '~/data';
 import { motion } from 'framer-motion';
 import Layout from '~/layouts/defaultLayout';
-import ServiceCard from '~/components/ServiceCard';
 import AboutPageLayout from '~/layouts/aboutPageLayout';
+import ServiceCard from '~/components/Index/ServiceCard';
 import { routeAnimation, fadeInUp, stagger } from '~/animation';
 
 const Index: NextPage<{}> = () => {

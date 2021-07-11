@@ -16,7 +16,7 @@ const DiaryItem: React.FC<IDiary> = ({
   post_image,
 }) => {
   return (
-    <div className="mx-auto max-w-xl border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-md bg-white dark:bg-dark-dim transition ease-in-out duration-700">
+    <div className="mx-auto max-w-xl border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm bg-white dark:bg-dark-dim transition ease-in-out duration-700">
       <div className="flex items-center justify-between py-2 px-3">
         <div className="flex items-center space-x-3">
           <Image
@@ -24,7 +24,7 @@ const DiaryItem: React.FC<IDiary> = ({
             height={36}
             width={36}
             alt="Avatar"
-            className="rounded-full bg-gray-300"
+            className="rounded-full bg-gray-200 dark:bg-gray-800"
           />
           <div className="flex flex-col">
             <div className="flex items-center space-x-2">
@@ -67,6 +67,7 @@ const DiaryItem: React.FC<IDiary> = ({
             layout="responsive"
             objectFit="cover"
             quality={100}
+            className="bg-gray-200 dark:bg-gray-800"
           />
         )}
       </div>

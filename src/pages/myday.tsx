@@ -4,8 +4,8 @@ import { NextPage } from 'next';
 import { motion } from 'framer-motion';
 import Layout from '~/layouts/defaultLayout';
 import { routeAnimation } from '~/animation';
-import MyDayList from '~/components/MyDayList';
-import MyDayHeader from '~/components/MyDayHeader';
+import MyDayList from '~/components/MyDay/MyDayList';
+import MyDayHeader from '~/components/MyDay/MyDayHeader';
 
 const MyDay: NextPage<{}> = () => {
   return (

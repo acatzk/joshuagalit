@@ -4,7 +4,7 @@ import { navbarTabs } from '~/data';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
-export default function Navbar() {
+const Navbar: React.FC<{}> = () => {
   const { pathname } = useRouter();
   const [activeItem, setActiveItem] = useState<string>('');
 
@@ -32,7 +32,7 @@ export default function Navbar() {
       </div>
     </div>
   );
-}
+};
 
 const NavItem: React.FC<{
   activeItem: string;
@@ -51,3 +51,5 @@ const NavItem: React.FC<{
     </Link>
   ) : null;
 };
+
+export default Navbar;

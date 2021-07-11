@@ -55,7 +55,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
             type="text"
             name="email"
             disabled={isSubmitting}
-            className={`pl-12 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-full border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 ${
+            className={`
+            pl-12 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-full border-0
+            py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white 
+            disabled:cursor-not-allowed disabled:opacity-50 ${
               errors.email
                 ? 'ring-red-200 focus:ring-red-500'
                 : 'ring-gray-200 focus:ring-blue-twitter'
@@ -82,7 +85,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
             rows={5}
             disabled={isSubmitting}
             name="message"
-            className={`w-full max-h-md bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-xl border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 ${
+            className={`
+              w-full max-h-md bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-xl
+              border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 
+            dark:text-white disabled:cursor-not-allowed disabled:opacity-50 ${
               errors.message
                 ? 'ring-red-200 focus:ring-red-500'
                 : 'ring-gray-200 focus:ring-blue-twitter'
@@ -111,9 +117,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
   );
 };
 
-export default ContactForm;
-
-const LoadingButton = () => {
+const LoadingButton: React.FC<{}> = () => {
   return (
     <div className="flex items-center space-x-2">
       <AnimatedLoadingIcon className="w-5 h-5 text-white" />
@@ -122,7 +126,7 @@ const LoadingButton = () => {
   );
 };
 
-const ButtonText = () => {
+const ButtonText: React.FC<{}> = () => {
   return (
     <div className="flex items-center space-x-1 text-sm font-medium">
       <span className="line-clamp-1">Send</span>
@@ -130,3 +134,5 @@ const ButtonText = () => {
     </div>
   );
 };
+
+export default ContactForm;

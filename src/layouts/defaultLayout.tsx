@@ -109,8 +109,6 @@ const Layout: React.FC<LayoutProps> = ({
   );
 };
 
-export default Layout;
-
 const SocialMenu: React.FC<{ socialLinks: any }> = ({ socialLinks }) => {
   return (
     <Menu>
@@ -147,3 +145,5 @@ const SocialMenu: React.FC<{ socialLinks: any }> = ({ socialLinks }) => {
     </Menu>
   );
 };
+
+export default Layout;

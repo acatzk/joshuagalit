@@ -60,7 +60,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
         alt="Project Image"
         layout="intrinsic"
         onClick={() => router.push(`/projects/${slug}`)}
-        className="cursor-pointer"
+        className="cursor-pointer bg-gray-200 dark:bg-gray-800"
       />
       <div className="flex flex-col items-start w-full justify-between py-2 space-y-4 lg:space-y-0">
         <div className="space-y-2 lg:space-y-4 w-full">

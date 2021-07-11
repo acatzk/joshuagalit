@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
 import Layout from '~/layouts/defaultLayout';
-import ProjectPost from '~/components/ProjectPost';
+import ProjectPost from '~/components/Projects/ProjectPost';
 import { INSERT_VIEWS_MUTATION } from '~/graphql/mutations';
 import { hasuraAdminClient } from '~/lib/hasura-admin-client';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
@@ -68,8 +68,6 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
   );
 };
 
-export default Projects;
-
 const ProjectHeader = () => {
   const router = useRouter();
 
@@ -124,3 +122,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     revalidate: 1,
   };
 };
+
+export default Projects;

@@ -2,23 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-interface SponsorCardProps {}
-
-const SponsorCard: React.FC<SponsorCardProps> = () => {
+const SponsorCard: React.FC<{}> = () => {
   return (
     <div className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 p-6 rounded-lg max-w-2xl transition ease-in-out duration-700">
       <div className="flex flex-start">
         <div className="flex flex-row space-x-4">
           <div className="flex-shrink-0  overflow-hidden">
-            <Image
-              className="rounded-lg border border-gray-200 dark:border-gray-700"
-              src="/images/my-avatar.jpg"
-              alt="My Avatar Picture"
-              width={56}
-              height={56}
-              layout="intrinsic"
-              quality={100}
-            />
+            <Avatar src="/images/my-avatar.jpg" width={56} height={56} />
           </div>
           <div className="flex flex-row justify-between flex-wrap md:flex-nowrap space-x-0 md:space-x-2 space-y-2 md:space-y-0">
             <div className="space-y-2">
@@ -59,8 +49,6 @@ const SponsorCard: React.FC<SponsorCardProps> = () => {
   );
 };
 
-export default SponsorCard;
-
 const HeartIcon: React.FC<{ className: string }> = ({ className }) => {
   return (
     <svg className={className} viewBox="0 0 16 16">
@@ -71,3 +59,26 @@ const HeartIcon: React.FC<{ className: string }> = ({ className }) => {
     </svg>
   );
 };
+
+const Avatar: React.FC<{
+  src: string;
+  alt?: string;
+  width: number;
+  height: number;
+  layout?: string;
+  quality?: number;
+}> = ({ src, width, height }) => {
+  return (
+    <Image
+      className="rounded-lg border border-gray-200 dark:border-gray-700"
+      src={src}
+      alt="My Avatar Picture"
+      width={width}
+      height={height}
+      layout="intrinsic"
+      quality={100}
+    />
+  );
+};
+
+export default SponsorCard;
