@@ -38,3 +38,11 @@ export interface ISkill {
   level: string;
   Icon: IconType;
 }
+
+export interface IDiary {
+  avatar_url: string;
+  name: string;
+  created_at: string;
+  post_caption: string;
+  post_image: string;
+}

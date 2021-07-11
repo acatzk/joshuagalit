@@ -1,21 +1,26 @@
 import React from 'react';
-import { AiOutlineLike } from 'react-icons/ai';
+import Image from 'next/image';
+import { IDiary } from '~/type';
 import { BiComment } from 'react-icons/bi';
-import { RiShareForwardLine } from 'react-icons/ri';
-import TimeAgoFormat from '~/lib/react-timeago';
 import { IoMdGlobe } from 'react-icons/io';
 import { BsThreeDots } from 'react-icons/bs';
-import Image from 'next/image';
+import { AiOutlineLike } from 'react-icons/ai';
+import TimeAgoFormat from '~/lib/react-timeago';
+import { RiShareForwardLine } from 'react-icons/ri';
 
-const DiaryItem: React.FC<{}> = () => {
-  const image = '/images/jems.jpeg';
-
+const DiaryItem: React.FC<IDiary> = ({
+  avatar_url,
+  name,
+  created_at,
+  post_caption,
+  post_image,
+}) => {
   return (
     <div className="mx-auto max-w-xl border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-md bg-white dark:bg-dark-dim transition ease-in-out duration-700">
       <div className="flex items-center justify-between py-2 px-3">
         <div className="flex items-center space-x-3">
           <Image
-            src="/images/my-animated-avatar.jpg"
+            src={avatar_url}
             height={36}
             width={36}
             alt="Avatar"
@@ -24,7 +29,7 @@ const DiaryItem: React.FC<{}> = () => {
           <div className="flex flex-col">
             <div className="flex items-center space-x-2">
               <h1 className="text-sm font-semibold line-clamp-1 text-black dark:text-white">
-                Joshua Galit
+                {name}
               </h1>
               <span>
                 <IoMdGlobe className="w-3.5 h-3.5 text-gray-600 dark:text-gray-400" />
@@ -37,7 +42,7 @@ const DiaryItem: React.FC<{}> = () => {
               <h2 className="leading-none font-normal text-xs">Posted</h2>
               <span className="leading-tight">&middot;</span>
               <span className="text-xs font-medium line-clamp-1">
-                Jun 01, 2021
+                {created_at}
               </span>
             </div>
           </div>
@@ -46,13 +51,17 @@ const DiaryItem: React.FC<{}> = () => {
           <BsThreeDots className="w-4 h-4" />
         </button>
       </div>
-      <div className="flex flex-col">
-        <p className="pb-2 px-4 text-sm text-gray-900 dark:text-gray-200 line-clamp-2">
-          Wasted my 7 months building this site.
-        </p>
-        {image && (
+      <div className="flex flex-col overflow-hidden">
+        {post_caption && (
+          <div className="pb-1.5 px-4">
+            <p className="text-sm text-gray-900 dark:text-gray-200 line-clamp-2">
+              {post_caption}
+            </p>
+          </div>
+        )}
+        {post_image && (
           <Image
-            src={image}
+            src={post_image}
             width={508}
             height={500}
             layout="responsive"

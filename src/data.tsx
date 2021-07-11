@@ -8,6 +8,7 @@ import {
   IHeaderTab,
   IService,
   ISkill,
+  IDiary,
 } from './type';
 import {
   FaReact,
@@ -217,41 +218,43 @@ export const tools: ISkill[] = [
   },
 ];
 
-export const mydaylist = [
+export const mydaylist: IDiary[] = [
   {
-    avatar_url:
-      'http://localhost:3000/_next/image?url=%2Fimages%2Fmy-animated-avatar.jpg&w=48&q=75',
+    avatar_url: '/images/my-animated-avatar.jpg',
     name: 'Joshua Galit',
-    created_at: '',
+    created_at: 'June 28, 2021',
+    post_caption: 'Wasted my 7 months building my personal site',
+    post_image: '/images/jems.jpeg',
   },
   {
-    avatar_url:
-      'http://localhost:3000/_next/image?url=%2Fimages%2Fmy-animated-avatar.jpg&w=48&q=75',
+    avatar_url: '/images/my-animated-avatar.jpg',
     name: 'Joshua Galit',
-    created_at: '',
+    created_at: 'July 01, 2021',
+    post_caption:
+      'Et in sit irure nisi minim dolore laboris adipisicing sunt cupidatat proident labore labore ipsum. Incididunt excepteur ea occaecat ut quis mollit sit voluptate voluptate eiusmod commodo labore ad elit. Ad excepteur sit sunt nulla eu ex incididunt et mollit.',
+    post_image: '/images/my-animated-avatar.jpg',
   },
   {
-    avatar_url:
-      'http://localhost:3000/_next/image?url=%2Fimages%2Fmy-animated-avatar.jpg&w=48&q=75',
+    avatar_url: '/images/my-animated-avatar.jpg',
     name: 'Joshua Galit',
-    created_at: '',
+    created_at: 'July 03, 2021',
+    post_caption:
+      'Et in sit irure nisi minim dolore laboris adipisicing sunt cupidatat proident labore labore ipsum. Incididunt excepteur ea occaecat ut quis mollit sit voluptate voluptate eiusmod commodo labore ad elit. Ad excepteur sit sunt nulla eu ex incididunt et mollit.',
+    post_image: '/images/my-avatar.jpg',
   },
   {
-    avatar_url:
-      'http://localhost:3000/_next/image?url=%2Fimages%2Fmy-animated-avatar.jpg&w=48&q=75',
+    avatar_url: '/images/my-animated-avatar.jpg',
     name: 'Joshua Galit',
-    created_at: '',
+    created_at: 'July 08, 2021',
+    post_caption: '',
+    post_image: '/images/picture.jpg',
   },
   {
-    avatar_url:
-      'http://localhost:3000/_next/image?url=%2Fimages%2Fmy-animated-avatar.jpg&w=48&q=75',
+    avatar_url: '/images/my-animated-avatar.jpg',
     name: 'Joshua Galit',
-    created_at: '',
-  },
-  {
-    avatar_url:
-      'http://localhost:3000/_next/image?url=%2Fimages%2Fmy-animated-avatar.jpg&w=48&q=75',
-    name: 'Joshua Galit',
-    created_at: '',
+    created_at: 'July 08, 2021',
+    post_caption:
+      'Et in sit irure nisi minim dolore laboris adipisicing sunt cupidatat proident labore labore ipsum. Incididunt excepteur ea occaecat ut quis mollit sit voluptate voluptate eiusmod commodo labore ad elit. Ad excepteur sit sunt nulla eu ex incididunt et mollit.',
+    post_image: '/images/jems.jpeg',
   },
 ];
