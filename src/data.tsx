@@ -1,5 +1,5 @@
-import { ImLocation2 } from 'react-icons/im';
-import { FiUsers, FiStar, FiFigma, FiMonitor, FiServer } from 'react-icons/fi';
+import { ImLocation2 } from 'react-icons/im'
+import { FiUsers, FiStar, FiFigma, FiMonitor, FiServer } from 'react-icons/fi'
 import {
   IContact,
   INavigation,
@@ -9,7 +9,7 @@ import {
   IService,
   ISkill,
   IDiary,
-} from './type';
+} from './type'
 import {
   FaReact,
   FaVuejs,
@@ -17,17 +17,17 @@ import {
   FaLinkedin,
   FaPhoneAlt,
   FaStackOverflow,
-} from 'react-icons/fa';
-import { DiJavascript1 } from 'react-icons/di';
-import { MdDeveloperMode, MdEmail } from 'react-icons/md';
-import { AiOutlineAntDesign, AiOutlineApi } from 'react-icons/ai';
+} from 'react-icons/fa'
+import { DiJavascript1 } from 'react-icons/di'
+import { MdDeveloperMode, MdEmail } from 'react-icons/md'
+import { AiOutlineAntDesign, AiOutlineApi } from 'react-icons/ai'
 import {
   SiNextDotJs,
   SiNuxtDotJs,
   SiAdobepremiere,
   SiAdobephotoshop,
   SiGooglesearchconsole,
-} from 'react-icons/si';
+} from 'react-icons/si'
 
 export const contacts: IContact[] = [
   {
@@ -42,7 +42,7 @@ export const contacts: IContact[] = [
     Icon: ImLocation2,
     text: 'Bato, Leyte',
   },
-];
+]
 
 export const navigations: INavigation[] = [
   {
@@ -65,7 +65,7 @@ export const navigations: INavigation[] = [
     text: 'Contact',
     href: '/contact',
   },
-];
+]
 
 export const socialLinks = [
   {
@@ -86,7 +86,7 @@ export const socialLinks = [
     ),
     href: 'https://stackoverflow.com/users/14108225/joshua-galit',
   },
-];
+]
 
 export const emojis: IEmoji[] = [
   {
@@ -105,7 +105,7 @@ export const emojis: IEmoji[] = [
     icon: '/svgs/emoji/cry.svg',
     text: 'cry',
   },
-];
+]
 
 export const githubStats: IGitHubLink[] = [
   {
@@ -124,7 +124,7 @@ export const githubStats: IGitHubLink[] = [
     Icon: FiStar,
     count: '593',
   },
-];
+]
 
 export const navbarTabs: IHeaderTab[] = [
   {
@@ -135,7 +135,7 @@ export const navbarTabs: IHeaderTab[] = [
     title: 'Resume',
     route: '/resume',
   },
-];
+]
 
 export const services: IService[] = [
   {
@@ -170,7 +170,7 @@ export const services: IService[] = [
     about: "Improve a website's ranking on search engines like Google",
     Icon: SiGooglesearchconsole,
   },
-];
+]
 
 export const languages: ISkill[] = [
   {
@@ -198,7 +198,7 @@ export const languages: ISkill[] = [
     level: '65%',
     Icon: SiNuxtDotJs,
   },
-];
+]
 
 export const tools: ISkill[] = [
   {
@@ -216,7 +216,7 @@ export const tools: ISkill[] = [
     level: '25%',
     Icon: FiFigma,
   },
-];
+]
 
 export const mydaylist: IDiary[] = [
   {
@@ -257,4 +257,4 @@ export const mydaylist: IDiary[] = [
       'Et in sit irure nisi minim dolore laboris adipisicing sunt cupidatat proident labore labore ipsum. Incididunt excepteur ea occaecat ut quis mollit sit voluptate voluptate eiusmod commodo labore ad elit. Ad excepteur sit sunt nulla eu ex incididunt et mollit.',
     post_image: '/images/picture.jpg',
   },
-];
+]

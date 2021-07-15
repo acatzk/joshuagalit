@@ -19,30 +19,30 @@ the css to the nav bar on scroll!
 First, we will import `useEffect` from react.
 
 ```javascript
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 ```
 
 Next, call the method:
 
 ```javascript
-useEffect(() => {});
+useEffect(() => {})
 ```
 
 We can add anything we want in here. Let's add our event listeners:
 
 ```javascript
 useEffect(() => {
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', handleScroll)
   return () => {
-    window.removeEventListener('scroll', handleScroll);
-  };
-});
+    window.removeEventListener('scroll', handleScroll)
+  }
+})
 ```
 
 Finally, create the handle scroll method and log the scrollY value to the console:
 
 ```javascript
 const handleScroll = () => {
-  console.log(scrollY);
-};
+  console.log(scrollY)
+}
 ```

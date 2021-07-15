@@ -1,20 +1,21 @@
-import { emojis } from '~/data';
-import Loading from '~/utils/Loading';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import Image from 'next/image'
+import { emojis } from '~/data'
+import Loading from '~/utils/Loading'
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 interface FeedbackProps {
-  onSubmit: any;
+  onSubmit: any
 }
 
 const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
-  const [emoji, setEmoji] = useState('');
+  const [emoji, setEmoji] = useState('')
   const {
     errors,
     register,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm();
+  } = useForm()
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
@@ -72,7 +73,7 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
                 className="hidden w-5 h-5"
                 ref={register()}
               />
-              <img className="w-5 h-5" src={icon} alt="Icon" />
+              <Image width={25} height={25} src={icon} alt="Icon" />
             </div>
           ))}
         </div>
@@ -93,7 +94,7 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
         </button>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default FeedbackForm;
+export default FeedbackForm
