@@ -1,12 +1,12 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { FiSend } from 'react-icons/fi'
-import { useForm } from 'react-hook-form'
-import { AnimatedLoadingIcon } from '~/utils/Icons'
-import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FiSend } from 'react-icons/fi';
+import { useForm } from 'react-hook-form';
+import { AnimatedLoadingIcon } from '~/utils/Icons';
+import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai';
 
 interface ContactFormProps {
-  onSubmit: any
+  onSubmit: any;
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
@@ -15,7 +15,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
     register,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm()
+  } = useForm();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -114,8 +114,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
         </motion.button>
       </div>
     </form>
-  )
-}
+  );
+};
 
 const LoadingButton: React.FC<{}> = () => {
   return (
@@ -123,8 +123,8 @@ const LoadingButton: React.FC<{}> = () => {
       <AnimatedLoadingIcon className="w-5 h-5 text-white" />
       <p className="text-xs font-medium">Sending...</p>
     </div>
-  )
-}
+  );
+};
 
 const ButtonText: React.FC<{}> = () => {
   return (
@@ -132,7 +132,7 @@ const ButtonText: React.FC<{}> = () => {
       <span className="line-clamp-1">Send</span>
       <FiSend className="w-4 h-4 transform rotate-45" />
     </div>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;

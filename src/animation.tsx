@@ -7,7 +7,7 @@ export const fadeInUp = {
     opacity: 1,
     y: 0,
   },
-}
+};
 
 export const stagger = {
   initial: {},
@@ -16,7 +16,7 @@ export const stagger = {
       staggerChildren: 0.1,
     },
   },
-}
+};
 
 export const routeAnimation = {
   initial: {
@@ -36,4 +36,4 @@ export const routeAnimation = {
       ease: 'easeInOut',
     },
   },
-}
+};

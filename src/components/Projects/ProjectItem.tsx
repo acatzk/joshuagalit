@@ -1,33 +1,33 @@
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useTheme } from 'next-themes'
-import { FiEye } from 'react-icons/fi'
-import { useRouter } from 'next/router'
-import ReactTooltip from 'react-tooltip'
-import { GrGithub } from 'react-icons/gr'
-import { VerifiedIcon } from '~/utils/Icons'
-import TimeAgoFormat from '~/lib/react-timeago'
-import { BiMessageRounded } from 'react-icons/bi'
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useTheme } from 'next-themes';
+import { FiEye } from 'react-icons/fi';
+import { useRouter } from 'next/router';
+import ReactTooltip from 'react-tooltip';
+import { GrGithub } from 'react-icons/gr';
+import { VerifiedIcon } from '~/utils/Icons';
+import TimeAgoFormat from '~/lib/react-timeago';
+import { BiMessageRounded } from 'react-icons/bi';
 
 interface ProjectItemProps {
-  title: string
-  description: string
-  demo_url: string
-  source_code_url: string
-  project_image_url: string
-  slug: string
-  created_at: string
+  title: string;
+  description: string;
+  demo_url: string;
+  source_code_url: string;
+  project_image_url: string;
+  slug: string;
+  created_at: string;
   views_aggregate: {
     aggregate: {
-      viewsCount: number
-    }
-  }
+      viewsCount: number;
+    };
+  };
   comments_aggregate: {
     aggregate: {
-      commentsCount: number
-    }
-  }
+      commentsCount: number;
+    };
+  };
 }
 
 const ProjectItem: React.FC<ProjectItemProps> = ({
@@ -41,15 +41,15 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
   views_aggregate,
   comments_aggregate,
 }) => {
-  const router = useRouter()
-  const { theme } = useTheme()
+  const router = useRouter();
+  const { theme } = useTheme();
 
   const {
     aggregate: { viewsCount },
-  } = views_aggregate
+  } = views_aggregate;
   const {
     aggregate: { commentsCount },
-  } = comments_aggregate
+  } = comments_aggregate;
 
   return (
     <div className="flex flex-col lg:flex-row py-6 w-full space-y-4 lg:space-y-0 space-x-0 lg:space-x-6">
@@ -87,7 +87,6 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
                   border-gray-300 hover:border-black hover:text-black focus:outline-none 
                   transition ease-in-out duration-150
                   dark:text-gray-400 dark:border-gray-600 dark:hover:text-gray-200 dark:hover:border-gray-400"
-                  rel="noreferrer"
                 >
                   Visit
                 </a>
@@ -104,7 +103,6 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
               href={source_code_url}
               target="_blank"
               className="flex items-center font-medium space-x-2 group group-hover:underline text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200"
-              rel="noreferrer"
             >
               <span className="block">
                 <GrGithub className="w-4 h-4" />
@@ -143,7 +141,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProjectItem
+export default ProjectItem;

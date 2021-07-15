@@ -1,13 +1,12 @@
-import React from 'react'
-import Head from 'next/head'
-import { motion } from 'framer-motion'
-import Bar from '~/components/Index/Bar'
-import { tools, languages } from '~/data'
-import Layout from '~/layouts/defaultLayout'
-import AboutPageLayout from '~/layouts/aboutPageLayout'
-import { fadeInUp, stagger, routeAnimation } from '~/animation'
+import Head from 'next/head';
+import { motion } from 'framer-motion';
+import Bar from '~/components/Index/Bar';
+import { tools, languages } from '~/data';
+import Layout from '~/layouts/defaultLayout';
+import AboutPageLayout from '~/layouts/aboutPageLayout';
+import { fadeInUp, stagger, routeAnimation } from '~/animation';
 
-const ResumePage: React.FC<{}> = () => {
+export default function ResumePage() {
   return (
     <>
       <Head>
@@ -82,7 +81,5 @@ const ResumePage: React.FC<{}> = () => {
         </AboutPageLayout>
       </Layout>
     </>
-  )
+  );
 }
-
-export default ResumePage
