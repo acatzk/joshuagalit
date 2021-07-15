@@ -1,4 +1,4 @@
-import { gql } from 'graphql-request';
+import { gql } from 'graphql-request'
 
 export const DELETE_MAIL_MUTATION = gql`
   mutation DeleteEmailById($id: uuid!) {
@@ -9,7 +9,7 @@ export const DELETE_MAIL_MUTATION = gql`
       }
     }
   }
-`;
+`
 
 export const INSERT_FEEDBACK_MUTATION = gql`
   mutation InsertFeedbackMutation(
@@ -26,7 +26,7 @@ export const INSERT_FEEDBACK_MUTATION = gql`
       }
     }
   }
-`;
+`
 
 export const INSERT_VIEWS_MUTATION = gql`
   mutation InsertViewsMutation($project_id: uuid) {
@@ -62,7 +62,7 @@ export const INSERT_VIEWS_MUTATION = gql`
       }
     }
   }
-`;
+`
 
 export const INSERT_PROJECT_COMMENT_MUTATION = gql`
   mutation InsertProjectCommentMutation(
@@ -108,7 +108,7 @@ export const INSERT_PROJECT_COMMENT_MUTATION = gql`
       }
     }
   }
-`;
+`
 
 export const DELETE_PROJECT_COMMENT_BY_ID_MUTATION = gql`
   mutation DeleteProjectCommentByIdMutation($id: uuid) {
@@ -144,7 +144,7 @@ export const DELETE_PROJECT_COMMENT_BY_ID_MUTATION = gql`
       }
     }
   }
-`;
+`
 
 export const INSERT_BLOG_VIEWS_MUTATION = gql`
   mutation InsertBlogViewsMutation($slug: String!) {
@@ -155,4 +155,4 @@ export const INSERT_BLOG_VIEWS_MUTATION = gql`
       }
     }
   }
-`;
+`

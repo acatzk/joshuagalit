@@ -1,26 +1,26 @@
-import React from 'react';
-import Image from 'next/image';
-import { GrGithub } from 'react-icons/gr';
-import { useForm } from 'react-hook-form';
-import { useToasts } from 'react-toast-notifications';
-import ProjectCommentList from './ProjectCommentList';
-import { hasuraAdminClient } from '~/lib/hasura-admin-client';
-import { BiMessageRoundedDots, BiLinkExternal } from 'react-icons/bi';
-import { INSERT_PROJECT_COMMENT_MUTATION } from '~/graphql/mutations';
+import React from 'react'
+import Image from 'next/image'
+import { GrGithub } from 'react-icons/gr'
+import { useForm } from 'react-hook-form'
+import { useToasts } from 'react-toast-notifications'
+import ProjectCommentList from './ProjectCommentList'
+import { hasuraAdminClient } from '~/lib/hasura-admin-client'
+import { BiMessageRoundedDots, BiLinkExternal } from 'react-icons/bi'
+import { INSERT_PROJECT_COMMENT_MUTATION } from '~/graphql/mutations'
 
 interface ProjectCommentProps {
-  mutate: any;
-  projects: any;
+  mutate: any
+  projects: any
 }
 
 const ProjectComment: React.FC<ProjectCommentProps> = ({
   mutate,
   ...projects
 }) => {
-  const { addToast } = useToasts();
+  const { addToast } = useToasts()
 
   const handleComment = async ({ name, comment }: any, e: any) => {
-    const { id } = projects[0];
+    const { id } = projects[0]
     const {
       insert_project_comments: {
         returning: { ...project },
@@ -29,7 +29,7 @@ const ProjectComment: React.FC<ProjectCommentProps> = ({
       project_id: id,
       name,
       comment,
-    });
+    })
 
     mutate({
       projects: [
@@ -37,14 +37,14 @@ const ProjectComment: React.FC<ProjectCommentProps> = ({
           ...project[0].project,
         },
       ],
-    });
+    })
 
-    e.target.reset();
+    e.target.reset()
     addToast('Successfully Commented!', {
       appearance: 'success',
       autoDismiss: true,
-    });
-  };
+    })
+  }
 
   return (
     <div className="flex">
@@ -63,17 +63,17 @@ const ProjectComment: React.FC<ProjectCommentProps> = ({
         <ProjectCommentList mutate={mutate} projects={projects} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProjectComment;
+export default ProjectComment
 
 const ProjectCommentForm = ({ onSubmit }: any) => {
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, isDirty, isValid },
-  } = useForm({ mode: 'onChange' });
+  } = useForm({ mode: 'onChange' })
 
   return (
     <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
@@ -108,12 +108,12 @@ const ProjectCommentForm = ({ onSubmit }: any) => {
         </button>
       </div>
     </form>
-  );
-};
+  )
+}
 
 interface ProjectCommentTabsProps {
-  source_code_url: string;
-  demo_url: string;
+  source_code_url: string
+  demo_url: string
 }
 
 const ProjectCommentTabs: React.FC<ProjectCommentTabsProps> = ({
@@ -135,6 +135,7 @@ const ProjectCommentTabs: React.FC<ProjectCommentTabsProps> = ({
               href={source_code_url}
               target="_blank"
               className="flex items-center space-x-2 pb-2 text-gray-600 dark:text-gray-400 dark:hover:text-white"
+              rel="noreferrer"
             >
               <GrGithub className="w-4 h-4" />
               <span className="text-sm line-clamp-1">Source Code</span>
@@ -147,6 +148,7 @@ const ProjectCommentTabs: React.FC<ProjectCommentTabsProps> = ({
               href={demo_url}
               target="_blank"
               className="flex items-center space-x-2 pb-2 text-gray-600 dark:text-gray-400 dark:hover:text-white"
+              rel="noreferrer"
             >
               <BiLinkExternal className="w-4 h-4" />
               <span className="text-sm line-clamp-1">Demo</span>
@@ -155,8 +157,8 @@ const ProjectCommentTabs: React.FC<ProjectCommentTabsProps> = ({
         )}
       </ul>
     </div>
-  );
-};
+  )
+}
 
 const Avatar: React.FC<{ className: any }> = ({ className }) => {
   return (
@@ -170,5 +172,5 @@ const Avatar: React.FC<{ className: any }> = ({ className }) => {
         layout="responsive"
       />
     </div>
-  );
-};
+  )
+}

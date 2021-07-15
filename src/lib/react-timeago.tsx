@@ -1,11 +1,11 @@
-import TimeAgo from 'react-timeago';
-import englishStrings from 'react-timeago/lib/language-strings/en';
-import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
+import TimeAgo from 'react-timeago'
+import englishStrings from 'react-timeago/lib/language-strings/en'
+import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
 
-const formatter = buildFormatter(englishStrings);
+const formatter = buildFormatter(englishStrings)
 
 const TimeAgoFormat: React.FC<{ date: string }> = ({ date }) => {
-  return <TimeAgo date={date} formatter={formatter} />;
-};
+  return <TimeAgo date={date} formatter={formatter} />
+}
 
-export default TimeAgoFormat;
+export default TimeAgoFormat

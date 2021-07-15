@@ -1,12 +1,12 @@
-import React from 'react';
-import Image from 'next/image';
-import { IDiary } from '~/type';
-import { BiComment } from 'react-icons/bi';
-import { IoMdGlobe } from 'react-icons/io';
-import { BsThreeDots } from 'react-icons/bs';
-import { AiOutlineLike } from 'react-icons/ai';
-import TimeAgoFormat from '~/lib/react-timeago';
-import { RiShareForwardLine } from 'react-icons/ri';
+import React from 'react'
+import Image from 'next/image'
+import { IDiary } from '~/type'
+import { BiComment } from 'react-icons/bi'
+import { IoMdGlobe } from 'react-icons/io'
+import { BsThreeDots } from 'react-icons/bs'
+import { AiOutlineLike } from 'react-icons/ai'
+import TimeAgoFormat from '~/lib/react-timeago'
+import { RiShareForwardLine } from 'react-icons/ri'
 
 const DiaryItem: React.FC<IDiary> = ({
   avatar_url,
@@ -67,6 +67,7 @@ const DiaryItem: React.FC<IDiary> = ({
             layout="responsive"
             objectFit="cover"
             quality={100}
+            alt="MyDay Image Post"
             className="bg-gray-200 dark:bg-gray-800"
           />
         )}
@@ -88,7 +89,7 @@ const DiaryItem: React.FC<IDiary> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DiaryItem;
+export default DiaryItem

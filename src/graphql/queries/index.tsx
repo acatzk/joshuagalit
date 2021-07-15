@@ -1,4 +1,4 @@
-import { gql } from 'graphql-request';
+import { gql } from 'graphql-request'
 
 export const GET_PROJECT_QUERY = gql`
   query GetProjectQuery {
@@ -23,7 +23,7 @@ export const GET_PROJECT_QUERY = gql`
       }
     }
   }
-`;
+`
 
 export const GET_PROJECT_SLUGs = gql`
   query GetProjectBySlugs {
@@ -31,7 +31,7 @@ export const GET_PROJECT_SLUGs = gql`
       slug
     }
   }
-`;
+`
 
 export const GET_PROJECT_BY_SLUG_QUERY = gql`
   query GetProjectBySlugQuery($slug: String) {
@@ -62,7 +62,7 @@ export const GET_PROJECT_BY_SLUG_QUERY = gql`
       }
     }
   }
-`;
+`
 
 export const GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY = gql`
   query GetBlogViewsQuery($slug: String!) {
@@ -72,7 +72,7 @@ export const GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY = gql`
       }
     }
   }
-`;
+`
 
 export const GET_BLOG_VIEWS_COUNT_QUERY = gql`
   query GetViewsCountQuery {
@@ -82,4 +82,4 @@ export const GET_BLOG_VIEWS_COUNT_QUERY = gql`
       }
     }
   }
-`;
+`
