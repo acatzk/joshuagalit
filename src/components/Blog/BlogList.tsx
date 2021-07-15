@@ -1,10 +1,10 @@
-import React from 'react'
-import BlogItem from './BlogItem'
-import { motion } from 'framer-motion'
-import { fadeInUp, stagger } from '~/animation'
+import React from 'react';
+import BlogItem from './BlogItem';
+import { motion } from 'framer-motion';
+import { fadeInUp, stagger } from '~/animation';
 
 interface BlogListProps {
-  blogs: any
+  blogs: any;
 }
 
 const BlogList: React.FC<BlogListProps> = ({ blogs }) => {
@@ -16,7 +16,7 @@ const BlogList: React.FC<BlogListProps> = ({ blogs }) => {
         </motion.div>
       ))}
     </motion.div>
-  )
-}
+  );
+};
 
-export default BlogList
+export default BlogList;

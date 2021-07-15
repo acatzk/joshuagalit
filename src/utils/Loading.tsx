@@ -74,5 +74,5 @@ export default function Loading({ className }) {
         ></animate>
       </circle>
     </svg>
-  )
+  );
 }

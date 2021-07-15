@@ -1,10 +1,10 @@
-import React from 'react'
-import MyDayItem from './MyDayItem'
-import { motion } from 'framer-motion'
-import { fadeInUp, stagger } from '~/animation'
+import React from 'react';
+import MyDayItem from './MyDayItem';
+import { motion } from 'framer-motion';
+import { fadeInUp, stagger } from '~/animation';
 
 interface MyDayListProps {
-  mydaylist: any
+  mydaylist: any;
 }
 
 const MyDayList: React.FC<MyDayListProps> = ({ mydaylist }) => {
@@ -16,7 +16,7 @@ const MyDayList: React.FC<MyDayListProps> = ({ mydaylist }) => {
         </motion.div>
       ))}
     </motion.div>
-  )
-}
+  );
+};
 
-export default MyDayList
+export default MyDayList;

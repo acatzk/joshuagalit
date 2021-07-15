@@ -1,18 +1,18 @@
-import React from 'react'
+import React from 'react';
 
 const useProgressiveImg = (lowQualitySrc, highQualitySrc) => {
-  const [src, setSrc] = React.useState(lowQualitySrc)
+  const [src, setSrc] = React.useState(lowQualitySrc);
 
   React.useEffect(() => {
-    setSrc(lowQualitySrc)
-    const img = new Image()
-    img.src = highQualitySrc
+    setSrc(lowQualitySrc);
+    const img = new Image();
+    img.src = highQualitySrc;
     img.onload = () => {
-      setSrc(highQualitySrc)
-    }
-  }, [lowQualitySrc, highQualitySrc])
+      setSrc(highQualitySrc);
+    };
+  }, [lowQualitySrc, highQualitySrc]);
 
-  return [src, { blur: src === lowQualitySrc }]
-}
+  return [src, { blur: src === lowQualitySrc }];
+};
 
-export default useProgressiveImg
+export default useProgressiveImg;

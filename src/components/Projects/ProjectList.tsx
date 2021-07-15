@@ -1,10 +1,10 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import ProjectItem from './ProjectItem'
-import { fadeInUp, stagger } from '~/animation'
+import React from 'react';
+import { motion } from 'framer-motion';
+import ProjectItem from './ProjectItem';
+import { fadeInUp, stagger } from '~/animation';
 
 interface ProjecdtListProps {
-  projects: []
+  projects: [];
 }
 
 const ProjectList: React.FC<ProjecdtListProps> = ({ projects }) => {
@@ -19,7 +19,7 @@ const ProjectList: React.FC<ProjecdtListProps> = ({ projects }) => {
         </motion.div>
       ))}
     </motion.div>
-  )
-}
+  );
+};
 
-export default ProjectList
+export default ProjectList;

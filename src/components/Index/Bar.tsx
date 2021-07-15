@@ -1,9 +1,9 @@
-import React from 'react'
-import { ISkill } from '~/type'
-import { motion } from 'framer-motion'
+import React from 'react';
+import { ISkill } from '~/type';
+import { motion } from 'framer-motion';
 
 const Bar: React.FC<{ data: ISkill }> = ({ data: { Icon, level, name } }) => {
-  const barWidth = `${level}`
+  const barWidth = `${level}`;
   const variants = {
     initial: {
       width: 0,
@@ -17,7 +17,7 @@ const Bar: React.FC<{ data: ISkill }> = ({ data: { Icon, level, name } }) => {
         stiffness: 100,
       },
     },
-  }
+  };
 
   return (
     <div className="text-white my-2 bg-gray-300 dark:bg-gray-700 rounded-full">
@@ -32,7 +32,7 @@ const Bar: React.FC<{ data: ISkill }> = ({ data: { Icon, level, name } }) => {
         {name}
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-export default Bar
+export default Bar;

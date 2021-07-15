@@ -1,13 +1,13 @@
-import React from 'react'
-import { IconType } from 'react-icons'
-import { motion } from 'framer-motion'
-import { Transition } from '@headlessui/react'
-import { fadeInUp, stagger } from '~/animation'
-import { FaGithub, FaGoogle, FaFacebook } from 'react-icons/fa'
+import React from 'react';
+import { IconType } from 'react-icons';
+import { motion } from 'framer-motion';
+import { Transition } from '@headlessui/react';
+import { fadeInUp, stagger } from '~/animation';
+import { FaGithub, FaGoogle, FaFacebook } from 'react-icons/fa';
 
 interface LoginWIthModalProps {
-  isOpen: boolean
-  setIsOpen: Function
+  isOpen: boolean;
+  setIsOpen: Function;
 }
 
 const LoginWithModal: React.FC<LoginWIthModalProps> = ({
@@ -59,13 +59,13 @@ const LoginWithModal: React.FC<LoginWIthModalProps> = ({
         </motion.div>
       </div>
     </Transition>
-  ) : null
-}
+  ) : null;
+};
 
 const LoginButton: React.FC<{
-  Icon: IconType
-  title: string
-  className?: string
+  Icon: IconType;
+  title: string;
+  className?: string;
 }> = ({ Icon, title, className }) => {
   return (
     <motion.button
@@ -82,8 +82,8 @@ const LoginButton: React.FC<{
         Continue with {title}
       </span>
     </motion.button>
-  )
-}
+  );
+};
 
 const ModalBackground: React.FC<{ setIsOpen: Function }> = ({ setIsOpen }) => {
   return (
@@ -91,7 +91,7 @@ const ModalBackground: React.FC<{ setIsOpen: Function }> = ({ setIsOpen }) => {
       onClick={() => setIsOpen(false)}
       className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"
     />
-  )
-}
+  );
+};
 
-export default LoginWithModal
+export default LoginWithModal;
