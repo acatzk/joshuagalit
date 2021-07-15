@@ -1,18 +1,18 @@
-import useSWR from 'swr';
-import { useToggle } from 'react-use';
-import { motion } from 'framer-motion';
-import { routeAnimation } from '~/animation';
-import Layout from '~/layouts/defaultLayout';
-import { GetStaticProps, NextPage } from 'next';
-import { GET_PROJECT_QUERY } from '~/graphql/queries';
-import { useToasts } from 'react-toast-notifications';
-import ProjectList from '~/components/Projects/ProjectList';
-import { hasuraAdminClient } from '~/lib/hasura-admin-client';
-import { INSERT_FEEDBACK_MUTATION } from '~/graphql/mutations';
-import ProjectFeedbackForm from '~/components/Projects/ProjectFeedbackForm';
+import useSWR from 'swr'
+import { useToggle } from 'react-use'
+import { motion } from 'framer-motion'
+import { routeAnimation } from '~/animation'
+import Layout from '~/layouts/defaultLayout'
+import { GetStaticProps, NextPage } from 'next'
+import { GET_PROJECT_QUERY } from '~/graphql/queries'
+import { useToasts } from 'react-toast-notifications'
+import ProjectList from '~/components/Projects/ProjectList'
+import { hasuraAdminClient } from '~/lib/hasura-admin-client'
+import { INSERT_FEEDBACK_MUTATION } from '~/graphql/mutations'
+import ProjectFeedbackForm from '~/components/Projects/ProjectFeedbackForm'
 
 interface ProjectsPageProps {
-  initialData: any;
+  initialData: any
 }
 
 const Projects: NextPage<ProjectsPageProps> = ({ initialData }) => {
@@ -22,8 +22,8 @@ const Projects: NextPage<ProjectsPageProps> = ({ initialData }) => {
     {
       initialData,
       revalidateOnMount: true,
-    }
-  );
+    },
+  )
 
   return (
     <Layout
@@ -41,22 +41,22 @@ const Projects: NextPage<ProjectsPageProps> = ({ initialData }) => {
         <ProjectList projects={data.projects} />
       </motion.div>
     </Layout>
-  );
-};
+  )
+}
 
 export const getStaticProps: GetStaticProps = async () => {
-  const initialData = await hasuraAdminClient.request(GET_PROJECT_QUERY);
+  const initialData = await hasuraAdminClient.request(GET_PROJECT_QUERY)
 
   return {
     props: {
       initialData,
     },
-  };
-};
+  }
+}
 
 const ProjectHeader = () => {
-  const { addToast } = useToasts();
-  const [onModal, toggleModal] = useToggle(false);
+  const { addToast } = useToasts()
+  const [onModal, toggleModal] = useToggle(false)
 
   const handleFeedback = async ({ name, message, emoji }, e) => {
     try {
@@ -64,17 +64,17 @@ const ProjectHeader = () => {
         name,
         message,
         emoji,
-      });
+      })
 
       addToast('Your Feedback has been received. Thank you for your help', {
         appearance: 'success',
         autoDismiss: true,
-      });
-      e.target.reset();
+      })
+      e.target.reset()
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
   return (
     <div className="flex flex-wrap items-center justify-between px-4 pt-4 md:pt-10">
@@ -118,7 +118,7 @@ const ProjectHeader = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Projects;
+export default Projects

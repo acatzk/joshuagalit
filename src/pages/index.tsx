@@ -1,10 +1,10 @@
-import { NextPage } from 'next';
-import { services } from '~/data';
-import { motion } from 'framer-motion';
-import Layout from '~/layouts/defaultLayout';
-import AboutPageLayout from '~/layouts/aboutPageLayout';
-import ServiceCard from '~/components/Index/ServiceCard';
-import { routeAnimation, fadeInUp, stagger } from '~/animation';
+import { NextPage } from 'next'
+import { services } from '~/data'
+import { motion } from 'framer-motion'
+import Layout from '~/layouts/defaultLayout'
+import AboutPageLayout from '~/layouts/aboutPageLayout'
+import ServiceCard from '~/components/Index/ServiceCard'
+import { routeAnimation, fadeInUp, stagger } from '~/animation'
 
 const Index: NextPage<{}> = () => {
   return (
@@ -21,7 +21,7 @@ const Index: NextPage<{}> = () => {
         >
           <div className="flex flex-col px-6 flex-grow">
             <h5 className="my-3  font-medium text-gray-800 dark:text-gray-300">
-              My name is Joshua Galit and I'm a self taught web developer using
+              My name is Joshua Galit and I`m a self taught web developer using
               modern technologies. Ability to follow established procedures and
               work under little or no supervision. Follow and Star me on GitHub
               💕
@@ -50,7 +50,7 @@ const Index: NextPage<{}> = () => {
         </motion.div>
       </AboutPageLayout>
     </Layout>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

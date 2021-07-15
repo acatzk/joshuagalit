@@ -1,18 +1,18 @@
-import React from 'react';
-import Link from 'next/link';
-import { navbarTabs } from '~/data';
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import Link from 'next/link'
+import { navbarTabs } from '~/data'
+import { useRouter } from 'next/router'
+import React, { useState, useEffect } from 'react'
 
 const Navbar: React.FC<{}> = () => {
-  const { pathname } = useRouter();
-  const [activeItem, setActiveItem] = useState<string>('');
+  const { pathname } = useRouter()
+  const [activeItem, setActiveItem] = useState<string>('')
 
   useEffect(() => {
-    if (pathname === '/') setActiveItem('About');
-    if (pathname === '/projects') setActiveItem('Projects');
-    if (pathname === '/resume') setActiveItem('Resume');
-  }, []);
+    if (pathname === '/') setActiveItem('About')
+    if (pathname === '/projects') setActiveItem('Projects')
+    if (pathname === '/resume') setActiveItem('Resume')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="flex justify-between space-x-3 my-4">
@@ -31,14 +31,14 @@ const Navbar: React.FC<{}> = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
 const NavItem: React.FC<{
-  activeItem: string;
-  setActiveItem: Function;
-  title: string;
-  route: string;
+  activeItem: string
+  setActiveItem: Function
+  title: string
+  route: string
 }> = ({ activeItem, setActiveItem, title, route }) => {
   return activeItem !== title ? (
     <Link href={route}>
@@ -49,7 +49,7 @@ const NavItem: React.FC<{
         {title}
       </a>
     </Link>
-  ) : null;
-};
+  ) : null
+}
 
-export default Navbar;
+export default Navbar
