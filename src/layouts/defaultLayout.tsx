@@ -1,20 +1,20 @@
-import React from 'react';
-import Link from 'next/link';
-import Head from 'next/head';
-import { motion } from 'framer-motion';
-import { Menu } from '@headlessui/react';
-import ActiveLink from '~/utils/ActiveLink';
-import { BsThreeDots } from 'react-icons/bs';
-import Scrollbar from 'react-smooth-scrollbar';
-import ThemeChanger from '~/utils/ThemeChanger';
-import { navigations, socialLinks } from '~/data';
-import { LogoIcon, SoundIcon } from '~/utils/Icons';
-import MessengerCustomerChat from 'react-messenger-customer-chat';
+import React from 'react'
+import Link from 'next/link'
+import Head from 'next/head'
+import { motion } from 'framer-motion'
+import { Menu } from '@headlessui/react'
+import ActiveLink from '~/utils/ActiveLink'
+import { BsThreeDots } from 'react-icons/bs'
+import Scrollbar from 'react-smooth-scrollbar'
+import ThemeChanger from '~/utils/ThemeChanger'
+import { navigations, socialLinks } from '~/data'
+import { LogoIcon, SoundIcon } from '~/utils/Icons'
+import MessengerCustomerChat from 'react-messenger-customer-chat'
 
 interface LayoutProps {
-  headTitle: string;
-  metaDescription?: string;
-  className?: string;
+  headTitle: string
+  metaDescription?: string
+  className?: string
 }
 
 const Layout: React.FC<LayoutProps> = ({
@@ -53,7 +53,7 @@ const Layout: React.FC<LayoutProps> = ({
                   whileHover={{ y: -3 }}
                   className="focus:outline-none rounded-full p-1 hover:shadow-lg"
                 >
-                  <a href={href} target="_blank">
+                  <a href={href} target="_blank" rel="noreferrer">
                     {icon}
                   </a>
                 </motion.button>
@@ -106,8 +106,8 @@ const Layout: React.FC<LayoutProps> = ({
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 const SocialMenu: React.FC<{ socialLinks: any }> = ({ socialLinks }) => {
   return (
@@ -143,7 +143,7 @@ const SocialMenu: React.FC<{ socialLinks: any }> = ({ socialLinks }) => {
         </>
       )}
     </Menu>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

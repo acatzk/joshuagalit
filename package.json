@@ -5,12 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "check-types": "tsc --pretty --noEmit",
-    "check-format": "prettier --check .",
-    "check-lint": "eslint --ext ts --ext tsx --ext js .",
-    "format": "prettier --write .",
-    "test-all": "yarn check-format && yarn check-lint && yarn check-types && yarn build"
+    "start": "next start"
   },
   "dependencies": {
     "@headlessui/react": "^1.3.0",
@@ -51,16 +46,11 @@
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {
-    "@types/node": "^16.3.2",
     "@types/react": "^17.0.14",
-    "@typescript-eslint/eslint-plugin": "^4.28.3",
     "autoprefixer": "^10.3.1",
     "eslint": "^7.30.0",
     "eslint-config-next": "^11.0.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-react": "^7.24.0",
     "postcss": "^8.3.5",
-    "prettier": "^2.3.2",
     "tailwindcss": "^2.2.4",
     "typescript": "^4.3.5"
   }

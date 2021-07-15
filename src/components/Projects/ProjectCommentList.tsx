@@ -1,36 +1,34 @@
-import React from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Menu } from '@headlessui/react';
-import { BsThreeDots } from 'react-icons/bs';
-import TimeAgoFormat from '~/lib/react-timeago';
-import { useToasts } from 'react-toast-notifications';
-import { hasuraAdminClient } from '~/lib/hasura-admin-client';
-import { DELETE_PROJECT_COMMENT_BY_ID_MUTATION } from '~/graphql/mutations';
+import React from 'react'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { Menu } from '@headlessui/react'
+import { BsThreeDots } from 'react-icons/bs'
+import TimeAgoFormat from '~/lib/react-timeago'
+import { useToasts } from 'react-toast-notifications'
+import { hasuraAdminClient } from '~/lib/hasura-admin-client'
+import { DELETE_PROJECT_COMMENT_BY_ID_MUTATION } from '~/graphql/mutations'
 
 interface ProjectCommentListProps {
-  mutate: any;
-  projects: any;
+  mutate: any
+  projects: any
 }
 
 const ProjectCommentList: React.FC<ProjectCommentListProps> = ({
   mutate,
   projects,
 }) => {
-  const { comments } = projects[0];
+  const { comments } = projects[0]
   return comments.map((comment: any, i: number) => (
     <ProjectCommentItem key={i} {...comment} mutate={mutate} />
-  ));
-};
+  ))
+}
 
-export default ProjectCommentList;
-
-interface ProjectCommentItemProps {
-  id: string;
-  name: string;
-  comment: string;
-  created_at: string;
-  mutate: any;
+type ProjectCommentItemProps = {
+  id: string
+  name: string
+  comment: string
+  created_at: string
+  mutate: any
 }
 
 const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
@@ -40,10 +38,10 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
   created_at,
   mutate,
 }) => {
-  const { addToast } = useToasts();
+  const { addToast } = useToasts()
 
   const handleDeleteComment = async () => {
-    let isDelete = prompt('Confirm password to delete post!', '');
+    let isDelete = prompt('Confirm password to delete post!', '')
     if (isDelete === process.env.ADMINISTRATOR_PASS) {
       const {
         delete_project_comments: {
@@ -51,8 +49,8 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
         },
       } = await hasuraAdminClient.request(
         DELETE_PROJECT_COMMENT_BY_ID_MUTATION,
-        { id }
-      );
+        { id },
+      )
 
       mutate({
         projects: [
@@ -60,23 +58,23 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
             ...project[0].project,
           },
         ],
-      });
+      })
       addToast('Comment Successfully Deleted!', {
         appearance: 'success',
         autoDismiss: true,
-      });
+      })
     } else if (isDelete === '' || isDelete === null) {
       addToast('Please input admin password to delete this post!', {
         appearance: 'warning',
         autoDismiss: true,
-      });
+      })
     } else {
       addToast('You are unauthorized to delete the comment posted!', {
         appearance: 'error',
         autoDismiss: true,
-      });
+      })
     }
-  };
+  }
 
   return (
     <div key={id} className="flex space-x-3 py-3 px-2">
@@ -106,8 +104,8 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const Avatar: React.FC<{ className: any; name: string }> = ({
   className,
@@ -128,8 +126,8 @@ const Avatar: React.FC<{ className: any; name: string }> = ({
         layout="intrinsic"
       />
     </div>
-  );
-};
+  )
+}
 
 const DropdownMenu: React.FC<{ handleDeleteComment: any }> = ({
   handleDeleteComment,
@@ -173,5 +171,7 @@ const DropdownMenu: React.FC<{ handleDeleteComment: any }> = ({
         )}
       </Menu>
     </div>
-  );
-};
+  )
+}
+
+export default ProjectCommentList

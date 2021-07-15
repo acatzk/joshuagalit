@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import MyDayLoginWithModal from './MyDayLoginModal';
+import React, { useState } from 'react'
+import MyDayLoginWithModal from './MyDayLoginModal'
 
 const MyDayHeader: React.FC<{}> = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <header className="w-full py-3 px-4 mt-2 md:mt-8 border-b border-gray-200 dark:border-gray-700">
@@ -30,7 +30,7 @@ const MyDayHeader: React.FC<{}> = () => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default MyDayHeader;
+export default MyDayHeader
