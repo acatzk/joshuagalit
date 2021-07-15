@@ -1,56 +1,54 @@
-import useSWR from 'swr'
-import { useEffect } from 'react'
-import { useTheme } from 'next-themes'
-import { useRouter } from 'next/router'
-import ReactTooltip from 'react-tooltip'
-import Layout from '~/layouts/defaultLayout'
-import ProjectPost from '~/components/Projects/ProjectPost'
-import { INSERT_VIEWS_MUTATION } from '~/graphql/mutations'
-import { hasuraAdminClient } from '~/lib/hasura-admin-client'
-import { GET_PROJECT_BY_SLUG_QUERY, GET_PROJECT_SLUGs } from '~/graphql/queries'
+import useSWR from 'swr';
+import { useEffect } from 'react';
+import { useTheme } from 'next-themes';
+import { useRouter } from 'next/router';
+import ReactTooltip from 'react-tooltip';
+import Layout from '~/layouts/defaultLayout';
+import ProjectPost from '~/components/Projects/ProjectPost';
+import { INSERT_VIEWS_MUTATION } from '~/graphql/mutations';
+import { hasuraAdminClient } from '~/lib/hasura-admin-client';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsContext,
-  NextPage,
-} from 'next'
+  GET_PROJECT_BY_SLUG_QUERY,
+  GET_PROJECT_SLUGs,
+} from '~/graphql/queries';
 
 interface ProjectPageProps {
-  initialData: any
+  initialData: any;
 }
 
 const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
-  const router = useRouter()
-  const { slug } = router.query
-  const { theme } = useTheme()
+  const router = useRouter();
+  const { slug } = router.query;
+  const { theme } = useTheme();
 
   const { data, mutate } = useSWR(
     [GET_PROJECT_BY_SLUG_QUERY, slug],
-    async (query, slug) => await hasuraAdminClient.request(query, { slug }),
-    { initialData, revalidateOnMount: true },
-  )
+    (query, slug) => hasuraAdminClient.request(query, { slug }),
+    { initialData, revalidateOnMount: true }
+  );
 
   useEffect(() => {
     const InsertViewer = async () => {
-      const { id } = initialData.projects[0]
+      const { id } = initialData.projects[0];
       const {
         insert_views: {
           returning: { ...project },
         },
       } = await hasuraAdminClient.request(INSERT_VIEWS_MUTATION, {
         project_id: id,
-      })
+      });
       mutate({
         projects: [
           {
             ...project[0].project,
           },
         ],
-      })
-    }
-    InsertViewer()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+      });
+    };
+
+    InsertViewer();
+  }, []);
 
   return (
     <Layout
@@ -67,11 +65,11 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
         />
       </div>
     </Layout>
-  )
-}
+  );
+};
 
 const ProjectHeader = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <div className="px-4 pt-4 md:pt-11">
@@ -94,11 +92,11 @@ const ProjectHeader = () => {
         </svg>
       </button>
     </div>
-  )
-}
+  );
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { projects } = await hasuraAdminClient.request(GET_PROJECT_SLUGs)
+  const { projects } = await hasuraAdminClient.request(GET_PROJECT_SLUGs);
 
   return {
     paths: projects.map(({ slug }) => ({
@@ -107,24 +105,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
       },
     })),
     fallback: false,
-  }
-}
+  };
+};
 
-export const getStaticProps: GetStaticProps = async ({
-  params,
-}: GetStaticPropsContext) => {
-  const { slug } = params!
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug } = params!;
   const initialData = await hasuraAdminClient.request(
     GET_PROJECT_BY_SLUG_QUERY,
-    { slug },
-  )
+    { slug }
+  );
 
   return {
     props: {
       initialData,
     },
     revalidate: 1,
-  }
-}
+  };
+};
 
-export default Projects
+export default Projects;

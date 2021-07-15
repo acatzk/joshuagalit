@@ -1,14 +1,14 @@
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { useNProgress } from '@tanem/react-nprogress'
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useNProgress } from '@tanem/react-nprogress';
 
 const NProgress: React.FC<{}> = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const [state, setState] = useState({
     isRouteChanging: false,
     loadingKey: 0,
-  })
+  });
 
   useEffect(() => {
     const handleRouteChangeStart = () => {
@@ -16,38 +16,38 @@ const NProgress: React.FC<{}> = () => {
         ...prevState,
         isRouteChanging: true,
         loadingKey: prevState.loadingKey ^ 1,
-      }))
-    }
+      }));
+    };
 
     const handleRouteChangeEnd = () => {
       setState((prevState) => ({
         ...prevState,
         isRouteChanging: false,
-      }))
-    }
+      }));
+    };
 
-    router.events.on('routeChangeStart', handleRouteChangeStart)
-    router.events.on('routeChangeComplete', handleRouteChangeEnd)
-    router.events.on('routeChangeError', handleRouteChangeEnd)
+    router.events.on('routeChangeStart', handleRouteChangeStart);
+    router.events.on('routeChangeComplete', handleRouteChangeEnd);
+    router.events.on('routeChangeError', handleRouteChangeEnd);
 
     return () => {
-      router.events.off('routeChangeStart', handleRouteChangeStart)
-      router.events.off('routeChangeComplete', handleRouteChangeEnd)
-      router.events.off('routeChangeError', handleRouteChangeEnd)
-    }
-  }, [router.events])
+      router.events.off('routeChangeStart', handleRouteChangeStart);
+      router.events.off('routeChangeComplete', handleRouteChangeEnd);
+      router.events.off('routeChangeError', handleRouteChangeEnd);
+    };
+  }, [router.events]);
 
   return (
     <Loading isRouteChanging={state.isRouteChanging} key={state.loadingKey} />
-  )
-}
+  );
+};
 
 const Loading: React.FC<{ isRouteChanging: boolean }> = ({
   isRouteChanging,
 }) => {
   const { animationDuration, isFinished, progress } = useNProgress({
     isAnimating: isRouteChanging,
-  })
+  });
 
   return (
     <>
@@ -92,7 +92,7 @@ const Loading: React.FC<{ isRouteChanging: boolean }> = ({
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default NProgress
+export default NProgress;

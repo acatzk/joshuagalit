@@ -1,13 +1,13 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { NextPage } from 'next'
-import { motion } from 'framer-motion'
-import { useRouter } from 'next/router'
+import Head from 'next/head';
+import Image from 'next/image';
+import { NextPage } from 'next';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 
 interface NotFoundPageProps {}
 
 const NotFound: NextPage<NotFoundPageProps> = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <>
@@ -53,7 +53,7 @@ const NotFound: NextPage<NotFoundPageProps> = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;

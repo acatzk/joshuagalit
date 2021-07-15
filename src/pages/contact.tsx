@@ -1,15 +1,17 @@
-import Image from 'next/image'
-import { NextPage } from 'next'
-import { contacts } from '~/data'
-import emailjs from 'emailjs-com'
-import { motion } from 'framer-motion'
-import Layout from '~/layouts/defaultLayout'
-import { useToasts } from 'react-toast-notifications'
-import ContactForm from '~/components/Contact/ContactForm'
-import { stagger, fadeInUp, routeAnimation } from '~/animation'
+import Image from 'next/image';
+import { NextPage } from 'next';
+import { contacts } from '~/data';
+import emailjs from 'emailjs-com';
+import { motion } from 'framer-motion';
+import Layout from '~/layouts/defaultLayout';
+import { useToasts } from 'react-toast-notifications';
+import ContactForm from '~/components/Contact/ContactForm';
+import { stagger, fadeInUp, routeAnimation } from '~/animation';
 
-const Contact: NextPage<{}> = () => {
-  const { addToast } = useToasts()
+interface ContactPageProps {}
+
+const Contact: NextPage<ContactPageProps> = () => {
+  const { addToast } = useToasts();
 
   const handleContact = async ({ name, email, message }, e) => {
     try {
@@ -17,25 +19,25 @@ const Contact: NextPage<{}> = () => {
         `${process.env.GMAIL_SERVICE_ID}`,
         `${process.env.GMAIL_TEMPLATE_ID}`,
         { name, email, message },
-        `${process.env.GMAIL_USER_ID}`,
-      )
+        `${process.env.GMAIL_USER_ID}`
+      );
 
       if (mail) {
         addToast('Your message successfully sent!', {
           appearance: 'success',
           autoDismiss: true,
-        })
+        });
       } else {
         addToast('Something went wrong try again!', {
           appearance: 'error',
           autoDismiss: true,
-        })
+        });
       }
-      e.target.reset()
+      e.target.reset();
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
 
   return (
     <Layout
@@ -94,7 +96,7 @@ const Contact: NextPage<{}> = () => {
         </div>
       </motion.div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

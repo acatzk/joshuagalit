@@ -1,18 +1,18 @@
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
-import DarkModeToggle from 'react-dark-mode-toggle'
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import DarkModeToggle from 'react-dark-mode-toggle';
 
 const ThemeChanger = () => {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   // When mounted on client, now we can show the UI
-  useEffect(() => setMounted(true), [])
+  useEffect(() => setMounted(true), []);
 
   const toggleMode = () =>
-    theme === 'light' ? setTheme('dark') : setTheme('light')
+    theme === 'light' ? setTheme('dark') : setTheme('light');
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
   return (
     <DarkModeToggle
@@ -21,7 +21,7 @@ const ThemeChanger = () => {
       checked={theme === 'light' ? false : true}
       size={55}
     />
-  )
-}
+  );
+};
 
-export default ThemeChanger
+export default ThemeChanger;

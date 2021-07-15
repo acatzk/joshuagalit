@@ -1,12 +1,12 @@
-import React from 'react'
-import moment from 'moment'
-import Link from 'next/link'
+import React from 'react';
+import moment from 'moment';
+import Link from 'next/link';
 
 interface BlogCardProps {
-  slug: string
-  title: string
-  publishedAt: string
-  summary: string
+  slug: string;
+  title: string;
+  publishedAt: string;
+  summary: string;
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({
@@ -15,10 +15,10 @@ const BlogCard: React.FC<BlogCardProps> = ({
   publishedAt,
   summary,
 }) => {
-  const formattedData = moment(publishedAt).format('MMMM DD, YYYY')
+  const formattedData = moment(publishedAt).format('MMMM DD, YYYY');
 
   return (
-    <Link href={`/blog/${slug}`}>
+    <Link href={`/${slug}`}>
       <a className="py-6 group">
         <div className="flex flex-col">
           <div className="flex items-start justify-between space-x-3">
@@ -35,7 +35,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
         </div>
       </a>
     </Link>
-  )
-}
+  );
+};
 
-export default BlogCard
+export default BlogCard;

@@ -1,9 +1,20 @@
-import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document';
 
-class Document extends NextDocument<{}> {
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
+  }
+
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <link rel="icon" href="/favicon.ico" />
           <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
@@ -14,8 +25,6 @@ class Document extends NextDocument<{}> {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
-
-export default Document

@@ -1,14 +1,28 @@
-import { motion } from 'framer-motion'
-import { routeAnimation } from '~/animation'
-import Layout from '~/layouts/defaultLayout'
-import { getAllPosts } from '~/utils/blogFiles'
-import { GetStaticProps, NextPage } from 'next'
-import BlogList from '~/components/Blog/BlogList'
-import BlogHeader from '~/components/Blog/BlogHeader'
+import { motion } from 'framer-motion';
+import { routeAnimation } from '~/animation';
+import Layout from '~/layouts/defaultLayout';
+import { getAllPosts } from '~/utils/blogFiles';
+import { GetStaticProps, NextPage } from 'next';
+import BlogList from '~/components/Blog/BlogList';
+import BlogHeader from '~/components/Blog/BlogHeader';
 
 interface BlogPageProps {
-  posts: []
+  posts: [];
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const allPosts = await getAllPosts();
+
+  return {
+    props: {
+      posts: allPosts.map(({ data, content, slug }) => ({
+        ...data,
+        content,
+        slug,
+      })),
+    },
+  };
+};
 
 const Blog: NextPage<BlogPageProps> = ({ posts }) => {
   return (
@@ -28,21 +42,7 @@ const Blog: NextPage<BlogPageProps> = ({ posts }) => {
         </div>
       </motion.div>
     </Layout>
-  )
-}
+  );
+};
 
-export const getStaticProps: GetStaticProps = () => {
-  const allPosts = getAllPosts()
-
-  return {
-    props: {
-      posts: allPosts.map(({ data, content, slug }) => ({
-        ...data,
-        content,
-        slug,
-      })),
-    },
-  }
-}
-
-export default Blog
+export default Blog;

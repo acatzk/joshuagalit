@@ -1,10 +1,10 @@
-import React from 'react'
-import Image from 'next/image'
-import { IGitHubLink } from '~/type'
-import { githubStats } from '~/data'
-import { FiMail } from 'react-icons/fi'
-import { BsDownload } from 'react-icons/bs'
-import { GoLocation } from 'react-icons/go'
+import React from 'react';
+import Image from 'next/image';
+import { IGitHubLink } from '~/type';
+import { githubStats } from '~/data';
+import { FiMail } from 'react-icons/fi';
+import { BsDownload } from 'react-icons/bs';
+import { GoLocation } from 'react-icons/go';
 
 const Sidebar: React.FC<{}> = () => {
   return (
@@ -58,20 +58,19 @@ const Sidebar: React.FC<{}> = () => {
         <h1 className="font-semibold text-sm text-gray-600 dark:text-gray-300">
           Organizations
         </h1>
-        <a href="https://github.com/acatzk" target="_blank" rel="noreferrer">
+        <a href="https://github.com/acatzk" target="_blank">
           <Image
             src="https://avatars.githubusercontent.com/u/73483861?s=60&v=4"
             width={35}
             height={35}
             layout="fixed"
-            alt="Organization Image"
             className="rounded-lg"
           />
         </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const Avatar: React.FC<{ src: string; alt?: string }> = ({ src, alt }) => {
   return (
@@ -86,11 +85,11 @@ const Avatar: React.FC<{ src: string; alt?: string }> = ({ src, alt }) => {
         className="rounded-full bg-gray-200 dark:gray-800"
       />
     </div>
-  )
-}
+  );
+};
 
 const GitHubLink: React.FC<IGitHubLink> = ({ id, Icon, count, label }) => {
-  const getDot = (id) => id <= 2
+  const getDot = (id) => id <= 2;
 
   return (
     <div className="flex items-center space-x-1">
@@ -98,7 +97,6 @@ const GitHubLink: React.FC<IGitHubLink> = ({ id, Icon, count, label }) => {
         href="https://github.com/acatzk"
         className="group flex items-center space-x-1"
         target="_blank"
-        rel="noreferrer"
       >
         {Icon && (
           <Icon className="w-4 h-4 text-gray-500 dark:text-gray-400 group-hover:text-blue-twitter transition ease-in-out duration-150" />
@@ -112,7 +110,7 @@ const GitHubLink: React.FC<IGitHubLink> = ({ id, Icon, count, label }) => {
       </a>
       {getDot(id) && <span>&middot;</span>}
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
