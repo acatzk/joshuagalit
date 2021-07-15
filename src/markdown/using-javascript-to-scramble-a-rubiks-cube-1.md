@@ -72,8 +72,8 @@ var options = [
   "B'",
   "L'",
   "D'",
-];
-var scramble = [];
+]
+var scramble = []
 ```
 
 Let’s step back and think about how we want to approach this next part. We need to randomly select one element in the first array and put it into the second array. We then need to repeat this 19 more times so we have a scramble with 20 elements.
@@ -82,7 +82,7 @@ Let’s tackle the first part. To randomly select an element in the firrst array
 
 ```javascript
 function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
+  return Math.floor(Math.random() * Math.floor(max))
 }
 ```
 
@@ -93,7 +93,7 @@ The above code is doing a few things. First, it is declaring a function called g
 Now that we have a way to randomly get an element in the first array, we need to put it into the second array. JavaScript, like other languages, has built in methods for doing common tasks. One of these methods is called push. This method works on arrays and allows us to push one item onto the array. In our case, we will be pushing one string move onto the array.
 
 ```javascript
-scramble.push(options[getRandomInt(18)]);
+scramble.push(options[getRandomInt(18)])
 ```
 
 The above code gets a random int from 1 to 18 using the getRandomInt method, gets the corresponding cube rotation at that index in array options, and pushes it onto the new array, scramble.
@@ -102,7 +102,7 @@ If you run this code, only one move will be in the new array. To push 20 moves i
 
 ```javascript
 for (var i = 0; i < 20; i++) {
-  scramble.push(options[getRandomInt(18)]);
+  scramble.push(options[getRandomInt(18)])
 }
 ```
 

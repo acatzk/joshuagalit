@@ -1,25 +1,25 @@
-import useSWR from 'swr';
-import moment from 'moment';
-import Image from 'next/image';
-import { useEffect } from 'react';
-import getReadTime from '~/utils/read-time';
-import Layout from '~/layouts/defaultLayout';
-import hydrate from 'next-mdx-remote/hydrate';
-import { getAllPosts } from '~/utils/blogFiles';
-import SponsorCard from '~/components/SponsorCard';
-import renderToString from 'next-mdx-remote/render-to-string';
-import { hasuraAdminClient } from '~/lib/hasura-admin-client';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { INSERT_BLOG_VIEWS_MUTATION } from '~/graphql/mutations';
-import { GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY } from '~/graphql/queries';
+import useSWR from 'swr'
+import moment from 'moment'
+import Image from 'next/image'
+import { useEffect } from 'react'
+import getReadTime from '~/utils/read-time'
+import Layout from '~/layouts/defaultLayout'
+import hydrate from 'next-mdx-remote/hydrate'
+import { getAllPosts } from '~/utils/blogFiles'
+import SponsorCard from '~/components/SponsorCard'
+import renderToString from 'next-mdx-remote/render-to-string'
+import { hasuraAdminClient } from '~/lib/hasura-admin-client'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { INSERT_BLOG_VIEWS_MUTATION } from '~/graphql/mutations'
+import { GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY } from '~/graphql/queries'
 
 interface BlogPostProps {
-  title: string;
-  publishedAt: string;
-  content: any;
-  slug: string;
-  summary: string;
-  readTime: string;
+  title: string
+  publishedAt: string
+  content: any
+  slug: string
+  summary: string
+  readTime: string
 }
 
 const BlogPost: NextPage<BlogPostProps> = ({
@@ -30,24 +30,25 @@ const BlogPost: NextPage<BlogPostProps> = ({
   summary,
   readTime,
 }) => {
-  const hydratedContent = hydrate(content);
-  const formattedData = moment(publishedAt).format('MMMM DD, YYYY');
+  const hydratedContent = hydrate(content)
+  const formattedData = moment(publishedAt).format('MMMM DD, YYYY')
 
   const { data, mutate } = useSWR(
     [GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY, slug],
     (query, slug) => hasuraAdminClient.request(query, { slug }),
-    { revalidateOnMount: true }
-  );
-  const views = data?.blog_views_aggregate?.aggregate?.count;
+    { revalidateOnMount: true },
+  )
+  const views = data?.blog_views_aggregate?.aggregate?.count
 
   useEffect(() => {
     async function InsertViewer() {
-      await hasuraAdminClient.request(INSERT_BLOG_VIEWS_MUTATION, { slug });
-      mutate({ ...data });
+      await hasuraAdminClient.request(INSERT_BLOG_VIEWS_MUTATION, { slug })
+      mutate({ ...data })
     }
 
-    InsertViewer();
-  }, []);
+    InsertViewer()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Layout headTitle={title} metaDescription={summary}>
@@ -93,11 +94,11 @@ const BlogPost: NextPage<BlogPostProps> = ({
         </div>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allPosts = await getAllPosts();
+  const allPosts = await getAllPosts()
   return {
     paths: allPosts.map((post) => ({
       params: {
@@ -105,16 +106,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
       },
     })),
     fallback: false,
-  };
-};
+  }
+}
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug } = params!;
-  const allPosts = getAllPosts();
+  const { slug } = params!
+  const allPosts = getAllPosts()
 
-  const { data, content }: any = allPosts.find((post) => post.slug === slug);
-  const mdxSource = await renderToString(content);
-  const readTime = getReadTime(content);
+  const { data, content }: any = allPosts.find((post) => post.slug === slug)
+  const mdxSource = await renderToString(content)
+  const readTime = getReadTime(content)
 
   return {
     props: {
@@ -122,7 +123,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       content: mdxSource,
       readTime,
     },
-  };
-};
+  }
+}
 
-export default BlogPost;
+export default BlogPost

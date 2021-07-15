@@ -1,11 +1,11 @@
-import React from 'react';
-import { mydaylist } from '~/data';
-import { NextPage } from 'next';
-import { motion } from 'framer-motion';
-import Layout from '~/layouts/defaultLayout';
-import { routeAnimation } from '~/animation';
-import MyDayList from '~/components/MyDay/MyDayList';
-import MyDayHeader from '~/components/MyDay/MyDayHeader';
+import React from 'react'
+import { mydaylist } from '~/data'
+import { NextPage } from 'next'
+import { motion } from 'framer-motion'
+import Layout from '~/layouts/defaultLayout'
+import { routeAnimation } from '~/animation'
+import MyDayList from '~/components/MyDay/MyDayList'
+import MyDayHeader from '~/components/MyDay/MyDayHeader'
 
 const MyDay: NextPage<{}> = () => {
   return (
@@ -24,7 +24,7 @@ const MyDay: NextPage<{}> = () => {
         <MyDayList mydaylist={mydaylist} />
       </motion.div>
     </Layout>
-  );
-};
+  )
+}
 
-export default MyDay;
+export default MyDay

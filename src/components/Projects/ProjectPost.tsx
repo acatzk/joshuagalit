@@ -1,14 +1,14 @@
-import React from 'react';
-import Image from 'next/image';
-import Moment from 'react-moment';
-import { FiEye } from 'react-icons/fi';
-import ProjectComment from './ProjectComment';
-import { BiMessageRounded } from 'react-icons/bi';
-import SponsorCard from '~/components/SponsorCard';
+import React from 'react'
+import Image from 'next/image'
+import Moment from 'react-moment'
+import { FiEye } from 'react-icons/fi'
+import ProjectComment from './ProjectComment'
+import { BiMessageRounded } from 'react-icons/bi'
+import SponsorCard from '~/components/SponsorCard'
 
 interface ProjectPostProps {
-  projects: any;
-  mutate: any;
+  projects: any
+  mutate: any
 }
 
 const ProjectPost: React.FC<ProjectPostProps> = ({ projects, mutate }) => {
@@ -24,7 +24,7 @@ const ProjectPost: React.FC<ProjectPostProps> = ({ projects, mutate }) => {
     comments_aggregate: {
       aggregate: { commentsCount },
     },
-  } = projects[0];
+  } = projects[0]
 
   return (
     <div key={id} className="px-4 space-y-6 pb-10">
@@ -89,7 +89,7 @@ const ProjectPost: React.FC<ProjectPostProps> = ({ projects, mutate }) => {
       <ProjectComment {...projects} mutate={mutate} />
       <SponsorCard />
     </div>
-  );
-};
+  )
+}
 
-export default ProjectPost;
+export default ProjectPost

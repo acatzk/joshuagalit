@@ -1,8 +1,8 @@
-import React from 'react';
-import { FiSearch } from 'react-icons/fi';
+import React from 'react'
+import { FiSearch } from 'react-icons/fi'
 
 interface BlogHeaderProps {
-  count: number;
+  count: number
 }
 
 const BlogHeader: React.FC<BlogHeaderProps> = ({ count }) => {
@@ -20,7 +20,7 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({ count }) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default BlogHeader;
+export default BlogHeader
