@@ -7,8 +7,13 @@ import Layout from '~/layouts/defaultLayout'
 import ProjectPost from '~/components/Projects/ProjectPost'
 import { INSERT_VIEWS_MUTATION } from '~/graphql/mutations'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { GET_PROJECT_BY_SLUG_QUERY, GET_PROJECT_SLUGs } from '~/graphql/queries'
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  GetStaticPropsContext,
+  NextPage,
+} from 'next'
 
 interface ProjectPageProps {
   initialData: any
@@ -16,8 +21,8 @@ interface ProjectPageProps {
 
 const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
   const router = useRouter()
-  const { slug } = router.query
   const { theme } = useTheme()
+  const { slug, isFallback } = router.query
 
   const { data, mutate } = useSWR(
     [GET_PROJECT_BY_SLUG_QUERY, slug],
@@ -47,6 +52,19 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
     InsertViewer()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  if (isFallback)
+    return (
+      <Layout headTitle={initialData.projects[0].title}>
+        Loading Project...
+      </Layout>
+    )
+  if (!isFallback && !data)
+    return (
+      <Layout headTitle={initialData.projects[0].title}>
+        No such project found
+      </Layout>
+    )
 
   return (
     <Layout
@@ -102,12 +120,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
         slug,
       },
     })),
-    fallback: false,
+    fallback: true,
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug } = params!
+export const getStaticProps: GetStaticProps = async ({
+  params,
+}: GetStaticPropsContext) => {
+  const { slug }: any = params
+
   const initialData = await hasuraAdminClient.request(
     GET_PROJECT_BY_SLUG_QUERY,
     { slug },

@@ -40,9 +40,9 @@ const Layout: React.FC<LayoutProps> = ({
                 </div>
               </a>
             </ActiveLink>
-            {/* <button className="focus:outline-none">
+            <button className="focus:outline-none">
               <SoundIcon className="w-6 h-6 text-gray-200 dark:text-gray-500" />
-            </button> */}
+            </button>
           </div>
           <div className="hidden md:block">
             <div className="flex flex-col space-y-3">
