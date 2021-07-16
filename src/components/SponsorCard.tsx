@@ -71,7 +71,7 @@ const Avatar: React.FC<{
 }> = ({ src, width, height }) => {
   return (
     <Image
-      className="rounded-lg border border-gray-200 dark:border-gray-700"
+      className="rounded-lg border bg-gray-200 bg:border-gray-700"
       src={src}
       alt="My Avatar Picture"
       width={width}
