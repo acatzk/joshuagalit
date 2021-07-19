@@ -9,7 +9,7 @@ interface FeedbackProps {
 }
 
 const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
-  const [emoji, setEmoji] = useState('')
+  const [emoji, setEmoji] = useState('amaze')
   const {
     errors,
     register,
