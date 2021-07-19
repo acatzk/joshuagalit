@@ -56,14 +56,16 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
         )}
       </div>
       <div className="flex items-center justify-between px-3 border-t border-gray-200 dark:border-gray-700 py-1.5 bg-gray-50 dark:bg-gray-800">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           {emojis.map(({ icon, text }, i) => (
             <div
               key={i}
               onClick={() => setEmoji(text)}
               className={`${
-                emoji === text ? 'border-yellow-300' : 'dark:border-gray-700'
-              } cursor-pointer rounded-full border p-1 bg-white dark:bg-gray-700 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150 transform hover:scale-110`}
+                emoji === text &&
+                'ring-2 ring-offset-2 ring-yellow-300 bg-transparent'
+              } relative h-[25px] w-[25px] cursor-pointer rounded-full bg-transparent p-1 dark:bg-gray-700 
+              focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150 transform hover:scale-110`}
             >
               <input
                 type="text"
@@ -73,7 +75,7 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
                 className="hidden w-5 h-5"
                 ref={register()}
               />
-              <Image width={25} height={25} src={icon} alt="Icon" />
+              <Image layout="fill" src={icon} alt="Icon" />
             </div>
           ))}
         </div>
