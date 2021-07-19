@@ -19,6 +19,37 @@ interface ProjectPageProps {
   initialData: any
 }
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { projects } = await hasuraAdminClient.request(GET_PROJECT_SLUGs)
+
+  return {
+    paths: projects.map(({ slug }) => ({
+      params: {
+        slug,
+      },
+    })),
+    fallback: true,
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext,
+) => {
+  const { params } = context
+
+  const initialData = await hasuraAdminClient.request(
+    GET_PROJECT_BY_SLUG_QUERY,
+    { slug: params?.slug },
+  )
+
+  return {
+    props: {
+      initialData,
+    },
+    revalidate: 1,
+  }
+}
+
 const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
   const router = useRouter()
   const { theme } = useTheme()
@@ -26,7 +57,7 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
 
   const { data, mutate } = useSWR(
     [GET_PROJECT_BY_SLUG_QUERY, slug],
-    (query, slug) => hasuraAdminClient.request(query, { slug }),
+    async (query, slug) => await hasuraAdminClient.request(query, { slug }),
     { initialData, revalidateOnMount: true },
   )
 
@@ -53,18 +84,8 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  if (isFallback)
-    return (
-      <Layout headTitle={initialData.projects[0].title}>
-        Loading Project...
-      </Layout>
-    )
-  if (!isFallback && !data)
-    return (
-      <Layout headTitle={initialData.projects[0].title}>
-        No such project found
-      </Layout>
-    )
+  if (isFallback) return <p>Loading Projects</p>
+  if (!isFallback && !data) return <p>No such project found</p>
 
   return (
     <Layout
@@ -109,37 +130,6 @@ const ProjectHeader = () => {
       </button>
     </div>
   )
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const { projects } = await hasuraAdminClient.request(GET_PROJECT_SLUGs)
-
-  return {
-    paths: projects.map(({ slug }) => ({
-      params: {
-        slug,
-      },
-    })),
-    fallback: false,
-  }
-}
-
-export const getStaticProps: GetStaticProps = async ({
-  params,
-}: GetStaticPropsContext) => {
-  const { slug }: any = params
-
-  const initialData = await hasuraAdminClient.request(
-    GET_PROJECT_BY_SLUG_QUERY,
-    { slug },
-  )
-
-  return {
-    props: {
-      initialData,
-    },
-    revalidate: 1,
-  }
 }
 
 export default Projects
