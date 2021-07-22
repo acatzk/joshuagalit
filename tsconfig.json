@@ -2,8 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"],
-      "/*": ["/"]
+      "": ["/*"]
     },
     "allowJs": true,
     "allowUnreachableCode": false,
