@@ -1,16 +1,34 @@
 import useSWR from 'swr'
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
 import { routeAnimation } from 'mock/animation'
 import { GetStaticProps, NextPage } from 'next'
 import { GET_PROJECT_QUERY } from 'graphql/queries'
-import ProjectList from 'components/Projects/ProjectList'
 import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import ProjectHeader from 'components/Projects/ProjectHeader'
 
 interface ProjectsPageProps {
   initialData: any
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const initialData = await hasuraAdminClient.request(GET_PROJECT_QUERY)
+
+  return {
+    props: {
+      initialData,
+    },
+    revalidate: 1,
+  }
+}
+
+const ProjectList = dynamic(() => import('components/Projects/ProjectList'), {
+  ssr: false,
+  loading: () => (
+    <p className="flex items-center justify-center min-h-screen">Loading...</p>
+  ),
+})
 
 const Projects: NextPage<ProjectsPageProps> = ({ initialData }) => {
   const { data } = useSWR(
@@ -39,17 +57,6 @@ const Projects: NextPage<ProjectsPageProps> = ({ initialData }) => {
       </motion.div>
     </Layout>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const initialData = await hasuraAdminClient.request(GET_PROJECT_QUERY)
-
-  return {
-    props: {
-      initialData,
-    },
-    revalidate: 1,
-  }
 }
 
 export default Projects

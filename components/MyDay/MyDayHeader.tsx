@@ -1,5 +1,12 @@
+import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
-import MyDayLoginWithModal from './MyDayLoginModal'
+
+const MyDayLoginWithModal = dynamic(() => import('./MyDayLoginModal'), {
+  ssr: false,
+  loading: () => (
+    <p className="flex items-center justify-center min-h-screen">Loading...</p>
+  ),
+})
 
 const MyDayHeader: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)

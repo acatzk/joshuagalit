@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 import Moment from 'react-moment'
+import dynamic from 'next/dynamic'
 import { FiEye } from 'react-icons/fi'
-import ProjectComment from './ProjectComment'
 import SponsorCard from 'components/SponsorCard'
 import { BiMessageRounded } from 'react-icons/bi'
 
@@ -10,6 +10,13 @@ interface ProjectPostProps {
   projects: any
   mutate: any
 }
+
+const ProjectComment = dynamic(() => import('./ProjectComment'), {
+  ssr: false,
+  loading: () => (
+    <p className="flex items-center justify-center my-6">Loading...</p>
+  ),
+})
 
 const ProjectPost: React.FC<ProjectPostProps> = ({ projects, mutate }) => {
   const {
@@ -41,6 +48,8 @@ const ProjectPost: React.FC<ProjectPostProps> = ({ projects, mutate }) => {
               height={28}
               className="border-gray-200 dark:border-gray-700 rounded-full bg-gray-200 dark:bg-gray-800"
               src="/images/my-avatar.jpg"
+              blurDataURL="/images/my-avatar.jpg"
+              placeholder="blur"
               alt="My Profile Image"
               layout="intrinsic"
             />
@@ -81,6 +90,8 @@ const ProjectPost: React.FC<ProjectPostProps> = ({ projects, mutate }) => {
             width={1000}
             height={550}
             alt={title}
+            blurDataURL={project_image_url}
+            placeholder="blur"
             layout="responsive"
             className="bg-gray-200 dark:bg-gray-800 transition ease-in-out duration-700"
           />

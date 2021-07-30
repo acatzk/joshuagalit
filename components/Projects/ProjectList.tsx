@@ -1,11 +1,18 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
-import ProjectItem from './ProjectItem'
 import { fadeInUp, stagger } from 'mock/animation'
 
 interface ProjecdtListProps {
   projects: []
 }
+
+const ProjectItem = dynamic(() => import('./ProjectItem'), {
+  ssr: false,
+  loading: () => (
+    <p className="flex items-center justify-center min-h-screen">Loading...</p>
+  ),
+})
 
 const ProjectList: React.FC<ProjecdtListProps> = ({ projects }) => {
   return (

@@ -12,7 +12,6 @@ const Navbar: React.FC = () => {
     if (pathname === '/') setActiveItem('About')
     if (pathname === '/projects') setActiveItem('Projects')
     if (pathname === '/resume') setActiveItem('Resume')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

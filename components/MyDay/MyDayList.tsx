@@ -1,11 +1,18 @@
 import React from 'react'
-import MyDayItem from './MyDayItem'
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { fadeInUp, stagger } from 'mock/animation'
 
 interface MyDayListProps {
   mydaylist: any
 }
+
+const MyDayItem = dynamic(() => import('./MyDayItem'), {
+  ssr: false,
+  loading: () => (
+    <p className="flex items-center justify-center min-h-screen">Loading...</p>
+  ),
+})
 
 const MyDayList: React.FC<MyDayListProps> = ({ mydaylist }) => {
   return (

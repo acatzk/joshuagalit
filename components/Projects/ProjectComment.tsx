@@ -1,9 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import { GrGithub } from 'react-icons/gr'
 import { useForm } from 'react-hook-form'
 import { useToasts } from 'react-toast-notifications'
-import ProjectCommentList from './ProjectCommentList'
 import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import { BiMessageRoundedDots, BiLinkExternal } from 'react-icons/bi'
 import { INSERT_PROJECT_COMMENT_MUTATION } from 'graphql/mutations'
@@ -12,6 +12,13 @@ interface ProjectCommentProps {
   mutate: any
   projects: any
 }
+
+const ProjectCommentList = dynamic(() => import('./ProjectCommentList'), {
+  ssr: false,
+  loading: () => (
+    <p className="flex items-center justify-center my-4">Loading...</p>
+  ),
+})
 
 const ProjectComment: React.FC<ProjectCommentProps> = ({
   mutate,
@@ -65,8 +72,6 @@ const ProjectComment: React.FC<ProjectCommentProps> = ({
     </div>
   )
 }
-
-export default ProjectComment
 
 const ProjectCommentForm = ({ onSubmit }: any) => {
   const {
@@ -169,8 +174,12 @@ const Avatar: React.FC<{ className: any }> = ({ className }) => {
         alt="Default User Avatar"
         width={40}
         height={40}
+        blurDataURL="/images/default-avatar.jpg"
+        placeholder="blur"
         layout="responsive"
       />
     </div>
   )
 }
+
+export default ProjectComment

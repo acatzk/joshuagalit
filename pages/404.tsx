@@ -23,6 +23,8 @@ const NotFound: NextPage = () => {
                 alt="Cry Emoji Image"
                 width={192}
                 height={192}
+                blurDataURL="/images/emoji.png"
+                placeholder="blur"
                 layout="intrinsic"
               />
             </div>

@@ -1,11 +1,18 @@
 import React from 'react'
 import { NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import { mydaylist } from 'mock/data'
 import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
 import { routeAnimation } from 'mock/animation'
-import MyDayList from 'components/MyDay/MyDayList'
 import MyDayHeader from 'components/MyDay/MyDayHeader'
+
+const MyDayList = dynamic(() => import('components/MyDay/MyDayList'), {
+  ssr: false,
+  loading: () => (
+    <p className="flex items-center justify-center min-h-screen">Loading...</p>
+  ),
+})
 
 const MyDay: NextPage = () => {
   return (
