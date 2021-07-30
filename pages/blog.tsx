@@ -1,8 +1,8 @@
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
 import { getAllPosts } from 'utils/blogFiles'
 import { GetStaticProps, NextPage } from 'next'
-import BlogList from 'components/Blog/BlogList'
 import { routeAnimation } from 'mock/animation'
 import BlogHeader from 'components/Blog/BlogHeader'
 
@@ -23,6 +23,13 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   }
 }
+
+const BlogList = dynamic(() => import('components/Blog/BlogList'), {
+  ssr: false,
+  loading: () => (
+    <p className="flex items-center justify-center min-h-screen">Loading...</p>
+  ),
+})
 
 const Blog: NextPage<BlogPageProps> = ({ posts }) => {
   return (

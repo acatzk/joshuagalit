@@ -59,6 +59,8 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
         height={230}
         alt="Project Image"
         layout="intrinsic"
+        blurDataURL={project_image_url}
+        placeholder="blur"
         onClick={() => router.push(`/projects/${slug}`)}
         className="cursor-pointer bg-gray-200 dark:bg-gray-800"
       />
@@ -103,7 +105,8 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
             <a
               href={source_code_url}
               target="_blank"
-              className="flex items-center font-medium space-x-2 group group-hover:underline text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200"
+              className="flex items-center font-medium space-x-2 group group-hover:underline text-gray-600
+               hover:text-black dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200"
               rel="noreferrer"
             >
               <span className="block">

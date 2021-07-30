@@ -1,10 +1,23 @@
 import { NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import { services } from 'mock/data'
 import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
-import AboutPageLayout from 'layouts/aboutPageLayout'
-import ServiceCard from 'components/Index/ServiceCard'
 import { routeAnimation, fadeInUp, stagger } from 'mock/animation'
+
+const AboutPageLayout = dynamic(() => import('layouts/aboutPageLayout'), {
+  ssr: false,
+  loading: () => (
+    <p className="flex items-center justify-center min-h-screen">Loading...</p>
+  ),
+})
+
+const ServiceCard = dynamic(() => import('components/Index/ServiceCard'), {
+  ssr: false,
+  loading: () => (
+    <p className="flex items-center justify-center min-h-screen">Loading...</p>
+  ),
+})
 
 const Index: NextPage = () => {
   return (

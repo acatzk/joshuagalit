@@ -66,6 +66,8 @@ const Sidebar: React.FC = () => {
             layout="fixed"
             alt="Organization Logo"
             className="rounded-lg"
+            blurDataURL="https://avatars.githubusercontent.com/u/73483861?s=60&v=4"
+            placeholder="blur"
           />
         </a>
       </div>
@@ -81,9 +83,11 @@ const Avatar: React.FC<{ src: string; alt?: string }> = ({ src, alt }) => {
         alt={alt}
         width={220}
         height={220}
-        layout="responsive"
         quality={100}
-        className="rounded-full bg-gray-200 dark:gray-800"
+        blurDataURL={src}
+        placeholder="blur"
+        layout="responsive"
+        className="rounded-full bg-gray-200 dark:bg-gray-800"
       />
     </div>
   )

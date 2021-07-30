@@ -24,6 +24,8 @@ const DiaryItem: React.FC<IDiary> = ({
             height={36}
             width={36}
             alt="Avatar"
+            blurDataURL={avatar_url}
+            placeholder="blur"
             className="rounded-full bg-gray-200 dark:bg-gray-800"
           />
           <div className="flex flex-col">
@@ -67,6 +69,8 @@ const DiaryItem: React.FC<IDiary> = ({
             layout="responsive"
             objectFit="cover"
             quality={100}
+            blurDataURL={post_image}
+            placeholder="blur"
             alt="MyDay Post Image"
             className="bg-gray-200 dark:bg-gray-800"
           />

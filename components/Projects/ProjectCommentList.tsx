@@ -125,6 +125,8 @@ const Avatar: React.FC<{ className: any; name: string }> = ({
         alt="Comment User Avatar"
         width={36}
         height={36}
+        blurDataURL="/images/default-avatar.jpg"
+        placeholder="blur"
         layout="intrinsic"
       />
     </div>
