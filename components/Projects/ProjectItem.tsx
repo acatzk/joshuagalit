@@ -119,14 +119,14 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
           <div className="flex items-center space-x-1 text-gray-500">
             <div className="flex items-center space-x-1 cursor-default">
               <span className="text-xs font-medium mt-0.5 line-clamp-1">
-                {commentsCount ? commentsCount : '-'}
+                {commentsCount}
               </span>
               <BiMessageRounded className="w-4 h-4" />
             </div>
             <span>&middot;</span>
             <div className="flex items-center space-x-1 cursor-default">
               <span className="text-xs font-medium mt-0.5 line-clamp-1">
-                {viewsCount ? commentsCount : '-'}
+                {viewsCount}
               </span>
               <FiEye className="w-4 h-4" />
             </div>
