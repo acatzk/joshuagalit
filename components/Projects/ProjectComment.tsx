@@ -1,9 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
 import { GrGithub } from 'react-icons/gr'
 import { useForm } from 'react-hook-form'
-import { AnimatedLoadingIcon } from 'utils/Icons'
+import ProjectCommentList from './ProjectCommentList'
 import { useToasts } from 'react-toast-notifications'
 import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import { BiMessageRoundedDots, BiLinkExternal } from 'react-icons/bi'
@@ -13,12 +12,6 @@ interface ProjectCommentProps {
   mutate: any
   projects: any
 }
-
-const ProjectCommentList = dynamic(() => import('./ProjectCommentList'), {
-  loading: () => (
-    <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
-  ),
-})
 
 const ProjectComment: React.FC<ProjectCommentProps> = ({
   mutate,
