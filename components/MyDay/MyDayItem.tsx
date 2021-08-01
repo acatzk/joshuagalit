@@ -24,8 +24,6 @@ const DiaryItem: React.FC<IDiary> = ({
             height={36}
             width={36}
             alt="Avatar"
-            blurDataURL={avatar_url}
-            placeholder="blur"
             className="rounded-full bg-gray-200 dark:bg-gray-800"
           />
           <div className="flex flex-col">
@@ -69,8 +67,6 @@ const DiaryItem: React.FC<IDiary> = ({
             layout="responsive"
             objectFit="cover"
             quality={100}
-            blurDataURL={post_image}
-            placeholder="blur"
             alt="MyDay Post Image"
             className="bg-gray-200 dark:bg-gray-800"
           />
@@ -78,15 +74,27 @@ const DiaryItem: React.FC<IDiary> = ({
       </div>
       <div>
         <div className="flex items-center justify-center px-1 my-1">
-          <button className="flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 focus:outline-none transform active:scale-95 transition ease-in-out duration-150">
+          <button
+            className="flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200
+           dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 
+           focus:outline-none transform active:scale-95 transition ease-in-out duration-150"
+          >
             <AiOutlineLike className="w-5 h-5" />
             <span className="font-medium">Like</span>
           </button>
-          <button className="flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 focus:outline-none transform active:scale-95 transition ease-in-out duration-150">
+          <button
+            className="flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200
+           dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 
+           focus:outline-none transform active:scale-95 transition ease-in-out duration-150"
+          >
             <BiComment className="w-5 h-5" />
             <span className="font-medium">Comment</span>
           </button>
-          <button className="flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 focus:outline-none transform active:scale-95 transition ease-in-out duration-150">
+          <button
+            className="flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200
+           dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 
+           focus:outline-none transform active:scale-95 transition ease-in-out duration-150"
+          >
             <RiShareForwardLine className="w-5 h-5" />
             <span className="font-medium">Share</span>
           </button>

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { GrGithub } from 'react-icons/gr'
 import { useForm } from 'react-hook-form'
+import { AnimatedLoadingIcon } from 'utils/Icons'
 import { useToasts } from 'react-toast-notifications'
 import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import { BiMessageRoundedDots, BiLinkExternal } from 'react-icons/bi'
@@ -14,9 +15,8 @@ interface ProjectCommentProps {
 }
 
 const ProjectCommentList = dynamic(() => import('./ProjectCommentList'), {
-  ssr: false,
   loading: () => (
-    <p className="flex items-center justify-center my-4">Loading...</p>
+    <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
   ),
 })
 

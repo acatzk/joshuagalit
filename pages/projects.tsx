@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
 import { routeAnimation } from 'mock/animation'
 import { GetStaticProps, NextPage } from 'next'
+import { AnimatedLoadingIcon } from 'utils/Icons'
 import { GET_PROJECT_QUERY } from 'graphql/queries'
 import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import ProjectHeader from 'components/Projects/ProjectHeader'
@@ -24,9 +25,8 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 const ProjectList = dynamic(() => import('components/Projects/ProjectList'), {
-  ssr: false,
   loading: () => (
-    <p className="flex items-center justify-center min-h-screen">Loading...</p>
+    <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
   ),
 })
 
