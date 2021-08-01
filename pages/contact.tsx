@@ -1,19 +1,12 @@
 import Image from 'next/image'
 import { NextPage } from 'next'
 import emailjs from 'emailjs-com'
-import dynamic from 'next/dynamic'
 import { contacts } from 'mock/data'
 import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
 import { useToasts } from 'react-toast-notifications'
+import ContactForm from 'components/Contact/ContactForm'
 import { stagger, fadeInUp, routeAnimation } from 'mock/animation'
-
-const ContactForm = dynamic(() => import('components/Contact/ContactForm'), {
-  ssr: false,
-  loading: () => (
-    <p className="flex items-center justify-center min-h-screen">Loading...</p>
-  ),
-})
 
 const Contact: NextPage = () => {
   const { addToast } = useToasts()

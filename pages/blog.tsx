@@ -4,6 +4,7 @@ import Layout from 'layouts/defaultLayout'
 import { getAllPosts } from 'utils/blogFiles'
 import { GetStaticProps, NextPage } from 'next'
 import { routeAnimation } from 'mock/animation'
+import { AnimatedLoadingIcon } from 'utils/Icons'
 import BlogHeader from 'components/Blog/BlogHeader'
 
 interface BlogPageProps {
@@ -27,7 +28,7 @@ export const getStaticProps: GetStaticProps = async () => {
 const BlogList = dynamic(() => import('components/Blog/BlogList'), {
   ssr: false,
   loading: () => (
-    <p className="flex items-center justify-center min-h-screen">Loading...</p>
+    <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
   ),
 })
 

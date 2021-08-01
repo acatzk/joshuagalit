@@ -1,18 +1,11 @@
 import Head from 'next/head'
 import { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import Bar from 'components/Index/Bar'
 import Layout from 'layouts/defaultLayout'
 import { tools, languages } from 'mock/data'
+import AboutPageLayout from 'layouts/aboutPageLayout'
 import { fadeInUp, stagger, routeAnimation } from 'mock/animation'
-
-const AboutPageLayout = dynamic(() => import('layouts/aboutPageLayout'), {
-  ssr: false,
-  loading: () => (
-    <p className="flex items-center justify-center min-h-screen">Loading...</p>
-  ),
-})
 
 const Resume: NextPage = () => {
   return (

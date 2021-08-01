@@ -1,4 +1,10 @@
-export const LogoIcon = ({ className }) => {
+import React from 'react'
+
+interface ILogo {
+  className?: string
+}
+
+export const LogoIcon: React.FC<ILogo> = ({ className }) => {
   return (
     <svg className={className} viewBox="0 0 24 30">
       <path
@@ -10,7 +16,7 @@ export const LogoIcon = ({ className }) => {
   )
 }
 
-export const SoundIcon = ({ className }) => {
+export const SoundIcon: React.FC<ILogo> = ({ className }) => {
   return (
     <svg className={className} viewBox="0 0 55 80" fill="currentColor">
       <g transform="matrix(1 0 0 -1 0 80)">
@@ -59,7 +65,7 @@ export const SoundIcon = ({ className }) => {
   )
 }
 
-export const VerifiedIcon = ({ className }) => {
+export const VerifiedIcon: React.FC<ILogo> = ({ className }) => {
   return (
     <svg className={className} viewBox="0 0 24 24">
       <g>
@@ -69,33 +75,82 @@ export const VerifiedIcon = ({ className }) => {
   )
 }
 
-export const AnimatedLoadingIcon = ({ className }) => {
+export const AnimatedLoadingIcon: React.FC<ILogo> = ({ className }) => {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 38 38"
-      xmlns="http://www.w3.org/2000/svg"
-      stroke="currentColor"
-      color="#000000"
-    >
-      <g
-        transform="translate(1 1)"
-        strokeWidth="2"
-        fill="none"
-        fillRule="evenodd"
+    <div className="flex flex-col items-center justify-center my-4">
+      <svg
+        className={className}
+        viewBox="0 0 120 30"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
       >
-        <circle strokeOpacity=".5" cx="18" cy="18" r="18"></circle>
-        <path d="M36 18c0-9.94-8.06-18-18-18">
-          <animateTransform
-            attributeName="transform"
-            type="rotate"
-            from="0 18 18"
-            to="360 18 18"
-            dur="1s"
+        <circle cx="15" cy="15" r="15">
+          <animate
+            attributeName="r"
+            from="15"
+            to="15"
+            begin="0s"
+            dur="0.8s"
+            values="15;9;15"
+            calcMode="linear"
             repeatCount="indefinite"
-          ></animateTransform>
-        </path>
-      </g>
-    </svg>
+          ></animate>
+          <animate
+            attributeName="fill-opacity"
+            from="1"
+            to="1"
+            begin="0s"
+            dur="0.8s"
+            values="1;.5;1"
+            calcMode="linear"
+            repeatCount="indefinite"
+          ></animate>
+        </circle>
+        <circle cx="60" cy="15" r="9" fillOpacity=".3">
+          <animate
+            attributeName="r"
+            from="9"
+            to="9"
+            begin="0s"
+            dur="0.8s"
+            values="9;15;9"
+            calcMode="linear"
+            repeatCount="indefinite"
+          ></animate>
+          <animate
+            attributeName="fill-opacity"
+            from=".5"
+            to=".5"
+            begin="0s"
+            dur="0.8s"
+            values=".5;1;.5"
+            calcMode="linear"
+            repeatCount="indefinite"
+          ></animate>
+        </circle>
+        <circle cx="105" cy="15" r="15">
+          <animate
+            attributeName="r"
+            from="15"
+            to="15"
+            begin="0s"
+            dur="0.8s"
+            values="15;9;15"
+            calcMode="linear"
+            repeatCount="indefinite"
+          ></animate>
+          <animate
+            attributeName="fill-opacity"
+            from="1"
+            to="1"
+            begin="0s"
+            dur="0.8s"
+            values="1;.5;1"
+            calcMode="linear"
+            repeatCount="indefinite"
+          ></animate>
+        </circle>
+      </svg>
+    </div>
   )
 }

@@ -3,19 +3,16 @@ import dynamic from 'next/dynamic'
 import { services } from 'mock/data'
 import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
+import { AnimatedLoadingIcon } from 'utils/Icons'
+import ServiceCard from 'components/Index/ServiceCard'
 import { routeAnimation, fadeInUp, stagger } from 'mock/animation'
 
 const AboutPageLayout = dynamic(() => import('layouts/aboutPageLayout'), {
   ssr: false,
   loading: () => (
-    <p className="flex items-center justify-center min-h-screen">Loading...</p>
-  ),
-})
-
-const ServiceCard = dynamic(() => import('components/Index/ServiceCard'), {
-  ssr: false,
-  loading: () => (
-    <p className="flex items-center justify-center min-h-screen">Loading...</p>
+    <div className="flex items-center justify-center min-h-screen">
+      <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
+    </div>
   ),
 })
 

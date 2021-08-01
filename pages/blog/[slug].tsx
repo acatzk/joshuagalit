@@ -2,11 +2,11 @@ import useSWR from 'swr'
 import moment from 'moment'
 import Image from 'next/image'
 import { useEffect } from 'react'
-import dynamic from 'next/dynamic'
 import getReadTime from 'utils/read-time'
 import Layout from 'layouts/defaultLayout'
 import hydrate from 'next-mdx-remote/hydrate'
 import { getAllPosts } from 'utils/blogFiles'
+import SponsorCard from 'components/SponsorCard'
 import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import renderToString from 'next-mdx-remote/render-to-string'
 import { INSERT_BLOG_VIEWS_MUTATION } from 'graphql/mutations'
@@ -21,13 +21,6 @@ interface BlogPostProps {
   summary: string
   readTime: string
 }
-
-const SponsorCard = dynamic(() => import('components/SponsorCard'), {
-  ssr: false,
-  loading: () => (
-    <p className="flex items-center justify-center min-h-screen">Loading...</p>
-  ),
-})
 
 const BlogPost: NextPage<BlogPostProps> = ({
   title,
@@ -84,8 +77,8 @@ const BlogPost: NextPage<BlogPostProps> = ({
                   {readTime} min read
                 </span>
                 <span className="font-extralight">|</span>
-                <span className="font-medium line-clamp-1" data-tip="Views">
-                  {views} views
+                <span className="font-medium line-clamp-1">
+                  {views ? views : '-'} views
                 </span>
               </div>
             </div>
@@ -102,8 +95,8 @@ const BlogPost: NextPage<BlogPostProps> = ({
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const allPosts = await getAllPosts()
+export const getStaticPaths: GetStaticPaths = () => {
+  const allPosts = getAllPosts()
   return {
     paths: allPosts.map((post) => ({
       params: {

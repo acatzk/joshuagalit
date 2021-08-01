@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { FiEye } from 'react-icons/fi'
 import { useRouter } from 'next/router'
-import ReactTooltip from 'react-tooltip'
 import { GrGithub } from 'react-icons/gr'
 import { VerifiedIcon } from 'utils/Icons'
 import TimeAgoFormat from 'lib/react-timeago'
@@ -118,31 +117,20 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
             </a>
           )}
           <div className="flex items-center space-x-1 text-gray-500">
-            <div
-              className="flex items-center space-x-1 cursor-default"
-              data-tip="Comments"
-            >
+            <div className="flex items-center space-x-1 cursor-default">
               <span className="text-xs font-medium mt-0.5 line-clamp-1">
-                {commentsCount}
+                {commentsCount ? commentsCount : '-'}
               </span>
               <BiMessageRounded className="w-4 h-4" />
             </div>
             <span>&middot;</span>
-            <div
-              className="flex items-center space-x-1 cursor-default"
-              data-tip="Views"
-            >
+            <div className="flex items-center space-x-1 cursor-default">
               <span className="text-xs font-medium mt-0.5 line-clamp-1">
-                {viewsCount}
+                {viewsCount ? commentsCount : '-'}
               </span>
               <FiEye className="w-4 h-4" />
             </div>
           </div>
-          <ReactTooltip
-            place="bottom"
-            type={theme === 'light' ? 'dark' : 'light'}
-            effect="solid"
-          />
         </div>
       </div>
     </div>

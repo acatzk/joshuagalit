@@ -1,18 +1,11 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
+import BlogItem from './BlogItem'
 import { motion } from 'framer-motion'
 import { fadeInUp, stagger } from 'mock/animation'
 
 interface BlogListProps {
   blogs: any
 }
-
-const BlogItem = dynamic(() => import('./BlogItem'), {
-  ssr: false,
-  loading: () => (
-    <p className="flex items-center justify-center min-h-screen">Loading...</p>
-  ),
-})
 
 const BlogList: React.FC<BlogListProps> = ({ blogs }) => {
   return (

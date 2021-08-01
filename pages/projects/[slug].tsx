@@ -1,10 +1,8 @@
 import useSWR from 'swr'
 import { useEffect } from 'react'
-import dynamic from 'next/dynamic'
-import { useTheme } from 'next-themes'
 import { useRouter } from 'next/router'
-import ReactTooltip from 'react-tooltip'
 import Layout from 'layouts/defaultLayout'
+import ProjectPost from 'components/Projects/ProjectPost'
 import { INSERT_VIEWS_MUTATION } from 'graphql/mutations'
 import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import { GET_PROJECT_BY_SLUG_QUERY, GET_PROJECT_SLUGs } from 'graphql/queries'
@@ -50,15 +48,8 @@ export const getStaticProps: GetStaticProps = async (
   }
 }
 
-const ProjectPost = dynamic(() => import('components/Projects/ProjectPost'), {
-  loading: () => (
-    <p className="flex items-center justify-center min-h-screen">Loading...</p>
-  ),
-})
-
 const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
   const router = useRouter()
-  const { theme } = useTheme()
   const { slug, isFallback } = router.query
 
   const { data, mutate } = useSWR(
@@ -99,11 +90,6 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
       <div className="w-full max-w-5xl mx-auto">
         <ProjectHeader />
         <ProjectPost mutate={mutate} projects={data.projects} />
-        <ReactTooltip
-          place="right"
-          type={theme === 'light' ? 'dark' : 'light'}
-          effect="solid"
-        />
       </div>
     </Layout>
   )

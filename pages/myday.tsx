@@ -5,12 +5,13 @@ import { mydaylist } from 'mock/data'
 import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
 import { routeAnimation } from 'mock/animation'
+import { AnimatedLoadingIcon } from 'utils/Icons'
 import MyDayHeader from 'components/MyDay/MyDayHeader'
 
 const MyDayList = dynamic(() => import('components/MyDay/MyDayList'), {
   ssr: false,
   loading: () => (
-    <p className="flex items-center justify-center min-h-screen">Loading...</p>
+    <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
   ),
 })
 
