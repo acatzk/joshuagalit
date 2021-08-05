@@ -9,6 +9,7 @@ import {
   IService,
   ISkill,
   IDiary,
+  ISocialLink,
 } from 'mock/type'
 import {
   FaReact,
@@ -67,24 +68,21 @@ export const navigations: INavigation[] = [
   },
 ]
 
-export const socialLinks = [
+export const socialLinks: ISocialLink[] = [
   {
-    icon: (
-      <FaGithub className="w-6 h-6 text-[#333] dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
-    ),
+    Icon: FaGithub,
     href: 'https://github.com/acatzk',
+    text: 'github',
   },
   {
-    icon: (
-      <FaLinkedin className="w-6 h-6 text-[#0077B5] dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
-    ),
+    Icon: FaLinkedin,
     href: 'https://www.linkedin.com/in/joshua-galit-7b6b84200/',
+    text: 'linkedin',
   },
   {
-    icon: (
-      <FaStackOverflow className="w-6 h-6 text-[#f48024] dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200" />
-    ),
+    Icon: FaStackOverflow,
     href: 'https://stackoverflow.com/users/14108225/joshua-galit',
+    text: 'stackoverflow',
   },
 ]
 
