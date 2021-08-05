@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import { motion } from 'framer-motion'
+import { ISocialLink } from 'mock/type'
 import { Menu } from '@headlessui/react'
 import ActiveLink from 'utils/ActiveLink'
 import { BsThreeDots } from 'react-icons/bs'
@@ -47,14 +48,20 @@ const Layout: React.FC<LayoutProps> = ({
           <div className="hidden md:block">
             <div className="flex flex-col space-y-3">
               {/* My Social Links */}
-              {socialLinks.map(({ icon, href }, i) => (
+              {socialLinks.map(({ Icon, href, text }, i) => (
                 <motion.button
                   key={i}
                   whileHover={{ y: -3 }}
                   className="focus:outline-none rounded-full p-1 hover:shadow-lg"
                 >
                   <a href={href} target="_blank" rel="noreferrer">
-                    {icon}
+                    <Icon
+                      className={`w-6 h-6 dark:text-gray-400 
+                      dark:hover:text-white transition ease-in-out duration-200
+                        ${text === 'github' && 'text-[#333]'}
+                        ${text === 'linkedin' && 'text-[#0077B5]'}
+                        ${text === 'stackoverflow' && 'text-[#f48024]'}`}
+                    />
                   </a>
                 </motion.button>
               ))}
@@ -109,7 +116,11 @@ const Layout: React.FC<LayoutProps> = ({
   )
 }
 
-const SocialMenu: React.FC<{ socialLinks: any }> = ({ socialLinks }) => {
+interface SocialMenuProps {
+  socialLinks: Array<ISocialLink>
+}
+
+const SocialMenu: React.FC<SocialMenuProps> = ({ socialLinks }) => {
   return (
     <Menu>
       {({ open }) => (
@@ -126,14 +137,22 @@ const SocialMenu: React.FC<{ socialLinks: any }> = ({ socialLinks }) => {
               transition={{ duration: 0.2 }}
               className="absolute right-3 top-14 flex flex-col space-y-1 py-1 px-1 z-50 bg-white dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg shadow-lg"
             >
-              {socialLinks.map(({ icon, href }: any, i) => (
+              {socialLinks.map(({ Icon, href, text }, i) => (
                 <Menu.Item key={i}>
                   <motion.button
                     whileHover={{ y: -3 }}
                     className="focus:outline-none rounded-full p-1 hover:shadow-lg"
                   >
                     <Link href={href}>
-                      <a target="_blank">{icon}</a>
+                      <a href={href} target="_blank" rel="noreferrer">
+                        <Icon
+                          className={`w-6 h-6 dark:text-gray-400 
+                          dark:hover:text-white transition ease-in-out duration-200
+                            ${text === 'github' && 'text-[#333]'}
+                            ${text === 'linkedin' && 'text-[#0077B5]'}
+                            ${text === 'stackoverflow' && 'text-[#f48024]'}`}
+                        />
+                      </a>
                     </Link>
                   </motion.button>
                 </Menu.Item>

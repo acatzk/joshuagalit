@@ -46,3 +46,9 @@ export interface IDiary {
   post_caption: string
   post_image: string
 }
+
+export interface ISocialLink {
+  Icon: IconType
+  href: string
+  text?: string
+}
