@@ -28,7 +28,7 @@ const BlogPost: NextPage<BlogPostProps> = ({
   content,
   slug,
   summary,
-  readTime,
+  readTime
 }) => {
   const hydratedContent = hydrate(content)
   const formattedData = moment(publishedAt).format('MMMM DD, YYYY')
@@ -73,20 +73,14 @@ const BlogPost: NextPage<BlogPostProps> = ({
             </h3>
             <div className="flex items-center">
               <div className="flex items-center space-x-1.5 cursor-default text-gray-500 dark:text-gray-400  text-xs">
-                <span className="font-medium line-clamp-1">
-                  {readTime} min read
-                </span>
+                <span className="font-medium line-clamp-1">{readTime} min read</span>
                 <span className="font-extralight">|</span>
-                <span className="font-medium line-clamp-1">
-                  {views ? views : '-'} views
-                </span>
+                <span className="font-medium line-clamp-1">{views ? views : '-'} views</span>
               </div>
             </div>
           </div>
         </div>
-        <div className="prose dark:prose-dark prose-pink">
-          {hydratedContent}
-        </div>
+        <div className="prose dark:prose-dark prose-pink">{hydratedContent}</div>
         <div className="pb-28">
           <SponsorCard />
         </div>
@@ -100,10 +94,10 @@ export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: allPosts.map((post) => ({
       params: {
-        slug: post.slug,
-      },
+        slug: post.slug
+      }
     })),
-    fallback: false,
+    fallback: false
   }
 }
 
@@ -119,8 +113,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       ...data,
       content: mdxSource,
-      readTime,
-    },
+      readTime
+    }
   }
 }
 

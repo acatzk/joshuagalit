@@ -28,13 +28,7 @@ const Sidebar: React.FC = () => {
         </div>
         <div className="flex items-center space-x-1">
           {githubStats.map(({ id, Icon, count, label }, i) => (
-            <GitHubLink
-              key={i}
-              id={id}
-              Icon={Icon}
-              count={count}
-              label={label}
-            />
+            <GitHubLink key={i} id={id} Icon={Icon} count={count} label={label} />
           ))}
         </div>
       </div>
@@ -55,9 +49,7 @@ const Sidebar: React.FC = () => {
       </div>
       <div className="border-t border-gray-200 dark:border-gray-700"></div>
       <div className="flex items-start flex-col space-y-2">
-        <h1 className="font-semibold text-sm text-gray-600 dark:text-gray-300">
-          Organizations
-        </h1>
+        <h1 className="font-semibold text-sm text-gray-600 dark:text-gray-300">Organizations</h1>
         <a href="https://github.com/acatzk" target="_blank" rel="noreferrer">
           <Image
             src="https://avatars.githubusercontent.com/u/73483861?s=60&v=4"

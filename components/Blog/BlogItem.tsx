@@ -9,12 +9,7 @@ interface BlogItemProps {
   summary: string
 }
 
-const BlogItem: React.FC<BlogItemProps> = ({
-  slug,
-  title,
-  publishedAt,
-  summary,
-}) => {
+const BlogItem: React.FC<BlogItemProps> = ({ slug, title, publishedAt, summary }) => {
   const formattedData = moment(publishedAt).format('MMMM DD, YYYY')
 
   return (
@@ -29,9 +24,7 @@ const BlogItem: React.FC<BlogItemProps> = ({
               {formattedData}
             </span>
           </div>
-          <p className="text-gray-700 dark:text-gray-400 max-w-2xl">
-            {summary}
-          </p>
+          <p className="text-gray-700 dark:text-gray-400 max-w-2xl">{summary}</p>
         </div>
       </a>
     </Link>

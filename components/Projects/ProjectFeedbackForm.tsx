@@ -14,7 +14,7 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
     errors,
     register,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting }
   } = useForm()
 
   return (
@@ -27,7 +27,7 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
           disabled={isSubmitting}
           placeholder="Name"
           ref={register({
-            required: 'Your name is required',
+            required: 'Your name is required'
           })}
           className="w-full text-sm rounded-lg border border-gray-400 focus:ring-0 focus:border-gray-900 bg-white dark:bg-dark-dim dark:focus:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150"
         />
@@ -45,7 +45,7 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
           disabled={isSubmitting}
           placeholder="Your feedback..."
           ref={register({
-            required: 'Your feedback is required',
+            required: 'Your feedback is required'
           })}
           className="w-full text-sm rounded-lg border border-gray-400 focus:ring-0 focus:border-gray-900 bg-white dark:bg-dark-dim dark:focus:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150"
         ></textarea>
@@ -62,8 +62,7 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
               key={i}
               onClick={() => setEmoji(text)}
               className={`${
-                emoji === text &&
-                'ring-2 ring-offset-2 ring-yellow-300 bg-transparent'
+                emoji === text && 'ring-2 ring-offset-2 ring-yellow-300 bg-transparent'
               } relative h-[25px] w-[25px] cursor-pointer rounded-full bg-transparent p-1 dark:bg-gray-700 
               focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150 transform hover:scale-110`}
             >
@@ -88,11 +87,7 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
               : 'dark:text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black hover:border-white'
           }`}
         >
-          {isSubmitting ? (
-            <Loading className="w-5 h-5 text-white dark:text-black" />
-          ) : (
-            'Send'
-          )}
+          {isSubmitting ? <Loading className="w-5 h-5 text-white dark:text-black" /> : 'Send'}
         </button>
       </div>
     </form>

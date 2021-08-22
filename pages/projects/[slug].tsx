@@ -6,12 +6,7 @@ import ProjectPost from 'components/projects/ProjectPost'
 import { INSERT_VIEWS_MUTATION } from 'graphql/mutations'
 import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import { GET_PROJECT_BY_SLUG_QUERY, GET_PROJECT_SLUGs } from 'graphql/queries'
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsContext,
-  NextPage,
-} from 'next'
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
 
 interface ProjectPageProps {
   initialData: any
@@ -23,28 +18,25 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: projects.map(({ slug }) => ({
       params: {
-        slug,
-      },
+        slug
+      }
     })),
-    fallback: true,
+    fallback: true
   }
 }
 
-export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
-) => {
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
   const { params } = context
 
-  const initialData = await hasuraAdminClient.request(
-    GET_PROJECT_BY_SLUG_QUERY,
-    { slug: params?.slug }
-  )
+  const initialData = await hasuraAdminClient.request(GET_PROJECT_BY_SLUG_QUERY, {
+    slug: params?.slug
+  })
 
   return {
     props: {
-      initialData,
+      initialData
     },
-    revalidate: 1,
+    revalidate: 1
   }
 }
 
@@ -55,7 +47,7 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
   const { data, mutate } = useSWR(
     [GET_PROJECT_BY_SLUG_QUERY, slug],
     (query, slug) => hasuraAdminClient.request(query, { slug }),
-    { initialData, revalidateOnMount: true },
+    { initialData, revalidateOnMount: true }
   )
 
   useEffect(() => {
@@ -63,17 +55,17 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
       const { id } = initialData.projects[0]
       const {
         insert_views: {
-          returning: { ...project },
-        },
+          returning: { ...project }
+        }
       } = await hasuraAdminClient.request(INSERT_VIEWS_MUTATION, {
-        project_id: id,
+        project_id: id
       })
       mutate({
         projects: [
           {
-            ...project[0].project,
-          },
-        ],
+            ...project[0].project
+          }
+        ]
       })
     }
     InsertViewer()

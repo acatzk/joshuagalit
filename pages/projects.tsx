@@ -18,33 +18,24 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      initialData,
+      initialData
     },
-    revalidate: 1,
+    revalidate: 1
   }
 }
 
 const ProjectList = dynamic(() => import('components/projects/ProjectList'), {
-  loading: () => (
-    <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
-  ),
+  loading: () => <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
 })
 
 const Projects: NextPage<ProjectsPageProps> = ({ initialData }) => {
-  const { data } = useSWR(
-    GET_PROJECT_QUERY,
-    (query) => hasuraAdminClient.request(query),
-    {
-      initialData,
-      revalidateOnMount: true,
-    }
-  )
+  const { data } = useSWR(GET_PROJECT_QUERY, (query) => hasuraAdminClient.request(query), {
+    initialData,
+    revalidateOnMount: true
+  })
 
   return (
-    <Layout
-      headTitle="Projects | Joshua Galit"
-      metaDescription="My List of Projects"
-    >
+    <Layout headTitle="Projects | Joshua Galit" metaDescription="My List of Projects">
       <motion.div
         variants={routeAnimation}
         initial="initial"

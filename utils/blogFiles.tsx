@@ -9,16 +9,13 @@ export const getAllPosts = () => {
 
   return allPosts.map((fileName) => {
     const slug = fileName.replace('.md', '')
-    const fileContents = fs.readFileSync(
-      path.join(contentDirectory, fileName),
-      'utf8',
-    )
+    const fileContents = fs.readFileSync(path.join(contentDirectory, fileName), 'utf8')
     const { data, content } = matter(fileContents)
 
     return {
       data,
       content,
-      slug,
+      slug
     }
   })
 }

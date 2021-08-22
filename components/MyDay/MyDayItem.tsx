@@ -13,7 +13,7 @@ const DiaryItem: React.FC<IDiary> = ({
   name,
   created_at,
   post_caption,
-  post_image,
+  post_image
 }) => {
   return (
     <div className="mx-auto max-w-xl border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm bg-white dark:bg-dark-dim transition ease-in-out duration-700">
@@ -41,9 +41,7 @@ const DiaryItem: React.FC<IDiary> = ({
             <div className="flex items-center text-gray-600 dark:text-gray-400 space-x-1">
               <h2 className="leading-none font-normal text-xs">Posted</h2>
               <span className="leading-tight">&middot;</span>
-              <span className="text-xs font-medium line-clamp-1">
-                {created_at}
-              </span>
+              <span className="text-xs font-medium line-clamp-1">{created_at}</span>
             </div>
           </div>
         </div>
@@ -54,9 +52,7 @@ const DiaryItem: React.FC<IDiary> = ({
       <div className="flex flex-col overflow-hidden">
         {post_caption && (
           <div className="pb-1.5 px-4">
-            <p className="text-sm text-gray-900 dark:text-gray-200 line-clamp-2">
-              {post_caption}
-            </p>
+            <p className="text-sm text-gray-900 dark:text-gray-200 line-clamp-2">{post_caption}</p>
           </div>
         )}
         {post_image && (

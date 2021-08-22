@@ -36,8 +36,8 @@ const NotFound: NextPage = () => {
             </h2>
             <div className="max-w-md text-center">
               <p className="text-gray-500 text-sm dark:text-gray-400">
-                Sorry but the page you are looking for does not exist, have been
-                removed. name changed or is temporarily unavailable
+                Sorry but the page you are looking for does not exist, have been removed. name
+                changed or is temporarily unavailable
               </p>
             </div>
           </div>

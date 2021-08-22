@@ -38,16 +38,16 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
   slug,
   created_at,
   views_aggregate,
-  comments_aggregate,
+  comments_aggregate
 }) => {
   const router = useRouter()
   const { theme } = useTheme()
 
   const {
-    aggregate: { viewsCount },
+    aggregate: { viewsCount }
   } = views_aggregate
   const {
-    aggregate: { commentsCount },
+    aggregate: { commentsCount }
   } = comments_aggregate
 
   return (
@@ -95,9 +95,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
               )}
             </div>
           </div>
-          <p className="text-gray-700 dark:text-gray-400 font-normal line-clamp-4">
-            {description}
-          </p>
+          <p className="text-gray-700 dark:text-gray-400 font-normal line-clamp-4">{description}</p>
         </div>
         <div className="flex items-center justify-between w-full">
           {source_code_url && (
@@ -118,16 +116,12 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
           )}
           <div className="flex items-center space-x-1 text-gray-500">
             <div className="flex items-center space-x-1 cursor-default">
-              <span className="text-xs font-medium mt-0.5 line-clamp-1">
-                {commentsCount}
-              </span>
+              <span className="text-xs font-medium mt-0.5 line-clamp-1">{commentsCount}</span>
               <BiMessageRounded className="w-4 h-4" />
             </div>
             <span>&middot;</span>
             <div className="flex items-center space-x-1 cursor-default">
-              <span className="text-xs font-medium mt-0.5 line-clamp-1">
-                {viewsCount}
-              </span>
+              <span className="text-xs font-medium mt-0.5 line-clamp-1">{viewsCount}</span>
               <FiEye className="w-4 h-4" />
             </div>
           </div>

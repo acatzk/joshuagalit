@@ -13,28 +13,19 @@ const AboutPageLayout = dynamic(() => import('layouts/aboutPageLayout'), {
     <div className="flex items-center justify-center min-h-screen">
       <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
     </div>
-  ),
+  )
 })
 
 const Index: NextPage = () => {
   return (
-    <Layout
-      headTitle="About | Joshua Galit"
-      metaDescription="About Joshua Galit"
-    >
+    <Layout headTitle="About | Joshua Galit" metaDescription="About Joshua Galit">
       <AboutPageLayout>
-        <motion.div
-          variants={routeAnimation}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-        >
+        <motion.div variants={routeAnimation} initial="initial" animate="animate" exit="exit">
           <div className="flex flex-col px-6 flex-grow">
             <h5 className="my-3  font-medium text-gray-800 dark:text-gray-300">
-              My name is Joshua Galit and I`m a self taught web developer using
-              modern technologies. Ability to follow established procedures and
-              work under little or no supervision. Follow and Star me on GitHub
-              💕
+              My name is Joshua Galit and I`m a self taught web developer using modern technologies.
+              Ability to follow established procedures and work under little or no supervision.
+              Follow and Star me on GitHub 💕
             </h5>
             <motion.div
               variants={stagger}

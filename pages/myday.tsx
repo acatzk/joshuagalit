@@ -10,9 +10,7 @@ import MyDayHeader from 'components/myday/MyDayHeader'
 
 const MyDayList = dynamic(() => import('components/myday/MyDayList'), {
   ssr: false,
-  loading: () => (
-    <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
-  ),
+  loading: () => <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
 })
 
 const MyDay: NextPage = () => {
