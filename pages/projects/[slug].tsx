@@ -54,8 +54,8 @@ const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
 
   const { data, mutate } = useSWR(
     [GET_PROJECT_BY_SLUG_QUERY, slug],
-    async (query, slug) => await hasuraAdminClient.request(query, { slug }),
-    { initialData, revalidateOnMount: true }
+    (query, slug) => hasuraAdminClient.request(query, { slug }),
+    { initialData, revalidateOnMount: true },
   )
 
   useEffect(() => {
