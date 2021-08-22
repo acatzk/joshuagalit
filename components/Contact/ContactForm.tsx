@@ -14,7 +14,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
     errors,
     register,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting }
   } = useForm()
 
   return (
@@ -35,7 +35,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
                 : 'ring-gray-200 focus:ring-blue-twitter'
             }`}
             ref={register({
-              required: 'Your name is required',
+              required: 'Your name is required'
             })}
           />
         </div>
@@ -67,8 +67,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
               required: 'Your email is required',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'E-mail must be valid',
-              },
+                message: 'E-mail must be valid'
+              }
             })}
           />
         </div>
@@ -94,7 +94,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
                 : 'ring-gray-200 focus:ring-blue-twitter'
             }`}
             ref={register({
-              required: 'Your message is required',
+              required: 'Your message is required'
             })}
           ></textarea>
         </div>

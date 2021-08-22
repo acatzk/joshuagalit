@@ -9,10 +9,7 @@ interface ProjectListProps {
 
 const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
   return (
-    <motion.div
-      variants={stagger}
-      className="divide-y divide-gray-200 dark:divide-gray-700 px-4"
-    >
+    <motion.div variants={stagger} className="divide-y divide-gray-200 dark:divide-gray-700 px-4">
       {projects.map((project, i) => (
         <motion.div variants={fadeInUp} key={i}>
           <ProjectItem {...project} />

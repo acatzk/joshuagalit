@@ -10,48 +10,25 @@ interface LoginWIthModalProps {
   setIsOpen: Function
 }
 
-const LoginWithModal: React.FC<LoginWIthModalProps> = ({
-  isOpen,
-  setIsOpen,
-}) => {
+const LoginWithModal: React.FC<LoginWIthModalProps> = ({ isOpen, setIsOpen }) => {
   return isOpen ? (
     <Transition show={isOpen} as="div" static className="fixed z-10 inset-0">
       <div className="flex items-center justify-center min-h-screen text-center sm:block sm:p-0">
         <ModalBackground setIsOpen={setIsOpen} />
         <motion.div variants={fadeInUp}>
           {/* This element is to trick the browser into centering the modal contents. */}
-          <span
-            className=" sm:inline-block sm:align-middle sm:h-screen"
-            aria-hidden="true"
-          >
+          <span className=" sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
             &#8203;
           </span>
           {/* Actual Modal Content */}
           <div className="inline-block align-top rounded-lg overflow-hidden shadow-2xl transform sm:align-middle sm:max-w-lg sm:w-full">
             <div className="bg-white dark:bg-dark-dim px-4 py-6 transition ease-in-out duration-700">
               <div className="flex flex-col items-center space-y-3">
-                <h1 className="text-2xl font-extrabold text-black dark:text-white">
-                  Login with
-                </h1>
-                <motion.div
-                  variants={stagger}
-                  className="flex flex-col space-y-2 w-full"
-                >
-                  <LoginButton
-                    Icon={FaFacebook}
-                    title="Facebook"
-                    className="bg-[#4267B2]"
-                  />
-                  <LoginButton
-                    Icon={FaGoogle}
-                    title="Google"
-                    className="bg-[#db3236]"
-                  />
-                  <LoginButton
-                    Icon={FaGithub}
-                    title="GitHub"
-                    className="bg-[#24292e]"
-                  />
+                <h1 className="text-2xl font-extrabold text-black dark:text-white">Login with</h1>
+                <motion.div variants={stagger} className="flex flex-col space-y-2 w-full">
+                  <LoginButton Icon={FaFacebook} title="Facebook" className="bg-[#4267B2]" />
+                  <LoginButton Icon={FaGoogle} title="Google" className="bg-[#db3236]" />
+                  <LoginButton Icon={FaGithub} title="GitHub" className="bg-[#24292e]" />
                 </motion.div>
               </div>
             </div>

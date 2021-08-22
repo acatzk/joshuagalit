@@ -6,7 +6,7 @@ const Bar: React.FC<{ data: ISkill }> = ({ data: { Icon, level, name } }) => {
   const barWidth = `${level}`
   const variants = {
     initial: {
-      width: 0,
+      width: 0
     },
     animate: {
       width: barWidth,
@@ -14,9 +14,9 @@ const Bar: React.FC<{ data: ISkill }> = ({ data: { Icon, level, name } }) => {
         duration: 0.4,
         type: 'spring',
         damping: 12,
-        stiffness: 100,
-      },
-    },
+        stiffness: 100
+      }
+    }
   }
 
   return (

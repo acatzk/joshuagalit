@@ -18,12 +18,7 @@ const Resume: NextPage = () => {
         metaDescription="My Education, Experience and Languages I used."
       >
         <AboutPageLayout>
-          <motion.div
-            variants={routeAnimation}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
+          <motion.div variants={routeAnimation} initial="initial" animate="animate" exit="exit">
             <motion.div variants={stagger} className="px-2 py-2">
               <div className="grid gap-6 md:grid-cols-2">
                 <motion.div variants={fadeInUp}>
@@ -36,8 +31,8 @@ const Resume: NextPage = () => {
                       Southern Leyte State University (2015-2019)
                     </p>
                     <p className="my-3 text-gray-600 dark:text-gray-400">
-                      I am good at Windows Form Application those times when C#
-                      and Vb.net are most relevant used in school.
+                      I am good at Windows Form Application those times when C# and Vb.net are most
+                      relevant used in school.
                     </p>
                   </div>
                 </motion.div>
@@ -48,9 +43,8 @@ const Resume: NextPage = () => {
                       Self Taught Developer
                     </h5>
                     <p className="my-3 text-gray-600 dark:text-gray-400">
-                      I do not have experience in tech company but I have
-                      intensive knowledge and experience as a self taught
-                      developer.
+                      I do not have experience in tech company but I have intensive knowledge and
+                      experience as a self taught developer.
                     </p>
                   </div>
                 </motion.div>
@@ -59,9 +53,7 @@ const Resume: NextPage = () => {
               {/* Languages & Tools */}
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                  <h5 className="my-3 text-lg font-bold">
-                    Languages & Frameworks
-                  </h5>
+                  <h5 className="my-3 text-lg font-bold">Languages & Frameworks</h5>
                   <div className="my-2">
                     {languages.map((lang, i) => (
                       <Bar data={lang} key={i} />

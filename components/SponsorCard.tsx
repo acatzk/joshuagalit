@@ -16,13 +16,10 @@ const SponsorCard: React.FC = () => {
                 Sponsor Joshua Galit on GitHub Sponsors
               </h1>
               <p className="tracking-wide text-gray-600 dark:text-gray-400 text-sm">
-                Hi 👋 I`m{' '}
-                <span className="font-semibold text-blue-twitter">
-                  Joshua Galit
-                </span>{' '}
-                and I`m a self taught web developer using modern technologies.
-                Ability to follow established procedures and work under little
-                or no supervision. Follow and Star me on{' '}
+                Hi 👋 I`m <span className="font-semibold text-blue-twitter">Joshua Galit</span> and
+                I`m a self taught web developer using modern technologies. Ability to follow
+                established procedures and work under little or no supervision. Follow and Star me
+                on{' '}
                 <a
                   href="https://github.com/acatzk"
                   target="_blank"

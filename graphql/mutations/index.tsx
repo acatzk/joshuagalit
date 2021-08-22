@@ -12,14 +12,8 @@ export const DELETE_MAIL_MUTATION = gql`
 `
 
 export const INSERT_FEEDBACK_MUTATION = gql`
-  mutation InsertFeedbackMutation(
-    $name: String!
-    $message: String!
-    $emoji: String
-  ) {
-    insert_feedbacks(
-      objects: { name: $name, message: $message, emoji: $emoji }
-    ) {
+  mutation InsertFeedbackMutation($name: String!, $message: String!, $emoji: String) {
+    insert_feedbacks(objects: { name: $name, message: $message, emoji: $emoji }) {
       affected_rows
       returning {
         id
@@ -65,14 +59,8 @@ export const INSERT_VIEWS_MUTATION = gql`
 `
 
 export const INSERT_PROJECT_COMMENT_MUTATION = gql`
-  mutation InsertProjectCommentMutation(
-    $project_id: uuid!
-    $name: String!
-    $comment: String!
-  ) {
-    insert_project_comments(
-      objects: { project_id: $project_id, name: $name, comment: $comment }
-    ) {
+  mutation InsertProjectCommentMutation($project_id: uuid!, $name: String!, $comment: String!) {
+    insert_project_comments(objects: { project_id: $project_id, name: $name, comment: $comment }) {
       returning {
         id
         name

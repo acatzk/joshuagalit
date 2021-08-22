@@ -19,19 +19,17 @@ const ProjectPost: React.FC<ProjectPostProps> = ({ projects, mutate }) => {
     created_at,
     project_image_url,
     views_aggregate: {
-      aggregate: { viewsCount },
+      aggregate: { viewsCount }
     },
     comments_aggregate: {
-      aggregate: { commentsCount },
-    },
+      aggregate: { commentsCount }
+    }
   } = projects[0]
 
   return (
     <div key={id} className="px-4 space-y-6 pb-10">
       <div className="flex items-center justify-center">
-        <h1 className="font-semibold text-2xl md:text-3xl tracking-wide">
-          {title}
-        </h1>
+        <h1 className="font-semibold text-2xl md:text-3xl tracking-wide">{title}</h1>
       </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
@@ -51,24 +49,18 @@ const ProjectPost: React.FC<ProjectPostProps> = ({ projects, mutate }) => {
         </div>
         <div className="flex items-center space-x-1 text-gray-500">
           <div className="flex items-center space-x-1 cursor-default">
-            <span className="text-xs font-medium mt-0.5 line-clamp-1">
-              {commentsCount}
-            </span>
+            <span className="text-xs font-medium mt-0.5 line-clamp-1">{commentsCount}</span>
             <BiMessageRounded className="w-4 h-4" />
           </div>
           <span>&middot;</span>
           <div className="flex items-center space-x-1 cursor-default">
-            <span className="text-xs font-medium mt-0.5 line-clamp-1">
-              {viewsCount}
-            </span>
+            <span className="text-xs font-medium mt-0.5 line-clamp-1">{viewsCount}</span>
             <FiEye className="w-4 h-4" />
           </div>
         </div>
       </div>
       <div className="space-y-1">
-        <h1 className="text-base text-gray-700 dark:text-gray-400">
-          {description}
-        </h1>
+        <h1 className="text-base text-gray-700 dark:text-gray-400">{description}</h1>
         <div className="flex-shrink-0 overflow-hidden rounded-lg ring-1 ring-gray-300 dark:ring-gray-600 relative">
           <Image
             src={project_image_url}

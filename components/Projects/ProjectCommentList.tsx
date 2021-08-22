@@ -13,10 +13,7 @@ interface ProjectCommentListProps {
   projects: any
 }
 
-const ProjectCommentList: React.FC<ProjectCommentListProps> = ({
-  mutate,
-  projects,
-}) => {
+const ProjectCommentList: React.FC<ProjectCommentListProps> = ({ mutate, projects }) => {
   const { comments } = projects[0]
   return comments.map((comment: any, i: number) => (
     <ProjectCommentItem key={i} {...comment} mutate={mutate} />
@@ -38,7 +35,7 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
   name,
   comment,
   created_at,
-  mutate,
+  mutate
 }) => {
   const { addToast } = useToasts()
 
@@ -47,43 +44,37 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
     if (isDelete === process.env.ADMINISTRATOR_PASS) {
       const {
         delete_project_comments: {
-          returning: { ...project },
-        },
-      } = await hasuraAdminClient.request(
-        DELETE_PROJECT_COMMENT_BY_ID_MUTATION,
-        { id },
-      )
+          returning: { ...project }
+        }
+      } = await hasuraAdminClient.request(DELETE_PROJECT_COMMENT_BY_ID_MUTATION, { id })
 
       mutate({
         projects: [
           {
-            ...project[0].project,
-          },
-        ],
+            ...project[0].project
+          }
+        ]
       })
       addToast('Comment Successfully Deleted!', {
         appearance: 'success',
-        autoDismiss: true,
+        autoDismiss: true
       })
     } else if (isDelete === '' || isDelete === null) {
       addToast('Please input admin password to delete this post!', {
         appearance: 'warning',
-        autoDismiss: true,
+        autoDismiss: true
       })
     } else {
       addToast('You are unauthorized to delete the comment posted!', {
         appearance: 'error',
-        autoDismiss: true,
+        autoDismiss: true
       })
     }
   }
 
   return (
     <div key={id} className="flex space-x-3 py-3 px-2">
-      <Avatar
-        name={name}
-        className="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-800"
-      />
+      <Avatar name={name} className="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-800" />
       <div className="flex flex-col -my-1.5 rounded-xl px-4 py-3 bg-gray-100 dark:bg-gray-800 w-full transition ease-in-out duration-700">
         {/* Comment Header section */}
         <div className="flex items-start justify-between">
@@ -100,28 +91,19 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
         </div>
         {/* Actual comments */}
         <div>
-          <p className="text-sm tracking-wide text-gray-600 dark:text-white">
-            {comment}
-          </p>
+          <p className="text-sm tracking-wide text-gray-600 dark:text-white">{comment}</p>
         </div>
       </div>
     </div>
   )
 }
 
-const Avatar: React.FC<{ className: any; name: string }> = ({
-  className,
-  name,
-}) => {
+const Avatar: React.FC<{ className: any; name: string }> = ({ className, name }) => {
   return (
     <div className="flex-shrink-0">
       <Image
         className={className}
-        src={
-          name === 'Joshua Galit'
-            ? '/images/my-avatar.jpg'
-            : '/images/default-avatar.jpg'
-        }
+        src={name === 'Joshua Galit' ? '/images/my-avatar.jpg' : '/images/default-avatar.jpg'}
         alt="Comment User Avatar"
         width={36}
         height={36}
@@ -131,9 +113,7 @@ const Avatar: React.FC<{ className: any; name: string }> = ({
   )
 }
 
-const DropdownMenu: React.FC<{ handleDeleteComment: any }> = ({
-  handleDeleteComment,
-}) => {
+const DropdownMenu: React.FC<{ handleDeleteComment: any }> = ({ handleDeleteComment }) => {
   return (
     <div className="relative">
       <Menu>

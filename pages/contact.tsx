@@ -23,12 +23,12 @@ const Contact: NextPage = () => {
       if (mail) {
         addToast('Your message successfully sent!', {
           appearance: 'success',
-          autoDismiss: true,
+          autoDismiss: true
         })
       } else {
         addToast('Something went wrong try again!', {
           appearance: 'error',
-          autoDismiss: true,
+          autoDismiss: true
         })
       }
       e.target.reset()
@@ -38,10 +38,7 @@ const Contact: NextPage = () => {
   }
 
   return (
-    <Layout
-      headTitle="Contact | Joshua Galit"
-      metaDescription="Contact through email or phone"
-    >
+    <Layout headTitle="Contact | Joshua Galit" metaDescription="Contact through email or phone">
       <motion.div
         variants={routeAnimation}
         initial="initial"
@@ -58,25 +55,17 @@ const Contact: NextPage = () => {
           />
         </div>
         <div className="h-screen min-h-screen flex flex-col md:flex-row items-start md:items-center justify-between space-y-8">
-          <motion.div
-            variants={stagger}
-            className="flex flex-col space-y-10 md:space-y-20"
-          >
+          <motion.div variants={stagger} className="flex flex-col space-y-10 md:space-y-20">
             <motion.div
               variants={fadeInUp}
               className="flex flex-col space-y-5 md:space-y-8 w-full max-w-md z-50"
             >
-              <h1 className="font-black text-3xl md:text-5xl text-blue-twitter">
-                Contact me
-              </h1>
+              <h1 className="font-black text-3xl md:text-5xl text-blue-twitter">Contact me</h1>
               <p className="text-base text-gray-900 dark:text-white">
                 Send me a message and I will get back to you within 24 hours.
               </p>
             </motion.div>
-            <motion.div
-              variants={stagger}
-              className="flex flex-col space-y-3 md:space-y-5 z-50"
-            >
+            <motion.div variants={stagger} className="flex flex-col space-y-3 md:space-y-5 z-50">
               {contacts.map(({ Icon, text }, i) => (
                 <motion.div
                   key={i}

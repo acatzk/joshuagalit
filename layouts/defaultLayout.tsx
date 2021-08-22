@@ -18,12 +18,7 @@ interface LayoutProps {
   className?: string
 }
 
-const Layout: React.FC<LayoutProps> = ({
-  children,
-  headTitle,
-  metaDescription,
-  className,
-}) => {
+const Layout: React.FC<LayoutProps> = ({ children, headTitle, metaDescription, className }) => {
   return (
     <>
       <Head>

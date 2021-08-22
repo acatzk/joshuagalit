@@ -9,8 +9,7 @@ const ThemeChanger = () => {
   // When mounted on client, now we can show the UI
   useEffect(() => setMounted(true), [])
 
-  const toggleMode = () =>
-    theme === 'light' ? setTheme('dark') : setTheme('light')
+  const toggleMode = () => (theme === 'light' ? setTheme('dark') : setTheme('light'))
 
   if (!mounted) return null
 

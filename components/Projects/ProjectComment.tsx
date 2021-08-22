@@ -13,36 +13,33 @@ interface ProjectCommentProps {
   projects: any
 }
 
-const ProjectComment: React.FC<ProjectCommentProps> = ({
-  mutate,
-  ...projects
-}) => {
+const ProjectComment: React.FC<ProjectCommentProps> = ({ mutate, ...projects }) => {
   const { addToast } = useToasts()
 
   const handleComment = async ({ name, comment }: any, e: any) => {
     const { id } = projects[0]
     const {
       insert_project_comments: {
-        returning: { ...project },
-      },
+        returning: { ...project }
+      }
     } = await hasuraAdminClient.request(INSERT_PROJECT_COMMENT_MUTATION, {
       project_id: id,
       name,
-      comment,
+      comment
     })
 
     mutate({
       projects: [
         {
-          ...project[0].project,
-        },
-      ],
+          ...project[0].project
+        }
+      ]
     })
 
     e.target.reset()
     addToast('Successfully Commented!', {
       appearance: 'success',
-      autoDismiss: true,
+      autoDismiss: true
     })
   }
 
@@ -70,7 +67,7 @@ const ProjectCommentForm = ({ onSubmit }: any) => {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting, isDirty, isValid },
+    formState: { isSubmitting, isDirty, isValid }
   } = useForm({ mode: 'onChange' })
 
   return (
@@ -114,10 +111,7 @@ interface ProjectCommentTabsProps {
   demo_url: string
 }
 
-const ProjectCommentTabs: React.FC<ProjectCommentTabsProps> = ({
-  source_code_url,
-  demo_url,
-}) => {
+const ProjectCommentTabs: React.FC<ProjectCommentTabsProps> = ({ source_code_url, demo_url }) => {
   return (
     <div>
       <ul className="flex items-center text-sm">

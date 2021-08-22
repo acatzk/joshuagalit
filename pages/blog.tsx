@@ -19,25 +19,20 @@ export const getStaticProps: GetStaticProps = async () => {
       posts: allPosts.map(({ data, content, slug }) => ({
         ...data,
         content,
-        slug,
-      })),
-    },
+        slug
+      }))
+    }
   }
 }
 
 const BlogList = dynamic(() => import('components/blog/BlogList'), {
   ssr: false,
-  loading: () => (
-    <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
-  ),
+  loading: () => <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
 })
 
 const Blog: NextPage<BlogPageProps> = ({ posts }) => {
   return (
-    <Layout
-      headTitle="Blog | Joshua Galit"
-      metaDescription="A list of My Blog Post"
-    >
+    <Layout headTitle="Blog | Joshua Galit" metaDescription="A list of My Blog Post">
       <motion.div
         variants={routeAnimation}
         initial="initial"

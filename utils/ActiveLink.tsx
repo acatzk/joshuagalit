@@ -4,12 +4,7 @@ import React, { Children } from 'react'
 
 let parentActive = false
 
-const processChildren = (
-  active,
-  children,
-  defaultClassName,
-  currentClassName,
-) => {
+const processChildren = (active, children, defaultClassName, currentClassName) => {
   const child = Children.only(children)
   const childClassName = child.props.className || ''
   const className = active
@@ -17,7 +12,7 @@ const processChildren = (
     : `${defaultClassName} ${childClassName}`.trim()
 
   return React.cloneElement(child, {
-    className: className || null,
+    className: className || null
   })
 }
 
@@ -44,16 +39,7 @@ const Child = function ActiveLinkChild({
   current: currentClassNames,
   ...props
 }) {
-  return (
-    <>
-      {processChildren(
-        parentActive,
-        children,
-        defaultClassNames,
-        currentClassNames,
-      )}
-    </>
-  )
+  return <>{processChildren(parentActive, children, defaultClassNames, currentClassNames)}</>
 }
 
 ActiveLink.Child = Child

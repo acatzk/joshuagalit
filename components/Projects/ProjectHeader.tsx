@@ -15,12 +15,12 @@ const ProjectHeader: React.FC = () => {
       await hasuraAdminClient.request(INSERT_FEEDBACK_MUTATION, {
         name,
         message,
-        emoji,
+        emoji
       })
 
       addToast('Your Feedback has been received. Thank you for your help', {
         appearance: 'success',
-        autoDismiss: true,
+        autoDismiss: true
       })
       e.target.reset()
     } catch (err) {
@@ -31,12 +31,8 @@ const ProjectHeader: React.FC = () => {
   return (
     <div className="flex flex-wrap items-center justify-between px-4 pt-4 md:pt-10">
       <div className="flex flex-col">
-        <h3 className="text-gray-900 text-lg font-bold dark:text-white">
-          My Projects
-        </h3>
-        <p className="text-gray-600 text-sm dark:text-gray-500">
-          Open source in GitHub
-        </p>
+        <h3 className="text-gray-900 text-lg font-bold dark:text-white">My Projects</h3>
+        <p className="text-gray-600 text-sm dark:text-gray-500">Open source in GitHub</p>
       </div>
       <div className="relative">
         <button
@@ -61,9 +57,7 @@ const ProjectHeader: React.FC = () => {
               transition={{ duration: 0.2 }}
               className="absolute z-40 right-0 shadow-2xl border border-gray-50 dark:border-gray-700 bg-white dark:bg-dark-dim text-gray-900 dark:text-white rounded-lg w-72 md:w-80 -mt-9 overflow-hidden"
             >
-              <div className="py-3 px-3 text-sm text-gray-600 dark:text-gray-300">
-                Feedback
-              </div>
+              <div className="py-3 px-3 text-sm text-gray-600 dark:text-gray-300">Feedback</div>
               <ProjectFeedbackForm onSubmit={handleFeedback} />
             </motion.div>
           </>
