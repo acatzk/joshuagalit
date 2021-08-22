@@ -6,9 +6,9 @@ import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
 import { routeAnimation } from 'mock/animation'
 import { AnimatedLoadingIcon } from 'utils/Icons'
-import MyDayHeader from 'components/MyDay/MyDayHeader'
+import MyDayHeader from 'components/myday/MyDayHeader'
 
-const MyDayList = dynamic(() => import('components/MyDay/MyDayList'), {
+const MyDayList = dynamic(() => import('components/myday/MyDayList'), {
   ssr: false,
   loading: () => (
     <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />

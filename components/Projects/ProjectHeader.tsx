@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useToasts } from 'react-toast-notifications'
 import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import { INSERT_FEEDBACK_MUTATION } from 'graphql/mutations'
-import ProjectFeedbackForm from 'components/Projects/ProjectFeedbackForm'
+import ProjectFeedbackForm from 'components/projects/ProjectFeedbackForm'
 
 const ProjectHeader: React.FC = () => {
   const { addToast } = useToasts()

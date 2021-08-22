@@ -8,7 +8,7 @@ import { BiMessageRounded } from 'react-icons/bi'
 
 interface ProjectPostProps {
   projects: any
-  mutate: any
+  mutate?: any
 }
 
 const ProjectPost: React.FC<ProjectPostProps> = ({ projects, mutate }) => {
@@ -82,7 +82,7 @@ const ProjectPost: React.FC<ProjectPostProps> = ({ projects, mutate }) => {
           />
         </div>
       </div>
-      <ProjectComment {...projects} mutate={mutate} />
+      <ProjectComment mutate={mutate} {...projects} />
       <SponsorCard />
     </div>
   )

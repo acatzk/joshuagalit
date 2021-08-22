@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from 'components/Index/Navbar'
-import Sidebar from 'components/Index/Sidebar'
+import Navbar from 'components/index/Navbar'
+import Sidebar from 'components/index/Sidebar'
 
 const AboutPageLayout: React.FC<{}> = ({ children }) => {
   return (

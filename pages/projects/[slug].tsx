@@ -2,7 +2,7 @@ import useSWR from 'swr'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Layout from 'layouts/defaultLayout'
-import ProjectPost from 'components/Projects/ProjectPost'
+import ProjectPost from 'components/projects/ProjectPost'
 import { INSERT_VIEWS_MUTATION } from 'graphql/mutations'
 import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import { GET_PROJECT_BY_SLUG_QUERY, GET_PROJECT_SLUGs } from 'graphql/queries'
@@ -31,13 +31,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext,
+  context: GetStaticPropsContext
 ) => {
   const { params } = context
 
   const initialData = await hasuraAdminClient.request(
     GET_PROJECT_BY_SLUG_QUERY,
-    { slug: params?.slug },
+    { slug: params?.slug }
   )
 
   return {

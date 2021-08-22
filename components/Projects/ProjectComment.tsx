@@ -2,14 +2,14 @@ import React from 'react'
 import Image from 'next/image'
 import { GrGithub } from 'react-icons/gr'
 import { useForm } from 'react-hook-form'
-import ProjectCommentList from './ProjectCommentList'
+import ProjectCommentList from './ProjectItem'
 import { useToasts } from 'react-toast-notifications'
 import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import { BiMessageRoundedDots, BiLinkExternal } from 'react-icons/bi'
 import { INSERT_PROJECT_COMMENT_MUTATION } from 'graphql/mutations'
 
 interface ProjectCommentProps {
-  mutate: any
+  mutate?: any
   projects: any
 }
 

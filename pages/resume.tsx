@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { NextPage } from 'next'
 import { motion } from 'framer-motion'
-import Bar from 'components/Index/Bar'
+import Bar from 'components/index/Bar'
 import Layout from 'layouts/defaultLayout'
 import { tools, languages } from 'mock/data'
 import AboutPageLayout from 'layouts/aboutPageLayout'
