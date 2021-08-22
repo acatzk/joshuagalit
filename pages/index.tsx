@@ -4,7 +4,7 @@ import { services } from 'mock/data'
 import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
 import { AnimatedLoadingIcon } from 'utils/Icons'
-import ServiceCard from 'components/Index/ServiceCard'
+import ServiceCard from 'components/index/ServiceCard'
 import { routeAnimation, fadeInUp, stagger } from 'mock/animation'
 
 const AboutPageLayout = dynamic(() => import('layouts/aboutPageLayout'), {

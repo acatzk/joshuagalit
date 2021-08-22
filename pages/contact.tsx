@@ -5,7 +5,7 @@ import { contacts } from 'mock/data'
 import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
 import { useToasts } from 'react-toast-notifications'
-import ContactForm from 'components/Contact/ContactForm'
+import ContactForm from 'components/contact/ContactForm'
 import { stagger, fadeInUp, routeAnimation } from 'mock/animation'
 
 const Contact: NextPage = () => {
@@ -17,7 +17,7 @@ const Contact: NextPage = () => {
         `${process.env.GMAIL_SERVICE_ID}`,
         `${process.env.GMAIL_TEMPLATE_ID}`,
         { name, email, message },
-        `${process.env.GMAIL_USER_ID}`,
+        `${process.env.GMAIL_USER_ID}`
       )
 
       if (mail) {

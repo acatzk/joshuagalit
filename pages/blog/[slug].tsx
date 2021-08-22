@@ -36,7 +36,7 @@ const BlogPost: NextPage<BlogPostProps> = ({
   const { data, mutate } = useSWR(
     [GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY, slug],
     (query, slug) => hasuraAdminClient.request(query, { slug }),
-    { revalidateOnMount: true },
+    { revalidateOnMount: true }
   )
   const views = data?.blog_views_aggregate?.aggregate?.count
 
