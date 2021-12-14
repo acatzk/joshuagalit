@@ -95,7 +95,7 @@ const GitHubLink: React.FC<IGitHubLink> = ({ id, Icon, count, label }) => {
         {Icon && (
           <Icon className="w-4 h-4 text-gray-500 dark:text-gray-400 group-hover:text-blue-twitter transition ease-in-out duration-150" />
         )}
-        <span className="text-sm font-medium text-gray-800 dark:text-white group-hover:text-blue-twitter transition ease-in-out duration-150">
+        <span className="text-sm md:text-xs font-medium text-gray-800 dark:text-white group-hover:text-blue-twitter transition ease-in-out duration-150">
           {count}
         </span>
         <span className="text-xs text-gray-600 dark:text-gray-400 group-hover:text-blue-twitter transition ease-in-out duration-150">
