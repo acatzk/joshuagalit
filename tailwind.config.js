@@ -25,7 +25,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        sans: ["Fira Code", ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         xxs: ".50rem",
