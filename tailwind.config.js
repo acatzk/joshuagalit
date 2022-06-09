@@ -3,7 +3,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   mode: "jit",
-  purge: [
+  content: [
     "./public/**/*.html", 
     "./lib/**/*.{js,jsx,ts,tsx}",
     "./utils/**/*.{js,jsx,ts,tsx}",
@@ -144,6 +144,6 @@ module.exports = {
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/line-clamp"),
-    require("@tailwindcss/typography"),
+    require('@tailwindcss/typography')
   ],
 };

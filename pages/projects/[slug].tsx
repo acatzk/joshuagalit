@@ -7,16 +7,29 @@ import { INSERT_VIEWS_MUTATION } from 'graphql/mutations'
 import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import { GET_PROJECT_BY_SLUG_QUERY, GET_PROJECT_SLUGs } from 'graphql/queries'
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
+import { nhost } from 'lib/nhost-client'
+import { ParsedUrlQuery } from 'querystring'
+import { gql } from '@apollo/client'
 
-interface ProjectPageProps {
+interface Props {
   initialData: any
 }
 
+interface IParams extends ParsedUrlQuery {
+  id: string
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { projects } = await hasuraAdminClient.request(GET_PROJECT_SLUGs)
+  const { data } = await nhost.graphql.request(gql`
+    query GetProjectBySlugs {
+      projects {
+        slug
+      }
+    }
+  `)
 
   return {
-    paths: projects.map(({ slug }) => ({
+    paths: data?.projects?.map(({ slug }) => ({
       params: {
         slug
       }
@@ -25,63 +38,72 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
-  const { params } = context
-
-  const initialData = await hasuraAdminClient.request(GET_PROJECT_BY_SLUG_QUERY, {
-    slug: params?.slug
+export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
+  const { slug } = ctx.params as IParams
+  const { data } = await nhost.graphql.request(GET_PROJECT_BY_SLUG_QUERY, {
+    slug
   })
 
   return {
     props: {
-      initialData
+      initialData: data
     },
     revalidate: 1
   }
 }
 
-const Projects: NextPage<ProjectPageProps> = ({ initialData }) => {
+const ProjectsCreated: NextPage<Props> = (props) => {
+  const { initialData } = props
+
   const router = useRouter()
   const { slug, isFallback } = router.query
 
+  const options = {
+    initialData,
+    revalidateOnMount: true
+  }
+
   const { data, mutate } = useSWR(
     [GET_PROJECT_BY_SLUG_QUERY, slug],
-    (query, slug) => hasuraAdminClient.request(query, { slug }),
-    { initialData, revalidateOnMount: true }
+    async (query, slug) => await nhost.graphql.request(query, { slug }),
+    options
   )
 
-  useEffect(() => {
-    const InsertViewer = async () => {
-      const { id } = initialData.projects[0]
-      const {
-        insert_views: {
-          returning: { ...project }
-        }
-      } = await hasuraAdminClient.request(INSERT_VIEWS_MUTATION, {
-        project_id: id
-      })
-      mutate({
-        projects: [
-          {
-            ...project[0].project
-          }
-        ]
-      })
-    }
-    InsertViewer()
-  }, [])
+  // useEffect(() => {
+  //   const InsertViewer = async () => {
+  //     const { id } = initialData.projects[0]
+  //     const {
+  //       data: {
+  //         insert_views: {
+  //           returning: { ...project }
+  //         }
+  //       }
+  //     } = await nhost.graphql.request(INSERT_VIEWS_MUTATION, {
+  //       project_id: id
+  //     })
+  //     mutate({
+  //       projects: [
+  //         {
+  //           ...project[0].project
+  //         }
+  //       ]
+  //     })
+  //   }
+  //   InsertViewer()
+  // }, [])
 
   if (isFallback) return <p>Loading Projects</p>
   if (!isFallback && !data) return <p>No such project found</p>
 
   return (
-    <Layout
-      headTitle={initialData.projects[0].title}
-      metaDescription={initialData.projects[0].description}
-    >
+    <Layout headTitle="Title" metaDescription="This is projects">
       <div className="w-full max-w-5xl mx-auto">
         <ProjectHeader />
-        <ProjectPost mutate={mutate} projects={data.projects} />
+        <p className="py-3 px-4 bg-yellow-500 font-bold text-center">
+          SORRY FOR INCONVENIENCE I STILL FIXING THE BUG
+        </p>
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+        {/* <ProjectPost mutate={mutate} projects={data?.data} /> */}
       </div>
     </Layout>
   )
@@ -114,4 +136,4 @@ const ProjectHeader = () => {
   )
 }
 
-export default Projects
+export default ProjectsCreated

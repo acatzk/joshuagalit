@@ -1,20 +1,10 @@
 import { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import { services } from 'mock/data'
 import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
-import { AnimatedLoadingIcon } from 'utils/Icons'
+import AboutPageLayout from 'layouts/aboutPageLayout'
 import ServiceCard from 'components/index/ServiceCard'
 import { routeAnimation, fadeInUp, stagger } from 'mock/animation'
-
-const AboutPageLayout = dynamic(() => import('layouts/aboutPageLayout'), {
-  ssr: false,
-  loading: () => (
-    <div className="flex items-center justify-center min-h-screen">
-      <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
-    </div>
-  )
-})
 
 const Index: NextPage = () => {
   return (
@@ -23,9 +13,9 @@ const Index: NextPage = () => {
         <motion.div variants={routeAnimation} initial="initial" animate="animate" exit="exit">
           <div className="flex flex-col px-6 flex-grow">
             <h5 className="my-3  font-medium text-gray-800 dark:text-gray-300">
-              My name is Joshua Galit and I`m a self taught web developer using modern technologies.
-              Ability to follow established procedures and work under little or no supervision.
-              Follow and Star me on GitHub 💕
+              My name is Joshua Galit and I&apos;m a self taught web developer using modern
+              technologies. Ability to follow established procedures and work under little or no
+              supervision. Follow and Star me on GitHub 💕
             </h5>
             <motion.div
               variants={stagger}

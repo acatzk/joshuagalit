@@ -40,13 +40,13 @@ const BlogPost: NextPage<BlogPostProps> = ({
   )
   const views = data?.blog_views_aggregate?.aggregate?.count
 
-  useEffect(() => {
-    async function InsertViewer() {
-      await hasuraAdminClient.request(INSERT_BLOG_VIEWS_MUTATION, { slug })
-      mutate({ ...data })
-    }
-    InsertViewer()
-  }, [])
+  // useEffect(() => {
+  //   async function InsertViewer() {
+  //     await hasuraAdminClient.request(INSERT_BLOG_VIEWS_MUTATION, { slug })
+  //     mutate({ ...data })
+  //   }
+  //   InsertViewer()
+  // }, [])
 
   return (
     <Layout headTitle={title} metaDescription={summary}>

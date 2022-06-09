@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { FiSend } from 'react-icons/fi'
 import { useForm } from 'react-hook-form'
+import { classNames } from 'utils/classNames'
 import { AnimatedLoadingIcon } from 'utils/Icons'
 import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai'
 
@@ -11,10 +12,9 @@ interface ContactFormProps {
 
 const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
   const {
-    errors,
     register,
     handleSubmit,
-    formState: { isSubmitting }
+    formState: { isSubmitting, errors }
   } = useForm()
 
   return (
@@ -27,23 +27,30 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           </span>
           <input
             type="text"
-            name="name"
             disabled={isSubmitting}
-            className={`pl-11 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-full border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 ${
-              errors.name
+            className={classNames(
+              'pl-11 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white',
+              'rounded-full border-0 py-2.5 focus:ring-2 focus:ring-inset',
+              'transition ease-in-out duration-150 dark:text-white',
+              'disabled:cursor-not-allowed disabled:opacity-50',
+              errors?.name
                 ? 'ring-red-200 focus:ring-red-500'
                 : 'ring-gray-200 focus:ring-blue-twitter'
-            }`}
-            ref={register({
-              required: 'Your name is required'
+            )}
+            {...register('name', {
+              required: true,
+              minLength: 4
             })}
           />
         </div>
-        {errors.name && (
-          <span className="pl-3 text-xs text-red-500 font-medium pt-0.5">
-            {errors.name.message}
-          </span>
-        )}
+        <div className="space-y-0.5 ml-1.5">
+          {errors.name?.type === 'required' && (
+            <span className="text-xs text-red-500 font-medium">Name is required</span>
+          )}
+          {errors.name?.type === 'minLength' && (
+            <span className="text-xs text-red-500 font-medium">Minimum name length of 4</span>
+          )}
+        </div>
       </div>
       <div className="flex flex-col space-y-1">
         <label className="text-sm pl-2">Email</label>
@@ -53,7 +60,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           </span>
           <input
             type="text"
-            name="email"
             disabled={isSubmitting}
             className={`
             pl-12 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-full border-0
@@ -63,20 +69,23 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
                 ? 'ring-red-200 focus:ring-red-500'
                 : 'ring-gray-200 focus:ring-blue-twitter'
             }`}
-            ref={register({
-              required: 'Your email is required',
+            {...register('email', {
+              required: true,
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'E-mail must be valid'
+                message: 'Invalid email address'
               }
             })}
           />
         </div>
-        {errors.email && (
-          <span className="pl-3 text-xs text-red-500 font-medium pt-0.5">
-            {errors.email.message}
-          </span>
-        )}
+        <div className="space-y-0.5 ml-1.5">
+          {errors.email?.type === 'required' && (
+            <span className="text-xs text-red-500 font-medium">Email is required</span>
+          )}
+          {errors.email?.message && (
+            <span className="text-xs text-red-500 font-medium">{errors.email?.message}</span>
+          )}
+        </div>
       </div>
       <div className="flex flex-col space-y-1">
         <label className="text-sm pl-2">Message</label>
@@ -84,7 +93,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           <textarea
             rows={5}
             disabled={isSubmitting}
-            name="message"
             className={`
               w-full max-h-md bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-xl
               border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 
@@ -93,16 +101,16 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
                 ? 'ring-red-200 focus:ring-red-500'
                 : 'ring-gray-200 focus:ring-blue-twitter'
             }`}
-            ref={register({
-              required: 'Your message is required'
+            {...register('message', {
+              required: true
             })}
           ></textarea>
         </div>
-        {errors.message && (
-          <span className="pl-3 text-xs text-red-500 font-medium pt-0.5">
-            {errors.message.message}
-          </span>
-        )}
+        <div className="space-y-0.5 ml-1.5">
+          {errors.message?.type === 'required' && (
+            <span className="text-xs text-red-500 font-medium">Message is required</span>
+          )}
+        </div>
       </div>
       <div className="flex items-center justify-end">
         <motion.button

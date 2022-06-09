@@ -1,17 +1,11 @@
 import React from 'react'
 import { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import { mydaylist } from 'mock/data'
 import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
 import { routeAnimation } from 'mock/animation'
-import { AnimatedLoadingIcon } from 'utils/Icons'
+import MyDayList from 'components/myday/MyDayList'
 import MyDayHeader from 'components/myday/MyDayHeader'
-
-const MyDayList = dynamic(() => import('components/myday/MyDayList'), {
-  ssr: false,
-  loading: () => <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
-})
 
 const MyDay: NextPage = () => {
   return (

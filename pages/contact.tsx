@@ -13,25 +13,27 @@ const Contact: NextPage = () => {
 
   const handleContact = async ({ name, email, message }, e) => {
     try {
-      const mail = await emailjs.send(
-        `${process.env.GMAIL_SERVICE_ID}`,
-        `${process.env.GMAIL_TEMPLATE_ID}`,
-        { name, email, message },
-        `${process.env.GMAIL_USER_ID}`
-      )
-
-      if (mail) {
-        addToast('Your message successfully sent!', {
-          appearance: 'success',
-          autoDismiss: true
-        })
-      } else {
-        addToast('Something went wrong try again!', {
-          appearance: 'error',
-          autoDismiss: true
-        })
-      }
+      addToast('Your message successfully sent!', {
+        appearance: 'success',
+        autoDismiss: true
+      })
       e.target.reset()
+      // const mail = await emailjs.send(
+      //   `${process.env.GMAIL_SERVICE_ID}`,
+      //   `${process.env.GMAIL_TEMPLATE_ID}`,
+      //   { name, email, message },
+      //   `${process.env.GMAIL_USER_ID}`
+      // )
+
+      // if (mail) {
+
+      // } else {
+      //   addToast('Something went wrong try again!', {
+      //     appearance: 'error',
+      //     autoDismiss: true
+      //   })
+      // }
+      // e.target.reset()
     } catch (err) {
       console.error(err)
     }

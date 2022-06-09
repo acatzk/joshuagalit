@@ -53,58 +53,58 @@ const ProjectComment: React.FC<ProjectCommentProps> = ({ mutate, ...projects }) 
           <div className="flex space-x-3 py-4 px-2">
             <Avatar className="w-10 h-10 rounded-full" />
             <div className="rounded-b-xl rounded-r-xl px-4 py-4 bg-gray-100 dark:bg-gray-800 w-full transition ease-in-out duration-700">
-              <ProjectCommentForm onSubmit={handleComment} />
+              {/* <ProjectCommentForm onSubmit={handleComment} /> */}
             </div>
           </div>
         </div>
-        <ProjectCommentList mutate={mutate} projects={projects} />
+        {/* <ProjectCommentList projects={projects} /> */}
       </div>
     </div>
   )
 }
 
-const ProjectCommentForm = ({ onSubmit }: any) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { isSubmitting, isDirty, isValid }
-  } = useForm({ mode: 'onChange' })
+// const ProjectCommentForm = ({ onSubmit }: any) => {
+//   const {
+//     register,
+//     handleSubmit,
+//     formState: { isSubmitting, isDirty, isValid }
+//   } = useForm({ mode: 'onChange' })
 
-  return (
-    <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
-      <div className="space-y-6">
-        <div>
-          <input
-            type="text"
-            placeholder="Name"
-            name="name"
-            ref={register({ required: true })}
-            disabled={isSubmitting}
-            className="border-b-2 border-gray-300 dark:border-gray-700 focus:border-blue-twitter dark:focus:border-blue-twitter bg-transparent border-0 w-full py-1 focus:outline-none focus:ring-0 transition ease-in-out duration-200 disabled:cursor-not-allowed disabled:opacity-50"
-          />
-        </div>
-        <div>
-          <textarea
-            placeholder="Add a public comment..."
-            name="comment"
-            ref={register({ required: true })}
-            disabled={isSubmitting}
-            className="border-b-2 border-gray-300 dark:border-gray-700 focus:border-blue-twitter dark:focus:border-blue-twitter bg-transparent border-0 w-full py-1 focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50"
-          />
-        </div>
-      </div>
-      <div className="float-right">
-        <button
-          type="submit"
-          disabled={!isDirty || !isValid}
-          className="px-4 py-2 font-medium text-sm bg-blue-twitter text-white focus:outline-none rounded-full disabled:cursor-not-allowed disabled:bg-gray-300 dark:disabled:bg-gray-400 disabled:text-gray-800"
-        >
-          {isSubmitting ? 'Commenting...' : 'Comment'}
-        </button>
-      </div>
-    </form>
-  )
-}
+//   return (
+//     <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
+//       <div className="space-y-6">
+//         <div>
+//           <input
+//             type="text"
+//             placeholder="Name"
+//             name="name"
+//             ref={register({ required: true })}
+//             disabled={isSubmitting}
+//             className="border-b-2 border-gray-300 dark:border-gray-700 focus:border-blue-twitter dark:focus:border-blue-twitter bg-transparent border-0 w-full py-1 focus:outline-none focus:ring-0 transition ease-in-out duration-200 disabled:cursor-not-allowed disabled:opacity-50"
+//           />
+//         </div>
+//         <div>
+//           <textarea
+//             placeholder="Add a public comment..."
+//             name="comment"
+//             ref={register({ required: true })}
+//             disabled={isSubmitting}
+//             className="border-b-2 border-gray-300 dark:border-gray-700 focus:border-blue-twitter dark:focus:border-blue-twitter bg-transparent border-0 w-full py-1 focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50"
+//           />
+//         </div>
+//       </div>
+//       <div className="float-right">
+//         <button
+//           type="submit"
+//           disabled={!isDirty || !isValid}
+//           className="px-4 py-2 font-medium text-sm bg-blue-twitter text-white focus:outline-none rounded-full disabled:cursor-not-allowed disabled:bg-gray-300 dark:disabled:bg-gray-400 disabled:text-gray-800"
+//         >
+//           {isSubmitting ? 'Commenting...' : 'Comment'}
+//         </button>
+//       </div>
+//     </form>
+//   )
+// }
 
 interface ProjectCommentTabsProps {
   source_code_url: string

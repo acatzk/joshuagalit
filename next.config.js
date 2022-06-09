@@ -2,14 +2,11 @@ const withImages = require("next-images");
 
 module.exports = withImages();
 module.exports = {
+  reactStrictMode: true,
   env: {
-    HASURA_GRAPHQL_ADMIN_SECRET: process.env.HASURA_GRAPHQL_ADMIN_SECRET,
-    ADMINISTRATOR_PASS: process.env.ADMINISTRATOR_PASS,
-    GMAIL_SERVICE_ID: process.env.GMAIL_SERVICE_ID,
-    GMAIL_TEMPLATE_ID: process.env.GMAIL_TEMPLATE_ID,
-    GMAIL_USER_ID: process.env.GMAIL_USER_ID,
     MESSENGER_PAGE_ID: process.env.MESSENGER_PAGE_ID,
     MESSENGER_APP_ID: process.env.MESSENGER_APP_ID,
+    NEXT_PUBLIC_NHOST_BACKEND: process.env.NEXT_PUBLIC_NHOST_BACKEND
   },
   images: {
     domains: [
@@ -17,19 +14,8 @@ module.exports = {
       "jeromevillaruel.netlify.app",
       "benjamincarlson.io",
       "avatars.githubusercontent.com",
-      "instagram.fdvo1-1.fna.fbcdn.net"
+      "instagram.fdvo1-1.fna.fbcdn.net",
+      "joshuagalit-com.vercel.app"
     ],
-  },
-  typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    // Warning: Dangerously allow production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
-  },
+  }
 };

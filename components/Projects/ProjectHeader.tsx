@@ -12,11 +12,11 @@ const ProjectHeader: React.FC = () => {
 
   const handleFeedback = async ({ name, message, emoji }, e) => {
     try {
-      await hasuraAdminClient.request(INSERT_FEEDBACK_MUTATION, {
-        name,
-        message,
-        emoji
-      })
+      // await hasuraAdminClient.request(INSERT_FEEDBACK_MUTATION, {
+      //   name,
+      //   message,
+      //   emoji
+      // })
 
       addToast('Your Feedback has been received. Thank you for your help', {
         appearance: 'success',
