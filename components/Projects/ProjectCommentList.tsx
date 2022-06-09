@@ -9,33 +9,26 @@ import { hasuraAdminClient } from 'lib/hasura-admin-client'
 import { DELETE_PROJECT_COMMENT_BY_ID_MUTATION } from 'graphql/mutations'
 
 interface ProjectCommentListProps {
-  mutate: any
   projects: any
 }
-
-const ProjectCommentList: React.FC<ProjectCommentListProps> = ({ mutate, projects }) => {
-  const { comments } = projects[0]
-  return comments.map((comment: any, i: number) => (
-    <ProjectCommentItem key={i} {...comment} mutate={mutate} />
-  ))
-}
-
-export default ProjectCommentList
 
 interface ProjectCommentItemProps {
   id: string
   name: string
   comment: string
   created_at: string
-  mutate: any
+}
+
+const ProjectCommentList: React.FC<ProjectCommentListProps> = ({ projects }) => {
+  const { comments } = projects[0]
+  return comments.map((comment: any, i: number) => <ProjectCommentItem key={i} {...comment} />)
 }
 
 const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
   id,
   name,
   comment,
-  created_at,
-  mutate
+  created_at
 }) => {
   const { addToast } = useToasts()
 
@@ -48,13 +41,13 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
         }
       } = await hasuraAdminClient.request(DELETE_PROJECT_COMMENT_BY_ID_MUTATION, { id })
 
-      mutate({
-        projects: [
-          {
-            ...project[0].project
-          }
-        ]
-      })
+      // mutate({
+      //   projects: [
+      //     {
+      //       ...project[0].project
+      //     }
+      //   ]
+      // })
       addToast('Comment Successfully Deleted!', {
         appearance: 'success',
         autoDismiss: true
@@ -155,3 +148,5 @@ const DropdownMenu: React.FC<{ handleDeleteComment: any }> = ({ handleDeleteComm
     </div>
   )
 }
+
+export default ProjectCommentList

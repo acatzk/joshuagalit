@@ -16,9 +16,9 @@ import { DiJavascript1 } from 'react-icons/di'
 import { MdDeveloperMode, MdEmail } from 'react-icons/md'
 import { AiOutlineAntDesign, AiOutlineApi } from 'react-icons/ai'
 import {
-  SiNextDotJs,
-  SiNuxtDotJs,
-  SiAdobepremiere,
+  SiNextdotjs,
+  SiNuxtdotjs,
+  SiAdobepremierepro,
   SiAdobephotoshop,
   SiGooglesearchconsole
 } from 'react-icons/si'
@@ -175,7 +175,7 @@ export const languages: ISkill[] = [
   {
     name: 'Next.js',
     level: '95%',
-    Icon: SiNextDotJs
+    Icon: SiNextdotjs
   },
   {
     name: 'Vue.js',
@@ -185,7 +185,7 @@ export const languages: ISkill[] = [
   {
     name: 'Nuxt.js',
     level: '65%',
-    Icon: SiNuxtDotJs
+    Icon: SiNuxtdotjs
   }
 ]
 
@@ -193,7 +193,7 @@ export const tools: ISkill[] = [
   {
     name: 'Premiere Pro',
     level: '90%',
-    Icon: SiAdobepremiere
+    Icon: SiAdobepremierepro
   },
   {
     name: 'Photoshop',

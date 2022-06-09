@@ -11,10 +11,9 @@ interface FeedbackProps {
 const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
   const [emoji, setEmoji] = useState('amaze')
   const {
-    errors,
     register,
     handleSubmit,
-    formState: { isSubmitting }
+    formState: { isSubmitting, errors }
   } = useForm()
 
   return (
@@ -22,30 +21,28 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
       <div className="px-4">
         <input
           type="text"
-          name="name"
           autoFocus
           disabled={isSubmitting}
           placeholder="Name"
-          ref={register({
-            required: 'Your name is required'
+          {...register('name', {
+            required: true
           })}
           className="w-full text-sm rounded-lg border border-gray-400 focus:ring-0 focus:border-gray-900 bg-white dark:bg-dark-dim dark:focus:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150"
         />
-        {errors.name && (
-          <span className="pl-1 text-xs text-red-500 font-medium pt-0.5">
-            {errors.name.message}
-          </span>
-        )}
+        <div className="space-y-0.5 ml-1.5">
+          {errors.name?.type === 'required' && (
+            <span className="text-xs text-red-500 font-medium">Name is required</span>
+          )}
+        </div>
       </div>
       <div className="px-4 flex flex-col space-y-1">
         <textarea
-          name="message"
           rows={4}
           cols={50}
           disabled={isSubmitting}
           placeholder="Your feedback..."
-          ref={register({
-            required: 'Your feedback is required'
+          {...register('message', {
+            required: true
           })}
           className="w-full text-sm rounded-lg border border-gray-400 focus:ring-0 focus:border-gray-900 bg-white dark:bg-dark-dim dark:focus:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150"
         ></textarea>
@@ -54,9 +51,14 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
             {errors.message.message}
           </span>
         )}
+        <div className="space-y-0.5 ml-1.5">
+          {errors.message?.type === 'required' && (
+            <span className="text-xs text-red-500 font-medium">Message is required</span>
+          )}
+        </div>
       </div>
       <div className="flex items-center justify-between px-3 border-t border-gray-200 dark:border-gray-700 py-1.5 bg-gray-50 dark:bg-gray-800">
-        <div className="flex items-center space-x-3">
+        {/* <div className="flex items-center space-x-3">
           {emojis.map(({ icon, text }, i) => (
             <div
               key={i}
@@ -68,16 +70,15 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
             >
               <input
                 type="text"
-                name="emoji"
                 value={emoji}
                 onChange={(e) => setEmoji(e.target.value)}
                 className="hidden w-5 h-5"
-                ref={register()}
+                {...register('emoji')}
               />
               <Image layout="fill" src={icon} alt="Icon" />
             </div>
           ))}
-        </div>
+        </div> */}
         <button
           type="submit"
           disabled={isSubmitting}

@@ -1,14 +1,13 @@
-import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import Layout from 'layouts/defaultLayout'
 import { getAllPosts } from 'utils/blogFiles'
+import BlogList from 'components/blog/BlogList'
 import { GetStaticProps, NextPage } from 'next'
 import { routeAnimation } from 'mock/animation'
-import { AnimatedLoadingIcon } from 'utils/Icons'
 import BlogHeader from 'components/blog/BlogHeader'
 
 interface BlogPageProps {
-  posts: []
+  posts: string[]
 }
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -24,11 +23,6 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   }
 }
-
-const BlogList = dynamic(() => import('components/blog/BlogList'), {
-  ssr: false,
-  loading: () => <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
-})
 
 const Blog: NextPage<BlogPageProps> = ({ posts }) => {
   return (
