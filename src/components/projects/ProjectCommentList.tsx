@@ -1,4 +1,5 @@
 import React from 'react'
+import { mutate } from 'swr'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Menu } from '@headlessui/react'
@@ -41,13 +42,13 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
         }
       } = await hasuraAdminClient.request(DELETE_PROJECT_COMMENT_BY_ID_MUTATION, { id })
 
-      // mutate({
-      //   projects: [
-      //     {
-      //       ...project[0].project
-      //     }
-      //   ]
-      // })
+      mutate({
+        projects: [
+          {
+            ...project[0].project
+          }
+        ]
+      })
       addToast('Comment Successfully Deleted!', {
         appearance: 'success',
         autoDismiss: true

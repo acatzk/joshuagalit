@@ -15,7 +15,8 @@ module.exports = {
       "benjamincarlson.io",
       "avatars.githubusercontent.com",
       "instagram.fdvo1-1.fna.fbcdn.net",
-      "joshuagalit-com.vercel.app"
+      "joshuagalit-com.vercel.app",
+      "encrypted-tbn0.gstatic.com"
     ],
   }
 };
