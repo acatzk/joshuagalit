@@ -13,18 +13,20 @@ Feel free to test my project if you want to use it either for educational purpos
 
 Project is created with:
 
-- Next.js version: ^11.0.1
-- Tailwindcss version: ^2.2.4
-- TypeScript version: ^4.3.5
-- GraphQL version: ^15.5.1
-- Framer-motion version: ^3.10.3
-- emailjs-com version: ^3.2.0
+- Next.js 
+- Tailwindcss
+- TypeScript
+- GraphQL version
+- Framer-motion version
+- emailjs-com version
+- Nhost serverless backend
+- Messenger SDK
 
 ## Setup
 
 To run this project, install it locally using npm:
 
 ```
-$ npm install || yarn
+$ npm install || yarn install
 $ npm run dev || yarn dev
 ```
