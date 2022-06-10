@@ -4,7 +4,9 @@
     "paths": {
       "": [
         "/*"
-      ]
+      ],
+      "~/*": ["src/*"],
+      "@/*": ["src/*"]
     },
     "allowJs": true,
     "allowUnreachableCode": false,

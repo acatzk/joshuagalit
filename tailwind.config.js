@@ -4,12 +4,8 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   mode: "jit",
   content: [
-    "./public/**/*.html", 
-    "./lib/**/*.{js,jsx,ts,tsx}",
-    "./utils/**/*.{js,jsx,ts,tsx}",
-    "./pages/**/*.{js,jsx,ts,tsx}",
-    "./layouts/**/*.{js,jsx,ts,tsx}",
-    "./components/**/*.{js,jsx,ts,tsx}"
+    './public/**/*.html',
+    './src/**/*.{js,jsx,ts,tsx,vue}',
   ],
   darkMode: "class", // or 'media' or 'class'
   theme: {
