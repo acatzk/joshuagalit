@@ -1,10 +1,23 @@
 import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { classNames } from '~/utils/classNames'
 
-const SponsorCard: React.FC = () => {
+type Props = {
+  className?: string
+}
+
+const SponsorCard: React.FC<Props> = (props) => {
+  const { className } = props
+
   return (
-    <div className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 p-6 rounded-lg max-w-2xl transition ease-in-out duration-700">
+    <div
+      className={classNames(
+        'bg-white dark:bg-gray-800 border border-gray-300',
+        'dark:border-gray-500 p-6 rounded-lg max-w-2xl transition ease-in-out duration-700',
+        `${className}`
+      )}
+    >
       <div className="flex flex-start">
         <div className="flex flex-row space-x-4">
           <div className="flex-shrink-0  overflow-hidden">

@@ -2,7 +2,7 @@ import useSWR from 'swr'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Layout from '~/layouts/defaultLayout'
-import ProjectPost from '~/components/projects/ProjectPost'
+import ProjectPostDetails from '~/components/projects/ProjectPostDetails'
 import { INSERT_VIEWS_MUTATION } from '~/graphql/mutations'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { GET_PROJECT_BY_SLUG_QUERY, GET_PROJECT_SLUGs } from '~/graphql/queries'
@@ -10,6 +10,8 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 
 import { nhost } from '~/lib/nhost-client'
 import { ParsedUrlQuery } from 'querystring'
 import { gql } from '@apollo/client'
+import SponsorCard from '~/components/SponsorCard'
+import ProjectPostForm from '~/components/projects/ProjectPostForm'
 
 interface Props {
   initialData: any
@@ -52,7 +54,7 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
   }
 }
 
-const ProjectsCreated: NextPage<Props> = (props) => {
+const ProjectPost: NextPage<Props> = (props) => {
   const { initialData } = props
 
   const router = useRouter()
@@ -97,23 +99,22 @@ const ProjectsCreated: NextPage<Props> = (props) => {
 
   return (
     <Layout headTitle="Title" metaDescription="This is projects">
-      <div className="w-full max-w-5xl mx-auto">
-        <ProjectHeader />
-        <p className="py-3 px-4 bg-yellow-500 font-bold text-center">
-          SORRY FOR INCONVENIENCE I STILL FIXING THE BUG
-        </p>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-        {/* <ProjectPost mutate={mutate} projects={data?.data} /> */}
+      <div className="w-full max-w-5xl mx-auto px-4 mb-6">
+        <BackButton />
+        <ProjectPostDetails projects={data?.data?.projects[0]} />
+        <ProjectPostForm />
+        <AnnouncementPage />
+        <SponsorCard className="mt-6" />
       </div>
     </Layout>
   )
 }
 
-const ProjectHeader = () => {
+const BackButton = () => {
   const router = useRouter()
 
   return (
-    <div className="px-4 pt-4 md:pt-11">
+    <div className="pt-4 md:pt-11">
       <button
         onClick={() => router.push('/projects')}
         data-tip="Back"
@@ -136,4 +137,12 @@ const ProjectHeader = () => {
   )
 }
 
-export default ProjectsCreated
+const AnnouncementPage = () => {
+  return (
+    <p className="py-3 px-4 bg-yellow-500 font-bold text-center my-6">
+      I&apos;M STILL WORKING ON IN THE COMMENT LIST PROJECTS
+    </p>
+  )
+}
+
+export default ProjectPost
