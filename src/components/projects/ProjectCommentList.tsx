@@ -8,6 +8,7 @@ import TimeAgoFormat from '~/lib/react-timeago'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { DELETE_PROJECT_COMMENT_BY_ID_MUTATION } from '~/graphql/mutations'
 import { toast } from 'react-toastify'
+import { nhost } from '~/lib/nhost-client'
 
 interface ProjectCommentListProps {
   projects: any
@@ -21,37 +22,35 @@ interface ProjectCommentItemProps {
 }
 
 const ProjectCommentList: React.FC<ProjectCommentListProps> = ({ projects }) => {
+  if (!projects) return <p>No comment yet</p>
+
   const { comments } = projects[0]
   return comments.map((comment: any, i: number) => <ProjectCommentItem key={i} {...comment} />)
 }
 
-const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
-  id,
-  name,
-  comment,
-  created_at
-}) => {
+const ProjectCommentItem: React.FC<ProjectCommentItemProps> = (props) => {
+  const { id, name, comment, created_at } = props
+
   const handleDeleteComment = async () => {
     let isDelete = prompt('Confirm password to delete post!', '')
-    if (isDelete === process.env.ADMINISTRATOR_PASS) {
-      const {
-        delete_project_comments: {
-          returning: { ...project }
-        }
-      } = await hasuraAdminClient.request(DELETE_PROJECT_COMMENT_BY_ID_MUTATION, { id })
 
-      mutate({
-        projects: [
-          {
-            ...project[0].project
-          }
-        ]
+    if (isDelete === '' || isDelete === null) {
+      return toast.warning('Please input admin password to delete this post!')
+    }
+
+    if (isDelete === process.env.ADMINISTRATOR_PASS) {
+      const { data, error } = await nhost.graphql.request(DELETE_PROJECT_COMMENT_BY_ID_MUTATION, {
+        id
       })
-      toast.success('Comment Successfully Deleted!')
-    } else if (isDelete === '' || isDelete === null) {
-      toast.success('Please input admin password to delete this post!')
+
+      if (data) {
+        toast.success('Deleted Comment!')
+      }
+      if (error) {
+        toast.error('Something went wrong!')
+      }
     } else {
-      toast.success('You are unauthorized to delete the comment posted!')
+      toast.warning('You are unauthorized to delete the comment posted!')
     }
   }
 
@@ -70,7 +69,7 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
               <TimeAgoFormat date={created_at} />
             </span>
           </div>
-          <DropdownMenu handleDeleteComment={handleDeleteComment} />
+          <DropdownMenu actions={{ handleDeleteComment }} />
         </div>
         {/* Actual comments */}
         <div>
@@ -96,7 +95,10 @@ const Avatar: React.FC<{ className: any; name: string }> = ({ className, name })
   )
 }
 
-const DropdownMenu: React.FC<{ handleDeleteComment: any }> = ({ handleDeleteComment }) => {
+const DropdownMenu: React.FC<{ actions: any }> = (props) => {
+  const {
+    actions: { handleDeleteComment }
+  } = props
   return (
     <div className="relative">
       <Menu>
