@@ -78,7 +78,6 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
               <Image layout="fill" src={icon} alt="Icon" />
             </div>
           ))}
-          {emoji}
         </div>
         <button
           type="submit"
