@@ -3,8 +3,8 @@ import { useToggle } from 'react-use'
 import { motion } from 'framer-motion'
 import { useToasts } from 'react-toast-notifications'
 import ProjectFeedbackForm from './ProjectFeedbackForm'
-import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { INSERT_FEEDBACK_MUTATION } from '~/graphql/mutations'
+import { nhost } from '~/lib/nhost-client'
 
 const ProjectHeader: React.FC = () => {
   const { addToast } = useToasts()
@@ -12,16 +12,25 @@ const ProjectHeader: React.FC = () => {
 
   const handleFeedback = async ({ name, message, emoji }, e) => {
     try {
-      // await hasuraAdminClient.request(INSERT_FEEDBACK_MUTATION, {
-      //   name,
-      //   message,
-      //   emoji
-      // })
-
-      addToast('Your Feedback has been received. Thank you for your help', {
-        appearance: 'success',
-        autoDismiss: true
+      const { data, error } = await nhost.graphql.request(INSERT_FEEDBACK_MUTATION, {
+        name,
+        message,
+        emoji
       })
+
+      if (data) {
+        addToast('Your Feedback has been received. Thank you for your help', {
+          appearance: 'success',
+          autoDismiss: true
+        })
+      }
+      if (error) {
+        addToast(`${error}`, {
+          appearance: 'error',
+          autoDismiss: true
+        })
+      }
+
       e.target.reset()
     } catch (err) {
       console.log(err)

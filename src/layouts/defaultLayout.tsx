@@ -99,12 +99,12 @@ const Layout: React.FC<LayoutProps> = ({ children, headTitle, metaDescription, c
             </nav>
           </div>
           <div>
-            {process.env.NODE_ENV === 'production' && (
+            {/* {process.env.NODE_ENV === 'production' && (
               <MessengerCustomerChat
                 pageId={process.env.MESSENGER_PAGE_ID}
                 appId={process.env.MESSENGER_APP_ID}
               />
-            )}
+            )} */}
           </div>
         </div>
       </div>
