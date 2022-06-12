@@ -5,9 +5,9 @@ import { motion } from 'framer-motion'
 import { Menu } from '@headlessui/react'
 import { BsThreeDots } from 'react-icons/bs'
 import TimeAgoFormat from '~/lib/react-timeago'
-import { useToasts } from 'react-toast-notifications'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { DELETE_PROJECT_COMMENT_BY_ID_MUTATION } from '~/graphql/mutations'
+import { toast } from 'react-toastify'
 
 interface ProjectCommentListProps {
   projects: any
@@ -31,8 +31,6 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
   comment,
   created_at
 }) => {
-  const { addToast } = useToasts()
-
   const handleDeleteComment = async () => {
     let isDelete = prompt('Confirm password to delete post!', '')
     if (isDelete === process.env.ADMINISTRATOR_PASS) {
@@ -49,20 +47,11 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = ({
           }
         ]
       })
-      addToast('Comment Successfully Deleted!', {
-        appearance: 'success',
-        autoDismiss: true
-      })
+      toast.success('Comment Successfully Deleted!')
     } else if (isDelete === '' || isDelete === null) {
-      addToast('Please input admin password to delete this post!', {
-        appearance: 'warning',
-        autoDismiss: true
-      })
+      toast.success('Please input admin password to delete this post!')
     } else {
-      addToast('You are unauthorized to delete the comment posted!', {
-        appearance: 'error',
-        autoDismiss: true
-      })
+      toast.success('You are unauthorized to delete the comment posted!')
     }
   }
 
