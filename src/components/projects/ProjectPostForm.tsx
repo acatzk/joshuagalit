@@ -9,10 +9,14 @@ import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { BiMessageRoundedDots, BiLinkExternal } from 'react-icons/bi'
 import { INSERT_PROJECT_COMMENT_MUTATION } from '~/graphql/mutations'
 import { toast } from 'react-toastify'
+import { nhost } from '~/lib/nhost-client'
 
-type props = {}
+type props = {
+  project: any
+}
 
-const ProjectPostForm: React.FC<props> = () => {
+const ProjectPostForm: React.FC<props> = (props) => {
+  const { project } = props
   const {
     register,
     handleSubmit,
@@ -21,27 +25,28 @@ const ProjectPostForm: React.FC<props> = () => {
 
   const handleComment = async (data, e) => {
     const { name, comment } = data
-    // const { id } = projects[0]
-    // const {
-    //   insert_project_comments: {
-    //     returning: { ...project }
-    //   }
-    // } = await hasuraAdminClient.request(INSERT_PROJECT_COMMENT_MUTATION, {
-    //   project_id: id,
-    //   name,
-    //   comment
-    // })
+    const { id } = project
 
-    // mutate({
-    //   projects: [
-    //     {
-    //       ...project[0].project
-    //     }
-    //   ]
-    // })
+    const {
+      data: { insert_project_comments_one },
+      error
+    } = await nhost.graphql.request(INSERT_PROJECT_COMMENT_MUTATION, {
+      project_id: id,
+      name,
+      comment
+    })
 
-    e.target.reset()
-    toast.warning("I'M STILL FIXING THE BUG SORRY FOR INCONVENIENCE")
+    if (error) {
+      toast.error('Something went wrong!')
+    }
+
+    if (data) {
+      mutate({
+        ...insert_project_comments_one
+      })
+      toast.success('Commented successfully!')
+      e.target.reset()
+    }
   }
 
   return (

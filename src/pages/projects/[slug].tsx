@@ -14,6 +14,8 @@ import SponsorCard from '~/components/SponsorCard'
 import ProjectPostForm from '~/components/projects/ProjectPostForm'
 import { AnimatedLoadingIcon } from '~/utils/Icons'
 import Link from 'next/link'
+import ProjectCommentList from '~/components/projects/ProjectCommentList'
+import { toast } from 'react-toastify'
 
 interface Props {
   initialData: any
@@ -64,6 +66,7 @@ const ProjectPost: NextPage<Props> = (props) => {
 
   const options = {
     initialData,
+    refreshInterval: 1000,
     revalidateOnMount: true
   }
 
@@ -73,28 +76,26 @@ const ProjectPost: NextPage<Props> = (props) => {
     options
   )
 
-  // useEffect(() => {
-  //   const InsertViewer = async () => {
-  //     const { id } = initialData.projects[0]
-  //     const {
-  //       data: {
-  //         insert_views: {
-  //           returning: { ...project }
-  //         }
-  //       }
-  //     } = await nhost.graphql.request(INSERT_VIEWS_MUTATION, {
-  //       project_id: id
-  //     })
-  //     mutate({
-  //       projects: [
-  //         {
-  //           ...project[0].project
-  //         }
-  //       ]
-  //     })
-  //   }
-  //   InsertViewer()
-  // }, [])
+  useEffect(() => {
+    return () => {
+      InsertViewer()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const InsertViewer = async () => {
+    const { id } = initialData.projects[0]
+    const { data, error } = await nhost.graphql.request(INSERT_VIEWS_MUTATION, {
+      project_id: id
+    })
+    // if (data) {
+    //   toast.success('Inserted view')
+    // }
+    // if (error) {
+    //   toast.error('Something went wrong!')
+    // }
+    return [data, error]
+  }
 
   if (isFallback)
     return (
@@ -115,12 +116,21 @@ const ProjectPost: NextPage<Props> = (props) => {
     )
 
   return (
-    <Layout headTitle="Title" metaDescription="This is projects">
+    <Layout
+      headTitle={`Projects | ${initialData?.projects[0]?.title}`}
+      metaDescription={initialData?.projects[0]?.description}
+    >
       <div className="w-full max-w-5xl mx-auto px-4 mb-6">
         <BackButton />
         <ProjectPostDetails projects={data?.data?.projects[0]} />
-        <ProjectPostForm />
-        <AnnouncementPage />
+        <ProjectPostForm project={data?.data?.projects[0]} />
+
+        {/* Comment List */}
+        <div className="mt-3">
+          <ProjectCommentList projects={data?.data?.projects} />
+        </div>
+        {/* <AnnouncementPage /> */}
+
         <SponsorCard className="mt-6" />
       </div>
     </Layout>
