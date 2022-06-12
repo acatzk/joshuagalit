@@ -50,7 +50,7 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-smooth-scrollbar": "^8.0.6",
     "react-timeago": "^6.2.1",
-    "react-toast-notifications": "^2.5.1",
+    "react-toastify": "^9.0.4",
     "react-use": "^17.2.3",
     "smooth-scrollbar": "^8.6.1",
     "swr": "^1.2.0",

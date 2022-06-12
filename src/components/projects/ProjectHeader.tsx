@@ -1,13 +1,12 @@
 import React from 'react'
 import { useToggle } from 'react-use'
 import { motion } from 'framer-motion'
-import { useToasts } from 'react-toast-notifications'
 import ProjectFeedbackForm from './ProjectFeedbackForm'
 import { INSERT_FEEDBACK_MUTATION } from '~/graphql/mutations'
 import { nhost } from '~/lib/nhost-client'
+import { toast } from 'react-toastify'
 
 const ProjectHeader: React.FC = () => {
-  const { addToast } = useToasts()
   const [onModal, toggleModal] = useToggle(false)
 
   const handleFeedback = async ({ name, message, emoji }, e) => {
@@ -19,16 +18,10 @@ const ProjectHeader: React.FC = () => {
       })
 
       if (data) {
-        addToast('Your Feedback has been received. Thank you for your help', {
-          appearance: 'success',
-          autoDismiss: true
-        })
+        toast.success('Your Feedback has been sent.')
       }
       if (error) {
-        addToast(`${error}`, {
-          appearance: 'error',
-          autoDismiss: true
-        })
+        toast.error(`${error}`)
       }
 
       e.target.reset()
