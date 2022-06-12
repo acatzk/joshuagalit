@@ -12,6 +12,8 @@ import { ParsedUrlQuery } from 'querystring'
 import { gql } from '@apollo/client'
 import SponsorCard from '~/components/SponsorCard'
 import ProjectPostForm from '~/components/projects/ProjectPostForm'
+import { AnimatedLoadingIcon } from '~/utils/Icons'
+import Link from 'next/link'
 
 interface Props {
   initialData: any
@@ -94,8 +96,23 @@ const ProjectPost: NextPage<Props> = (props) => {
   //   InsertViewer()
   // }, [])
 
-  if (isFallback) return <p>Loading Projects</p>
-  if (!isFallback && !data) return <p>No such project found</p>
+  if (isFallback)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
+      </div>
+    )
+  if (!isFallback && !data)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="flex flex-col items-center text-black dark:text-white">
+          <p className="font-medium">No such project found!</p>
+          <Link href="/projects">
+            <a className="hover:underline py-2 px-3 border rounded-full">Goto Projects</a>
+          </Link>
+        </div>
+      </div>
+    )
 
   return (
     <Layout headTitle="Title" metaDescription="This is projects">

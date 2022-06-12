@@ -60,7 +60,9 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
         layout="intrinsic"
         blurDataURL={project_image_url}
         placeholder="blur"
+        quality={100}
         onClick={() => router.push(`/projects/${slug}`)}
+        priority={true}
         className="cursor-pointer bg-gray-200 dark:bg-gray-800"
       />
       <div className="flex flex-col items-start w-full justify-between py-2 space-y-4 lg:space-y-0">

@@ -5,12 +5,17 @@ import Layout from '~/layouts/defaultLayout'
 import { GetStaticProps, NextPage } from 'next'
 import { routeAnimation } from '~/mock/animation'
 import { GET_PROJECT_QUERY } from '~/graphql/queries'
-import ProjectList from '~/components/projects/ProjectList'
 import ProjectHeader from '~/components/projects/ProjectHeader'
+import dynamic from 'next/dynamic'
+import { AnimatedLoadingIcon } from '~/utils/Icons'
 
 interface Props {
   initialData: any
 }
+
+const ProjectList = dynamic(() => import('~/components/projects/ProjectList'), {
+  loading: () => <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
+})
 
 export const getStaticProps: GetStaticProps = async () => {
   const { data } = await nhost.graphql.request(GET_PROJECT_QUERY)
