@@ -5,16 +5,14 @@ import { GrGithub } from 'react-icons/gr'
 import { useForm } from 'react-hook-form'
 import ProjectCommentList from './ProjectItem'
 import { classNames } from '~/utils/classNames'
-import { useToasts } from 'react-toast-notifications'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import { BiMessageRoundedDots, BiLinkExternal } from 'react-icons/bi'
 import { INSERT_PROJECT_COMMENT_MUTATION } from '~/graphql/mutations'
+import { toast } from 'react-toastify'
 
 type props = {}
 
 const ProjectPostForm: React.FC<props> = () => {
-  const { addToast } = useToasts()
-
   const {
     register,
     handleSubmit,
@@ -43,10 +41,7 @@ const ProjectPostForm: React.FC<props> = () => {
     // })
 
     e.target.reset()
-    addToast("I'M STILL FIXING THE BUG SORRY FOR INCONVENIENCE", {
-      appearance: 'warning',
-      autoDismiss: true
-    })
+    toast.warning("I'M STILL FIXING THE BUG SORRY FOR INCONVENIENCE")
   }
 
   return (

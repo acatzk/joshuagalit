@@ -4,7 +4,7 @@ import { nhost } from '~/lib/nhost-client'
 import { ThemeProvider } from 'next-themes'
 import NextProgress from '~/lib/next-progress'
 import { NhostNextProvider } from '@nhost/nextjs'
-import { ToastProvider } from 'react-toast-notifications'
+import { Slide, ToastContainer } from 'react-toastify'
 import { NhostApolloProvider } from '@nhost/react-apollo'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -13,9 +13,20 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <NhostApolloProvider nhost={nhost}>
         <ThemeProvider attribute="class">
           <NextProgress />
-          <ToastProvider>
-            <Component {...pageProps} />
-          </ToastProvider>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={true}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+            transition={Slide}
+          />
+          <Component {...pageProps} />
         </ThemeProvider>
       </NhostApolloProvider>
     </NhostNextProvider>

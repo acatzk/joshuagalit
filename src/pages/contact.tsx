@@ -1,22 +1,17 @@
 import Image from 'next/image'
 import { NextPage } from 'next'
 import emailjs from 'emailjs-com'
+import { toast } from 'react-toastify'
 import { contacts } from '~/mock/data'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/defaultLayout'
-import { useToasts } from 'react-toast-notifications'
 import ContactForm from '~/components/contact/ContactForm'
 import { stagger, fadeInUp, routeAnimation } from '~/mock/animation'
 
 const Contact: NextPage = () => {
-  const { addToast } = useToasts()
-
   const handleContact = async ({ name, email, message }, e) => {
     try {
-      addToast('Your message successfully sent!', {
-        appearance: 'success',
-        autoDismiss: true
-      })
+      toast.success(`Your message successfully sent!`)
       e.target.reset()
       // const mail = await emailjs.send(
       //   `${process.env.GMAIL_SERVICE_ID}`,
