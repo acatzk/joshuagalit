@@ -1,13 +1,13 @@
 import useSWR from 'swr'
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { nhost } from '~/lib/nhost-client'
 import Layout from '~/layouts/defaultLayout'
 import { GetStaticProps, NextPage } from 'next'
 import { routeAnimation } from '~/mock/animation'
+import { AnimatedLoadingIcon } from '~/utils/Icons'
 import { GET_PROJECT_QUERY } from '~/graphql/queries'
 import ProjectHeader from '~/components/projects/ProjectHeader'
-import dynamic from 'next/dynamic'
-import { AnimatedLoadingIcon } from '~/utils/Icons'
 
 interface Props {
   initialData: any

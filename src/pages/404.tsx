@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { NextPage } from 'next'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
+import { classNames } from '~/utils/classNames'
 
 const NotFound: NextPage = () => {
   const router = useRouter()
@@ -13,7 +14,12 @@ const NotFound: NextPage = () => {
         <title>Page Not Found</title>
         <meta name="description" content="404 page not found" />
       </Head>
-      <div className="flex items-center justify-center px-4 h-screen min-h-screen bg-white dark:bg-dark-dim text-gray-800 transition ease-in-out duration-700">
+      <div
+        className={classNames(
+          'flex items-center justify-center px-4 h-screen min-h-screen',
+          'bg-white dark:bg-dark-dim text-gray-800 transition ease-in-out duration-700'
+        )}
+      >
         <div className="flex flex-col items-center space-y-4">
           <div className="flex items-center">
             <h1 className="font-bold text-9xl -mr-6 dark:text-gray-100">4</h1>
@@ -45,7 +51,10 @@ const NotFound: NextPage = () => {
             <motion.button
               whileHover={{ y: -4 }}
               onClick={() => router.push('/')}
-              className="px-6 py-3 rounded-full bg-yellow-500 hover:bg-yellow-400 text-white font-semibold hover:shadow-xl transition ease-in-out duration-150 focus:outline-none"
+              className={classNames(
+                'px-6 py-3 rounded-full bg-yellow-500 hover:bg-yellow-400 text-white',
+                'font-semibold hover:shadow-xl transition ease-in-out duration-150 focus:outline-none'
+              )}
             >
               Back to Homepage
             </motion.button>

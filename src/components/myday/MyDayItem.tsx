@@ -6,6 +6,7 @@ import { IoMdGlobe } from 'react-icons/io'
 import { BsThreeDots } from 'react-icons/bs'
 import { AiOutlineLike } from 'react-icons/ai'
 import TimeAgoFormat from '~/lib/react-timeago'
+import { classNames } from '~/utils/classNames'
 import { RiShareForwardLine } from 'react-icons/ri'
 
 const DiaryItem: React.FC<IDiary> = ({
@@ -16,7 +17,13 @@ const DiaryItem: React.FC<IDiary> = ({
   post_image
 }) => {
   return (
-    <div className="mx-auto max-w-xl border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm bg-white dark:bg-dark-dim transition ease-in-out duration-700">
+    <div
+      className={classNames(
+        'mx-auto max-w-xl border border-gray-200 dark:border-gray-700',
+        'rounded-lg overflow-hidden shadow-sm bg-white dark:bg-dark-dim',
+        'transition ease-in-out duration-700'
+      )}
+    >
       <div className="flex items-center justify-between py-2 px-3">
         <div className="flex items-center space-x-3">
           <Image
@@ -28,13 +35,21 @@ const DiaryItem: React.FC<IDiary> = ({
           />
           <div className="flex flex-col">
             <div className="flex items-center space-x-2">
-              <h1 className="text-sm font-semibold line-clamp-1 text-black dark:text-white">
+              <h1
+                className={classNames(
+                  'text-sm font-semibold line-clamp-1 text-black dark:text-white'
+                )}
+              >
                 {name}
               </h1>
               <span>
                 <IoMdGlobe className="w-3.5 h-3.5 text-gray-600 dark:text-gray-400" />
               </span>
-              <span className="text-xs font-normal text-gray-600 dark:text-gray-400 line-clamp-1">
+              <span
+                className={classNames(
+                  'text-xs font-normal text-gray-600 dark:text-gray-400 line-clamp-1'
+                )}
+              >
                 <TimeAgoFormat date="July 27, 2021" />
               </span>
             </div>
@@ -45,7 +60,12 @@ const DiaryItem: React.FC<IDiary> = ({
             </div>
           </div>
         </div>
-        <button className="focus:outline-none transform active:scale-95 text-gray-600 dark:text-gray-400">
+        <button
+          className={classNames(
+            'focus:outline-none transform active:scale-95',
+            'text-gray-600 dark:text-gray-400'
+          )}
+        >
           <BsThreeDots className="w-4 h-4" />
         </button>
       </div>
@@ -71,25 +91,31 @@ const DiaryItem: React.FC<IDiary> = ({
       <div>
         <div className="flex items-center justify-center px-1 my-1">
           <button
-            className="flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200
-           dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 
-           focus:outline-none transform active:scale-95 transition ease-in-out duration-150"
+            className={classNames(
+              'flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200',
+              'dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400',
+              'focus:outline-none transform active:scale-95 transition ease-in-out duration-150'
+            )}
           >
             <AiOutlineLike className="w-5 h-5" />
             <span className="font-medium">Like</span>
           </button>
           <button
-            className="flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200
-           dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 
-           focus:outline-none transform active:scale-95 transition ease-in-out duration-150"
+            className={classNames(
+              'flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200',
+              'dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400',
+              'focus:outline-none transform active:scale-95 transition ease-in-out duration-150'
+            )}
           >
             <BiComment className="w-5 h-5" />
             <span className="font-medium">Comment</span>
           </button>
           <button
-            className="flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200
-           dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 
-           focus:outline-none transform active:scale-95 transition ease-in-out duration-150"
+            className={classNames(
+              'flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200',
+              'dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400',
+              'focus:outline-none transform active:scale-95 transition ease-in-out duration-150'
+            )}
           >
             <RiShareForwardLine className="w-5 h-5" />
             <span className="font-medium">Share</span>

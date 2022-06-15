@@ -61,14 +61,15 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           <input
             type="text"
             disabled={isSubmitting}
-            className={`
-            pl-12 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-full border-0
-            py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 dark:text-white 
-            disabled:cursor-not-allowed disabled:opacity-50 ${
-              errors.email
+            className={classNames(
+              'pl-11 w-full bg-gray-100 dark:bg-gray-800 focus:bg-white',
+              'rounded-full border-0 py-2.5 focus:ring-2 focus:ring-inset',
+              'transition ease-in-out duration-150 dark:text-white',
+              'disabled:cursor-not-allowed disabled:opacity-50',
+              errors?.email
                 ? 'ring-red-200 focus:ring-red-500'
                 : 'ring-gray-200 focus:ring-blue-twitter'
-            }`}
+            )}
             {...register('email', {
               required: true,
               pattern: {
@@ -93,14 +94,15 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           <textarea
             rows={5}
             disabled={isSubmitting}
-            className={`
-              w-full max-h-md bg-gray-100 dark:bg-gray-800 focus:bg-white rounded-xl
-              border-0 py-2.5 focus:ring-2 focus:ring-inset transition ease-in-out duration-150 
-            dark:text-white disabled:cursor-not-allowed disabled:opacity-50 ${
-              errors.message
+            className={classNames(
+              'w-full bg-gray-100 dark:bg-gray-800 focus:bg-white',
+              'rounded-xl border-0 py-2.5 focus:ring-2 focus:ring-inset',
+              'transition ease-in-out duration-150 dark:text-white',
+              'disabled:cursor-not-allowed disabled:opacity-50',
+              errors?.message
                 ? 'ring-red-200 focus:ring-red-500'
                 : 'ring-gray-200 focus:ring-blue-twitter'
-            }`}
+            )}
             {...register('message', {
               required: true
             })}

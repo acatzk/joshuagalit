@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import { contacts } from '~/mock/data'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/defaultLayout'
+import { classNames } from '~/utils/classNames'
 import ContactForm from '~/components/contact/ContactForm'
 import { stagger, fadeInUp, routeAnimation } from '~/mock/animation'
 
@@ -51,7 +52,12 @@ const Contact: NextPage = () => {
             alt="Bubble Background"
           />
         </div>
-        <div className="h-screen min-h-screen flex flex-col md:flex-row items-start md:items-center justify-between space-y-8">
+        <div
+          className={classNames(
+            'h-screen min-h-screen flex flex-col md:flex-row',
+            'items-start md:items-center justify-between space-y-8'
+          )}
+        >
           <motion.div variants={stagger} className="flex flex-col space-y-10 md:space-y-20">
             <motion.div
               variants={fadeInUp}
@@ -77,7 +83,10 @@ const Contact: NextPage = () => {
           </motion.div>
           <motion.div
             variants={fadeInUp}
-            className="rounded-lg w-full max-w-full md:max-w-lg px-8 py-10 bg-white shadow-md dark:bg-gray-900 z-50"
+            className={classNames(
+              'rounded-lg w-full max-w-full md:max-w-lg px-8 py-10',
+              'bg-white shadow-md dark:bg-gray-900 z-50'
+            )}
           >
             <div className="relative w-full">
               <ContactForm onSubmit={handleContact} />

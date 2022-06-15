@@ -1,21 +1,20 @@
 import useSWR from 'swr'
+import Link from 'next/link'
 import { useEffect } from 'react'
+import { gql } from '@apollo/client'
 import { useRouter } from 'next/router'
-import Layout from '~/layouts/defaultLayout'
-import ProjectPostDetails from '~/components/projects/ProjectPostDetails'
-import { INSERT_VIEWS_MUTATION } from '~/graphql/mutations'
-import { hasuraAdminClient } from '~/lib/hasura-admin-client'
-import { GET_PROJECT_BY_SLUG_QUERY, GET_PROJECT_SLUGs } from '~/graphql/queries'
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
 import { nhost } from '~/lib/nhost-client'
 import { ParsedUrlQuery } from 'querystring'
-import { gql } from '@apollo/client'
+import Layout from '~/layouts/defaultLayout'
+import { classNames } from '~/utils/classNames'
 import SponsorCard from '~/components/SponsorCard'
-import ProjectPostForm from '~/components/projects/ProjectPostForm'
 import { AnimatedLoadingIcon } from '~/utils/Icons'
-import Link from 'next/link'
+import { INSERT_VIEWS_MUTATION } from '~/graphql/mutations'
+import { GET_PROJECT_BY_SLUG_QUERY } from '~/graphql/queries'
+import ProjectPostForm from '~/components/projects/ProjectPostForm'
 import ProjectCommentList from '~/components/projects/ProjectCommentList'
-import { toast } from 'react-toastify'
+import ProjectPostDetails from '~/components/projects/ProjectPostDetails'
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
 
 interface Props {
   initialData: any
@@ -146,7 +145,10 @@ const BackButton = () => {
       <button
         onClick={() => router.push('/projects')}
         data-tip="Back"
-        className="focus:outline-none transition ease-out duration-200 hover:text-blue-twitter dark:hover:text-blue-twitter"
+        className={classNames(
+          'focus:outline-none transition ease-out duration-200',
+          'hover:text-blue-twitter dark:hover:text-blue-twitter'
+        )}
       >
         <svg
           className="w-8 h-8"

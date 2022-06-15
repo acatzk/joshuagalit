@@ -52,6 +52,7 @@
     "react-timeago": "^6.2.1",
     "react-toastify": "^9.0.4",
     "react-use": "^17.2.3",
+    "sharp": "^0.30.6",
     "smooth-scrollbar": "^8.6.1",
     "swr": "^1.2.0",
     "timeago.js": "^4.0.2"

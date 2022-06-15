@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import { services } from '~/mock/data'
 import { motion } from 'framer-motion'
 import Layout from '~/layouts/defaultLayout'
+import { classNames } from '~/utils/classNames'
 import AboutPageLayout from '~/layouts/aboutPageLayout'
 import ServiceCard from '~/components/index/ServiceCard'
 import { routeAnimation, fadeInUp, stagger } from '~/mock/animation'
@@ -19,7 +20,10 @@ const Index: NextPage = () => {
             </h5>
             <motion.div
               variants={stagger}
-              className="relative px-4 py-5 bg-gray-100 dark:bg-gray-800 dark:bg-black-100 flex-grow rounded-lg transition ease-in-out duration-700"
+              className={classNames(
+                'relative px-4 py-5 bg-gray-100 dark:bg-gray-800 dark:bg-black-100',
+                'flex-grow rounded-lg transition ease-in-out duration-700'
+              )}
               style={{ marginLeft: '-1.5rem', marginRight: '-1.5rem' }}
             >
               <h6 className="mb-3 pl-1 text-xl font-bold tracking-wide text-gray-900 dark:text-gray-100">

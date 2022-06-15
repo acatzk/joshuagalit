@@ -6,6 +6,7 @@ import { FiEye } from 'react-icons/fi'
 import { useRouter } from 'next/router'
 import { GrGithub } from 'react-icons/gr'
 import { VerifiedIcon } from '~/utils/Icons'
+import { classNames } from '~/utils/classNames'
 import TimeAgoFormat from '~/lib/react-timeago'
 import { BiMessageRounded } from 'react-icons/bi'
 
@@ -51,7 +52,12 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
   } = comments_aggregate
 
   return (
-    <div className="flex flex-col lg:flex-row py-6 w-full space-y-4 lg:space-y-0 space-x-0 lg:space-x-6">
+    <div
+      className={classNames(
+        'flex flex-col lg:flex-row py-6 w-full',
+        'space-y-4 lg:space-y-0 space-x-0 lg:space-x-6'
+      )}
+    >
       <Image
         src={project_image_url}
         width={370}
@@ -65,12 +71,24 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
         priority={true}
         className="cursor-pointer bg-gray-200 dark:bg-gray-800"
       />
-      <div className="flex flex-col items-start w-full justify-between py-2 space-y-4 lg:space-y-0">
+      <div
+        className={classNames(
+          'flex flex-col items-start w-full',
+          'justify-between py-2 space-y-4 lg:space-y-0'
+        )}
+      >
         <div className="space-y-2 lg:space-y-4 w-full">
           <div className="flex items-center justify-between">
             <div className="flex flex-row items-center space-x-2">
               <Link href={`/projects/${slug}`}>
-                <a className="text-xl font-bold line-clamp-1 text-gray-900 dark:text-white hover:text-blue-twitter dark:hover:text-blue-twitter border-b border-gray-50 dark:border-gray-800 dark:hover:border-blue-twitter hover:border-blue-twitter transition ease-in duration-150">
+                <a
+                  className={classNames(
+                    'text-xl font-bold line-clamp-1 text-gray-900 dark:text-white',
+                    'hover:text-blue-twitter dark:hover:text-blue-twitter border-b',
+                    'border-gray-50 dark:border-gray-800 dark:hover:border-blue-twitter',
+                    'hover:border-blue-twitter transition ease-in duration-150'
+                  )}
+                >
                   {title}
                 </a>
               </Link>
@@ -86,10 +104,12 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
                 <a
                   href={demo_url}
                   target="_blank"
-                  className="py-1 px-4 text-gray-500 text-sm border rounded 
-                  border-gray-300 hover:border-black hover:text-black focus:outline-none 
-                  transition ease-in-out duration-150
-                  dark:text-gray-400 dark:border-gray-600 dark:hover:text-gray-200 dark:hover:border-gray-400"
+                  className={classNames(
+                    'py-1 px-4 text-gray-500 text-sm border rounded',
+                    'border-gray-300 hover:border-black hover:text-black focus:outline-none',
+                    'transition ease-in-out duration-150 dark:text-gray-400 dark:border-gray-600',
+                    'dark:hover:text-gray-200 dark:hover:border-gray-400'
+                  )}
                   rel="noreferrer"
                 >
                   Visit
@@ -97,15 +117,19 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
               )}
             </div>
           </div>
-          <p className="text-gray-700 dark:text-gray-400 font-normal line-clamp-4">{description}</p>
+          <p className={classNames('text-gray-700 dark:text-gray-400 font-normal line-clamp-4')}>
+            {description}
+          </p>
         </div>
         <div className="flex items-center justify-between w-full">
           {source_code_url && (
             <a
               href={source_code_url}
               target="_blank"
-              className="flex items-center font-medium space-x-2 group group-hover:underline text-gray-600
-               hover:text-black dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200"
+              className={classNames(
+                'flex items-center font-medium space-x-2 group group-hover:underline text-gray-600',
+                'hover:text-black dark:text-gray-400 dark:hover:text-white transition ease-in-out duration-200'
+              )}
               rel="noreferrer"
             >
               <span className="block">

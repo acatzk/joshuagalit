@@ -1,13 +1,15 @@
 import React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import { Menu } from '@headlessui/react'
 import { ISocialLink } from '~/mock/type'
 import ActiveLink from '~/utils/ActiveLink'
 import { BsThreeDots } from 'react-icons/bs'
-import ThemeChanger from '~/utils/ThemeChanger'
+import { classNames } from '~/utils/classNames'
 import Scrollbar from 'react-smooth-scrollbar'
+import ThemeChanger from '~/utils/ThemeChanger'
 import { LogoIcon, SoundIcon } from '~/utils/Icons'
 import { navigations, socialLinks } from '~/mock/data'
 import MessengerCustomerChat from 'react-messenger-customer-chat'
@@ -20,6 +22,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, headTitle, metaDescription, className }) => {
+  const router = useRouter()
   return (
     <>
       <Head>
@@ -86,13 +89,19 @@ const Layout: React.FC<LayoutProps> = ({ children, headTitle, metaDescription, c
               <ul className="flex items-center justify-between space-x-0 md:space-x-8">
                 {navigations.map(({ text, href }, i) => (
                   <li key={i} className="w-1/4 text-center">
-                    <ActiveLink
-                      href={href}
-                      default="font-semibold text-xs text-gray-500 dark:text-gray-400 tracking-widest hover:text-blue-twitter transition ease-in-out duration-200"
-                      current="font-semibold text-xs text-blue-twitter tracking-widest"
-                    >
-                      <a>{text}</a>
-                    </ActiveLink>
+                    <Link href={href}>
+                      <a
+                        className={classNames(
+                          'font-semibold text-xs hover:text-blue-twitter dark:hover:text-blue-twitter',
+                          'tracking-widest transition ease-in-out duration-200',
+                          router.pathname === href
+                            ? 'text-blue-twitter'
+                            : 'text-gray-500 dark:text-gray-400'
+                        )}
+                      >
+                        {text}
+                      </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

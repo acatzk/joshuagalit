@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { navbarTabs } from '~/mock/data'
 import { useState, useEffect } from 'react'
+import { classNames } from '~/utils/classNames'
 
 const Navbar: React.FC = () => {
   const { pathname } = useRouter()
@@ -17,7 +18,12 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="flex justify-between space-x-3 my-4">
-      <span className="font-bold text-blue-twitter text-lg md:text-2xl border-b border-blue-twitter border-opacity-40">
+      <span
+        className={classNames(
+          'font-bold text-blue-twitter text-lg md:text-2xl',
+          'border-b border-blue-twitter border-opacity-40'
+        )}
+      >
         {activeItem}
       </span>
       <div className="space-x-5">
@@ -45,7 +51,11 @@ const NavItem: React.FC<{
     <Link href={route}>
       <a
         onClick={() => setActiveItem(title)}
-        className="text-gray-600 dark:text-gray-300 font-medium hover:text-blue-twitter dark:hover:text-blue-twitter transition ease-in-out duration-150"
+        className={classNames(
+          'text-gray-600 dark:text-gray-300 font-medium',
+          'hover:text-blue-twitter dark:hover:text-blue-twitter',
+          'transition ease-in-out duration-150'
+        )}
       >
         {title}
       </a>
