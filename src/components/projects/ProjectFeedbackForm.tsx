@@ -3,6 +3,7 @@ import { emojis } from '~/mock/data'
 import Loading from '~/utils/Loading'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { classNames } from '~/utils/classNames'
 
 interface FeedbackProps {
   onSubmit: any
@@ -27,7 +28,12 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
           {...register('name', {
             required: true
           })}
-          className="w-full text-sm rounded-lg border border-gray-400 focus:ring-0 focus:border-gray-900 bg-white dark:bg-dark-dim dark:focus:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150"
+          className={classNames(
+            'w-full text-sm rounded-lg border border-gray-400 focus:ring-0',
+            'focus:border-gray-900 bg-white dark:bg-dark-dim',
+            'dark:focus:border-gray-300 disabled:opacity-50',
+            'disabled:cursor-not-allowed transition ease-in-out duration-150'
+          )}
         />
         <div className="space-y-0.5 ml-1.5">
           {errors.name?.type === 'required' && (
@@ -44,7 +50,12 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
           {...register('message', {
             required: true
           })}
-          className="w-full text-sm rounded-lg border border-gray-400 focus:ring-0 focus:border-gray-900 bg-white dark:bg-dark-dim dark:focus:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150"
+          className={classNames(
+            'w-full text-sm rounded-lg border border-gray-400 focus:ring-0',
+            'focus:border-gray-900 bg-white dark:bg-dark-dim',
+            'dark:focus:border-gray-300 disabled:opacity-50',
+            'disabled:cursor-not-allowed transition ease-in-out duration-150'
+          )}
         ></textarea>
         {errors.message && (
           <span className="pl-1 text-xs text-red-500 font-medium pt-0.5">
@@ -57,16 +68,22 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
           )}
         </div>
       </div>
-      <div className="flex items-center justify-between px-3 border-t border-gray-200 dark:border-gray-700 py-1.5 bg-gray-50 dark:bg-gray-800">
+      <div
+        className={classNames(
+          'flex items-center justify-between px-3 border-t border-gray-200',
+          'dark:border-gray-700 py-1.5 bg-gray-50 dark:bg-gray-800'
+        )}
+      >
         <div className="flex items-center space-x-3">
           {emojis.map(({ icon, text }, i) => (
             <div
               key={i}
               onClick={() => setEmoji(text)}
-              className={`${
-                emoji === text && 'ring-2 ring-offset-2 ring-yellow-300 bg-transparent'
-              } relative h-[25px] w-[25px] cursor-pointer rounded-full bg-transparent p-1 dark:bg-gray-700 
-              focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150 transform hover:scale-110`}
+              className={classNames(
+                emoji === text ? 'ring-2 ring-offset-2 ring-yellow-300 bg-transparent' : '',
+                'relative h-[25px] w-[25px] cursor-pointer rounded-full bg-transparent p-1 dark:bg-gray-700',
+                'focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150 transform hover:scale-110'
+              )}
             >
               <input
                 type="text"

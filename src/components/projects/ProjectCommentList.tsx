@@ -1,14 +1,14 @@
 import React from 'react'
 import { mutate } from 'swr'
 import Image from 'next/image'
+import { toast } from 'react-toastify'
 import { motion } from 'framer-motion'
 import { Menu } from '@headlessui/react'
+import { nhost } from '~/lib/nhost-client'
 import { BsThreeDots } from 'react-icons/bs'
 import TimeAgoFormat from '~/lib/react-timeago'
-import { hasuraAdminClient } from '~/lib/hasura-admin-client'
+import { classNames } from '~/utils/classNames'
 import { DELETE_PROJECT_COMMENT_BY_ID_MUTATION } from '~/graphql/mutations'
-import { toast } from 'react-toastify'
-import { nhost } from '~/lib/nhost-client'
 
 interface ProjectCommentListProps {
   projects: any
@@ -59,11 +59,21 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = (props) => {
   return (
     <div key={id} className="flex space-x-3 py-3 px-2">
       <Avatar name={name} className="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-800" />
-      <div className="flex flex-col -my-1.5 rounded-xl px-4 py-3 bg-gray-100 dark:bg-gray-800 w-full transition ease-in-out duration-700">
+      <div
+        className={classNames(
+          'flex flex-col -my-1.5 rounded-xl px-4 py-3 bg-gray-100',
+          'dark:bg-gray-800 w-full transition ease-in-out duration-700'
+        )}
+      >
         {/* Comment Header section */}
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
-            <h1 className="font-semibold text-gray-700 dark:text-gray-200 transition ease-in-out duration-700 line-clamp-1 capitalize">
+            <h1
+              className={classNames(
+                'font-semibold text-gray-700 dark:text-gray-200',
+                'transition ease-in-out duration-700 line-clamp-1 capitalize'
+              )}
+            >
               {name}
             </h1>
             <span>&bull;</span>
@@ -116,12 +126,20 @@ const DropdownMenu: React.FC<{ actions: any }> = (props) => {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 transition={{ duration: 0.2 }}
-                className="absolute right-0 top-0 flex flex-col z-50 overflow-hidden divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-800 outline-none border dark:border-gray-700 rounded-lg shadow-lg"
+                className={classNames(
+                  'absolute right-0 top-0 flex flex-col z-50 overflow-hidden divide-y divide-gray-200',
+                  'dark:divide-gray-600 bg-white dark:bg-gray-800 outline-none border',
+                  'dark:border-gray-700 rounded-lg shadow-lg'
+                )}
               >
                 <Menu.Item>
                   <button
                     onClick={handleDeleteComment}
-                    className="text-sm px-4 py-1 text-gray-600 dark:text-gray-400 focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-900 transition ease-in-out duration-200"
+                    className={classNames(
+                      'text-sm px-4 py-1 text-gray-600 dark:text-gray-400',
+                      'focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-900',
+                      ' transition ease-in-out duration-200'
+                    )}
                   >
                     Report
                   </button>
@@ -129,7 +147,11 @@ const DropdownMenu: React.FC<{ actions: any }> = (props) => {
                 <Menu.Item>
                   <button
                     onClick={(e) => e.preventDefault()}
-                    className="text-sm px-4 py-1 text-gray-600 dark:text-gray-400 focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-900 transition ease-in-out duration-200"
+                    className={classNames(
+                      'text-sm px-4 py-1 text-gray-600 dark:text-gray-400',
+                      ' focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-900',
+                      'transition ease-in-out duration-200'
+                    )}
                   >
                     Cancel
                   </button>

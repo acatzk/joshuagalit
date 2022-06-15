@@ -1,15 +1,10 @@
 import React from 'react'
 import { mutate } from 'swr'
-import Image from 'next/image'
-import { GrGithub } from 'react-icons/gr'
-import { useForm } from 'react-hook-form'
-import ProjectCommentList from './ProjectItem'
-import { classNames } from '~/utils/classNames'
-import { hasuraAdminClient } from '~/lib/hasura-admin-client'
-import { BiMessageRoundedDots, BiLinkExternal } from 'react-icons/bi'
-import { INSERT_PROJECT_COMMENT_MUTATION } from '~/graphql/mutations'
 import { toast } from 'react-toastify'
+import { useForm } from 'react-hook-form'
 import { nhost } from '~/lib/nhost-client'
+import { classNames } from '~/utils/classNames'
+import { INSERT_PROJECT_COMMENT_MUTATION } from '~/graphql/mutations'
 
 type props = {
   project: any

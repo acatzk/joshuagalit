@@ -1,10 +1,11 @@
 import React from 'react'
 import { useToggle } from 'react-use'
 import { motion } from 'framer-motion'
+import { toast } from 'react-toastify'
+import { nhost } from '~/lib/nhost-client'
+import { classNames } from '~/utils/classNames'
 import ProjectFeedbackForm from './ProjectFeedbackForm'
 import { INSERT_FEEDBACK_MUTATION } from '~/graphql/mutations'
-import { nhost } from '~/lib/nhost-client'
-import { toast } from 'react-toastify'
 
 const ProjectHeader: React.FC = () => {
   const [onModal, toggleModal] = useToggle(false)
@@ -39,10 +40,12 @@ const ProjectHeader: React.FC = () => {
       <div className="relative">
         <button
           onClick={() => toggleModal(true)}
-          className="py-1 px-3 text-gray-500 text-sm border rounded focus:outline-none
-                border-gray-300 hover:border-black hover:text-black 
-                transition ease-in-out duration-150 dark:text-gray-400 dark:border-gray-600 
-                dark:hover:text-gray-200 dark:hover:border-gray-400"
+          className={classNames(
+            'py-1 px-3 text-gray-500 text-sm border rounded focus:outline-none',
+            'border-gray-300 hover:border-black hover:text-black',
+            'transition ease-in-out duration-150 dark:text-gray-400 dark:border-gray-600',
+            'dark:hover:text-gray-200 dark:hover:border-gray-400'
+          )}
         >
           Feedback
         </button>
@@ -57,7 +60,11 @@ const ProjectHeader: React.FC = () => {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               transition={{ duration: 0.2 }}
-              className="absolute z-40 right-0 shadow-2xl border border-gray-50 dark:border-gray-700 bg-white dark:bg-dark-dim text-gray-900 dark:text-white rounded-lg w-72 md:w-80 -mt-9 overflow-hidden"
+              className={classNames(
+                'absolute z-40 right-0 shadow-2xl border border-gray-50 dark:border-gray-700',
+                'bg-white dark:bg-dark-dim text-gray-900 dark:text-white rounded-lg w-72',
+                'md:w-80 -mt-9 overflow-hidden'
+              )}
             >
               <div className="py-3 px-3 text-sm text-gray-600 dark:text-gray-300">Feedback</div>
               <ProjectFeedbackForm onSubmit={handleFeedback} />

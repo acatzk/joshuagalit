@@ -12,6 +12,7 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import { INSERT_BLOG_VIEWS_MUTATION } from '~/graphql/mutations'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY } from '~/graphql/queries'
+import { classNames } from '~/utils/classNames'
 
 interface BlogPostProps {
   title: string
@@ -72,7 +73,12 @@ const BlogPost: NextPage<BlogPostProps> = ({
               Joshua Galit / {formattedData}
             </h3>
             <div className="flex items-center">
-              <div className="flex items-center space-x-1.5 cursor-default text-gray-500 dark:text-gray-400  text-xs">
+              <div
+                className={classNames(
+                  'flex items-center space-x-1.5 cursor-default',
+                  'text-gray-500 dark:text-gray-400  text-xs'
+                )}
+              >
                 <span className="font-medium line-clamp-1">{readTime} min read</span>
                 <span className="font-extralight">|</span>
                 <span className="font-medium line-clamp-1">{views ? views : '-'} views</span>

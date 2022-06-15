@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Moment from 'react-moment'
 import { FiEye } from 'react-icons/fi'
 import { GrGithub } from 'react-icons/gr'
+import { classNames } from '~/utils/classNames'
 import { BiLinkExternal, BiMessageRounded, BiMessageRoundedDots } from 'react-icons/bi'
 
 type Props = {
@@ -53,13 +54,21 @@ const ProjectPostDetails: React.FC<Props> = (props) => {
             <Image
               width={28}
               height={28}
-              className="border-gray-200 dark:border-gray-700 rounded-full bg-gray-200 dark:bg-gray-800"
+              className={classNames(
+                'border-gray-200 dark:border-gray-700 rounded-full',
+                'bg-gray-200 dark:bg-gray-800'
+              )}
               src="/images/my-avatar.jpg"
               alt="My Profile Image"
               layout="intrinsic"
             />
           </div>
-          <h1 className="text-sm tracking-tight text-gray-700 dark:text-gray-400 line-clamp-1">
+          <h1
+            className={classNames(
+              'text-sm tracking-tight text-gray-700',
+              'dark:text-gray-400 line-clamp-1'
+            )}
+          >
             Joshua Galit / <Moment date={created_at} format="MMM DD, YYYY" />
           </h1>
         </div>
@@ -77,7 +86,12 @@ const ProjectPostDetails: React.FC<Props> = (props) => {
       </div>
       <div className="space-y-1">
         <h1 className="text-base text-gray-700 dark:text-gray-400">{description}</h1>
-        <div className="flex-shrink-0 overflow-hidden rounded-lg ring-1 ring-gray-300 dark:ring-gray-600 relative">
+        <div
+          className={classNames(
+            'flex-shrink-0 overflow-hidden rounded-lg ring-1',
+            'ring-gray-300 dark:ring-gray-600 relative'
+          )}
+        >
           <Image
             src={project_image_url}
             width={1000}
@@ -86,7 +100,10 @@ const ProjectPostDetails: React.FC<Props> = (props) => {
             blurDataURL={project_image_url}
             placeholder="blur"
             layout="responsive"
-            className="bg-gray-200 dark:bg-gray-800 transition ease-in-out duration-700"
+            className={classNames(
+              'bg-gray-200 dark:bg-gray-800',
+              'transition ease-in-out duration-700'
+            )}
           />
         </div>
       </div>
@@ -106,20 +123,33 @@ const Tabs: React.FC<TabProps> = (props) => {
   const { source_code_url, demo_url } = props
 
   return (
-    <div className="border-b border-gray-200 dark:border-gray-700 space-y-4 w-full">
+    <div className={classNames('border-b border-gray-200 dark:border-gray-700 space-y-4 w-full')}>
       <ul className="flex items-center text-sm">
         <li className="border-b-2 border-transparent border-blue-twitter px-3">
-          <button className="flex items-center  space-x-2 focus:outline-none pb-2 font-semibold text-blue-twitter">
+          <button
+            className={classNames(
+              'flex items-center  space-x-2 focus:outline-none',
+              'pb-2 font-semibold text-blue-twitter'
+            )}
+          >
             <BiMessageRoundedDots className="w-5 h-5" />
             <span>Comments</span>
           </button>
         </li>
         {source_code_url && (
-          <li className="border-b-2 border-transparent hover:border-gray-300 dark:hover:border-white transition ease-in duration-150 px-3">
+          <li
+            className={classNames(
+              'border-b-2 border-transparent hover:border-gray-300',
+              'dark:hover:border-white transition ease-in duration-150 px-3'
+            )}
+          >
             <a
               href={source_code_url}
               target="_blank"
-              className="flex items-center space-x-2 pb-2 text-gray-600 dark:text-gray-400 dark:hover:text-white"
+              className={classNames(
+                'flex items-center space-x-2 pb-2 text-gray-600',
+                'dark:text-gray-400 dark:hover:text-white'
+              )}
               rel="noreferrer"
             >
               <GrGithub className="w-4 h-4" />
@@ -128,11 +158,19 @@ const Tabs: React.FC<TabProps> = (props) => {
           </li>
         )}
         {demo_url && (
-          <li className="border-b-2 border-transparent hover:border-gray-300 dark:hover:border-white transition ease-in duration-100 px-3">
+          <li
+            className={classNames(
+              'border-b-2 border-transparent hover:border-gray-300',
+              'dark:hover:border-white transition ease-in duration-100 px-3'
+            )}
+          >
             <a
               href={demo_url}
               target="_blank"
-              className="flex items-center space-x-2 pb-2 text-gray-600 dark:text-gray-400 dark:hover:text-white"
+              className={classNames(
+                'flex items-center space-x-2 pb-2 text-gray-600',
+                'dark:text-gray-400 dark:hover:text-white'
+              )}
               rel="noreferrer"
             >
               <BiLinkExternal className="w-4 h-4" />

@@ -14,7 +14,8 @@ const SponsorCard: React.FC<Props> = (props) => {
     <div
       className={classNames(
         'bg-white dark:bg-gray-800 border border-gray-300',
-        'dark:border-gray-500 p-6 rounded-lg max-w-2xl transition ease-in-out duration-700',
+        'dark:border-gray-500 p-6 rounded-lg max-w-2xl',
+        'transition ease-in-out duration-700',
         `${className}`
       )}
     >
@@ -23,7 +24,12 @@ const SponsorCard: React.FC<Props> = (props) => {
           <div className="flex-shrink-0  overflow-hidden">
             <Avatar src="/images/my-avatar.jpg" width={56} height={56} />
           </div>
-          <div className="flex flex-row justify-between flex-wrap md:flex-nowrap space-x-0 md:space-x-2 space-y-2 md:space-y-0">
+          <div
+            className={classNames(
+              'flex flex-row justify-between flex-wrap md:flex-nowrap',
+              'space-x-0 md:space-x-2 space-y-2 md:space-y-0'
+            )}
+          >
             <div className="space-y-2">
               <h1 className="text-xl font-semibold max-w-sm">
                 Sponsor Joshua Galit on GitHub Sponsors
@@ -47,9 +53,17 @@ const SponsorCard: React.FC<Props> = (props) => {
             <div>
               <motion.button
                 whileHover={{ y: -2 }}
-                className="flex items-center space-x-2 bg-white border rounded-lg text-gray-900 px-4 py-1.5 hover:shadow-xl focus:outline-none"
+                className={classNames(
+                  'flex items-center space-x-2 bg-white border rounded-lg',
+                  'text-gray-900 px-4 py-1.5 hover:shadow-xl focus:outline-none'
+                )}
               >
-                <HeartIcon className="w-4 h-4 text-[#ea4aaa] fill-current transition ease-in-out duration-150" />
+                <HeartIcon
+                  className={classNames(
+                    'w-4 h-4 text-[#ea4aaa] fill-current',
+                    'transition ease-in-out duration-150'
+                  )}
+                />
                 <span className="text-sm">Sponsor</span>
               </motion.button>
             </div>

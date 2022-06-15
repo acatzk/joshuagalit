@@ -5,6 +5,7 @@ import { IGitHubLink } from '~/mock/type'
 import { githubStats } from '~/mock/data'
 import { BsDownload } from 'react-icons/bs'
 import { GoLocation } from 'react-icons/go'
+import { classNames } from '~/utils/classNames'
 
 const Sidebar: React.FC = () => {
   return (
@@ -20,7 +21,11 @@ const Sidebar: React.FC = () => {
           <a
             href="/files/my-resume.pdf"
             download="Joshua Galit Resume.pdf"
-            className="flex items-center justify-center space-x-2 w-full py-1 px-1 bg-gray-100 dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg focus:outline-none focus:shadow-sm"
+            className={classNames(
+              'flex items-center justify-center space-x-2 w-full py-1 px-1',
+              'bg-gray-100 dark:bg-dark-dim outline-none border',
+              'dark:border-gray-600 rounded-lg focus:outline-none focus:shadow-sm'
+            )}
           >
             <BsDownload className="w-4 h-4" />
             <span className="font-medium">Download Resume</span>
@@ -41,7 +46,10 @@ const Sidebar: React.FC = () => {
           <FiMail className="w-4 h-4 text-gray-600 dark:text-gray-400" />
           <span
             onClick={() => window.open('mailto:joshuaimalay@gmail.com')}
-            className="cursor-pointer text-sm hover:text-blue-twitter hover:underline transition ease-in-out duration-150"
+            className={classNames(
+              'cursor-pointer text-sm hover:text-blue-twitter',
+              'hover:underline transition ease-in-out duration-150'
+            )}
           >
             joshuaimalay@yahoo.com
           </span>
@@ -82,7 +90,7 @@ const Avatar: React.FC<{ src: string; alt?: string }> = ({ src, alt }) => {
 }
 
 const GitHubLink: React.FC<IGitHubLink> = ({ id, Icon, count, label }) => {
-  const getDot = (id) => id <= 2
+  const getDot = (id: any) => id <= 2
 
   return (
     <div className="flex items-center space-x-1">
@@ -93,12 +101,27 @@ const GitHubLink: React.FC<IGitHubLink> = ({ id, Icon, count, label }) => {
         rel="noreferrer"
       >
         {Icon && (
-          <Icon className="w-4 h-4 text-gray-500 dark:text-gray-400 group-hover:text-blue-twitter transition ease-in-out duration-150" />
+          <Icon
+            className={classNames(
+              'w-4 h-4 text-gray-500 dark:text-gray-400',
+              'group-hover:text-blue-twitter transition ease-in-out duration-150'
+            )}
+          />
         )}
-        <span className="text-sm font-medium text-gray-800 dark:text-white group-hover:text-blue-twitter transition ease-in-out duration-150">
+        <span
+          className={classNames(
+            'text-sm font-medium text-gray-800 dark:text-white',
+            'group-hover:text-blue-twitter transition ease-in-out duration-150'
+          )}
+        >
           {count}
         </span>
-        <span className="text-xs text-gray-600 dark:text-gray-400 group-hover:text-blue-twitter transition ease-in-out duration-150">
+        <span
+          className={classNames(
+            'text-xs text-gray-600 dark:text-gray-400',
+            'group-hover:text-blue-twitter transition ease-in-out duration-150'
+          )}
+        >
           {label}
         </span>
       </a>

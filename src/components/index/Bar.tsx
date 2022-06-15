@@ -1,6 +1,7 @@
 import React from 'react'
 import { ISkill } from '~/mock/type'
 import { motion } from 'framer-motion'
+import { classNames } from '~/utils/classNames'
 
 const Bar: React.FC<{ data: ISkill }> = ({ data: { Icon, level, name } }) => {
   const barWidth = `${level}`
@@ -20,9 +21,12 @@ const Bar: React.FC<{ data: ISkill }> = ({ data: { Icon, level, name } }) => {
   }
 
   return (
-    <div className="text-white my-2 bg-gray-300 dark:bg-gray-700 rounded-full">
+    <div className={classNames('text-white my-2 bg-gray-300 dark:bg-gray-700 rounded-full')}>
       <motion.div
-        className="px-4 py-0.5 flex items-center rounded-full bg-gradient-to-r from-cyan-400 to-blue-500"
+        className={classNames(
+          'px-4 py-0.5 flex items-center rounded-full',
+          'bg-gradient-to-r from-cyan-400 to-blue-500'
+        )}
         style={{ width: barWidth }}
         variants={variants}
         initial="initial"
