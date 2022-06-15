@@ -25,7 +25,7 @@
     "moduleResolution": "node",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": false,
+    "noImplicitReturns": true,
     "pretty": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,

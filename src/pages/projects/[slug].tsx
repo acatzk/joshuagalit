@@ -22,7 +22,7 @@ interface Props {
 }
 
 interface IParams extends ParsedUrlQuery {
-  id: string
+  slug: string
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -88,13 +88,14 @@ const ProjectPost: NextPage<Props> = (props) => {
     const { data, error } = await nhost.graphql.request(INSERT_VIEWS_MUTATION, {
       project_id: id
     })
-    // if (data) {
+
+    // if (dataView) {
     //   toast.success('Inserted view')
     // }
     // if (error) {
     //   toast.error('Something went wrong!')
     // }
-    return [data, error]
+    return mutate()
   }
 
   if (isFallback)
