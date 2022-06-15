@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import { Menu } from '@headlessui/react'
 import { ISocialLink } from '~/mock/type'
-import ActiveLink from '~/utils/ActiveLink'
 import { BsThreeDots } from 'react-icons/bs'
 import { classNames } from '~/utils/classNames'
 import Scrollbar from 'react-smooth-scrollbar'
@@ -33,13 +32,13 @@ const Layout: React.FC<LayoutProps> = ({ children, headTitle, metaDescription, c
         {/* First Flex Column */}
         <div className="flex items-center flex-row md:flex-col justify-between h-auto md:h-full pb-3 border-b border-gray-200 dark:border-gray-600 md:border-0 px-4 py-4 md:py-12 md:px-10">
           <div className="flex items-center space-x-2">
-            <ActiveLink href="/" default="" current="">
+            <Link href="/">
               <a>
                 <div className="flex-shrink-0">
                   <LogoIcon className="w-8 h-8 fill-current transform rotate-90" />
                 </div>
               </a>
-            </ActiveLink>
+            </Link>
             <button className="focus:outline-none">
               <SoundIcon className="w-6 h-6 text-gray-200 dark:text-gray-500" />
             </button>
@@ -80,7 +79,13 @@ const Layout: React.FC<LayoutProps> = ({ children, headTitle, metaDescription, c
         </Scrollbar>
 
         {/* Navigation links */}
-        <div className="flex flex-row md:flex-col items-end md:items-center justify-center md:justify-between md:h-full w-full md:w-14 border-t border-gray-200 dark:border-gray-600 md:border-0 px-4 py-4 md:py-12 md:px-14">
+        <div
+          className={classNames(
+            'flex flex-row md:flex-col items-end md:items-center justify-center',
+            'md:justify-between md:h-full w-full md:w-14 border-t border-gray-200',
+            'dark:border-gray-600 md:border-0 px-4 py-4 md:py-12 md:px-14'
+          )}
+        >
           <div className="hidden md:block">
             <ThemeChanger />
           </div>
@@ -130,7 +135,12 @@ const SocialMenu: React.FC<SocialMenuProps> = ({ socialLinks }) => {
     <Menu>
       {({ open }) => (
         <>
-          <Menu.Button className="rounded-full focus:outline-none p-1 hover:shadow  transition ease-out duration-200 border border-transparent hover:border-gray-300">
+          <Menu.Button
+            className={classNames(
+              'rounded-full focus:outline-none p-1 hover:shadow  transition ease-out',
+              ' duration-200 border border-transparent hover:border-gray-300'
+            )}
+          >
             <BsThreeDots className="w-6 h-6" />
           </Menu.Button>
           {open && (
@@ -140,7 +150,11 @@ const SocialMenu: React.FC<SocialMenuProps> = ({ socialLinks }) => {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               transition={{ duration: 0.2 }}
-              className="absolute right-3 top-14 flex flex-col space-y-1 py-1 px-1 z-50 bg-white dark:bg-dark-dim outline-none border dark:border-gray-600 rounded-lg shadow-lg"
+              className={classNames(
+                'absolute right-3 top-14 flex flex-col space-y-1 py-1 px-1 z-50',
+                'bg-white dark:bg-dark-dim outline-none border dark:border-gray-600',
+                'rounded-lg shadow-lg'
+              )}
             >
               {socialLinks.map(({ Icon, href, text }, i) => (
                 <Menu.Item key={i}>
@@ -151,11 +165,13 @@ const SocialMenu: React.FC<SocialMenuProps> = ({ socialLinks }) => {
                     <Link href={href}>
                       <a href={href} target="_blank" rel="noreferrer">
                         <Icon
-                          className={`w-6 h-6 dark:text-gray-400 
-                          dark:hover:text-white transition ease-in-out duration-200
-                            ${text === 'github' && 'text-[#333]'}
-                            ${text === 'linkedin' && 'text-[#0077B5]'}
-                            ${text === 'stackoverflow' && 'text-[#f48024]'}`}
+                          className={classNames(
+                            'w-6 h-6 dark:text-gray-400',
+                            'dark:hover:text-white transition ease-in-out duration-200',
+                            text === 'github' ? 'text-[#333] ' : '',
+                            text === 'linkedin' ? 'text-[#0077B5]' : '',
+                            text === 'stackoverflow' ? 'text-[#f48024]' : ''
+                          )}
                         />
                       </a>
                     </Link>
