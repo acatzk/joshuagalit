@@ -1,17 +1,16 @@
 import React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/router'
 import { Menu } from '@headlessui/react'
 import { ISocialLink } from '~/mock/type'
 import { BsThreeDots } from 'react-icons/bs'
-import { classNames } from '~/utils/classNames'
 import Scrollbar from 'react-smooth-scrollbar'
+import { classNames } from '~/utils/classNames'
 import ThemeChanger from '~/utils/ThemeChanger'
 import { LogoIcon, SoundIcon } from '~/utils/Icons'
 import { navigations, socialLinks } from '~/mock/data'
-import MessengerCustomerChat from 'react-messenger-customer-chat'
 
 interface LayoutProps {
   headTitle: string
@@ -28,9 +27,21 @@ const Layout: React.FC<LayoutProps> = ({ children, headTitle, metaDescription, c
         <title>{headTitle}</title>
         <meta name="description" content={metaDescription} />
       </Head>
-      <div className="font-sans antialiased flex flex-col md:flex-row justify-between w-full min-h-screen h-screen bg-white text-black dark:bg-dark-dim dark:text-white transition ease-in-out duration-700">
+      <div
+        className={classNames(
+          'font-sans antialiased flex flex-col md:flex-row justify-between',
+          'w-full min-h-screen h-screen bg-white text-black',
+          'dark:bg-dark-dim dark:text-white transition ease-in-out duration-700'
+        )}
+      >
         {/* First Flex Column */}
-        <div className="flex items-center flex-row md:flex-col justify-between h-auto md:h-full pb-3 border-b border-gray-200 dark:border-gray-600 md:border-0 px-4 py-4 md:py-12 md:px-10">
+        <div
+          className={classNames(
+            'flex items-center flex-row md:flex-col justify-between h-auto',
+            'md:h-full pb-3 border-b border-gray-200 dark:border-gray-600',
+            'md:border-0 px-4 py-4 md:py-12 md:px-10'
+          )}
+        >
           <div className="flex items-center space-x-2">
             <Link href="/">
               <a>
@@ -112,14 +123,7 @@ const Layout: React.FC<LayoutProps> = ({ children, headTitle, metaDescription, c
               </ul>
             </nav>
           </div>
-          <div>
-            {/* {process.env.NODE_ENV === 'production' && (
-              <MessengerCustomerChat
-                pageId={process.env.MESSENGER_PAGE_ID}
-                appId={process.env.MESSENGER_APP_ID}
-              />
-            )} */}
-          </div>
+          <div></div>
         </div>
       </div>
     </>
