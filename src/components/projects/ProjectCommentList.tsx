@@ -38,20 +38,22 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = (props) => {
       return toast.warning('Please input admin password to delete this post!')
     }
 
-    if (isDelete === process.env.ADMINISTRATOR_PASS) {
-      const { data, error } = await nhost.graphql.request(DELETE_PROJECT_COMMENT_BY_ID_MUTATION, {
-        id
-      })
-
-      if (data) {
-        toast.success('Deleted Comment!')
-      }
-      if (error) {
-        toast.error('Something went wrong!')
-      }
-    } else {
-      toast.warning('You are unauthorized to delete the comment posted!')
+    if (isDelete.toString() !== `${process.env.ADMINISTRATOR_PASS}`) {
+      return toast.warning('You are unauthorized to delete the comment posted!')
     }
+
+    const { data, error } = await nhost.graphql.request(DELETE_PROJECT_COMMENT_BY_ID_MUTATION, {
+      id
+    })
+
+    if (data) {
+      toast.success('Deleted Comment!')
+    }
+    if (error) {
+      toast.error('Something went wrong!')
+    }
+
+    return mutate({ ...data })
   }
 
   return (
