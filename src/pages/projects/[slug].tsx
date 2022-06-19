@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
 import { gql } from '@apollo/client'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import useSWR, { useSWRConfig } from 'swr'
 import { nhost } from '~/lib/nhost-client'
+import { useEffect, useState } from 'react'
 import { ParsedUrlQuery } from 'querystring'
 import Layout from '~/layouts/defaultLayout'
 import { classNames } from '~/utils/classNames'
@@ -14,7 +14,12 @@ import ProjectPostForm from '~/components/projects/ProjectPostForm'
 import ProjectCommentList from '~/components/projects/ProjectCommentList'
 import ProjectPostDetails from '~/components/projects/ProjectPostDetails'
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
-import { INSERT_PROJECT_COMMENT_MUTATION, INSERT_VIEWS_MUTATION } from '~/graphql/mutations'
+import {
+  INSERT_PROJECT_COMMENT_MUTATION,
+  INSERT_PROJECT_COMMENT_ONE,
+  INSERT_VIEWS_MUTATION
+} from '~/graphql/mutations'
+import { useSignOut, useUserData } from '@nhost/react'
 
 type Props = {
   fallbackData: any
@@ -60,7 +65,11 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 const ProjectPost: NextPage<Props> = (props) => {
   const { fallbackData } = props
 
+  let [isLoginPage, setIsLoginPage] = useState(true)
+
+  const user = useUserData()
   const router = useRouter()
+  const signOut = useSignOut()
   const { mutate } = useSWRConfig()
   const { slug, isFallback } = router.query
 
@@ -79,49 +88,40 @@ const ProjectPost: NextPage<Props> = (props) => {
 
   const project_id = data?.data?.projects[0]?.id
 
-  // useEffect(() => {
-  //   return () => {
-  //     insertViewer()
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [])
+  useEffect(() => {
+    return () => {
+      insertViewer()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  // const insertViewer = async () => {
-  //   const project_id = data?.data?.projects[0]?.id
-  //   const { data: viewData, error } = await nhost.graphql.request(INSERT_VIEWS_MUTATION, {
-  //     project_id
-  //   })
-  //   // if (viewData) {
-  //   //   await mutate({ ...data?.data })
-  //   //   toast.success('Inserted 1')
-  //   // }
-  //   // if (error) {
-  //   //   toast.error('No view inserted!')
-  //   // }
-  // }
+  const insertViewer = async () => {
+    const project_id = data?.data?.projects[0]?.id
+    const { data: viewData, error } = await nhost.graphql.request(INSERT_VIEWS_MUTATION, {
+      project_id
+    })
+    // if (viewData) {
+    //   await mutate({ ...data?.data })
+    //   toast.success('Inserted 1')
+    // }
+    // if (error) {
+    //   toast.error('No view inserted!')
+    // }
+  }
 
   const handleComment = async (data, e) => {
-    const { name, comment } = data
+    const { comment } = data
 
-    const { data: dataComment, error } = await nhost.graphql.request(
-      INSERT_PROJECT_COMMENT_MUTATION,
-      {
-        project_id,
-        name,
-        comment
-      }
-    )
-
-    const options = { optimisticData: dataComment, rollbackOnError: true }
+    const { data: dataComment, error } = await nhost.graphql.request(INSERT_PROJECT_COMMENT_ONE, {
+      project_id,
+      name: user?.displayName,
+      comment
+    })
 
     if (dataComment) {
-      await mutate(
-        {
-          ...data?.data
-        },
-        null,
-        options
-      )
+      await mutate({
+        ...data?.data
+      })
       toast.success('Commented successfully!')
       e.target.reset()
     }
@@ -129,6 +129,43 @@ const ProjectPost: NextPage<Props> = (props) => {
       toast.error('Something went wrong!')
     }
   }
+
+  const handleSignAuth = async (data) => {
+    const { display_name, email, password } = data
+
+    if (isLoginPage) {
+      const { session, error } = await nhost.auth.signIn({
+        email: email,
+        password: password
+      })
+      if (session) {
+        handleAuthSwitchForm()
+        toast.success('Successfully Login!')
+      }
+      if (error) {
+        toast.error(`${error?.message}`)
+      }
+    } else {
+      const { session, error } = await nhost.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          displayName: display_name
+        }
+      })
+      if (session) {
+        handleAuthSwitchForm()
+        toast.success('Successfully Sign Up!')
+      }
+      if (error) {
+        toast.error(`${error?.message}`)
+      }
+    }
+  }
+
+  const handleAuthSwitchForm = () => setIsLoginPage((isLoginPage = !isLoginPage))
+
+  const handleLogout = () => signOut.signOut()
 
   if (isFallback)
     return (
@@ -150,20 +187,17 @@ const ProjectPost: NextPage<Props> = (props) => {
     >
       <div className="w-full max-w-5xl mx-auto px-4 mb-6">
         <BackButton />
-        {/* 
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-        <pre>{JSON.stringify(fallbackData, null, 2)}</pre> */}
 
-        <ProjectPostDetails projects={data?.data?.projects[0]} />
-        <ProjectPostForm actions={{ handleComment }} />
+        <ProjectPostDetails projects={data?.data?.projects[0]} actions={{ handleLogout }} />
+        <ProjectPostForm
+          isLoginPage={isLoginPage}
+          actions={{ handleComment, handleSignAuth, handleAuthSwitchForm }}
+        />
 
         {/* Comment List */}
         <div className="mt-3">
           <ProjectCommentList projects={data?.data?.projects} />
         </div>
-        {/* <AnnouncementPage /> */}
-
-        <AnnouncementPage />
 
         <SponsorCard className="mt-6" />
       </div>
