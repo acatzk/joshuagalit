@@ -13,7 +13,7 @@ module.exports = {
       colors: {
         cyan: colors.cyan,
         fuchsia: colors.fuchsia,
-        "dark-dim": "#15202B",
+        "dark-dim": "#111827",
         "blue-twitter": "#1DA1F2",
         grey: {
           100: "#F5F7FA",
@@ -129,6 +129,7 @@ module.exports = {
     },
   },
   variants: {
+    scrollbar: ['dark'],
     extend: {
       typography: ["dark"],
       opacity: ["disabled"],
@@ -138,6 +139,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('tailwind-scrollbar'),
     require("@tailwindcss/forms"),
     require("@tailwindcss/line-clamp"),
     require('@tailwindcss/typography')

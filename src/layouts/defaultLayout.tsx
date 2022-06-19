@@ -6,7 +6,6 @@ import { useRouter } from 'next/router'
 import { Menu } from '@headlessui/react'
 import { ISocialLink } from '~/mock/type'
 import { BsThreeDots } from 'react-icons/bs'
-import Scrollbar from 'react-smooth-scrollbar'
 import { classNames } from '~/utils/classNames'
 import ThemeChanger from '~/utils/ThemeChanger'
 import { LogoIcon, SoundIcon } from '~/utils/Icons'
@@ -30,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children, headTitle, metaDescription, c
       <div
         className={classNames(
           'font-sans antialiased flex flex-col md:flex-row justify-between',
-          'w-full min-h-screen h-screen bg-white text-black',
+          'w-full min-h-screen h-screen bg-white text-black overflow-hidden',
           'dark:bg-dark-dim dark:text-white transition ease-in-out duration-700'
         )}
       >
@@ -85,9 +84,16 @@ const Layout: React.FC<LayoutProps> = ({ children, headTitle, metaDescription, c
         </div>
 
         {/* Dynamic Content */}
-        <Scrollbar damping={0.1} thumbMinSize={20} className="flex-1">
-          <main className={`${className}`}>{children}</main>
-        </Scrollbar>
+        <main
+          className={classNames(
+            `${className}`,
+            'overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-200',
+            'dark:scrollbar-thumb-gray-800 dark:scrollbar-track-gray-700 scrollbar-thumb-rounded',
+            'transition ease-in-out duration-700'
+          )}
+        >
+          {children}
+        </main>
 
         {/* Navigation links */}
         <div
