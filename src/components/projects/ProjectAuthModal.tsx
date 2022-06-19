@@ -1,29 +1,24 @@
+import React from 'react'
 import DialogBox from '../DialogBox'
-import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Dialog } from '@headlessui/react'
 import { classNames } from '~/utils/classNames'
 
 type Props = {
   isOpen: boolean
-  closeModal: any
+  actions: any
+  isLoginPage: boolean
 }
 
 const ProjectAuthModal: React.FC<Props> = (props) => {
-  const { isOpen, closeModal } = props
-  let [isLoginPage, setIsLoginPage] = useState(true)
+  const { isOpen, actions, isLoginPage } = props
+  const { handleSignAuth, closeModal, handleAuthSwitchForm } = actions
 
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors }
   } = useForm()
-
-  const handleSignAuth = () => {
-    alert('Hello')
-  }
-
-  const handleAuthSwitchForm = () => setIsLoginPage((isLoginPage = !isLoginPage))
 
   return (
     <DialogBox isOpen={isOpen} closeModal={closeModal}>

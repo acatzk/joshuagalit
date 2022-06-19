@@ -7,13 +7,14 @@ import ProjectAuthModal from './ProjectAuthModal'
 
 type props = {
   actions: any
+  isLoginPage: boolean
 }
 
 const ProjectPostForm: React.FC<props> = (props) => {
-  const { actions } = props
-  const { handleComment } = actions
+  const { actions, isLoginPage } = props
   const isAuthenticated = useAuthenticated()
   const [isOpen, setIsOpen] = useState(false)
+  const { handleComment, handleSignAuth, handleAuthSwitchForm } = actions
 
   const closeModal = () => setIsOpen(false)
   const openModal = () => setIsOpen(true)
@@ -48,14 +49,18 @@ const ProjectPostForm: React.FC<props> = (props) => {
             >
               Login
             </button>
-            <ProjectAuthModal isOpen={isOpen} closeModal={closeModal} />
+            <ProjectAuthModal
+              isOpen={isOpen}
+              isLoginPage={isLoginPage}
+              actions={{ closeModal, handleSignAuth, handleAuthSwitchForm }}
+            />
           </div>
         </div>
       )}
       {isAuthenticated && (
         <form className="space-y-4" onSubmit={handleSubmit(handleComment)}>
           <div className="space-y-6">
-            <div>
+            {/* <div>
               <input
                 type="text"
                 placeholder="Name"
@@ -69,7 +74,7 @@ const ProjectPostForm: React.FC<props> = (props) => {
                   'focus:ring-0 transition ease-in-out duration-200 disabled:cursor-not-allowed disabled:opacity-50'
                 )}
               />
-            </div>
+            </div> */}
             <div>
               <textarea
                 placeholder="Add a public comment..."

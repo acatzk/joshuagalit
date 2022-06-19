@@ -4,6 +4,8 @@ import Moment from 'react-moment'
 import { FiEye } from 'react-icons/fi'
 import { GrGithub } from 'react-icons/gr'
 import { classNames } from '~/utils/classNames'
+import { AiOutlineLogout } from 'react-icons/ai'
+import { useAuthenticated } from '@nhost/react'
 import { BiLinkExternal, BiMessageRounded, BiMessageRoundedDots } from 'react-icons/bi'
 
 type Props = {
@@ -22,10 +24,11 @@ type Props = {
       aggregate: { commentsCount: number }
     }
   }
+  actions: any
 }
 
 const ProjectPostDetails: React.FC<Props> = (props) => {
-  const { projects } = props
+  const { projects, actions } = props
 
   const {
     id,
@@ -42,6 +45,7 @@ const ProjectPostDetails: React.FC<Props> = (props) => {
       aggregate: { commentsCount }
     }
   } = projects
+  const { handleLogout } = actions
 
   return (
     <div key={id} className="space-y-5">
@@ -108,7 +112,7 @@ const ProjectPostDetails: React.FC<Props> = (props) => {
         </div>
       </div>
       <div className="flex items-center justify-between">
-        <Tabs source_code_url={source_code_url} demo_url={demo_url} />
+        <Tabs source_code_url={source_code_url} demo_url={demo_url} actions={{ handleLogout }} />
       </div>
     </div>
   )
@@ -117,10 +121,13 @@ const ProjectPostDetails: React.FC<Props> = (props) => {
 type TabProps = {
   source_code_url: string
   demo_url: string
+  actions: any
 }
 
 const Tabs: React.FC<TabProps> = (props) => {
-  const { source_code_url, demo_url } = props
+  const isAuthenticated = useAuthenticated()
+  const { source_code_url, demo_url, actions } = props
+  const { handleLogout } = actions
 
   return (
     <div className={classNames('border-b border-gray-200 dark:border-gray-700 space-y-4 w-full')}>
@@ -176,6 +183,26 @@ const Tabs: React.FC<TabProps> = (props) => {
               <BiLinkExternal className="w-4 h-4" />
               <span className="text-sm line-clamp-1">Demo</span>
             </a>
+          </li>
+        )}
+        {isAuthenticated && (
+          <li
+            className={classNames(
+              'border-b-2 border-transparent hover:border-gray-300',
+              'dark:hover:border-white transition ease-in duration-100 px-3'
+            )}
+          >
+            <button
+              type="button"
+              className={classNames(
+                'flex items-center space-x-2 pb-2 text-gray-600',
+                'dark:text-gray-400 dark:hover:text-white'
+              )}
+              onClick={handleLogout}
+            >
+              <AiOutlineLogout className="w-4 h-4" />
+              <span className="text-sm line-clamp-1">Logout</span>
+            </button>
           </li>
         )}
       </ul>

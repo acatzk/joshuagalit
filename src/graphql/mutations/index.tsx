@@ -40,6 +40,17 @@ export const INSERT_PROJECT_COMMENT_MUTATION = gql`
   }
 `
 
+export const INSERT_PROJECT_COMMENT_ONE = gql`
+  mutation insertProjectComment($comment: String!, $project_id: uuid!, $name: String!) {
+    insert_project_comments_one(
+      object: { comment: $comment, project_id: $project_id, name: $name }
+    ) {
+      id
+      project_id
+    }
+  }
+`
+
 export const DELETE_PROJECT_COMMENT_BY_ID_MUTATION = gql`
   mutation DeleteProjectCommentByIdMutation($id: uuid!) {
     delete_project_comments_by_pk(id: $id) {
