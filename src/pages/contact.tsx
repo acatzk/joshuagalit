@@ -41,9 +41,9 @@ const Contact: NextPage = () => {
         variants={routeAnimation}
         initial="initial"
         animate="animate"
-        className="w-full max-w-5xl m-auto px-4 py-4 md:py-0"
+        className="relative w-full max-w-5xl m-auto px-4 py-4 md:py-0"
       >
-        <div className="w-full h-full opacity-30 absolute">
+        <div className="w-full h-full opacity-30">
           <Image
             src="/svgs/buble.svg"
             layout="fill"
