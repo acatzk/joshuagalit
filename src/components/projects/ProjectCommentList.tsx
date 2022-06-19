@@ -10,11 +10,11 @@ import TimeAgoFormat from '~/lib/react-timeago'
 import { classNames } from '~/utils/classNames'
 import { DELETE_PROJECT_COMMENT_BY_ID_MUTATION } from '~/graphql/mutations'
 
-interface ProjectCommentListProps {
+type ProjectCommentListProps = {
   projects: any
 }
 
-interface ProjectCommentItemProps {
+type ProjectCommentItemProps = {
   id: string
   name: string
   comment: string
@@ -31,7 +31,7 @@ const ProjectCommentList: React.FC<ProjectCommentListProps> = ({ projects }) => 
 const ProjectCommentItem: React.FC<ProjectCommentItemProps> = (props) => {
   const { id, name, comment, created_at } = props
 
-  const handleDeleteComment = async () => {
+  const handleDelete = async () => {
     let isDelete = prompt('Confirm password to delete post!', '')
 
     if (isDelete === '' || isDelete === null) {
@@ -81,7 +81,7 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = (props) => {
               <TimeAgoFormat date={created_at} />
             </span>
           </div>
-          <DropdownMenu actions={{ handleDeleteComment }} />
+          <DropdownMenu actions={{ handleDelete }} />
         </div>
         {/* Actual comments */}
         <div>
@@ -109,7 +109,7 @@ const Avatar: React.FC<{ className: any; name: string }> = ({ className, name })
 
 const DropdownMenu: React.FC<{ actions: any }> = (props) => {
   const {
-    actions: { handleDeleteComment }
+    actions: { handleDelete }
   } = props
   return (
     <div className="relative">
@@ -134,7 +134,7 @@ const DropdownMenu: React.FC<{ actions: any }> = (props) => {
               >
                 <Menu.Item>
                   <button
-                    onClick={handleDeleteComment}
+                    onClick={handleDelete}
                     className={classNames(
                       'text-sm px-4 py-1 text-gray-600 dark:text-gray-400',
                       'focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-900',
