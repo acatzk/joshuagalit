@@ -1,48 +1,20 @@
 import React from 'react'
-import { mutate } from 'swr'
-import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form'
-import { nhost } from '~/lib/nhost-client'
 import { classNames } from '~/utils/classNames'
-import { INSERT_PROJECT_COMMENT_MUTATION } from '~/graphql/mutations'
 
 type props = {
-  project: any
+  actions: any
 }
 
 const ProjectPostForm: React.FC<props> = (props) => {
-  const { project } = props
+  const { actions } = props
+  const { handleComment } = actions
+
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, isDirty, isValid }
   } = useForm({ mode: 'onChange' })
-
-  const handleComment = async (data, e) => {
-    const { name, comment } = data
-    const { id } = project
-
-    const {
-      data: { insert_project_comments_one },
-      error
-    } = await nhost.graphql.request(INSERT_PROJECT_COMMENT_MUTATION, {
-      project_id: id,
-      name,
-      comment
-    })
-
-    if (error) {
-      toast.error('Something went wrong!')
-    }
-
-    if (data) {
-      mutate({
-        ...insert_project_comments_one
-      })
-      toast.success('Commented successfully!')
-      e.target.reset()
-    }
-  }
 
   return (
     <div

@@ -1,23 +1,23 @@
-import useSWR from 'swr'
-import Link from 'next/link'
 import { useEffect } from 'react'
 import { gql } from '@apollo/client'
+import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
+import useSWR, { useSWRConfig } from 'swr'
 import { nhost } from '~/lib/nhost-client'
 import { ParsedUrlQuery } from 'querystring'
 import Layout from '~/layouts/defaultLayout'
 import { classNames } from '~/utils/classNames'
 import SponsorCard from '~/components/SponsorCard'
 import { AnimatedLoadingIcon } from '~/utils/Icons'
-import { INSERT_VIEWS_MUTATION } from '~/graphql/mutations'
 import { GET_PROJECT_BY_SLUG_QUERY } from '~/graphql/queries'
 import ProjectPostForm from '~/components/projects/ProjectPostForm'
 import ProjectCommentList from '~/components/projects/ProjectCommentList'
 import ProjectPostDetails from '~/components/projects/ProjectPostDetails'
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
+import { INSERT_PROJECT_COMMENT_MUTATION, INSERT_VIEWS_MUTATION } from '~/graphql/mutations'
 
-interface Props {
-  initialData: any
+type Props = {
+  fallbackData: any
 }
 
 interface IParams extends ParsedUrlQuery {
@@ -51,50 +51,83 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 
   return {
     props: {
-      initialData: data
+      fallbackData: { data }
     },
     revalidate: 1
   }
 }
 
 const ProjectPost: NextPage<Props> = (props) => {
-  const { initialData } = props
+  const { fallbackData } = props
 
   const router = useRouter()
+  const { mutate } = useSWRConfig()
   const { slug, isFallback } = router.query
 
-  const options = {
-    initialData,
-    refreshInterval: 1000,
-    revalidateOnMount: true
-  }
-
-  const { data, mutate } = useSWR(
+  const { data } = useSWR(
     [GET_PROJECT_BY_SLUG_QUERY, slug],
-    async (query, slug) => await nhost.graphql.request(query, { slug }),
-    options
+    async (query, slug) =>
+      await nhost.graphql.request(query, {
+        slug
+      }),
+    {
+      fallbackData,
+      refreshInterval: 1000,
+      revalidateOnMount: true
+    }
   )
+
+  const project_id = data?.data?.projects[0]?.id
 
   useEffect(() => {
     return () => {
-      InsertViewer()
+      insertViewer()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const InsertViewer = async () => {
-    const { id } = initialData.projects[0]
-    const { data, error } = await nhost.graphql.request(INSERT_VIEWS_MUTATION, {
-      project_id: id
+  const insertViewer = async () => {
+    const project_id = data?.data?.projects[0]?.id
+    const { data: viewData, error } = await nhost.graphql.request(INSERT_VIEWS_MUTATION, {
+      project_id
     })
-
-    // if (dataView) {
-    //   toast.success('Inserted view')
+    // if (viewData) {
+    //   await mutate({ ...data?.data })
+    //   toast.success('Inserted 1')
     // }
     // if (error) {
-    //   toast.error('Something went wrong!')
+    //   toast.error('No view inserted!')
     // }
-    return mutate()
+  }
+
+  const handleComment = async (data, e) => {
+    const { name, comment } = data
+
+    const { data: dataComment, error } = await nhost.graphql.request(
+      INSERT_PROJECT_COMMENT_MUTATION,
+      {
+        project_id,
+        name,
+        comment
+      }
+    )
+
+    const options = { optimisticData: dataComment, rollbackOnError: true }
+
+    if (dataComment) {
+      await mutate(
+        {
+          ...data?.data
+        },
+        null,
+        options
+      )
+      toast.success('Commented successfully!')
+      e.target.reset()
+    }
+    if (error) {
+      toast.error('Something went wrong!')
+    }
   }
 
   if (isFallback)
@@ -106,24 +139,23 @@ const ProjectPost: NextPage<Props> = (props) => {
   if (!isFallback && !data)
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="flex flex-col items-center text-black dark:text-white">
-          <p className="font-medium">No such project found!</p>
-          <Link href="/projects">
-            <a className="hover:underline py-2 px-3 border rounded-full">Goto Projects</a>
-          </Link>
-        </div>
+        <AnimatedLoadingIcon className="w-5 h-5 text-black dark:text-white" />
       </div>
     )
 
   return (
     <Layout
-      headTitle={`Projects | ${initialData?.projects[0]?.title}`}
-      metaDescription={initialData?.projects[0]?.description}
+      headTitle={`Projects | ${data?.data?.projects[0]?.title}`}
+      metaDescription={data?.data?.projects[0]?.description}
     >
       <div className="w-full max-w-5xl mx-auto px-4 mb-6">
         <BackButton />
+        {/* 
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+        <pre>{JSON.stringify(fallbackData, null, 2)}</pre> */}
+
         <ProjectPostDetails projects={data?.data?.projects[0]} />
-        <ProjectPostForm project={data?.data?.projects[0]} />
+        <ProjectPostForm actions={{ handleComment }} />
 
         {/* Comment List */}
         <div className="mt-3">
