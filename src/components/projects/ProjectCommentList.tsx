@@ -19,17 +19,23 @@ type ProjectCommentItemProps = {
   name: string
   comment: string
   created_at: string
+  user: {
+    id: string
+    avatarUrl: string
+  }
 }
 
 const ProjectCommentList: React.FC<ProjectCommentListProps> = ({ projects }) => {
   if (!projects) return <p>No comment yet</p>
 
   const { comments } = projects[0]
-  return comments.map((comment: any, i: number) => <ProjectCommentItem key={i} {...comment} />)
+  return comments.map((comment: any, i: number) => (
+    <ProjectCommentItem key={i} {...comment} user={comment?.user} />
+  ))
 }
 
 const ProjectCommentItem: React.FC<ProjectCommentItemProps> = (props) => {
-  const { id, name, comment, created_at } = props
+  const { id, name, comment, created_at, user } = props
 
   const handleDelete = async () => {
     let isDelete = prompt('Confirm password to delete post!', '')
@@ -58,7 +64,11 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = (props) => {
 
   return (
     <div key={id} className="flex space-x-3 py-3 px-2">
-      <Avatar name={name} className="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-800" />
+      <Avatar
+        name={name}
+        user={user}
+        className="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-800"
+      />
       <div
         className={classNames(
           'flex flex-col -my-1.5 rounded-xl px-4 py-3 bg-gray-100',
@@ -92,12 +102,22 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = (props) => {
   )
 }
 
-const Avatar: React.FC<{ className: any; name: string }> = ({ className, name }) => {
+type AvatarProps = {
+  className: any
+  name: string
+  user: {
+    id: string
+    avatarUrl: string
+  }
+}
+
+const Avatar: React.FC<AvatarProps> = ({ className, name, user }) => {
   return (
     <div className="flex-shrink-0">
       <Image
         className={className}
-        src={name === 'Joshua Galit' ? '/images/my-avatar.jpg' : '/images/default-avatar.jpg'}
+        // src={name === 'Joshua Galit' ? '/images/my-avatar.jpg' : '/images/default-avatar.jpg'}
+        src={user?.avatarUrl?.split('?r=g&default=blank')?.toString()}
         alt="Comment User Avatar"
         width={36}
         height={36}

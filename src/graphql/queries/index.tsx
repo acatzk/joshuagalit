@@ -49,6 +49,10 @@ export const GET_PROJECT_BY_SLUG_QUERY = gql`
         name
         comment
         created_at
+        user {
+          id
+          avatarUrl
+        }
       }
       views_aggregate {
         aggregate {

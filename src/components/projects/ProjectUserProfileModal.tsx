@@ -32,9 +32,10 @@ const ProjectUserProfileModal: React.FC<Props> = (props) => {
         <div className="flex flex-col items-center space-y-2">
           <div className="relative w-[128px] h-[128px] z-10">
             <Image
-              src={'/images/default-avatar.jpg'}
+              src={user?.avatarUrl?.split('?r=g&default=blank')?.toString()}
               layout="fill"
               className="rounded-full shadown-lg"
+              quality={100}
               alt="avatar"
             />
           </div>
@@ -43,7 +44,7 @@ const ProjectUserProfileModal: React.FC<Props> = (props) => {
             className={classNames(
               'inline-block px-2 py-1.5 font-medium',
               'text-xs leading-tight rounded',
-              'border hover:bg-gray-50',
+              'border dark:border-gray-500 hover:bg-gray-50',
               'transition duration-150 ease-in-out',
               'active:bg-gray-100 dark:hover:bg-blue-500',
               'dark:hover:border-transparent'
@@ -121,7 +122,7 @@ const ProjectUserProfileModal: React.FC<Props> = (props) => {
               )}
             </div>
           </div>
-          <div className="mt-7">
+          <div className="mt-4">
             <button
               type="submit"
               disabled={isSubmitting}
