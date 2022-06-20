@@ -46,11 +46,11 @@ export const GET_PROJECT_BY_SLUG_QUERY = gql`
       slug
       comments(order_by: { created_at: desc }) {
         id
-        name
         comment
         created_at
         user {
           id
+          displayName
           avatarUrl
         }
       }

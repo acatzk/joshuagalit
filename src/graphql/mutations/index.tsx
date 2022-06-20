@@ -28,25 +28,11 @@ export const INSERT_VIEWS_MUTATION = gql`
   }
 `
 
-export const INSERT_PROJECT_COMMENT_MUTATION = gql`
-  mutation InsertProjectCommentMutation($project_id: uuid!, $name: String!, $comment: String!) {
-    insert_project_comments_one(
-      object: { project_id: $project_id, name: $name, comment: $comment }
-    ) {
-      id
-      name
-      comment
-    }
-  }
-`
-
 export const INSERT_PROJECT_COMMENT_ONE = gql`
-  mutation insertProjectComment($comment: String!, $project_id: uuid!, $name: String!) {
-    insert_project_comments_one(
-      object: { comment: $comment, project_id: $project_id, name: $name }
-    ) {
+  mutation InsertProjectCommentMutation($project_id: uuid!, $comment: String!) {
+    insert_project_comments_one(object: { project_id: $project_id, comment: $comment }) {
       id
-      project_id
+      comment
     }
   }
 `
@@ -55,7 +41,6 @@ export const DELETE_PROJECT_COMMENT_BY_ID_MUTATION = gql`
   mutation DeleteProjectCommentByIdMutation($id: uuid!) {
     delete_project_comments_by_pk(id: $id) {
       id
-      name
       project_id
     }
   }
@@ -68,6 +53,16 @@ export const INSERT_BLOG_VIEWS_MUTATION = gql`
         id
         slug
       }
+    }
+  }
+`
+
+export const UPDATE_USER_BY_PK_ID = gql`
+  mutation updateUserByPkId($id: uuid!, $email: citext!, $displayName: String!) {
+    updateUser(pk_columns: { id: $id }, _set: { email: $email, displayName: $displayName }) {
+      id
+      email
+      displayName
     }
   }
 `

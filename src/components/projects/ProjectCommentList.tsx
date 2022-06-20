@@ -21,6 +21,7 @@ type ProjectCommentItemProps = {
   created_at: string
   user: {
     id: string
+    displayName: string
     avatarUrl: string
   }
 }
@@ -84,7 +85,7 @@ const ProjectCommentItem: React.FC<ProjectCommentItemProps> = (props) => {
                 'transition ease-in-out duration-700 line-clamp-1 capitalize'
               )}
             >
-              {name}
+              {user?.displayName}
             </h1>
             <span>&bull;</span>
             <span className="text-xs line-clamp-1">
@@ -111,12 +112,11 @@ type AvatarProps = {
   }
 }
 
-const Avatar: React.FC<AvatarProps> = ({ className, name, user }) => {
+const Avatar: React.FC<AvatarProps> = ({ className, user }) => {
   return (
     <div className="flex-shrink-0">
       <Image
         className={className}
-        // src={name === 'Joshua Galit' ? '/images/my-avatar.jpg' : '/images/default-avatar.jpg'}
         src={user?.avatarUrl?.split('?r=g&default=blank')?.toString()}
         alt="Comment User Avatar"
         width={36}
