@@ -163,6 +163,10 @@ const ProjectPost: NextPage<Props> = (props) => {
     }
   }
 
+  const handleUpdateUser = () => {
+    alert('Hello')
+  }
+
   const handleAuthSwitchForm = () => setIsLoginPage((isLoginPage = !isLoginPage))
 
   const handleLogout = () => signOut.signOut()
@@ -188,7 +192,11 @@ const ProjectPost: NextPage<Props> = (props) => {
       <div className="w-full max-w-5xl mx-auto px-4 mb-6">
         <BackButton />
 
-        <ProjectPostDetails projects={data?.data?.projects[0]} actions={{ handleLogout }} />
+        <ProjectPostDetails
+          user={user}
+          projects={data?.data?.projects[0]}
+          actions={{ handleLogout, handleUpdateUser }}
+        />
         <ProjectPostForm
           isLoginPage={isLoginPage}
           actions={{ handleComment, handleSignAuth, handleAuthSwitchForm }}

@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Moment from 'react-moment'
 import { FiEye } from 'react-icons/fi'
 import { GrGithub } from 'react-icons/gr'
 import { classNames } from '~/utils/classNames'
-import { AiOutlineLogout } from 'react-icons/ai'
 import { useAuthenticated } from '@nhost/react'
-import { BiLinkExternal, BiMessageRounded, BiMessageRoundedDots } from 'react-icons/bi'
+import { AiOutlineLogout } from 'react-icons/ai'
+import {
+  BiLinkExternal,
+  BiMessageRounded,
+  BiMessageRoundedDots,
+  BiUserCircle
+} from 'react-icons/bi'
+import ProjectUserProfileModal from './ProjectUserProfileModal'
 
 type Props = {
+  user: any
   projects: {
     id: string
     title: string
@@ -28,7 +35,7 @@ type Props = {
 }
 
 const ProjectPostDetails: React.FC<Props> = (props) => {
-  const { projects, actions } = props
+  const { projects, actions, user } = props
 
   const {
     id,
@@ -45,7 +52,7 @@ const ProjectPostDetails: React.FC<Props> = (props) => {
       aggregate: { commentsCount }
     }
   } = projects
-  const { handleLogout } = actions
+  const { handleLogout, handleUpdateUser } = actions
 
   return (
     <div key={id} className="space-y-5">
@@ -112,7 +119,12 @@ const ProjectPostDetails: React.FC<Props> = (props) => {
         </div>
       </div>
       <div className="flex items-center justify-between">
-        <Tabs source_code_url={source_code_url} demo_url={demo_url} actions={{ handleLogout }} />
+        <Tabs
+          user={user}
+          source_code_url={source_code_url}
+          demo_url={demo_url}
+          actions={{ handleLogout, handleUpdateUser }}
+        />
       </div>
     </div>
   )
@@ -122,16 +134,22 @@ type TabProps = {
   source_code_url: string
   demo_url: string
   actions: any
+  user: any
 }
 
 const Tabs: React.FC<TabProps> = (props) => {
   const isAuthenticated = useAuthenticated()
-  const { source_code_url, demo_url, actions } = props
-  const { handleLogout } = actions
+  const { source_code_url, demo_url, actions, user } = props
+  const { handleLogout, handleUpdateUser } = actions
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const closeModal = () => setIsOpen(false)
+  const openModal = () => setIsOpen(true)
 
   return (
     <div className={classNames('border-b border-gray-200 dark:border-gray-700 space-y-4 w-full')}>
-      <ul className="flex items-center text-sm">
+      <ul className="flex flex-wrap items-center text-sm">
         <li className="border-b-2 border-transparent border-blue-twitter px-3">
           <button
             className={classNames(
@@ -186,24 +204,51 @@ const Tabs: React.FC<TabProps> = (props) => {
           </li>
         )}
         {isAuthenticated && (
-          <li
-            className={classNames(
-              'border-b-2 border-transparent hover:border-gray-300',
-              'dark:hover:border-white transition ease-in duration-100 px-3'
-            )}
-          >
-            <button
-              type="button"
+          <>
+            <>
+              <li
+                className={classNames(
+                  'border-b-2 border-transparent hover:border-gray-300',
+                  'dark:hover:border-white transition ease-in duration-100 px-3'
+                )}
+              >
+                <button
+                  type="button"
+                  onClick={openModal}
+                  className={classNames(
+                    'flex items-center space-x-2 pb-2 text-gray-600',
+                    'dark:text-gray-400 dark:hover:text-white'
+                  )}
+                >
+                  <BiUserCircle className="w-4 h-4" />
+                  <span className="text-sm line-clamp-1">Profile</span>
+                </button>
+              </li>
+              <ProjectUserProfileModal
+                user={user}
+                isOpen={isOpen}
+                actions={{ closeModal, handleUpdateUser }}
+              />
+            </>
+            <li
               className={classNames(
-                'flex items-center space-x-2 pb-2 text-gray-600',
-                'dark:text-gray-400 dark:hover:text-white'
+                'border-b-2 border-transparent hover:border-gray-300',
+                'dark:hover:border-white transition ease-in duration-100 px-3'
               )}
-              onClick={handleLogout}
             >
-              <AiOutlineLogout className="w-4 h-4" />
-              <span className="text-sm line-clamp-1">Logout</span>
-            </button>
-          </li>
+              <button
+                type="button"
+                className={classNames(
+                  'flex items-center space-x-2 pb-2 text-gray-600',
+                  'dark:text-gray-400 dark:hover:text-white'
+                )}
+                onClick={handleLogout}
+              >
+                <AiOutlineLogout className="w-4 h-4" />
+                <span className="text-sm line-clamp-1">Logout</span>
+              </button>
+            </li>
+          </>
         )}
       </ul>
     </div>
