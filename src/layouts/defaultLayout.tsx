@@ -8,6 +8,8 @@ import { ISocialLink } from '~/mock/type'
 import { BsThreeDots } from 'react-icons/bs'
 import { classNames } from '~/utils/classNames'
 import ThemeChanger from '~/utils/ThemeChanger'
+import { getNhostSession } from '@nhost/nextjs'
+import { GetServerSidePropsContext } from 'next'
 import { LogoIcon, SoundIcon } from '~/utils/Icons'
 import { navigations, socialLinks } from '~/mock/data'
 
@@ -16,6 +18,16 @@ interface LayoutProps {
   metaDescription?: string
   className?: string
   children?: React.ReactNode
+}
+
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const nhostSession = await getNhostSession(`${process.env.NEXT_PUBLIC_NHOST_BACKEND}`, context)
+
+  return {
+    props: {
+      nhostSession
+    }
+  }
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, headTitle, metaDescription, className }) => {
