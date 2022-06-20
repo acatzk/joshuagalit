@@ -60,21 +60,6 @@ const ProjectPostForm: React.FC<props> = (props) => {
       {isAuthenticated && (
         <form className="space-y-4" onSubmit={handleSubmit(handleComment)}>
           <div className="space-y-6">
-            {/* <div>
-              <input
-                type="text"
-                placeholder="Name"
-                {...register('name', {
-                  required: true
-                })}
-                disabled={isSubmitting}
-                className={classNames(
-                  'border-b-2 border-gray-300 dark:border-gray-700 focus:border-blue-twitter',
-                  'dark:focus:border-blue-twitter bg-transparent border-0 w-full py-1 focus:outline-none',
-                  'focus:ring-0 transition ease-in-out duration-200 disabled:cursor-not-allowed disabled:opacity-50'
-                )}
-              />
-            </div> */}
             <div>
               <textarea
                 placeholder="Add a public comment..."

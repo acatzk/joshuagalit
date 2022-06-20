@@ -18,7 +18,8 @@ module.exports = {
       "instagram.fdvo1-1.fna.fbcdn.net",
       "joshuagalit-com.vercel.app",
       "encrypted-tbn0.gstatic.com",
-      "yhoelihnbogmpazptxze.storage.ap-southeast-1.nhost.run"
+      "yhoelihnbogmpazptxze.storage.ap-southeast-1.nhost.run",
+      "s.gravatar.com"
     ],
   }
 };
