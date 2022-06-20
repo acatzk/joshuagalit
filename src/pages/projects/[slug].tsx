@@ -94,26 +94,26 @@ const ProjectPost: NextPage<Props> = (props) => {
 
   const project_id = data?.data?.projects[0]?.id
 
-  // useEffect(() => {
-  //   return () => {
-  //     insertViewer()
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [])
+  useEffect(() => {
+    return () => {
+      insertViewer()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  // const insertViewer = async () => {
-  //   const project_id = data?.data?.projects[0]?.id
-  //   const { data: viewData, error } = await nhost.graphql.request(INSERT_VIEWS_MUTATION, {
-  //     project_id
-  //   })
-  //   // if (viewData) {
-  //   //   await mutate({ ...data?.data })
-  //   //   toast.success('Inserted 1')
-  //   // }
-  //   // if (error) {
-  //   //   toast.error('No view inserted!')
-  //   // }
-  // }
+  const insertViewer = async () => {
+    const project_id = data?.data?.projects[0]?.id
+    const { data: viewData, error } = await nhost.graphql.request(INSERT_VIEWS_MUTATION, {
+      project_id
+    })
+    // if (viewData) {
+    //   await mutate({ ...data?.data })
+    //   toast.success('Inserted 1')
+    // }
+    // if (error) {
+    //   toast.error('No view inserted!')
+    // }
+  }
 
   const handleComment = async (data, e) => {
     const { comment } = data
