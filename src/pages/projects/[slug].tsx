@@ -9,17 +9,17 @@ import Layout from '~/layouts/defaultLayout'
 import { classNames } from '~/utils/classNames'
 import SponsorCard from '~/components/SponsorCard'
 import { AnimatedLoadingIcon } from '~/utils/Icons'
+import { useSignOut, useUserData } from '@nhost/react'
 import { GET_PROJECT_BY_SLUG_QUERY } from '~/graphql/queries'
 import ProjectPostForm from '~/components/projects/ProjectPostForm'
 import ProjectCommentList from '~/components/projects/ProjectCommentList'
 import ProjectPostDetails from '~/components/projects/ProjectPostDetails'
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
 import {
-  INSERT_PROJECT_COMMENT_MUTATION,
   INSERT_PROJECT_COMMENT_ONE,
-  INSERT_VIEWS_MUTATION
+  INSERT_VIEWS_MUTATION,
+  UPDATE_USER_BY_PK_ID
 } from '~/graphql/mutations'
-import { useSignOut, useUserData } from '@nhost/react'
 
 type Props = {
   fallbackData: any
@@ -73,6 +73,12 @@ const ProjectPost: NextPage<Props> = (props) => {
   const { mutate } = useSWRConfig()
   const { slug, isFallback } = router.query
 
+  const [isOpenUserModal, setIsOpenUserModal] = useState(false)
+
+  const closeUserModal = () => setIsOpenUserModal(false)
+
+  const openUserModal = () => setIsOpenUserModal(true)
+
   const { data } = useSWR(
     [GET_PROJECT_BY_SLUG_QUERY, slug],
     async (query, slug) =>
@@ -114,7 +120,6 @@ const ProjectPost: NextPage<Props> = (props) => {
 
     const { data: dataComment, error } = await nhost.graphql.request(INSERT_PROJECT_COMMENT_ONE, {
       project_id,
-      name: user?.displayName,
       comment
     })
 
@@ -163,8 +168,25 @@ const ProjectPost: NextPage<Props> = (props) => {
     }
   }
 
-  const handleUpdateUser = () => {
-    alert('Hello')
+  const handleUpdateUser = async (data) => {
+    const { display_name, email } = data
+    const { data: dataResult, error } = await nhost.graphql.request(UPDATE_USER_BY_PK_ID, {
+      id: user?.id,
+      displayName: display_name,
+      email
+    })
+
+    if (dataResult) {
+      toast.success('Successfully Updated!')
+      closeUserModal()
+    }
+    if (error) {
+      toast.error('Something went wrong!')
+    }
+
+    return await mutate({
+      ...data?.data
+    })
   }
 
   const handleAuthSwitchForm = () => setIsLoginPage((isLoginPage = !isLoginPage))
@@ -194,8 +216,9 @@ const ProjectPost: NextPage<Props> = (props) => {
 
         <ProjectPostDetails
           user={user}
+          isOpenUserModal={isOpenUserModal}
           projects={data?.data?.projects[0]}
-          actions={{ handleLogout, handleUpdateUser }}
+          actions={{ handleLogout, handleUpdateUser, closeUserModal, openUserModal }}
         />
         <ProjectPostForm
           isLoginPage={isLoginPage}

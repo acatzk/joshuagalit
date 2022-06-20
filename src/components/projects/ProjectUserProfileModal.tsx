@@ -13,16 +13,22 @@ type Props = {
 
 const ProjectUserProfileModal: React.FC<Props> = (props) => {
   const { isOpen, actions, user } = props
-  const { handleUpdateUser, closeModal } = actions
+  const { handleUpdateUser, closeUserModal } = actions
 
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors }
-  } = useForm()
+  } = useForm({
+    mode: 'onChange',
+    defaultValues: {
+      display_name: '',
+      email: ''
+    }
+  })
 
   return (
-    <DialogBox isOpen={isOpen} closeModal={closeModal}>
+    <DialogBox isOpen={isOpen} closeModal={closeUserModal}>
       <Dialog.Panel
         className={classNames(
           'w-full max-w-md transform overflow-hidden rounded-2xl',
@@ -74,6 +80,7 @@ const ProjectUserProfileModal: React.FC<Props> = (props) => {
                 minLength: 4
               })}
               defaultValue={user?.displayName}
+              defaultChecked={user?.displayName}
             />
             <div className="space-y-0.5 ml-1.5">
               {errors.display_name?.type === 'required' && (
@@ -112,6 +119,7 @@ const ProjectUserProfileModal: React.FC<Props> = (props) => {
                 }
               })}
               defaultValue={user?.email}
+              defaultChecked={user?.email}
             />
             <div className="space-y-0.5 ml-1.5">
               {errors.email?.type === 'required' && (

@@ -32,10 +32,12 @@ type Props = {
     }
   }
   actions: any
+  isOpenUserModal: boolean
 }
 
 const ProjectPostDetails: React.FC<Props> = (props) => {
-  const { projects, actions, user } = props
+  const { projects, actions, user, isOpenUserModal } = props
+  const { handleLogout, handleUpdateUser, openUserModal, closeUserModal } = actions
 
   const {
     id,
@@ -52,7 +54,6 @@ const ProjectPostDetails: React.FC<Props> = (props) => {
       aggregate: { commentsCount }
     }
   } = projects
-  const { handleLogout, handleUpdateUser } = actions
 
   return (
     <div key={id} className="space-y-5">
@@ -121,9 +122,10 @@ const ProjectPostDetails: React.FC<Props> = (props) => {
       <div className="flex items-center justify-between">
         <Tabs
           user={user}
-          source_code_url={source_code_url}
           demo_url={demo_url}
-          actions={{ handleLogout, handleUpdateUser }}
+          source_code_url={source_code_url}
+          isOpenUserModal={isOpenUserModal}
+          actions={{ handleLogout, handleUpdateUser, openUserModal, closeUserModal }}
         />
       </div>
     </div>
@@ -135,17 +137,13 @@ type TabProps = {
   demo_url: string
   actions: any
   user: any
+  isOpenUserModal: boolean
 }
 
 const Tabs: React.FC<TabProps> = (props) => {
   const isAuthenticated = useAuthenticated()
-  const { source_code_url, demo_url, actions, user } = props
-  const { handleLogout, handleUpdateUser } = actions
-
-  const [isOpen, setIsOpen] = useState(false)
-
-  const closeModal = () => setIsOpen(false)
-  const openModal = () => setIsOpen(true)
+  const { source_code_url, demo_url, actions, user, isOpenUserModal } = props
+  const { handleLogout, handleUpdateUser, openUserModal, closeUserModal } = actions
 
   return (
     <div className={classNames('border-b border-gray-200 dark:border-gray-700 space-y-4 w-full')}>
@@ -214,7 +212,7 @@ const Tabs: React.FC<TabProps> = (props) => {
               >
                 <button
                   type="button"
-                  onClick={openModal}
+                  onClick={openUserModal}
                   className={classNames(
                     'flex items-center space-x-2 pb-2 text-gray-600',
                     'dark:text-gray-400 dark:hover:text-white'
@@ -226,8 +224,8 @@ const Tabs: React.FC<TabProps> = (props) => {
               </li>
               <ProjectUserProfileModal
                 user={user}
-                isOpen={isOpen}
-                actions={{ closeModal, handleUpdateUser }}
+                isOpen={isOpenUserModal}
+                actions={{ openUserModal, closeUserModal, handleUpdateUser }}
               />
             </>
             <li
