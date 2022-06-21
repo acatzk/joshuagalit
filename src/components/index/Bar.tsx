@@ -3,7 +3,15 @@ import { ISkill } from '~/mock/type'
 import { motion } from 'framer-motion'
 import { classNames } from '~/utils/classNames'
 
-const Bar: React.FC<{ data: ISkill }> = ({ data: { Icon, level, name } }) => {
+type Props = {
+  data: ISkill
+}
+
+const Bar: React.FC<Props> = (props) => {
+  const {
+    data: { Icon, level, name }
+  } = props
+
   const barWidth = `${level}`
   const variants = {
     initial: {

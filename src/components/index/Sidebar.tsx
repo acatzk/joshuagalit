@@ -73,7 +73,14 @@ const Sidebar: React.FC = () => {
   )
 }
 
-const Avatar: React.FC<{ src: string; alt?: string }> = ({ src, alt }) => {
+type AvatarProps = {
+  src: string
+  alt?: string
+}
+
+const Avatar: React.FC<AvatarProps> = (props) => {
+  const { src, alt } = props
+
   return (
     <div className="border-2 border-gray-400 dark:border-gray-600 rounded-full">
       <Image
@@ -89,7 +96,9 @@ const Avatar: React.FC<{ src: string; alt?: string }> = ({ src, alt }) => {
   )
 }
 
-const GitHubLink: React.FC<IGitHubLink> = ({ id, Icon, count, label }) => {
+const GitHubLink: React.FC<IGitHubLink> = (props) => {
+  const { id, Icon, count, label } = props
+
   const getDot = (id: any) => id <= 2
 
   return (

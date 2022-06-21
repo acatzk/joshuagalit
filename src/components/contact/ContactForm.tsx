@@ -6,11 +6,15 @@ import { classNames } from '~/utils/classNames'
 import { AnimatedLoadingIcon } from '~/utils/Icons'
 import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai'
 
-interface ContactFormProps {
-  onSubmit: any
+type Props = {
+  actions: any
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
+const ContactForm: React.FC<Props> = (props) => {
+  const {
+    actions: { handleContact }
+  } = props
+
   const {
     register,
     handleSubmit,
@@ -18,7 +22,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
   } = useForm()
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(handleContact)} className="space-y-6">
       <div className="flex flex-col space-y-1">
         <label className="text-sm pl-2">Name</label>
         <div className="flex items-center inset-y-0 inset-x-3">

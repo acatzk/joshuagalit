@@ -6,12 +6,14 @@ import { classNames } from '~/utils/classNames'
 import { fadeInUp, stagger } from '~/mock/animation'
 import { FaGithub, FaGoogle, FaFacebook } from 'react-icons/fa'
 
-interface LoginWIthModalProps {
+type Props = {
   isOpen: boolean
   setIsOpen: Function
 }
 
-const LoginWithModal: React.FC<LoginWIthModalProps> = ({ isOpen, setIsOpen }) => {
+const LoginWithModal: React.FC<Props> = (props) => {
+  const { isOpen, setIsOpen } = props
+
   return isOpen ? (
     <Transition show={isOpen} as="div" static className="fixed z-10 inset-0">
       <div
@@ -55,11 +57,15 @@ const LoginWithModal: React.FC<LoginWIthModalProps> = ({ isOpen, setIsOpen }) =>
   ) : null
 }
 
-const LoginButton: React.FC<{
+type LoginButtonProps = {
   Icon: IconType
   title: string
   className?: string
-}> = ({ Icon, title, className }) => {
+}
+
+const LoginButton: React.FC<LoginButtonProps> = (props) => {
+  const { Icon, title, className } = props
+
   return (
     <motion.button
       variants={fadeInUp}
@@ -79,7 +85,12 @@ const LoginButton: React.FC<{
   )
 }
 
-const ModalBackground: React.FC<{ setIsOpen: Function }> = ({ setIsOpen }) => {
+type ModalBackgroundProps = {
+  setIsOpen: Function
+}
+
+const ModalBackground: React.FC<ModalBackgroundProps> = (props) => {
+  const { setIsOpen } = props
   return (
     <div
       onClick={() => setIsOpen(false)}

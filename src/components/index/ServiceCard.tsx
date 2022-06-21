@@ -2,7 +2,15 @@ import React from 'react'
 import { IService } from '~/mock/type'
 import { classNames } from '~/utils/classNames'
 
-const ServiceCard: React.FC<{ service: IService }> = ({ service: { Icon, about, title } }) => {
+type Props = {
+  service: IService
+}
+
+const ServiceCard: React.FC<Props> = (props) => {
+  const {
+    service: { Icon, about, title }
+  } = props
+
   const createMarkUp = () => {
     return {
       __html: about

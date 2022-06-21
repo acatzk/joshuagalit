@@ -8,7 +8,12 @@ import { classNames } from '~/utils/classNames'
 type Props = {
   isOpen: boolean
   actions: any
-  user: any
+  user: {
+    id: string
+    avatarUrl: string
+    displayName: string
+    email: string
+  }
 }
 
 const ProjectUserProfileModal: React.FC<Props> = (props) => {
@@ -81,7 +86,6 @@ const ProjectUserProfileModal: React.FC<Props> = (props) => {
                 minLength: 4
               })}
               defaultValue={user?.displayName}
-              defaultChecked={user?.displayName}
             />
             <div className="space-y-0.5 ml-1.5">
               {errors.display_name?.type === 'required' && (
@@ -120,7 +124,6 @@ const ProjectUserProfileModal: React.FC<Props> = (props) => {
                 }
               })}
               defaultValue={user?.email}
-              defaultChecked={user?.email}
             />
             <div className="space-y-0.5 ml-1.5">
               {errors.email?.type === 'required' && (

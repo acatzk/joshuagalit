@@ -3,11 +3,13 @@ import MyDayItem from './MyDayItem'
 import { motion } from 'framer-motion'
 import { fadeInUp, stagger } from '~/mock/animation'
 
-interface MyDayListProps {
+type Props = {
   mydaylist: any
 }
 
-const MyDayList: React.FC<MyDayListProps> = ({ mydaylist }) => {
+const MyDayList: React.FC<Props> = (props) => {
+  const { mydaylist } = props
+
   return (
     <motion.div variants={stagger}>
       {mydaylist.map((myday: any, i: number) => (

@@ -6,7 +6,7 @@ import BlogList from '~/components/blog/BlogList'
 import { routeAnimation } from '~/mock/animation'
 import BlogHeader from '~/components/blog/BlogHeader'
 
-interface BlogPageProps {
+type Props = {
   posts: string[]
 }
 
@@ -24,7 +24,9 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-const Blog: NextPage<BlogPageProps> = ({ posts }) => {
+const Blog: NextPage<Props> = (props) => {
+  const { posts } = props
+
   return (
     <Layout headTitle="Blog | Joshua Galit" metaDescription="A list of My Blog Post">
       <motion.div

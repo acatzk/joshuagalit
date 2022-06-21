@@ -89,7 +89,7 @@ const Contact: NextPage = () => {
             )}
           >
             <div className="relative w-full">
-              <ContactForm onSubmit={handleContact} />
+              <ContactForm actions={{ handleContact }} />
             </div>
           </motion.div>
         </div>
