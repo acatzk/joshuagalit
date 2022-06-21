@@ -2,11 +2,13 @@ import React from 'react'
 import { FiSearch } from 'react-icons/fi'
 import { classNames } from '~/utils/classNames'
 
-interface BlogHeaderProps {
+type Props = {
   count: number
 }
 
-const BlogHeader: React.FC<BlogHeaderProps> = ({ count }) => {
+const BlogHeader: React.FC<Props> = (props) => {
+  const { count } = props
+
   return (
     <div className="mt-4 md:mt-10 space-y-5 pb-4 border-b border-gray-200 dark:border-gray-700">
       <h1 className="text-3xl md:text-5xl font-black">Blog ({count})</h1>

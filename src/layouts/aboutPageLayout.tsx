@@ -6,7 +6,9 @@ type Props = {
   children: React.ReactNode
 }
 
-const AboutPageLayout: React.FC<Props> = ({ children }) => {
+const AboutPageLayout: React.FC<Props> = (props) => {
+  const { children } = props
+
   return (
     <div className="flex items-center justify-center h-screen min-h-screen px-4 py-4 md:py-0">
       <div className="grid grid-cols-12 gap-6 w-full max-w-6xl">

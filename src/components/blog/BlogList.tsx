@@ -3,11 +3,13 @@ import BlogItem from './BlogItem'
 import { motion } from 'framer-motion'
 import { fadeInUp, stagger } from '~/mock/animation'
 
-interface BlogListProps {
+type Props = {
   blogs: any
 }
 
-const BlogList: React.FC<BlogListProps> = ({ blogs }) => {
+const BlogList: React.FC<Props> = (props) => {
+  const { blogs } = props
+
   return (
     <motion.div variants={stagger}>
       {blogs.map((blog: any) => (

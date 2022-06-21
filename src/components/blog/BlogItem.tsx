@@ -9,7 +9,8 @@ interface BlogItemProps {
   summary: string
 }
 
-const BlogItem: React.FC<BlogItemProps> = ({ slug, title, publishedAt, summary }) => {
+const BlogItem: React.FC<BlogItemProps> = (props) => {
+  const { slug, title, publishedAt, summary } = props
   const formattedData = moment(publishedAt).format('MMMM DD, YYYY')
 
   return (

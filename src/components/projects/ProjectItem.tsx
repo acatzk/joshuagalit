@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useTheme } from 'next-themes'
 import { FiEye } from 'react-icons/fi'
 import { useRouter } from 'next/router'
 import { GrGithub } from 'react-icons/gr'
@@ -30,19 +29,20 @@ interface ProjectItemProps {
   }
 }
 
-const ProjectItem: React.FC<ProjectItemProps> = ({
-  title,
-  description,
-  demo_url,
-  source_code_url,
-  project_image_url,
-  slug,
-  created_at,
-  views_aggregate,
-  comments_aggregate
-}) => {
+const ProjectItem: React.FC<ProjectItemProps> = (props) => {
   const router = useRouter()
-  const { theme } = useTheme()
+
+  const {
+    title,
+    description,
+    demo_url,
+    source_code_url,
+    project_image_url,
+    slug,
+    created_at,
+    views_aggregate,
+    comments_aggregate
+  } = props
 
   const {
     aggregate: { viewsCount }
@@ -68,7 +68,6 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
         placeholder="blur"
         quality={100}
         onClick={() => router.push(`/projects/${slug}`)}
-        priority={true}
         className="cursor-pointer bg-gray-200 dark:bg-gray-800"
       />
       <div

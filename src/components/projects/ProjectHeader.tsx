@@ -10,7 +10,9 @@ import { INSERT_FEEDBACK_MUTATION } from '~/graphql/mutations'
 const ProjectHeader: React.FC = () => {
   const [onModal, toggleModal] = useToggle(false)
 
-  const handleFeedback = async ({ name, message, emoji }, e) => {
+  const handleFeedback = async (data, e) => {
+    const { name, message, emoji } = data
+
     try {
       const { data, error } = await nhost.graphql.request(INSERT_FEEDBACK_MUTATION, {
         name,
@@ -67,7 +69,7 @@ const ProjectHeader: React.FC = () => {
               )}
             >
               <div className="py-3 px-3 text-sm text-gray-600 dark:text-gray-300">Feedback</div>
-              <ProjectFeedbackForm onSubmit={handleFeedback} />
+              <ProjectFeedbackForm actions={{ handleFeedback }} />
             </motion.div>
           </>
         )}

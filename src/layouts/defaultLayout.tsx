@@ -13,7 +13,7 @@ import { GetServerSidePropsContext } from 'next'
 import { LogoIcon, SoundIcon } from '~/utils/Icons'
 import { navigations, socialLinks } from '~/mock/data'
 
-interface LayoutProps {
+type Props = {
   headTitle: string
   metaDescription?: string
   className?: string
@@ -30,7 +30,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   }
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, headTitle, metaDescription, className }) => {
+const Layout: React.FC<Props> = ({ children, headTitle, metaDescription, className }) => {
   const router = useRouter()
   return (
     <>

@@ -41,12 +41,16 @@ const Navbar: React.FC = () => {
   )
 }
 
-const NavItem: React.FC<{
+type NavProps = {
   activeItem: string
   setActiveItem: Function
   title: string
   route: string
-}> = ({ activeItem, setActiveItem, title, route }) => {
+}
+
+const NavItem: React.FC<NavProps> = (props) => {
+  const { activeItem, setActiveItem, title, route } = props
+
   return activeItem !== title ? (
     <Link href={route}>
       <a

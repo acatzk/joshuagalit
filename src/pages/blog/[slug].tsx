@@ -6,15 +6,14 @@ import getReadTime from '~/utils/read-time'
 import Layout from '~/layouts/defaultLayout'
 import hydrate from 'next-mdx-remote/hydrate'
 import { getAllPosts } from '~/utils/blogFiles'
+import { classNames } from '~/utils/classNames'
 import SponsorCard from '~/components/SponsorCard'
 import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import renderToString from 'next-mdx-remote/render-to-string'
-import { INSERT_BLOG_VIEWS_MUTATION } from '~/graphql/mutations'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY } from '~/graphql/queries'
-import { classNames } from '~/utils/classNames'
 
-interface BlogPostProps {
+type Props = {
   title: string
   publishedAt: string
   content: any
@@ -23,14 +22,38 @@ interface BlogPostProps {
   readTime: string
 }
 
-const BlogPost: NextPage<BlogPostProps> = ({
-  title,
-  publishedAt,
-  content,
-  slug,
-  summary,
-  readTime
-}) => {
+export const getStaticPaths: GetStaticPaths = () => {
+  const allPosts = getAllPosts()
+  return {
+    paths: allPosts.map(({ slug }) => ({
+      params: {
+        slug
+      }
+    })),
+    fallback: false
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug } = params!
+  const allPosts = getAllPosts()
+
+  const { data, content }: any = allPosts.find((post) => post.slug === slug)
+  const mdxSource = await renderToString(content)
+  const readTime = getReadTime(content)
+
+  return {
+    props: {
+      ...data,
+      content: mdxSource,
+      readTime
+    }
+  }
+}
+
+const BlogPost: NextPage<Props> = (props) => {
+  const { title, publishedAt, content, slug, summary, readTime } = props
+
   const hydratedContent = hydrate(content)
   const formattedData = moment(publishedAt).format('MMMM DD, YYYY')
 
@@ -93,35 +116,6 @@ const BlogPost: NextPage<BlogPostProps> = ({
       </div>
     </Layout>
   )
-}
-
-export const getStaticPaths: GetStaticPaths = () => {
-  const allPosts = getAllPosts()
-  return {
-    paths: allPosts.map((post) => ({
-      params: {
-        slug: post.slug
-      }
-    })),
-    fallback: false
-  }
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug } = params!
-  const allPosts = getAllPosts()
-
-  const { data, content }: any = allPosts.find((post) => post.slug === slug)
-  const mdxSource = await renderToString(content)
-  const readTime = getReadTime(content)
-
-  return {
-    props: {
-      ...data,
-      content: mdxSource,
-      readTime
-    }
-  }
 }
 
 export default BlogPost

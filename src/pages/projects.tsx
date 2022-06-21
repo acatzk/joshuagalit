@@ -9,8 +9,27 @@ import { AnimatedLoadingIcon } from '~/utils/Icons'
 import { GET_PROJECT_QUERY } from '~/graphql/queries'
 import ProjectHeader from '~/components/projects/ProjectHeader'
 
-interface Props {
-  initialData: any
+type Props = {
+  initialData: {
+    id: string
+    title: string
+    description: string
+    demo_url: string
+    created_at: string
+    project_image_url: string
+    source_code_url: string
+    slug: string
+    views_aggregate: {
+      aggregate: {
+        viewsCount: number
+      }
+    }
+    comments_aggregate: {
+      aggregate: {
+        commentsCount: number
+      }
+    }
+  }
 }
 
 const ProjectList = dynamic(() => import('~/components/projects/ProjectList'), {
@@ -52,7 +71,7 @@ const Projects: NextPage<Props> = (props) => {
         className="w-full max-w-5xl mx-auto"
       >
         <ProjectHeader />
-        {/* <pre>{JSON.stringify(initialData, null, 2)}</pre> */}
+        {/* <pre>{JSON.stringify(data?.data?.projects, null, 2)}</pre> */}
         <ProjectList projects={data?.data?.projects} />
       </motion.div>
     </Layout>

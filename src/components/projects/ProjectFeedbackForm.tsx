@@ -5,11 +5,15 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { classNames } from '~/utils/classNames'
 
-interface FeedbackProps {
-  onSubmit: any
+type Props = {
+  actions: any
 }
 
-const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
+const FeedbackForm: React.FC<Props> = (props) => {
+  const {
+    actions: { handleFeedback }
+  } = props
+
   const [emoji, setEmoji] = useState('amaze')
   const {
     register,
@@ -18,7 +22,7 @@ const FeedbackForm: React.FC<FeedbackProps> = ({ onSubmit }) => {
   } = useForm()
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+    <form onSubmit={handleSubmit(handleFeedback)} className="space-y-3">
       <div className="px-4">
         <input
           type="text"
