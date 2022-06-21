@@ -119,6 +119,7 @@ const Avatar: React.FC<AvatarProps> = ({ className, user }) => {
         className={className}
         src={user?.avatarUrl?.split('?r=g&default=blank')?.toString()}
         alt="Comment User Avatar"
+        objectFit="cover"
         width={36}
         height={36}
         layout="intrinsic"

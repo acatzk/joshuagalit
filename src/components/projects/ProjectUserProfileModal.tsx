@@ -42,6 +42,7 @@ const ProjectUserProfileModal: React.FC<Props> = (props) => {
               layout="fill"
               className="rounded-full shadown-lg"
               quality={100}
+              objectFit="cover"
               alt="avatar"
             />
           </div>
