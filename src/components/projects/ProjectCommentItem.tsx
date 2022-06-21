@@ -1,13 +1,10 @@
-import { mutate } from 'swr'
 import Image from 'next/image'
-import { toast } from 'react-toastify'
 import { motion } from 'framer-motion'
 import { Menu } from '@headlessui/react'
-import { nhost } from '~/lib/nhost-client'
+import { useUserId } from '@nhost/react'
 import { BsThreeDots } from 'react-icons/bs'
 import TimeAgoFormat from '~/lib/react-timeago'
 import { classNames } from '~/utils/classNames'
-import { DELETE_PROJECT_COMMENT_BY_ID_MUTATION } from '~/graphql/mutations'
 
 type Props = {
   id: string
@@ -19,35 +16,12 @@ type Props = {
     displayName: string
     avatarUrl: string
   }
+  actions: any
 }
 
 const ProjectCommentItem: React.FC<Props> = (props) => {
-  const { id, name, comment, created_at, user } = props
-
-  const handleDelete = async () => {
-    let isDelete = prompt('Confirm password to delete post!', '')
-
-    if (isDelete === '' || isDelete === null) {
-      return toast.warning('Please input admin password to delete this post!')
-    }
-
-    if (isDelete.toString() !== `${process.env.ADMINISTRATOR_PASS}`) {
-      return toast.warning('You are unauthorized to delete the comment posted!')
-    }
-
-    const { data, error } = await nhost.graphql.request(DELETE_PROJECT_COMMENT_BY_ID_MUTATION, {
-      id
-    })
-
-    if (data) {
-      toast.success('Deleted Comment!')
-    }
-    if (error) {
-      toast.error('Something went wrong!')
-    }
-
-    return mutate({ ...data })
-  }
+  const { id, name, comment, created_at, user, actions } = props
+  const { handleReport, handleDelete } = actions
 
   return (
     <div key={id} className="flex space-x-3 py-3 px-2">
@@ -78,7 +52,7 @@ const ProjectCommentItem: React.FC<Props> = (props) => {
               <TimeAgoFormat date={created_at} />
             </span>
           </div>
-          <DropdownMenu actions={{ handleDelete }} />
+          <DropdownMenu actions={{ handleReport, handleDelete }} user={user} project_id={id} />
         </div>
         {/* Actual comments */}
         <div>
@@ -114,10 +88,25 @@ const Avatar: React.FC<AvatarProps> = ({ className, user }) => {
   )
 }
 
-const DropdownMenu: React.FC<{ actions: any }> = (props) => {
+type DropDownMenuProps = {
+  actions: any
+  user: {
+    id: string
+  }
+  project_id: string
+}
+
+const DropdownMenu: React.FC<DropDownMenuProps> = (props) => {
+  const userId = useUserId()
+
   const {
-    actions: { handleDelete }
+    project_id,
+    actions: { handleReport, handleDelete },
+    user
   } = props
+
+  const isAuthor = user?.id === userId
+
   return (
     <div className="relative">
       <Menu>
@@ -141,7 +130,7 @@ const DropdownMenu: React.FC<{ actions: any }> = (props) => {
               >
                 <Menu.Item>
                   <button
-                    onClick={handleDelete}
+                    onClick={() => handleReport(project_id)}
                     className={classNames(
                       'text-sm px-4 py-1 text-gray-600 dark:text-gray-400',
                       'focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-900',
@@ -151,6 +140,20 @@ const DropdownMenu: React.FC<{ actions: any }> = (props) => {
                     Report
                   </button>
                 </Menu.Item>
+                {isAuthor && (
+                  <Menu.Item>
+                    <button
+                      onClick={() => handleDelete(project_id)}
+                      className={classNames(
+                        'text-sm px-4 py-1 text-gray-600 dark:text-gray-400',
+                        'focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-900',
+                        ' transition ease-in-out duration-200'
+                      )}
+                    >
+                      Delete
+                    </button>
+                  </Menu.Item>
+                )}
                 <Menu.Item>
                   <button
                     onClick={(e) => e.preventDefault()}
