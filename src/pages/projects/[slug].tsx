@@ -16,6 +16,7 @@ import ProjectCommentList from '~/components/projects/ProjectCommentList'
 import ProjectPostDetails from '~/components/projects/ProjectPostDetails'
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
 import {
+  DELETE_PROJECT_COMMENT_BY_ID_MUTATION,
   INSERT_PROJECT_COMMENT_ONE,
   INSERT_VIEWS_MUTATION,
   UPDATE_USER_BY_PK_ID
@@ -189,6 +190,45 @@ const ProjectPost: NextPage<Props> = (props) => {
     })
   }
 
+  const handleReport = async (project_id: string) => {
+    let isDelete = prompt('Confirm password to delete post!', '')
+    if (isDelete === '' || isDelete === null) {
+      return toast.warning('Please input admin password to delete this post!')
+    }
+    if (isDelete.toString() !== `${process.env.ADMINISTRATOR_PASS}`) {
+      return toast.warning('You are unauthorized to delete the comment posted!')
+    }
+
+    const { data, error } = await nhost.graphql.request(DELETE_PROJECT_COMMENT_BY_ID_MUTATION, {
+      id: project_id
+    })
+
+    if (data) {
+      toast.success('Deleted Comment!')
+    }
+    if (error) {
+      toast.error('Something went wrong!')
+    }
+
+    return mutate({ ...data })
+  }
+
+  const handleDelete = async (project_id: string) => {
+    let result = confirm('Want to delete?')
+    if (result) {
+      const { data, error } = await nhost.graphql.request(DELETE_PROJECT_COMMENT_BY_ID_MUTATION, {
+        id: project_id
+      })
+      if (data) {
+        toast.success('Deleted Comment!')
+        mutate({ ...data })
+      }
+      if (error) {
+        toast.error('Something went wrong!')
+      }
+    }
+  }
+
   const handleAuthSwitchForm = () => setIsLoginPage((isLoginPage = !isLoginPage))
 
   const handleLogout = () => signOut.signOut()
@@ -227,7 +267,10 @@ const ProjectPost: NextPage<Props> = (props) => {
 
         {/* Comment List */}
         <div className="mt-3">
-          <ProjectCommentList projects={data?.data?.projects} />
+          <ProjectCommentList
+            projects={data?.data?.projects}
+            actions={{ handleReport, handleDelete }}
+          />
         </div>
 
         {/* <h1>{user?.avatarUrl?.split('?r=g&default=blank')}</h1> */}

@@ -32,16 +32,23 @@ type Props = {
       }
     }
   }
+  actions: any
 }
 
 const ProjectCommentList: React.FC<Props> = (props) => {
-  const { projects } = props
+  const { projects, actions } = props
   const { comments } = projects[0]
+  const { handleReport, handleDelete } = actions
 
   if (!projects) return <p>No comment yet</p>
 
   return comments.map((comment: any, i: number) => (
-    <ProjectCommentItem key={i} {...comment} user={comment?.user} />
+    <ProjectCommentItem
+      key={i}
+      {...comment}
+      user={comment?.user}
+      actions={{ handleReport, handleDelete }}
+    />
   ))
 }
 
