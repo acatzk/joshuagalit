@@ -2,10 +2,16 @@
   "name": "joshuagalit.ga",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=14.0.0",
+    "yarn": ">=1.22.0",
+    "npm": "please-use-yarn"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "prettier": "prettier --write .",
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",
     "check-lint": "eslint --ext ts --ext tsx --ext js .",
@@ -37,7 +43,7 @@
     "next-themes": "^0.2.0",
     "nextjs-progressbar": "^0.0.11",
     "nprogress": "^0.2.0",
-    "prettier": "^2.3.2",
+    "prettier": "^2.7.1",
     "react": "18.1.0",
     "react-dark-mode-toggle": "^0.2.0",
     "react-dom": "18.1.0",
