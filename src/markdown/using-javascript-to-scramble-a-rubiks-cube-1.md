@@ -71,7 +71,7 @@ var options = [
   "U'",
   "B'",
   "L'",
-  "D'",
+  "D'"
 ]
 var scramble = []
 ```

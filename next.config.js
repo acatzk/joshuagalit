@@ -1,6 +1,6 @@
-const withImages = require("next-images");
+const withImages = require('next-images')
 
-module.exports = withImages();
+module.exports = withImages()
 module.exports = {
   reactStrictMode: true,
   env: {
@@ -11,15 +11,15 @@ module.exports = {
   },
   images: {
     domains: [
-      "firebasestorage.googleapis.com",
-      "jeromevillaruel.netlify.app",
-      "benjamincarlson.io",
-      "avatars.githubusercontent.com",
-      "instagram.fdvo1-1.fna.fbcdn.net",
-      "joshuagalit-com.vercel.app",
-      "encrypted-tbn0.gstatic.com",
-      "yhoelihnbogmpazptxze.storage.ap-southeast-1.nhost.run",
-      "s.gravatar.com"
-    ],
+      'firebasestorage.googleapis.com',
+      'jeromevillaruel.netlify.app',
+      'benjamincarlson.io',
+      'avatars.githubusercontent.com',
+      'instagram.fdvo1-1.fna.fbcdn.net',
+      'joshuagalit-com.vercel.app',
+      'encrypted-tbn0.gstatic.com',
+      'yhoelihnbogmpazptxze.storage.ap-southeast-1.nhost.run',
+      's.gravatar.com'
+    ]
   }
-};
+}

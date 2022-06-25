@@ -13,7 +13,7 @@ Feel free to test my project if you want to use it either for educational purpos
 
 Project is created with:
 
-- Next.js 
+- Next.js
 - Tailwindcss
 - TypeScript
 - GraphQL version

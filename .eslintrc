@@ -1,8 +1,15 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
-  // "rules": {
-  //   "react/display-name": "off",
-  //   "react-hooks/exhaustive-deps": "off",
-  //   "react-hooks/rules-of-hooks": "off"
-  // }
+  "extends": ["next", "next/core-web-vitals", "eslint-recommended"],
+  "globals": {
+    "React": "readonly"
+  },
+  "rules": {
+    "no-unused-vars": [
+      1,
+      {
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  }
 }
