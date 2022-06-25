@@ -13,7 +13,7 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --write .",
-    "prepare": "husky install "
+    "prepare": "husky install"
   },
   "dependencies": {
     "@apollo/client": "^3.6.6",
@@ -58,6 +58,8 @@
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@types/node": "^17.0.41",
     "@types/react": "^18.0.9",
     "autoprefixer": "^10.4.7",
