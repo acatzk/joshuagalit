@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import Moment from 'react-moment'
 import { FiEye } from 'react-icons/fi'

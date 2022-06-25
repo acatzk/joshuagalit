@@ -104,7 +104,7 @@ const ProjectPost: NextPage<Props> = (props) => {
 
   const insertViewer = async () => {
     const project_id = data?.data?.projects[0]?.id
-    const { data: viewData, error } = await nhost.graphql.request(INSERT_VIEWS_MUTATION, {
+    await nhost.graphql.request(INSERT_VIEWS_MUTATION, {
       project_id
     })
     // if (viewData) {
@@ -308,14 +308,6 @@ const BackButton = () => {
         </svg>
       </button>
     </div>
-  )
-}
-
-const AnnouncementPage = () => {
-  return (
-    <p className="py-3 px-4 bg-yellow-500 font-bold text-center my-6">
-      I&apos;M STILL WORKING ON PROJECT SIGN-IN / SIGN-UP AUTH
-    </p>
   )
 }
 

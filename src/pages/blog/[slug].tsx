@@ -1,7 +1,6 @@
 import useSWR from 'swr'
 import moment from 'moment'
 import Image from 'next/image'
-import { useEffect } from 'react'
 import getReadTime from '~/utils/read-time'
 import Layout from '~/layouts/defaultLayout'
 import hydrate from 'next-mdx-remote/hydrate'
@@ -57,20 +56,12 @@ const BlogPost: NextPage<Props> = (props) => {
   const hydratedContent = hydrate(content)
   const formattedData = moment(publishedAt).format('MMMM DD, YYYY')
 
-  const { data, mutate } = useSWR(
+  const { data } = useSWR(
     [GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY, slug],
     (query, slug) => hasuraAdminClient.request(query, { slug }),
     { revalidateOnMount: true }
   )
   const views = data?.blog_views_aggregate?.aggregate?.count
-
-  // useEffect(() => {
-  //   async function InsertViewer() {
-  //     await hasuraAdminClient.request(INSERT_BLOG_VIEWS_MUTATION, { slug })
-  //     mutate({ ...data })
-  //   }
-  //   InsertViewer()
-  // }, [])
 
   return (
     <Layout headTitle={title} metaDescription={summary}>
