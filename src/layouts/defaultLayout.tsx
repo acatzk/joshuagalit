@@ -40,7 +40,7 @@ const Layout: React.FC<Props> = ({ children, headTitle, metaDescription, classNa
       </Head>
       <div
         className={classNames(
-          'font-sans antialiased flex flex-col md:flex-row justify-between',
+          'font-inter antialiased flex flex-col md:flex-row justify-between',
           'w-full min-h-screen h-screen bg-white text-black overflow-hidden',
           'dark:bg-dark-dim dark:text-white transition ease-in-out duration-700'
         )}
