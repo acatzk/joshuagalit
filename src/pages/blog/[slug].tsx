@@ -1,4 +1,3 @@
-import useSWR from 'swr'
 import moment from 'moment'
 import Image from 'next/image'
 import getReadTime from '~/utils/read-time'
@@ -7,10 +6,8 @@ import hydrate from 'next-mdx-remote/hydrate'
 import { getAllPosts } from '~/utils/blogFiles'
 import { classNames } from '~/utils/classNames'
 import SponsorCard from '~/components/SponsorCard'
-import { hasuraAdminClient } from '~/lib/hasura-admin-client'
 import renderToString from 'next-mdx-remote/render-to-string'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY } from '~/graphql/queries'
 
 type Props = {
   title: string
@@ -51,17 +48,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 const BlogPost: NextPage<Props> = (props) => {
-  const { title, publishedAt, content, slug, summary, readTime } = props
+  const { title, publishedAt, content, summary, readTime } = props
 
   const hydratedContent = hydrate(content)
   const formattedData = moment(publishedAt).format('MMMM DD, YYYY')
-
-  const { data } = useSWR(
-    [GET_BLOG_VIEWS_COUNT_BY_SLUG_QUERY, slug],
-    (query, slug) => hasuraAdminClient.request(query, { slug }),
-    { revalidateOnMount: true }
-  )
-  const views = data?.blog_views_aggregate?.aggregate?.count
 
   return (
     <Layout headTitle={title} metaDescription={summary}>
@@ -94,8 +84,6 @@ const BlogPost: NextPage<Props> = (props) => {
                 )}
               >
                 <span className="font-medium line-clamp-1">{readTime} min read</span>
-                <span className="font-extralight">|</span>
-                <span className="font-medium line-clamp-1">{views ? views : '-'} views</span>
               </div>
             </div>
           </div>
