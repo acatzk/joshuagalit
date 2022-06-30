@@ -27,8 +27,8 @@ const ProjectUserProfileModal: React.FC<Props> = (props) => {
   } = useForm({
     mode: 'onChange',
     defaultValues: {
-      display_name: '',
-      email: ''
+      display_name: user?.displayName,
+      email: user?.email
     }
   })
 
