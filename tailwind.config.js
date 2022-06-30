@@ -1,11 +1,14 @@
 const colors = require('tailwindcss/colors')
-const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   mode: 'jit',
   content: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx,vue}'],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      inter: 'Inter, sans-serif',
+      satoshi: 'satoshi, sans-serif'
+    },
     extend: {
       colors: {
         cyan: colors.cyan,
@@ -16,9 +19,6 @@ module.exports = {
           100: '#F5F7FA',
           1000: '#1F2933'
         }
-      },
-      fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans]
       },
       fontSize: {
         xxs: '.50rem'
