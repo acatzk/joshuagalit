@@ -1,7 +1,7 @@
+import AuthModal from '../AuthModal'
 import React, { useState } from 'react'
 import { useAuthenticated } from '@nhost/react'
 import { classNames } from '~/utils/classNames'
-import ProjectAuthModal from '../projects/ProjectAuthModal'
 
 type Props = {
   actions: any
@@ -47,7 +47,7 @@ const JournalHeader: React.FC<Props> = (props) => {
               >
                 Sign In
               </button>
-              <ProjectAuthModal
+              <AuthModal
                 isOpen={isOpen}
                 isLoginPage={isLoginPage}
                 actions={{ closeModal, handleSignAuth, handleAuthSwitchForm }}

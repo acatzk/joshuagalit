@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import DialogBox from '../DialogBox'
+import DialogBox from './DialogBox'
 import { useForm } from 'react-hook-form'
 import { Dialog } from '@headlessui/react'
 import { classNames } from '~/utils/classNames'
@@ -16,7 +16,7 @@ type Props = {
   }
 }
 
-const ProjectUserProfileModal: React.FC<Props> = (props) => {
+const UserProfileModal: React.FC<Props> = (props) => {
   const { isOpen, actions, user } = props
   const { handleUpdateUser, closeUserModal } = actions
 
@@ -153,4 +153,4 @@ const ProjectUserProfileModal: React.FC<Props> = (props) => {
   )
 }
 
-export default ProjectUserProfileModal
+export default UserProfileModal

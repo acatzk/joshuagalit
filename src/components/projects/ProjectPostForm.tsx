@@ -1,9 +1,9 @@
+import AuthModal from '../AuthModal'
 import React, { useState } from 'react'
 import { LogoIcon } from '~/utils/Icons'
 import { useForm } from 'react-hook-form'
 import { classNames } from '~/utils/classNames'
 import { useAuthenticated } from '@nhost/react'
-import ProjectAuthModal from './ProjectAuthModal'
 
 type props = {
   actions: any
@@ -49,7 +49,7 @@ const ProjectPostForm: React.FC<props> = (props) => {
             >
               Login
             </button>
-            <ProjectAuthModal
+            <AuthModal
               isOpen={isOpen}
               isLoginPage={isLoginPage}
               actions={{ closeModal, handleSignAuth, handleAuthSwitchForm }}

@@ -1,5 +1,5 @@
 import React from 'react'
-import DialogBox from '../DialogBox'
+import DialogBox from './DialogBox'
 import { useForm } from 'react-hook-form'
 import { Dialog } from '@headlessui/react'
 import { classNames } from '~/utils/classNames'
@@ -10,7 +10,7 @@ type Props = {
   isLoginPage: boolean
 }
 
-const ProjectAuthModal: React.FC<Props> = (props) => {
+const AuthModal: React.FC<Props> = (props) => {
   const { isOpen, actions, isLoginPage } = props
   const { handleSignAuth, closeModal, handleAuthSwitchForm } = actions
 
@@ -196,4 +196,4 @@ const ProjectAuthModal: React.FC<Props> = (props) => {
   )
 }
 
-export default ProjectAuthModal
+export default AuthModal
