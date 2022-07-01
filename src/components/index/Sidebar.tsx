@@ -12,7 +12,7 @@ const Sidebar: React.FC = () => {
     <div className="flex flex-col space-y-5">
       <div className="space-y-3">
         <div className="space-y-5">
-          <Avatar src="/images/my-animated-avatar.jpg" alt="User Avatar" />
+          <Avatar src="https://avatars.githubusercontent.com/u/38458781?v=4" alt="User Avatar" />
           <h1 className="text-2xl font-bold tracking-wide">
             Joshua<span className="text-blue-twitter"> Galit</span>
           </h1>
@@ -89,6 +89,7 @@ const Avatar: React.FC<AvatarProps> = (props) => {
         width={220}
         height={220}
         quality={100}
+        blurDataURL={src}
         layout="responsive"
         className="rounded-full bg-gray-200 dark:bg-gray-800"
       />

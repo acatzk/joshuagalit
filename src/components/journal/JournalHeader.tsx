@@ -19,12 +19,7 @@ const JournalHeader: React.FC<Props> = (props) => {
   const openModal = () => setIsOpen(true)
 
   return (
-    <header
-      className={classNames(
-        'w-full py-3 px-4 mt-2 md:mt-8 border-b',
-        'border-gray-200 dark:border-gray-700'
-      )}
-    >
+    <header className={classNames('w-full py-3 px-4 mt-2 md:mt-8')}>
       <div className="flex flex-wrap items-center justify-between">
         <div className="flex items-end space-x-2">
           <h1 className="font-extrabold text-2xl">

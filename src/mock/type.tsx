@@ -44,7 +44,7 @@ export interface IDiary {
   name: string
   created_at: string
   post_caption: string
-  post_image: string
+  post_image?: string
 }
 
 export interface ISocialLink {
