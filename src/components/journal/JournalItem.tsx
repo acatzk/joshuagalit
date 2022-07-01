@@ -9,7 +9,7 @@ import TimeAgoFormat from '~/lib/react-timeago'
 import { classNames } from '~/utils/classNames'
 import { RiShareForwardLine } from 'react-icons/ri'
 
-const DiaryItem: React.FC<IDiary> = (props) => {
+const JournalItem: React.FC<IDiary> = (props) => {
   const { avatar_url, name, created_at, post_caption, post_image } = props
 
   return (
@@ -122,4 +122,4 @@ const DiaryItem: React.FC<IDiary> = (props) => {
   )
 }
 
-export default DiaryItem
+export default JournalItem

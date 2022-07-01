@@ -1,18 +1,18 @@
 import React from 'react'
-import MyDayItem from './MyDayItem'
+import MyDayItem from './JournalItem'
 import { motion } from 'framer-motion'
 import { fadeInUp, stagger } from '~/mock/animation'
 
 type Props = {
-  mydaylist: any
+  journalList: any
 }
 
-const MyDayList: React.FC<Props> = (props) => {
-  const { mydaylist } = props
+const JournalList: React.FC<Props> = (props) => {
+  const { journalList } = props
 
   return (
     <motion.div variants={stagger}>
-      {mydaylist.map((myday: any, i: number) => (
+      {journalList.map((myday: any, i: number) => (
         <motion.div variants={fadeInUp} key={i} className="my-3 md:my-7 px-4">
           <MyDayItem {...myday} />
         </motion.div>
@@ -21,4 +21,4 @@ const MyDayList: React.FC<Props> = (props) => {
   )
 }
 
-export default MyDayList
+export default JournalList
