@@ -44,8 +44,8 @@ export const navigations: INavigation[] = [
     href: '/'
   },
   {
-    text: 'MyDay',
-    href: '/myday'
+    text: 'Journal',
+    href: '/journal'
   },
   {
     text: 'Blog',
@@ -207,7 +207,7 @@ export const tools: ISkill[] = [
   }
 ]
 
-export const mydaylist: IDiary[] = [
+export const journalList: IDiary[] = [
   {
     avatar_url: '/images/my-animated-avatar.jpg',
     name: 'Joshua Galit',
