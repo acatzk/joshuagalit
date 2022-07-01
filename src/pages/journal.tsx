@@ -53,8 +53,8 @@ const MyDay: NextPage = () => {
 
   return (
     <Layout
-      headTitle="Diary | Joshua Galit"
-      metaDescription="My Personal Diary Post every moment I feel the moment"
+      headTitle="Journal | Joshua Galit"
+      metaDescription="My Personal Journal Post every week during the work"
     >
       <motion.div
         variants={routeAnimation}
