@@ -70,7 +70,7 @@ const ProjectPostDetails: React.FC<Props> = (props) => {
                 'border-gray-200 dark:border-gray-700 rounded-full',
                 'bg-gray-200 dark:bg-gray-800'
               )}
-              src="/images/my-avatar.jpg"
+              src="https://avatars.githubusercontent.com/u/38458781?v=4"
               alt="My Profile Image"
               layout="intrinsic"
             />
