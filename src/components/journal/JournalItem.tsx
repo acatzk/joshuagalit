@@ -7,7 +7,7 @@ import { BsThreeDots } from 'react-icons/bs'
 import { AiOutlineLike } from 'react-icons/ai'
 import TimeAgoFormat from '~/lib/react-timeago'
 import { classNames } from '~/utils/classNames'
-import { RiShareForwardLine } from 'react-icons/ri'
+// import { RiShareForwardLine } from 'react-icons/ri'
 
 const JournalItem: React.FC<IDiary> = (props) => {
   const { avatar_url, name, created_at, post_caption, post_image } = props
@@ -66,22 +66,29 @@ const JournalItem: React.FC<IDiary> = (props) => {
         </button>
       </div>
       <div className="flex flex-col overflow-hidden">
-        {post_caption && (
-          <div className="pb-1.5 px-4">
-            <p className="text-sm text-gray-900 dark:text-gray-200 line-clamp-2">{post_caption}</p>
-          </div>
+        {post_caption && post_image && (
+          <>
+            <div className="px-4 pb-1.5 border-b dark:border-gray-700">
+              <p className="text-sm text-gray-900 dark:text-gray-200 line-clamp-2">
+                {post_caption}
+              </p>
+            </div>
+            <Image
+              src={post_image}
+              width={508}
+              height={500}
+              layout="responsive"
+              objectFit="cover"
+              quality={100}
+              alt="MyDay Post Image"
+              className="bg-gray-200 dark:bg-gray-800"
+            />
+          </>
         )}
-        {post_image && (
-          <Image
-            src={post_image}
-            width={508}
-            height={500}
-            layout="responsive"
-            objectFit="cover"
-            quality={100}
-            alt="MyDay Post Image"
-            className="bg-gray-200 dark:bg-gray-800"
-          />
+        {post_caption && !post_image && (
+          <div className="px-4 pb-4 pt-3 border-b dark:border-gray-700">
+            <p className="text-md text-gray-900 dark:text-gray-200 line-clamp-2">{post_caption}</p>
+          </div>
         )}
       </div>
       <div>
@@ -106,7 +113,7 @@ const JournalItem: React.FC<IDiary> = (props) => {
             <BiComment className="w-5 h-5" />
             <span className="font-medium">Comment</span>
           </button>
-          <button
+          {/* <button
             className={classNames(
               'flex items-center justify-center space-x-2 p-1 w-full rounded-md hover:bg-gray-200',
               'dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400',
@@ -115,7 +122,7 @@ const JournalItem: React.FC<IDiary> = (props) => {
           >
             <RiShareForwardLine className="w-5 h-5" />
             <span className="font-medium">Share</span>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

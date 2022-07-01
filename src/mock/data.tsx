@@ -102,18 +102,18 @@ export const githubStats: IGitHubLink[] = [
   {
     id: 1,
     Icon: FiUsers,
-    count: '159',
+    count: '251',
     label: 'followers'
   },
   {
     id: 2,
-    count: '1k',
+    count: '1.2k',
     label: 'followers'
   },
   {
     id: 3,
     Icon: FiStar,
-    count: '593'
+    count: '643'
   }
 ]
 
@@ -208,6 +208,12 @@ export const tools: ISkill[] = [
 ]
 
 export const journalList: IDiary[] = [
+  {
+    avatar_url: '/images/my-animated-avatar.jpg',
+    name: 'Joshua Galit',
+    created_at: 'July 1, 2021',
+    post_caption: 'Wasted my 7 months building my personal site'
+  },
   {
     avatar_url: '/images/my-animated-avatar.jpg',
     name: 'Joshua Galit',
