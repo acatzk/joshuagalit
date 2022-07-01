@@ -6,13 +6,13 @@ import { GrGithub } from 'react-icons/gr'
 import { classNames } from '~/utils/classNames'
 import { useAuthenticated } from '@nhost/react'
 import { AiOutlineLogout } from 'react-icons/ai'
+import UserProfileModal from '../UserProfileModal'
 import {
   BiLinkExternal,
   BiMessageRounded,
   BiMessageRoundedDots,
   BiUserCircle
 } from 'react-icons/bi'
-import ProjectUserProfileModal from './ProjectUserProfileModal'
 
 type Props = {
   user: any
@@ -222,7 +222,7 @@ const Tabs: React.FC<TabProps> = (props) => {
                   <span className="text-sm line-clamp-1">Profile</span>
                 </button>
               </li>
-              <ProjectUserProfileModal
+              <UserProfileModal
                 user={user}
                 isOpen={isOpenUserModal}
                 actions={{ openUserModal, closeUserModal, handleUpdateUser }}
