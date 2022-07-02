@@ -25,7 +25,7 @@ const ProjectCommentItem: React.FC<Props> = (props) => {
   const { handleReport, handleDelete } = actions
 
   return (
-    <div key={id} className="flex space-x-3 py-3 px-2">
+    <div key={id} className="flex space-x-2 py-3 px-2">
       <div className="relative -mt-1">
         <Avatar
           name={name}
@@ -72,7 +72,7 @@ const ProjectCommentItem: React.FC<Props> = (props) => {
         </div>
         <div
           className={classNames(
-            'ml-3 mt-3 text-xs flex items-center space-x-3 text-gray-500 dark:text-gray-400',
+            'ml-3 mt-2 text-xs flex items-center space-x-3 text-gray-500 dark:text-gray-400',
             'font-medium'
           )}
         >
