@@ -1,9 +1,10 @@
+import Image from 'next/image'
 import AuthModal from '../AuthModal'
-import React, { useState } from 'react'
 import { LogoIcon } from '~/utils/Icons'
 import { useForm } from 'react-hook-form'
 import { classNames } from '~/utils/classNames'
-import { useAuthenticated } from '@nhost/react'
+import React, { useEffect, useState } from 'react'
+import { useAuthenticated, useUserData } from '@nhost/react'
 
 type props = {
   actions: any
@@ -12,6 +13,7 @@ type props = {
 
 const ProjectPostForm: React.FC<props> = (props) => {
   const { actions, isLoginPage } = props
+  const user = useUserData()
   const isAuthenticated = useAuthenticated()
   const [isOpen, setIsOpen] = useState(false)
   const { handleComment, handleSignAuth, handleAuthSwitchForm } = actions
@@ -22,8 +24,21 @@ const ProjectPostForm: React.FC<props> = (props) => {
   const {
     register,
     handleSubmit,
+    reset,
+    formState,
     formState: { isSubmitting, isDirty, isValid }
-  } = useForm({ mode: 'onChange' })
+  } = useForm({
+    mode: 'onChange',
+    defaultValues: {
+      comment: ''
+    }
+  })
+
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset({ comment: '' })
+    }
+  }, [formState, reset])
 
   return (
     <div
@@ -60,7 +75,8 @@ const ProjectPostForm: React.FC<props> = (props) => {
       {isAuthenticated && (
         <form className="space-y-4" onSubmit={handleSubmit(handleComment)}>
           <div className="space-y-6">
-            <div>
+            <div className="flex items-start">
+              <Avatar user={user} className="rounded-full" />
               <textarea
                 placeholder="Add a public comment..."
                 {...register('comment', {
@@ -90,6 +106,29 @@ const ProjectPostForm: React.FC<props> = (props) => {
           </div>
         </form>
       )}
+    </div>
+  )
+}
+
+type AvatarProps = {
+  className?: any
+  user: any
+}
+
+const Avatar: React.FC<AvatarProps> = (props) => {
+  const { className, user } = props
+
+  return (
+    <div className="flex-shrink-0">
+      <Image
+        className={className}
+        src={user?.avatarUrl?.split('?r=g&default=blank')?.toString()}
+        alt="User Avatar"
+        objectFit="cover"
+        width={36}
+        height={36}
+        layout="intrinsic"
+      />
     </div>
   )
 }
