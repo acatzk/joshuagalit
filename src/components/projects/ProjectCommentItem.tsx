@@ -2,9 +2,10 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Menu } from '@headlessui/react'
 import { useUserId } from '@nhost/react'
-import { BsThreeDots } from 'react-icons/bs'
-import TimeAgoFormat from '~/lib/react-timeago'
+import { GiMicrophone } from 'react-icons/gi'
+import { BiChevronDown } from 'react-icons/bi'
 import { classNames } from '~/utils/classNames'
+import { shortDateFormat } from '~/utils/shortDateFormat'
 
 type Props = {
   id: string
@@ -25,38 +26,54 @@ const ProjectCommentItem: React.FC<Props> = (props) => {
 
   return (
     <div key={id} className="flex space-x-3 py-3 px-2">
-      <Avatar
-        name={name}
-        user={user}
-        className="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-800"
-      />
-      <div
-        className={classNames(
-          'flex flex-col -my-1.5 rounded-xl px-4 py-3 bg-gray-100',
-          'dark:bg-gray-800 w-full transition ease-in-out duration-700'
-        )}
-      >
-        {/* Comment Header section */}
-        <div className="flex items-start justify-between">
-          <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
-            <h1
-              className={classNames(
-                'font-semibold text-gray-700 dark:text-gray-200',
-                'transition ease-in-out duration-700 line-clamp-1 capitalize'
+      <div className="relative -mt-1">
+        <Avatar
+          name={name}
+          user={user}
+          className="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-800"
+        />
+      </div>
+      <div className="w-full">
+        <div
+          className={classNames(
+            'flex flex-col -my-1.5 rounded-3xl px-4 py-3 bg-gray-100',
+            'dark:bg-gray-800 transition ease-in-out duration-700'
+          )}
+        >
+          {/* Comment Header section */}
+          <div className="flex items-start justify-between space-x-4">
+            <div className="text-xs text-gray-500 dark:text-gray-400">
+              {user?.displayName === 'Joshua Galit' && (
+                <div className="flex items-center space-x-1">
+                  <GiMicrophone className="w-3.5 h-3.5" />
+                  <span className="text-xs">Author</span>
+                </div>
               )}
-            >
-              {user?.displayName}
-            </h1>
-            <span>&bull;</span>
-            <span className="text-xs line-clamp-1">
-              <TimeAgoFormat date={created_at} />
-            </span>
+              <h1
+                className={classNames(
+                  'font-semibold text-gray-700 dark:text-gray-200',
+                  'transition ease-in-out duration-700 line-clamp-1 capitalize'
+                )}
+              >
+                {user?.displayName}
+              </h1>
+            </div>
+            <DropdownMenu actions={{ handleReport, handleDelete }} user={user} project_id={id} />
           </div>
-          <DropdownMenu actions={{ handleReport, handleDelete }} user={user} project_id={id} />
+          {/* Actual comments */}
+          <div>
+            <p className="text-sm tracking-wide text-gray-600 dark:text-white">{comment}</p>
+          </div>
         </div>
-        {/* Actual comments */}
-        <div>
-          <p className="text-sm tracking-wide text-gray-600 dark:text-white">{comment}</p>
+        <div
+          className={classNames(
+            'ml-3 mt-3 text-xs flex items-center space-x-3 text-gray-500 dark:text-gray-400',
+            'font-medium'
+          )}
+        >
+          <span>{shortDateFormat(created_at)}</span>
+          <button className="hover:underline">Like</button>
+          <button className="hover:underline">Reply</button>
         </div>
       </div>
     </div>
@@ -113,7 +130,7 @@ const DropdownMenu: React.FC<DropDownMenuProps> = (props) => {
         {({ open }) => (
           <>
             <Menu.Button className="text-gray-500 focus:outline-none">
-              <BsThreeDots className="w-5 h-5" />
+              <BiChevronDown className="w-5 h-5" />
             </Menu.Button>
             {open && (
               <Menu.Items
@@ -156,7 +173,7 @@ const DropdownMenu: React.FC<DropDownMenuProps> = (props) => {
                 )}
                 <Menu.Item>
                   <button
-                    onClick={(e) => e.preventDefault()}
+                    onClick={() => !open}
                     className={classNames(
                       'text-sm px-4 py-1 text-gray-600 dark:text-gray-400',
                       ' focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-900',
