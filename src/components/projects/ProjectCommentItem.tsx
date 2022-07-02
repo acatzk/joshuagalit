@@ -61,9 +61,14 @@ const ProjectCommentItem: React.FC<Props> = (props) => {
             <DropdownMenu actions={{ handleReport, handleDelete }} user={user} project_id={id} />
           </div>
           {/* Actual comments */}
-          <div>
-            <p className="text-sm tracking-wide text-gray-600 dark:text-white">{comment}</p>
-          </div>
+          <p
+            className={classNames(
+              'text-sm tracking-wide text-gray-600 dark:text-white',
+              user?.displayName !== 'Joshua Galit' ? '-mt-2' : ''
+            )}
+          >
+            {comment}
+          </p>
         </div>
         <div
           className={classNames(
