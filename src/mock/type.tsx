@@ -20,6 +20,7 @@ export interface IGitHubLink {
   Icon?: IconType
   count: string
   label?: string
+  githubDetails?: string[]
 }
 
 export interface IHeaderTab {

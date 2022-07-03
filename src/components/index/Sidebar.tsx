@@ -1,18 +1,23 @@
 import React from 'react'
 import Image from 'next/image'
-import { FiMail } from 'react-icons/fi'
-import { IGitHubLink } from '~/mock/type'
-import { githubStats } from '~/mock/data'
 import { BsDownload } from 'react-icons/bs'
 import { GoLocation } from 'react-icons/go'
+import { FiMail, FiUsers } from 'react-icons/fi'
 import { classNames } from '~/utils/classNames'
+import { abbreviateNumber } from '~/utils/abbreviateNumber'
 
-const Sidebar: React.FC = () => {
+type Props = {
+  githubDetails?: any
+}
+
+const Sidebar: React.FC<Props> = (props) => {
+  const { githubDetails } = props
+
   return (
     <div className="flex flex-col space-y-5">
       <div className="space-y-3">
         <div className="space-y-5">
-          <Avatar src="https://avatars.githubusercontent.com/u/38458781?v=4" alt="User Avatar" />
+          <Avatar src={githubDetails?.avatar_url} alt="User Avatar" />
           <h1 className="text-2xl font-bold tracking-wide">
             Joshua<span className="text-blue-twitter"> Galit</span>
           </h1>
@@ -32,9 +37,7 @@ const Sidebar: React.FC = () => {
           </a>
         </div>
         <div className="flex items-center space-x-1">
-          {githubStats.map(({ id, Icon, count, label }, i) => (
-            <GitHubLink key={i} id={id} Icon={Icon} count={count} label={label} />
-          ))}
+          <GitHubLink githubDetails={githubDetails} />
         </div>
       </div>
       <div className="flex flex-col space-y-2">
@@ -51,7 +54,7 @@ const Sidebar: React.FC = () => {
               'hover:underline transition ease-in-out duration-150'
             )}
           >
-            joshuaimalay@yahoo.com
+            joshuaimalay@gmail.com
           </span>
         </div>
       </div>
@@ -84,7 +87,7 @@ const Avatar: React.FC<AvatarProps> = (props) => {
   return (
     <div className="border-2 border-gray-400 dark:border-gray-600 rounded-full">
       <Image
-        src={src}
+        src={src ? src : 'https://avatars.githubusercontent.com/u/38458781?v=4'}
         alt={alt}
         width={220}
         height={220}
@@ -97,34 +100,30 @@ const Avatar: React.FC<AvatarProps> = (props) => {
   )
 }
 
-const GitHubLink: React.FC<IGitHubLink> = (props) => {
-  const { id, Icon, count, label } = props
-
-  const getDot = (id: any) => id <= 2
+const GitHubLink = (props) => {
+  const { githubDetails } = props
 
   return (
-    <div className="flex items-center space-x-1">
+    <div className="flex items-center space-x-2">
       <a
         href="https://github.com/acatzk"
         className="group flex items-center space-x-1"
         target="_blank"
         rel="noreferrer"
       >
-        {Icon && (
-          <Icon
-            className={classNames(
-              'w-4 h-4 text-gray-500 dark:text-gray-400',
-              'group-hover:text-blue-twitter transition ease-in-out duration-150'
-            )}
-          />
-        )}
+        <FiUsers
+          className={classNames(
+            'w-4 h-4 text-gray-500 dark:text-gray-400',
+            'group-hover:text-blue-twitter transition ease-in-out duration-150'
+          )}
+        />
         <span
           className={classNames(
             'text-sm font-medium text-gray-800 dark:text-white',
             'group-hover:text-blue-twitter transition ease-in-out duration-150'
           )}
         >
-          {count}
+          {abbreviateNumber(githubDetails?.followers)}
         </span>
         <span
           className={classNames(
@@ -132,10 +131,33 @@ const GitHubLink: React.FC<IGitHubLink> = (props) => {
             'group-hover:text-blue-twitter transition ease-in-out duration-150'
           )}
         >
-          {label}
+          followers
         </span>
       </a>
-      {getDot(id) && <span>&middot;</span>}
+      <span>&middot;</span>
+      <a
+        href="https://github.com/acatzk"
+        className="group flex items-center space-x-1"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <span
+          className={classNames(
+            'text-sm font-medium text-gray-800 dark:text-white',
+            'group-hover:text-blue-twitter transition ease-in-out duration-150'
+          )}
+        >
+          {abbreviateNumber(githubDetails?.following)}
+        </span>
+        <span
+          className={classNames(
+            'text-xs text-gray-600 dark:text-gray-400',
+            'group-hover:text-blue-twitter transition ease-in-out duration-150'
+          )}
+        >
+          following
+        </span>
+      </a>
     </div>
   )
 }
