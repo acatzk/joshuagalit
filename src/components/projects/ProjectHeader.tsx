@@ -6,6 +6,7 @@ import { nhost } from '~/lib/nhost-client'
 import { classNames } from '~/utils/classNames'
 import ProjectFeedbackForm from './ProjectFeedbackForm'
 import { INSERT_FEEDBACK_MUTATION } from '~/graphql/mutations'
+import ProjectSearch from './ProjectSearch'
 
 const ProjectHeader: React.FC = () => {
   const [onModal, toggleModal] = useToggle(false)
@@ -35,10 +36,19 @@ const ProjectHeader: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-wrap items-center justify-between px-4 pt-4 md:pt-10">
+    <div
+      className={classNames(
+        'lg:sticky lg:top-0 flex flex-wrap items-center justify-between',
+        'px-4 py-2 md:pt-10 lg:z-10 bg-white dark:bg-dark-dim',
+        'transition ease-in-out duration-700'
+      )}
+    >
       <div className="flex flex-col">
         <h3 className="text-gray-900 text-lg font-bold dark:text-white">My Projects</h3>
         <p className="text-gray-600 text-sm dark:text-gray-500">Open source in GitHub</p>
+      </div>
+      <div className="hidden lg:block">
+        <ProjectSearch />
       </div>
       <div className="relative">
         <button
