@@ -4,12 +4,16 @@ import Loading from '~/utils/Loading'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { classNames } from '~/utils/classNames'
+import { useAuthenticated, useUserData } from '@nhost/react'
 
 type Props = {
   actions: any
 }
 
 const FeedbackForm: React.FC<Props> = (props) => {
+  const user = useUserData()
+  const isAuthenticated = useAuthenticated()
+
   const {
     actions: { handleFeedback }
   } = props
@@ -19,7 +23,14 @@ const FeedbackForm: React.FC<Props> = (props) => {
     register,
     handleSubmit,
     formState: { isSubmitting, errors }
-  } = useForm()
+  } = useForm({
+    mode: 'onChange',
+    defaultValues: {
+      name: user ? user?.displayName : '',
+      message: '',
+      emoji: 'amaze'
+    }
+  })
 
   return (
     <form onSubmit={handleSubmit(handleFeedback)} className="space-y-3">
@@ -27,7 +38,7 @@ const FeedbackForm: React.FC<Props> = (props) => {
         <input
           type="text"
           autoFocus
-          disabled={isSubmitting}
+          disabled={isAuthenticated}
           placeholder="Name"
           {...register('name', {
             required: true
