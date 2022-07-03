@@ -28,6 +28,7 @@ const ProjectHeader: React.FC = () => {
       }
 
       e.target.reset()
+      toggleModal(false)
     } catch (err) {
       console.log(err)
     }
