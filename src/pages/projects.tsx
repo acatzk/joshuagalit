@@ -8,6 +8,8 @@ import { routeAnimation } from '~/mock/animation'
 import { AnimatedLoadingIcon } from '~/utils/Icons'
 import { GET_PROJECT_QUERY } from '~/graphql/queries'
 import ProjectHeader from '~/components/projects/ProjectHeader'
+import ProjectSearch from '~/components/projects/ProjectSearch'
+import { classNames } from '~/utils/classNames'
 
 type Props = {
   initialData: {
@@ -71,7 +73,16 @@ const Projects: NextPage<Props> = (props) => {
         className="w-full max-w-5xl mx-auto"
       >
         <ProjectHeader />
-        {/* <pre>{JSON.stringify(data?.data?.projects, null, 2)}</pre> */}
+        <div className="sticky top-0 z-10">
+          <div
+            className={classNames(
+              'block lg:hidden px-4 py-2 bg-white dark:bg-dark-dim',
+              'transition ease-in-out duration-700'
+            )}
+          >
+            <ProjectSearch />
+          </div>
+        </div>
         <ProjectList projects={data?.data?.projects} />
       </motion.div>
     </Layout>
